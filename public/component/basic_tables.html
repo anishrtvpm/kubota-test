@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="jp" data-nav-layout="horizontal" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
+
+<head>
+
+    <!-- Meta Data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Basic Tables | 品保ポータルサイト</title>
+    <meta name="Description" content="品保ポータルサイト">
+    <meta name="Author" content="品保ポータルサイト">
+	<meta name="keywords" content="品保ポータルサイト">
+	
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+	
+    <!-- Main Theme Js -->
+    <script src="../assets/js/main.js"></script>
+    
+    <!-- Bootstrap Css -->
+    <link id="style" href="../assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!-- Style Css -->
+    <link href="../assets/css/styles.min.css" rel="stylesheet" >
+	
+	<!-- Custom Css -->
+    <link href="../assets/css/custom.css" rel="stylesheet" > 
+	
+    <!-- Icons Css -->
+    <link href="../assets/css/icons.css" rel="stylesheet" >
+
+<!-- Prism CSS -->
+<link rel="stylesheet" href="../assets/libs/prismjs/themes/prism-coy.min.css">
+
+</head>
+
+<body>
+
+    <div class="page">
+
+       <!--#include virtual="../include/header_component.html" -->
+
+        <!--APP-CONTENT START-->
+        <div class="main-content app-content">
+            <div class="container-xl">
+<div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                        <h1 class="page-title fw-semibold fs-18 mb-0">Basic Tables</h1>
+                        <div class="ms-md-1 ms-0">
+                            <nav>
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="index.html">Component</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Basic Tables</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                <!--ROW-START-->
+
+
+                <!-- Start:: row-1 -->
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">
+                                    Basic Tables
+                                </div>
+                                <div class="prism-toggle">
+                                    <button class="btn btn-sm btn-primary-light">Show Code<i class="ri-code-line ms-2 d-inline-block align-middle"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Created On</th>
+                                                <th scope="col">Number</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">Rengga</td>
+                                                <td>21,Dec 2021</td>
+                                                <td>+1234-12340</td>
+                                                <td><span class="badge bg-outline-primary">Completed</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Yamada</td>
+                                                <td>29,April 2022</td>
+                                                <td>+1523-12459</td>
+                                                <td><span class="badge bg-outline-warning">Failed</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Takeuchi</td>
+                                                <td>30,Nov 2022</td>
+                                                <td>+1982-16234</td>
+                                                <td><span class="badge bg-outline-success">Successful</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Yamanaka</td>
+                                                <td>18,Mar 2022</td>
+                                                <td>+1526-10729</td>
+                                                <td><span class="badge bg-outline-secondary">Pending</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer d-none border-top-0">
+<!-- Prism Code -->
+<pre class="language-html"><code class="language-html">&lt;div class="table-responsive"&gt;
+    &lt;table class="table text-nowrap"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th scope="col"&gt;Name&lt;/th&gt;
+                &lt;th scope="col"&gt;Created On&lt;/th&gt;
+                &lt;th scope="col"&gt;Number&lt;/th&gt;
+                &lt;th scope="col"&gt;Status&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td scope="row"&gt;Rengga&lt;/td&gt;
+                &lt;td&gt;21,Dec 2021&lt;/td&gt;
+                &lt;td&gt;+1234-12340&lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge bg-outline-primary"&gt;Completed&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td scope="row"&gt;Yamada&lt;/td&gt;
+                &lt;td&gt;29,April 2022&lt;/td&gt;
+                &lt;td&gt;+1523-12459&lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge bg-outline-warning"&gt;Failed&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td scope="row"&gt;Takeuchi&lt;/td&gt;
+                &lt;td&gt;30,Nov 2022&lt;/td&gt;
+                &lt;td&gt;+1982-16234&lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge bg-outline-success"&gt;Successful&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td scope="row"&gt;Yamanaka&lt;/td&gt;
+                &lt;td&gt;18,Mar 2022&lt;/td&gt;
+                &lt;td&gt;+1526-10729&lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge bg-outline-secondary"&gt;Pending&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+<!-- Prism Code -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">
+                                    Bordered Tables
+                                </div>
+                                <div class="prism-toggle">
+                                    <button class="btn btn-sm btn-primary-light">Show Code<i class="ri-code-line ms-2 d-inline-block align-middle"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table text-nowrap table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-xs me-2 avatar-rounded">
+                                                            <img src="../assets/images/faces/13.jpg" alt="img">
+                                                        </span>Rengga Gumilar
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-success-transparent">Active</span></td>
+                                                <td>rengga.gumilar@kubota.com</td>
+                                                <td>
+                                                    <div class="hstack gap-2 flex-wrap">
+                                                        <a href="javascript:void(0);" class="text-info fs-14 lh-1"><i
+                                                                class="ri-edit-line"></i></a>
+                                                        <a href="javascript:void(0);" class="text-danger fs-14 lh-1"><i
+                                                                class="ri-delete-bin-5-line"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-xs me-2 avatar-rounded">
+                                                            <img src="../assets/images/faces/6.jpg" alt="img">
+                                                        </span>Takayuki Yamada
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-light text-dark">Inactive</span></td>
+                                                <td>takayuki.yamada2@kubota.com</td>
+                                                <td>
+                                                    <div class="hstack gap-2 flex-wrap">
+                                                        <a href="javascript:void(0);" class="text-info fs-14 lh-1"><i
+                                                                class="ri-edit-line"></i></a>
+                                                        <a href="javascript:void(0);" class="text-danger fs-14 lh-1"><i
+                                                                class="ri-delete-bin-5-line"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-xs me-2 avatar-rounded">
+                                                            <img src="../assets/images/faces/15.jpg" alt="img">
+                                                        </span>Hirofumi Takeuchi
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-success-transparent">Active</span></td>
+                                                <td>hirofumi.takeuchi@kubota.com</td>
+                                                <td>
+                                                    <div class="hstack gap-2 flex-wrap">
+                                                        <a href="javascript:void(0);" class="text-info fs-14 lh-1"><i
+                                                                class="ri-edit-line"></i></a>
+                                                        <a href="javascript:void(0);" class="text-danger fs-14 lh-1"><i
+                                                                class="ri-delete-bin-5-line"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-xs me-2 avatar-rounded">
+                                                            <img src="../assets/images/faces/5.jpg" alt="img">
+                                                        </span>Atsuro Yamanaka
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-success-transparent">Active</span></td>
+                                                <td>atsuro.yamanaka@kubota.com</td>
+                                                <td>
+                                                    <div class="hstack gap-2 flex-wrap">
+                                                        <a href="javascript:void(0);" class="text-info fs-14 lh-1"><i
+                                                                class="ri-edit-line"></i></a>
+                                                        <a href="javascript:void(0);" class="text-danger fs-14 lh-1"><i
+                                                                class="ri-delete-bin-5-line"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer d-none border-top-0">
+<!-- Prism Code -->
+<pre class="language-html"><code class="language-html">&lt;div class="table-responsive"&gt;
+    &lt;table class="table text-nowrap table-bordered"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th scope="col"&gt;User&lt;/th&gt;
+                &lt;th scope="col"&gt;Status&lt;/th&gt;
+                &lt;th scope="col"&gt;Email&lt;/th&gt;
+                &lt;th scope="col"&gt;Action&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td scope="row"&gt;
+                    &lt;div class="d-flex align-items-center"&gt;
+                        &lt;span class="avatar avatar-xs me-2 avatar-rounded"&gt;
+                            &lt;img src="../assets/images/faces/13.jpg" alt="img"&gt;
+                        &lt;/span&gt;Rengga Gumilar
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge bg-success-transparent"&gt;Active&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;rengga.gumilar@kubota.com&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div class="hstack gap-2 flex-wrap"&gt;
+                        &lt;a href="javascript:void(0);" class="text-info fs-14 lh-1"&gt;&lt;i
+                                class="ri-edit-line"&gt;&lt;/i&gt;&lt;/a&gt;
+                        &lt;a href="javascript:void(0);" class="text-danger fs-14 lh-1"&gt;&lt;i
+                                class="ri-delete-bin-5-line"&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td scope="row"&gt;
+                    &lt;div class="d-flex align-items-center"&gt;
+                        &lt;span class="avatar avatar-xs me-2 avatar-rounded"&gt;
+                            &lt;img src="../assets/images/faces/6.jpg" alt="img"&gt;
+                        &lt;/span&gt;Takayuki Yamada
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge bg-light text-dark"&gt;Inactive&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;takayuki.yamada2@kubota.com&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div class="hstack gap-2 flex-wrap"&gt;
+                        &lt;a href="javascript:void(0);" class="text-info fs-14 lh-1"&gt;&lt;i
+                                class="ri-edit-line"&gt;&lt;/i&gt;&lt;/a&gt;
+                        &lt;a href="javascript:void(0);" class="text-danger fs-14 lh-1"&gt;&lt;i
+                                class="ri-delete-bin-5-line"&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td scope="row"&gt;
+                    &lt;div class="d-flex align-items-center"&gt;
+                        &lt;span class="avatar avatar-xs me-2 avatar-rounded"&gt;
+                            &lt;img src="../assets/images/faces/15.jpg" alt="img"&gt;
+                        &lt;/span&gt;Hirofumi Takeuchi
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge bg-success-transparent"&gt;Active&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;hirofumi.takeuchi@kubota.com&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div class="hstack gap-2 flex-wrap"&gt;
+                        &lt;a href="javascript:void(0);" class="text-info fs-14 lh-1"&gt;&lt;i
+                                class="ri-edit-line"&gt;&lt;/i&gt;&lt;/a&gt;
+                        &lt;a href="javascript:void(0);" class="text-danger fs-14 lh-1"&gt;&lt;i
+                                class="ri-delete-bin-5-line"&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td scope="row"&gt;
+                    &lt;div class="d-flex align-items-center"&gt;
+                        &lt;span class="avatar avatar-xs me-2 avatar-rounded"&gt;
+                            &lt;img src="../assets/images/faces/5.jpg" alt="img"&gt;
+                        &lt;/span&gt;Atsuro Yamanaka
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge bg-success-transparent"&gt;Active&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;atsuro.yamanaka@kubota.com&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div class="hstack gap-2 flex-wrap"&gt;
+                        &lt;a href="javascript:void(0);" class="text-info fs-14 lh-1"&gt;&lt;i
+                                class="ri-edit-line"&gt;&lt;/i&gt;&lt;/a&gt;
+                        &lt;a href="javascript:void(0);" class="text-danger fs-14 lh-1"&gt;&lt;i
+                                class="ri-delete-bin-5-line"&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+<!-- Prism Code -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: row-1 -->
+
+
+                <!--ROW-END-->
+
+            </div>
+        </div>
+        <!--APP-CONTENT CLOSE-->
+
+       <!--#include virtual="../include/footer.html" -->
+
+    </div>
+
+    <!-- Popper JS -->
+    <script src="../assets/libs/@popperjs/core/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Defaultmenu JS -->
+    <script src="../assets/js/defaultmenu.min.js"></script>
+
+    <!-- Node Waves JS-->
+    <script src="../assets/libs/node-waves/waves.min.js"></script>
+
+    <!-- Sticky JS -->
+    <script src="../assets/js/sticky.js"></script>
+
+    <!-- Simplebar JS -->
+    <script src="../assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../assets/js/simplebar.js"></script>
+
+    <!-- Color Picker JS -->
+    <script src="../assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
+
+
+    
+    <!-- Custom-Switcher JS -->
+    <script src="../assets/js/custom-switcher.min.js"></script>
+
+    <!-- Prism JS -->
+    <script src="../assets/libs/prismjs/prism.js"></script>
+    <script src="../assets/js/prism-custom.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../assets/js/custom.js"></script>
+</body>
+
+</html>

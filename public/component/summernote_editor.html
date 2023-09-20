@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="jp" data-nav-layout="horizontal">
+
+<head>
+
+    <!-- Meta Data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Summernote Editor | 品保ポータルサイト</title>
+    <meta name="Description" content="品保ポータルサイト">
+    <meta name="Author" content="品保ポータルサイト">
+	<meta name="keywords" content="品保ポータルサイト">
+	
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Main Theme Js -->
+    <script src="../assets/js/main.js"></script>
+    
+    <!-- Bootstrap Css -->
+    <link id="style" href="../assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!-- Style Css -->
+    <link href="../assets/css/styles.min.css" rel="stylesheet" >
+	
+	<!-- Custom Css -->
+    <link href="../assets/css/custom.css" rel="stylesheet" > 
+	
+    <!-- Icons Css -->
+    <link href="../assets/css/icons.css" rel="stylesheet" >
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+    <div class="page">
+
+       <!--#include virtual="../include/header_component.html" -->
+
+        <!--APP-CONTENT START-->
+        <div class="main-content app-content">
+            <div class="container-xl">
+<div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                        <h1 class="page-title fw-semibold fs-18 mb-0">Summernote Editor</h1>
+                        <div class="ms-md-1 ms-0">
+                            <nav>
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="index.html">Component</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Summernote Editor</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                <!--ROW-START-->
+
+
+                    <!-- Start:: row-2  -->
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card custom-card">
+                                <div class="card-header justify-content-between">
+                                    <div class="card-title">
+                                        Japanese Version
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                 <div class="col-md-12 row mb-2">
+
+                                                    <div id="summernote-jp"></div>
+
+
+                                            </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="card custom-card">
+                                <div class="card-header justify-content-between">
+                                    <div class="card-title">
+                                        English Version
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                 <div class="col-md-12 row mb-2">
+
+                                                     <div id="summernote-en"></div>
+
+                                            </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End:: row-2  -->
+
+
+                <!--ROW-END-->
+
+            </div>
+        </div>
+        <!--APP-CONTENT CLOSE-->
+
+       <!--#include virtual="../include/footer.html" -->
+
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Defaultmenu JS -->
+    <script src="../assets/js/defaultmenu.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js" integrity="sha256-5slxYrL5Ct3mhMAp/dgnb5JSnTYMtkr4dHby34N10qw=" crossorigin="anonymous"></script>
+
+    <!-- language pack -->
+    <script src="assets/libs/summernote/lang/summernote-ja-JP.min.js"></script>
+
+    <script>
+        $('#summernote-jp').summernote({
+            placeholder: 'こちらは日本語バージョンのリッチテキストエディタになります。',
+            tabsize: 2,
+            height: 300,
+            lang: 'ja-JP', // default: 'en-US'
+        });
+        $('#summernote-en').summernote({
+            placeholder: 'こちらは英語バージョンのリッチテキストエディタになります。',
+            tabsize: 2,
+            height: 300,
+        });
+    </script>
+
+    <!-- Custom JS -->
+    <script src="../assets/js/custom.js"></script>
+
+</body>
+
+</html>

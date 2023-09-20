@@ -1,0 +1,320 @@
+:root {
+    --primary-rgb: 0, 168, 169 !important;
+}
+
+body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic Pro", Meiryo, Arial, sans-serif !important;
+    font-size: 0.95rem;
+}
+
+.footer {
+    -webkit-padding-start: 0rem;
+    padding-inline-start: 0rem;
+    background: #008486;
+}
+
+
+.card.custom-card {
+    border-radius: 0px !important
+}
+
+[data-nav-layout=horizontal] .horizontal-logo {
+    margin-top: 6px;
+}
+
+.btn {
+    font-weight: normal;
+}
+
+.alert {
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.2rem !important;
+    font-size: 1rem;
+}
+
+.alert .btn-close {
+    padding: 1.02rem;
+}
+
+.app-header {
+    border-top: 6px solid #00A8A9;
+    height: 5rem;
+    border-bottom: 1px solid #dedede;
+}
+
+[data-nav-layout=horizontal] .horizontal-logo .header-logo img {
+    height: 2.2rem;
+    line-height: 2.2rem;
+}
+
+.header-logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+}
+
+.HeaderLogo__img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.HeaderLogo__text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-left: 20px;
+    padding-left: 18px;
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: bold;
+    vertical-align: middle;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.HeaderLogo__text::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 38px;
+    background-color: #e5e5e5;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+
+.row {
+    --bs-gutter-x: 0.5rem;
+    --bs-gutter-y: 0;
+}
+
+.custom-card li a {
+    text-decoration: underline;
+    color: #008486;
+    ;
+}
+
+li {
+    line-height: 2;
+
+}
+
+.accordion-body {
+    font-size: 100%;
+}
+
+.main-content {
+    padding: 0rem;
+}
+
+footer .copyright {
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-weight:bold;*/
+}
+
+footer .copyright a {
+    color: white;
+}
+
+footer .list-inline {
+    margin-bottom: 0rem;
+}
+
+.w-90 {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.list-inline-item:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.header-profile-dropdown {
+    width: 30rem;
+    padding: 20px;
+}
+
+.btn {
+    font-size: .9rem;
+    padding: 0.5rem 0.5rem;
+}
+
+.form-select {
+    font-size: 1rem !important;
+    line-height: 1.75;
+}
+
+.breadcrumb {
+    .breadcrumb-item {
+        a {
+            color: $primary;
+            text-decoration: underline !important;
+        }
+
+        &.active {
+            color: $default-text-color;
+            font-weight: 400 !important;
+        }
+    }
+}
+
+.input-group {
+    /* border: 2px solid var(--primary-color);
+    border-radius: 0.25rem;*/
+}
+
+.page-link {
+    text-decoration: none !important;
+}
+
+.breadcrumb .breadcrumb-item a {
+    text-decoration: underline !important;
+}
+
+.breadcrumb .breadcrumb-item.active {
+    font-weight: normal !important;
+}
+
+.table td {
+    font-weight: normal !important;
+}
+
+.table th {
+    background: #f2f2f2;
+}
+
+table.dataTable thead th {
+    text-align: center !important;
+}
+
+.table td a {
+    text-decoration: underline;
+    color: #008486;
+    ;
+}
+
+.faq-cat {
+    padding: 3px 5px 1px 5px;
+    border: 1px solid #e9edf6;
+    margin-right: 10px;
+}
+
+.faq-list {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e9edf6;
+}
+
+.faq-list a h6 {
+    text-decoration: underline;
+    color: #008486;
+}
+
+.link {
+    text-decoration: underline;
+    color: #008486;
+}
+
+.must {
+    display: block;
+    background-color: #C00;
+    border: solid 2px #C00;
+    text-shadow: 0px 1px 2px #933;
+    padding: 2px 5px;
+    font-size: 10px;
+    color: #FFF;
+    float: right;
+    margin: 0px 5px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px #CCC;
+    background-size: 100% 100%;
+}
+
+.must-text {
+    display: block;
+    background-color: #C00;
+    border: solid 2px #C00;
+    text-shadow: 0px 1px 2px #933;
+    padding: 2px 5px;
+    font-size: 10px;
+    color: #FFF;
+    float: left;
+    margin: 0px 5px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px #CCC;
+    background-size: 100% 100%;
+}
+
+.form-check {
+    padding-left: 0 !important;
+}
+
+.form-check .form-check-input {
+    float: none !important;
+    margin-left: 0 !important;
+}
+
+.contact {
+    font-size: 1rem;
+}
+
+.contact a {
+    text-decoration: underline;
+    color: #008486;
+}
+
+.note-editor .dropdown-toggle::after { all: unset; } .note-editor .note-dropdown-menu { box-sizing: content-box; } .note-editor .note-modal-footer { box-sizing: content-box;
+}
+
+.data-table-btn {
+    position: absolute;
+    inset-inline-start: 14rem;
+    z-index: 1;
+}
+
+.data-table-btn {
+    margin: 0.3rem 0 0 0;
+}
+
+.datatable_scroll{
+    overflow-x: scroll;
+}

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="jp" data-nav-layout="horizontal" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
+
+<head>
+
+    <!-- Meta Data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Validation | 品保ポータルサイト</title>
+    <meta name="Description" content="品保ポータルサイト">
+    <meta name="Author" content="品保ポータルサイト">
+	<meta name="keywords" content="品保ポータルサイト">
+	
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Main Theme Js -->
+    <script src="../assets/js/main.js"></script>
+    
+    <!-- Bootstrap Css -->
+    <link id="style" href="../assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!-- Style Css -->
+    <link href="../assets/css/styles.min.css" rel="stylesheet" >
+	
+	<!-- Custom Css -->
+    <link href="../assets/css/custom.css" rel="stylesheet" > 
+	
+    <!-- Icons Css -->
+    <link href="../assets/css/icons.css" rel="stylesheet" >
+
+ 
+<!-- Prism CSS -->
+<link rel="stylesheet" href="../assets/libs/prismjs/themes/prism-coy.min.css">
+
+</head>
+
+<body>
+
+    <div class="page">
+
+       <!--#include virtual="../include/header_component.html" -->
+
+        <!--APP-CONTENT START-->
+        <div class="main-content app-content">
+            <div class="container-xl">
+<div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                        <h1 class="page-title fw-semibold fs-18 mb-0">Validation</h1>
+                        <div class="ms-md-1 ms-0">
+                            <nav>
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="index.html">Component</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Validation</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                <!--ROW-START-->
+
+
+<!-- Start:: row-1 -->
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card custom-card">
+                                <div class="card-header justify-content-between">
+                                    <div class="card-title">
+                                        Custom Validation
+                                    </div>
+                                    <div class="prism-toggle">
+                                        <button class="btn btn-sm btn-primary-light">Show Code<i class="ri-code-line ms-2 d-inline-block align-middle"></i></button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom01" class="form-label">First name</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="Rengga"
+                                                required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom02" class="form-label">Last name</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="Gumilar"
+                                                required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustomUsername" class="form-label">Username</label>
+                                            <div class="input-group has-validation">
+                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                <input type="text" class="form-control" id="validationCustomUsername"
+                                                    aria-describedby="inputGroupPrepend" required>
+                                                <div class="invalid-feedback">
+                                                    Please choose a username.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom03" class="form-label">City</label>
+                                            <input type="text" class="form-control" id="validationCustom03" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid city.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom04" class="form-label">State</label>
+                                            <select class="form-select" id="validationCustom04" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option>...</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a valid state.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="validationCustom05" class="form-label">Zip</label>
+                                            <input type="text" class="form-control" id="validationCustom05" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid zip.
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="invalidCheck" required>
+                                                <label class="form-check-label" for="invalidCheck">
+                                                    Agree to terms and conditions
+                                                </label>
+                                                <div class="invalid-feedback">
+                                                    You must agree before submitting.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer d-none border-top-0">
+<!-- Prism Code -->
+<pre class="language-html"><code class="language-html">&lt;form class="row g-3 needs-validation" novalidate&gt;
+    &lt;div class="col-md-4"&gt;
+        &lt;label for="validationCustom01" class="form-label"&gt;First name&lt;/label&gt;
+        &lt;input type="text" class="form-control" id="validationCustom01" value="Rengga"
+            required&gt;
+        &lt;div class="valid-feedback"&gt;
+            Looks good!
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-4"&gt;
+        &lt;label for="validationCustom02" class="form-label"&gt;Last name&lt;/label&gt;
+        &lt;input type="text" class="form-control" id="validationCustom02" value="Gumilar"
+            required&gt;
+        &lt;div class="valid-feedback"&gt;
+            Looks good!
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-4"&gt;
+        &lt;label for="validationCustomUsername" class="form-label"&gt;Username&lt;/label&gt;
+        &lt;div class="input-group has-validation"&gt;
+            &lt;span class="input-group-text" id="inputGroupPrepend"&gt;@&lt;/span&gt;
+            &lt;input type="text" class="form-control" id="validationCustomUsername"
+                aria-describedby="inputGroupPrepend" required&gt;
+            &lt;div class="invalid-feedback"&gt;
+                Please choose a username.
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-6"&gt;
+        &lt;label for="validationCustom03" class="form-label"&gt;City&lt;/label&gt;
+        &lt;input type="text" class="form-control" id="validationCustom03" required&gt;
+        &lt;div class="invalid-feedback"&gt;
+            Please provide a valid city.
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-3"&gt;
+        &lt;label for="validationCustom04" class="form-label"&gt;State&lt;/label&gt;
+        &lt;select class="form-select" id="validationCustom04" required&gt;
+            &lt;option selected disabled value=""&gt;Choose...&lt;/option&gt;
+            &lt;option&gt;...&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;div class="invalid-feedback"&gt;
+            Please select a valid state.
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-3"&gt;
+        &lt;label for="validationCustom05" class="form-label"&gt;Zip&lt;/label&gt;
+        &lt;input type="text" class="form-control" id="validationCustom05" required&gt;
+        &lt;div class="invalid-feedback"&gt;
+            Please provide a valid zip.
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-12"&gt;
+        &lt;div class="form-check"&gt;
+            &lt;input class="form-check-input" type="checkbox" value=""
+                id="invalidCheck" required&gt;
+            &lt;label class="form-check-label" for="invalidCheck"&gt;
+                Agree to terms and conditions
+            &lt;/label&gt;
+            &lt;div class="invalid-feedback"&gt;
+                You must agree before submitting.
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col-12"&gt;
+        &lt;button class="btn btn-primary" type="submit"&gt;Submit form&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<!-- Prism Code -->
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!-- End:: row-1 -->
+
+
+                <!--ROW-END-->
+
+            </div>
+        </div>
+        <!--APP-CONTENT CLOSE-->
+
+       <!--#include virtual="../include/footer.html" -->
+
+    </div>
+
+    <!-- Popper JS -->
+    <script src="../assets/libs/@popperjs/core/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Defaultmenu JS -->
+    <script src="../assets/js/defaultmenu.min.js"></script>
+
+    <!-- Node Waves JS-->
+    <script src="../assets/libs/node-waves/waves.min.js"></script>
+
+    <!-- Sticky JS -->
+    <script src="../assets/js/sticky.js"></script>
+
+    <!-- Simplebar JS -->
+    <script src="../assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../assets/js/simplebar.js"></script>
+
+    <!-- Color Picker JS -->
+    <script src="../assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
+
+
+    
+    <!-- Custom-Switcher JS -->
+    <script src="../assets/js/custom-switcher.min.js"></script>
+
+    <!-- Prism JS -->
+    <script src="../assets/libs/prismjs/prism.js"></script>
+    <script src="../assets/js/prism-custom.js"></script>
+
+    <!-- Form Validation JS -->
+    <script src="../assets/js/validation.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../assets/js/custom.js"></script>
+
+</body>
+
+</html>
