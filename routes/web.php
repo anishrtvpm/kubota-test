@@ -45,7 +45,22 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/enquiry_management', function () {
         return view('admin.enquiry_management');
     })->name('enquiry_management');
+   
+    Route::get('/system_link_list', function () {
+        return view('admin.system_link_list');
+    })->name('system_link_list');
 
+    Route::get('/faq_category_list', function () {
+        return view('admin.faq_category_list');
+    })->name('faq_category_list');
+
+    Route::get('/contact_information_edit', function () {
+        return view('admin.contact_information_edit');
+    })->name('contact_information_edit');
+
+    Route::get('/link_template_list', function () {
+        return view('admin.link_template_list');
+    })->name('link_template_list');
 });
 
 Route::group(['middleware' => ['auth', 'web']], function () {

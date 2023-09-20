@@ -12,7 +12,8 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('kubota_corps', function (Blueprint $table) {
-            $table->char('company_cd')->comment('会社コード');
+            $table->char('company_cd', 4)->comment('会社コード');
+            //$table->char('company_cd')->comment('会社コード');
             $table->string('ja_name', 160)->comment('会社名(日)');
             $table->string('en_name', 80)->comment('会社名(英)');
             $table->string('short_name', 80)->nullable(true)->comment('略称');
