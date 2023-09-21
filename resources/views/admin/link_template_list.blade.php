@@ -41,11 +41,11 @@
                             </div>
                         </div>
                         <div class="card-body">
-                        <div class=" row  g-3 mb-3 align-items-center">
-                        <!-- g-3 mb-3 align-items-center -->
+                        <div class=" row row-cols-lg-auto g-3 mb-3 ">
+                            
                                 <form class="row row-cols-lg-auto ">
                                     <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">種別</label>
-                                    <div class="col-12 w-25">
+                                    <div class="col-12 w-75">
                                         <select class="form-select" id="inlineFormSelectCatParent">
                                             <option selected>大カテゴリ</option>
                                             <option value="1">大カテゴリ０１</option>
@@ -55,7 +55,7 @@
                                     </div>
                                 </form>
                            
-                                <button type="submit" class="btn btn-primary"data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8" style="float: right;">新規追加</button>
+                                <button type="submit" class="btn btn-primary"data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8" style="margin-left: 793px;">新規追加</button>
                             </div>
                             <div class="modal fade" id="modaldemo8">
                                 <div class="modal-dialog modal-dialog-centered text-center" role="document">

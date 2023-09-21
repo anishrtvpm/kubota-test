@@ -28,7 +28,7 @@
         </form>
     </div>
     <div class="alert alert-solid-dark alert-dismissible fade show text-white mt-4">
-        アナウンス管理
+    お問い合わせ情報管理
     </div>
     <div class="row">
         <div class="col-xxl-12 col-xl-12">
