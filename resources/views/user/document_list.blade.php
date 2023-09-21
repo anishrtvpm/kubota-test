@@ -62,47 +62,6 @@
                                     <button type="submit" class="btn btn-primary">検索</button>
                                 </div>
                             </form>
-                            <div class="modal fade" id="modaldemo8">
-                                <div class="modal-dialog modal-dialog-centered text-center" role="document">
-                                    <div class="modal-content modal-content-demo">
-                                        <div class="modal-header">
-                                            <h6 class="modal-title">リンクカテゴリ追加</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body text-start">
-                                            <div class="row">
-                                                <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">ID</label>
-                                                <div class="col-sm-8">
-                                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">999999</label>
-                                                </div>
-                                                <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">カテゴリ名(JP)</label>
-                                                <div class="col-sm-8">
-                                                    <input type="" class="form-control form-control-lg" id="colFormLabelLg" placeholder="入力してください">
-                                                </div>
-                                                <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">カテゴリ名(JP)</label>
-                                                <div class="col-sm-8">
-                                                    <input type="" class="form-control form-control-lg" id="colFormLabelLg" placeholder="入力してください">
-                                                </div>
-                                                <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">表示順</label>
-                                                <div class="col-sm-8">
-                                                    <input type="number" class="form-control" placeholder="0" aria-label="表示順">
-                                                </div>
-                                                <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">状態</label>
-                                                <div class="col-sm-8">
-                                                    <select class="form-select" id="autoSizingSelect">
-                                                        <option selected>選択</option>
-                                                        <option value="1">公開中</option>
-                                                        <option value="2">未公開</option>
-                                                        <option value="3">保留中</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-warning">作成する</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-xl-12">
                                     <table id="datatable-basic" class="table table-bordered text-nowrap" style="width:100%">
@@ -118,7 +77,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">1234567890</a></td>
+                                                <td><a href="{{ route('document_view') }}">1234567890</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -126,7 +85,7 @@
                                                 <td>2023/05/29</td>
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">2345678900</a></td>
+                                                <td><a href="{{ route('document_view') }}">12212112</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -134,7 +93,7 @@
                                                 <td>2023/05/29</td>
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">3456789010</a></td>
+                                                <td><a href="{{ route('document_view') }}">11111111</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -142,7 +101,7 @@
                                                 <td>2023/05/29</td>
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">4567890120</a></td>
+                                                <td><a href="{{ route('document_view') }}">1234567890</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -150,7 +109,7 @@
                                                 <td>2023/05/29</td>
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">5678901230</a></td>
+                                                <td><a href="{{ route('document_view') }}">1234567890</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>

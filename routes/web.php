@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
 
 Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
-    Route::get('/dashboard', function () {
+    Route::get('/admin_dashboard', function () {
         return view('admin.dashboard');
-    })->name('dashboard');
+    })->name('admin_dashboard');
 
     Route::get('/faq_edit', function () {
         return view('admin.faq_edit');
@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/user_info', function () {
         return view('admin.user_info');
     })->name('user_info');
+
+    Route::get('/user_independant', function () {
+        return view('admin.user_independant');
+    })->name('user_independant');
 
     Route::get('/enquiry_management', function () {
         return view('admin.enquiry_management');
@@ -65,6 +69,14 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/template_edit', function () {
         return view('admin.template_edit');
     })->name('template_edit');
+    Route::get('/admin_notice_list', function () {
+        return view('admin.admin_notice_list');
+    })->name('admin_notice_list');
+
+    Route::get('/faq_article_list', function () {
+        return view('admin.faq_article_list');
+    })->name('faq_article_list');
+
 });
 
 Route::group(['middleware' => ['auth', 'web']], function () {
@@ -95,6 +107,10 @@ Route::group(['middleware' => ['auth', 'web']], function () {
     Route::get('/document_list', function () {
         return view('user.document_list');
     })->name('document_list');
+
+    Route::get('/document_view', function () {
+        return view('user.document_view');
+    })->name('document_view');
 });
 
 require __DIR__ . '/auth.php';

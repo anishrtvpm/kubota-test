@@ -3,9 +3,9 @@
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">ホーム</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">ホーム</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0);">管理画面</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">お知らせ管理</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin_notice_list') }}">お知らせ管理</a></li>
                 <li class="breadcrumb-item active" aria-current="page">お知らせ編集</li>
             </ol>
         </nav>
@@ -46,7 +46,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6 row mb-3">
-                                            <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">カテゴリ</label>
+                                            <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">システム</label>
                                             <div class="col-sm-7 mb-2">
                                                 <select class="form-select" id="inlineFormSelectCatParent2">
                                                     <option selected>調査報告/再発防止報告</option>

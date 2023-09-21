@@ -42,7 +42,7 @@
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">テーブル切替</label>
                                     <div class="col-sm-8">
                                         <select id="inputState1" class="form-select">
-                                            <option selected>従業員所属情報</option>
+                                            <option selected>独立系販社マスタ</option>
                                             <option>...</option>
                                         </select>
                                     </div>
@@ -96,15 +96,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 row mb-3">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label">ユーザーグループ</label>
-                                    <div class="col-sm-8">
-                                        <select id="inputState2" class="form-select">
-                                            <option selected>従業員所属情報</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 row mb-3">
                                 </div>
                                 <div class="col-md-12 text-end">
                                     <div class="btn-list">
@@ -126,74 +117,70 @@
                                     <table id="datatable-basic" class="table table-bordered text-nowrap" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>GUID</th>
-                                                <th>区分</th>
+                                                <th>ユーザーID</th>
                                                 <th>ユーザー名(JP)</th>
                                                 <th>ユーザー名(EN)</th>
+                                                <th>会社名</th>
+                                                <th>部署</th>
                                                 <th>メールアドレス</th>
-                                                <th>所属(会社CD)</th>
-                                                <th>所属(所属CD)</th>
-                                                <th>所属(枝番)</th>
-                                                <th>所属名</th>
-                                                <th>ユーザーグループ</th>
+                                                <th>電話番号</th>
                                                 <th>有効開始日</th>
                                                 <th>有効終了日</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>12345678</td>
-                                                <td>管理者</td>
+                                                <td>999999999</td>
                                                 <td>山田太郎</td>
-                                                <td>Test Test</td>
+                                                <td>Yamada Taro</td>
+                                                <td>テスト会社名</td>
+                                                <td>テスト部門</td>
                                                 <td>test.test@kubota.com</td>
-                                                <td>1111-12345678-01</td>
-                                                <td>システム開発</td>
-                                                <td>11111111111</td>
-                                                <td>所属1</td>
-                                                <td>グループ1</td>
+                                                <td>8080112233</td>
                                                 <td>2023/05/29</td>
                                                 <td>2023/05/29</td>
                                             </tr>
                                             <tr>
-                                                <td>11122233</td>
-                                                <td>管理者</td>
+                                                <td>999999999</td>
                                                 <td>山田太郎</td>
-                                                <td>Test Test</td>
+                                                <td>Yamada Taro</td>
+                                                <td>テスト会社名</td>
+                                                <td>テスト部門</td>
                                                 <td>test.test@kubota.com</td>
-                                                <td>1111-11122233-01</td>
-                                                <td>システム開発</td>
-                                                <td>11111111111</td>
-                                                <td>所属2</td>
-                                                <td>グループ2</td>
+                                                <td>8080112233</td>
                                                 <td>2023/05/29</td>
                                                 <td>2023/05/29</td>
                                             </tr>
                                             <tr>
-                                                <td>11112222</td>
-                                                <td>一般</td>
+                                                <td>999999999</td>
                                                 <td>山田太郎</td>
-                                                <td>Test Test</td>
+                                                <td>Yamada Taro</td>
+                                                <td>テスト会社名</td>
+                                                <td>テスト部門</td>
                                                 <td>test.test@kubota.com</td>
-                                                <td>1111-11112222-01</td>
-                                                <td>システム開発</td>
-                                                <td>11111111111</td>
-                                                <td>所属2</td>
-                                                <td>グループ3</td>
+                                                <td>8080112233</td>
                                                 <td>2023/05/29</td>
                                                 <td>2023/05/29</td>
                                             </tr>
                                             <tr>
-                                                <td>11112222</td>
-                                                <td>一般</td>
+                                                <td>999999999</td>
                                                 <td>山田太郎</td>
-                                                <td>Test Test</td>
+                                                <td>Yamada Taro</td>
+                                                <td>テスト会社名</td>
+                                                <td>テスト部門</td>
                                                 <td>test.test@kubota.com</td>
-                                                <td>1111-11111111-01</td>
-                                                <td>システム開発</td>
-                                                <td>11111111111</td>
-                                                <td>所属1</td>
-                                                <td>グループ1</td>
+                                                <td>8080112233</td>
+                                                <td>2023/05/29</td>
+                                                <td>2023/05/29</td>
+                                            </tr>
+                                            <tr>
+                                                <td>999999999</td>
+                                                <td>山田太郎</td>
+                                                <td>Yamada Taro</td>
+                                                <td>テスト会社名</td>
+                                                <td>テスト部門</td>
+                                                <td>test.test@kubota.com</td>
+                                                <td>8080112233</td>
                                                 <td>2023/05/29</td>
                                                 <td>2023/05/29</td>
                                             </tr>
