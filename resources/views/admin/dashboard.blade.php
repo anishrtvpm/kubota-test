@@ -542,15 +542,15 @@
                                         <ul>
                                             <li><a href="{{ route('admin_notice_list') }}">お知らせ管理</a></li>
                                             <li><a href="{{ route('announcement_edit') }}">アナウンス編集</a></li>
-                                            <li><a href="#">お問い合わせ先情報編集</a></li>
-                                            <li><a href="#">ユーザー管理</a></li>
+                                            <li><a href="{{ route('contact_information_edit') }}">お問い合わせ先情報編集</a></li>
+                                            <li><a href="{{ route('faq_article_list') }}">ユーザー管理</a></li>
                                             <li><a href="#">所属情報管理</a></li>
-                                            <li><a href="#">独立系販社管理</a></li>
+                                            <li><a href="{{ route('user_independant') }}">独立系販社管理</a></li>
                                             <li><a href="#">システムリンク管理</a></li>
                                             <li><a href="#">リンク・テンプレート管理</a></li>
                                             <li><a href="#">ユーザグループ権限情報管理</a></li>
                                             <li><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
-                                            <li><a href="#">お問い合わせフォーム管理</a></li>
+                                            <li><a href="{{ route('enquiry_management') }}">お問い合わせフォーム管理</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -568,7 +568,7 @@
                                                 お知らせ
                                             </div>
                                             <div class="prism-toggle">
-                                            <a href="#"><button class="btn btn-sm btn-primary-light">一覧<i
+                                            <a href="{{ route('admin_notice_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
                                                         class="bi bi-chevron-right"></i></button></a>
                                             </div>
                                         </div>
@@ -591,7 +591,7 @@
                                                     FAQ
                                                 </div>
                                                 <div class="prism-toggle">
-                                                <a href="#"><button class="btn btn-sm btn-primary-light">一覧<i
+                                                <a href="{{ route('faq_article_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
                                                             class="bi bi-chevron-right"></i></button></a>
                                                 </div>
                                             </div>
