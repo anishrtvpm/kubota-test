@@ -15,12 +15,23 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $employee = Employee::where('is_admin', 1)->first();
-        User::create([
-            'employee_id'=>$employee->guid,
-            'email' => $employee->email,
-            'name' => $employee->ja_name,
-            'password' => Hash::make('Kub@dmin01')
-        ]);
+        $employees = Employee::all();
+        if ($employees) {
+            foreach ($employees as $employee) {
+                if ($employee->is_admin) {
+                    $password = 'Kub@dmin01';
+                } else {
+                    $password = '123456';
+                }
+                User::create([
+                    'employee_id' => $employee->guid,
+                    'email' => $employee->email,
+                    'name' => $employee->ja_name,
+                    'password' => Hash::make($password)
+                ]);
+
+            }
+        }
+
     }
 }

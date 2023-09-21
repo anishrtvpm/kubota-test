@@ -13,7 +13,8 @@ return new class () extends Migration {
     {
         Schema::create('contact_info', function (Blueprint $table) {
             $table->increments('item_id')->comment('項目ID');
-            $table->integer('group_id')->unsigned()->comment('ユーザーグループID');
+            $table->tinyInteger('group_id')->unsigned()->comment('ユーザーグループID');
+            //$table->integer('group_id')->unsigned()->comment('ユーザーグループID');
             $table->string('ja_message', 1000)->comment('日本語メッセージ');
             $table->string('en_message', 1000)->comment('英語メッセージ');
             $table->boolean('is_deleted')->default(false)->comment('削除フラグ');

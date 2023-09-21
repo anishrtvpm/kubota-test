@@ -15,7 +15,7 @@ return new class () extends Migration {
             $table->increments('item_id')->comment('アイテムID');
             $table->tinyInteger('kind')->unsigned()->comment('種別(リンク/テンプレート/フォーマット)');
             $table->integer('category_id')->unsigned()->comment('カテゴリID');
-            $table->integer('sort')->unsigned()->comment('並び順');
+            $table->tinyInteger('sort')->unsigned()->comment('並び順');
             $table->string('title', 200)->comment('タイトル');
             $table->string('url', 8000)->nullable(true)->comment('URL');
             $table->text('message')->nullable(true)->comment('説明文');

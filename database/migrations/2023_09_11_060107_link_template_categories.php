@@ -13,10 +13,14 @@ return new class () extends Migration {
     {
         Schema::create('link_template_categories', function (Blueprint $table) {
             $table->increments('category_id')->comment('カテゴリID');
-            $table->string('top_category_ja_name')->comment('大カテゴリ名(日)');
-            $table->string('top_category_en_name')->comment('大カテゴリ名(英)');
-            $table->string('sub_category_ja_name')->comment('大カテゴリ名(日)');
-            $table->string('sub_category_en_name')->comment('大カテゴリ名(英)');
+            $table->string('top_category_ja_name', 100)->comment('大カテゴリ名(日)');
+            $table->string('top_category_en_name', 100)->comment('大カテゴリ名(英)');
+            $table->string('sub_category_ja_name', 100)->comment('大カテゴリ名(日)');
+            $table->string('sub_category_en_name', 100)->comment('大カテゴリ名(英)');
+            //$table->string('top_category_ja_name')->comment('大カテゴリ名(日)');
+            //$table->string('top_category_en_name')->comment('大カテゴリ名(英)');
+            //$table->string('sub_category_ja_name')->comment('大カテゴリ名(日)');
+            //$table->string('sub_category_en_name')->comment('大カテゴリ名(英)');
             $table->tinyInteger('sort')->unsigned()->comment('並び順');
             $table->boolean('is_visible')->comment('表示フラグ');
             $table->boolean('is_deleted')->default(false)->comment('削除フラグ');

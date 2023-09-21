@@ -26,10 +26,6 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
         return view('admin.faq_edit');
     })->name('faq_edit');
 
-    Route::get('/enquiry_view', function () {
-        return view('admin.enquiry_view');
-    })->name('enquiry_view');
-
     Route::get('/announcement_edit', function () {
         return view('admin.announcement_edit');
     })->name('announcement_edit');
@@ -49,7 +45,30 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/enquiry_management', function () {
         return view('admin.enquiry_management');
     })->name('enquiry_management');
+   
+    Route::get('/system_link_list', function () {
+        return view('admin.system_link_list');
+    })->name('system_link_list');
 
+    Route::get('/faq_category_list', function () {
+        return view('admin.faq_category_list');
+    })->name('faq_category_list');
+
+    Route::get('/contact_information_edit', function () {
+        return view('admin.contact_information_edit');
+    })->name('contact_information_edit');
+
+    Route::get('/link_template_list', function () {
+        return view('admin.link_template_list');
+    })->name('link_template_list');
+
+    Route::get('/link_template_category_list', function () {
+        return view('admin.link_template_category_list');
+    })->name('link_template_category_list');
+
+    Route::get('/template_edit', function () {
+        return view('admin.template_edit');
+    })->name('template_edit');
     Route::get('/admin_notice_list', function () {
         return view('admin.admin_notice_list');
     })->name('admin_notice_list');
