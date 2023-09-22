@@ -39,10 +39,6 @@
                     <div class="col-xl-12">
                         <div class="card custom-card">
                             <div class="card-body">
-                                <div class="d-flex　align-items-center justify-content-between mb-5">
-                                    <p class="text-muted faq-list">FAQ No.12345「<a href="#" class="link">FAQタイトルがここに表示されます</a>」についてのご質問・ご連絡は下記のフォームよりお送り下さい。</p>
-                                    <p><span class="must-text">必須</span>の項目は必須入力です。</p>
-                                </div>
                                 <div class="mb-5">
                                     <div class="row">
                                         <h6>ユーザー情報</h6>
@@ -56,68 +52,63 @@
                                         </div>
                                         <label class="col-sm-2 col-form-label col-form-label">所属</label>
                                         <div class="col-sm-10 mb-2">
-                                            <select class="form-select" id="inlineFormSelectCatParent">
-                                                <option selected>機械FC品質本部</option>
-                                                <option value="1">機械FC品質本部A</option>
-                                                <option value="2">機械FC品質本部B</option>
-                                                <option value="3">機械FC品質本部C</option>
-                                            </select>
+                                            <label class="col-sm-2 col-form-label col-form-label">機械FC品質本部</label>
                                         </div>
                                         <label class="col-sm-2 col-form-label col-form-label">言語</label>
                                         <div class="col-sm-10 mb-2">
                                             <label class="col-sm-2 col-form-label col-form-label">日本語</label>
                                         </div>
-                                        <label class="col-sm-2 col-form-label col-form-label">メールアドレス<span class="must">必須</span></label>
+                                        <label class="col-sm-2 col-form-label col-form-label">メールアドレス</label>
                                         <div class="col-sm-10 mb-2">
-                                            <input type="email" class="form-control" id="input-email" placeholder="例）email@kubota.com">
+                                            <label class="col-sm-2 col-form-label col-form-label">email@kubota.com</label>
                                         </div>
                                         <label class="col-sm-2 col-form-label col-form-label">電話番号</label>
                                         <div class="col-sm-10 mb-5">
-                                            <input type="tel" class="form-control" id="input-tel" placeholder="例）06012345678">
+                                            <label class="col-sm-2 col-form-label col-form-label">06012345678</label>
                                         </div>
 
                                         <h6>お問い合わせ内容</h6>
-                                        <label class="col-sm-2 col-form-label col-form-label">システム<span class="must">必須</span></label>
+                                        <label class="col-sm-2 col-form-label col-form-label">システム</label>
                                         <div class="col-sm-10 mb-2">
-                                            <input type="text" class="form-control" id="input-system" value="G-Wish">
+                                            <label class="col-sm-10 col-form-label col-form-label">G-Wish</label>
                                         </div>
-                                        <label class="col-sm-2 col-form-label col-form-label">カテゴリ<span class="must">必須</span></label>
+                                        <label class="col-sm-2 col-form-label col-form-label">カテゴリ</label>
                                         <div class="col-sm-10 mb-2">
-                                            <input type="text" class="form-control" id="input-system" value="ワレンティ申請">
+                                            <label class="col-sm-10 col-form-label col-form-label">ワレンティ申請</label>
                                         </div>
-                                        <label class="col-sm-2 col-form-label col-form-label">件名<span class="must">必須</span></label>
+                                        <label class="col-sm-2 col-form-label col-form-label">件名</label>
                                         <div class="col-sm-10 mb-2">
-                                            <input type="text" class="form-control" id="input-field1">
+                                            <label class="col-sm-10 col-form-label col-form-label">ここに件名を表示する</label>
                                         </div>
-                                        <label class="col-sm-2 col-form-label col-form-label">関連問い合わせNo.<span class="must">必須</span></label>
+                                        <label class="col-sm-2 col-form-label col-form-label">関連問い合わせNo.</label>
                                         <div class="col-sm-10 mb-2">
-                                            <input type="text" class="form-control" id="input-field2">
+                                            <label class="col-sm-10 col-form-label col-form-label">ここに関連問い合わせNoを表示する</label>
                                         </div>
-                                        <label class="col-sm-2 col-form-label col-form-label">型式<span class="must">必須</span></label>
+                                        <label class="col-sm-2 col-form-label col-form-label">型式</label>
                                         <div class="col-sm-10 mb-2">
-                                            <input type="text" class="form-control" id="input-field3">
+                                            <label class="col-sm-10 col-form-label col-form-label">ここに型式を表示する</label>
                                         </div>
-                                        <label class="col-sm-2 col-form-label col-form-label">機番<span class="must">必須</span></label>
+                                        <label class="col-sm-2 col-form-label col-form-label">機番</label>
                                         <div class="col-sm-10 mb-2">
-                                            <input type="text" class="form-control" id="input-field4">
+                                            <label class="col-sm-10 col-form-label col-form-label">ここに機番を表示する</label>
                                         </div>
-                                        <label class="col-sm-2 col-form-label col-form-label">受付No.<span class="must">必須</span></label>
+                                        <label class="col-sm-2 col-form-label col-form-label">受付No.</label>
                                         <div class="col-sm-10 mb-2">
-                                            <input type="text" class="form-control" id="input-field5">
+                                            <label class="col-sm-10 col-form-label col-form-label">ここに受付No.を表示する</label>
                                         </div>
-                                        <label for="text-area" class="col-sm-2 col-form-label col-form-label" placeholder="メッセージを入力してください">メッセージ<span class="must">必須</span></label>
+                                        <label for="text-area" class="col-sm-2 col-form-label col-form-label" placeholder="メッセージを入力してください">メッセージ</label>
                                         <div class="col-sm-10 mb-2">
-                                            <textarea class="form-control" id="text-area" rows="1" style="height: 175px;"></textarea>
+                                            <label class="col-sm-10 col-form-label col-form-label">ここにメッセージを表示する</label>
                                         </div>
                                         <label for="formFile" class="col-sm-2 col-form-label col-form-label">添付ファイル</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" type="file" id="formFile">
+                                        <label class="col-sm-10 col-form-label col-form-label">Filename.pdf</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="gap-2 col-3 mx-auto mb-5">
-                                    <button class="btn btn-primary px-4 me-3" type="button">一次保存</button>
-                                    <button class="btn btn-warning px-4" type="button">確認画面</button>
+                                    <button class="btn btn-primary px-4 me-3" type="button">戻る</button>
+                                    <button class="btn btn-warning px-4" type="button">確認</button>
                                 </div>
                             </div>
                         </div>
