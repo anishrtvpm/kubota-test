@@ -83,6 +83,17 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
         return view('admin.independent_company_list');
     })->name('independent_company_list');
 
+    Route::get('/edit_link', function () {
+        return view('admin.edit_link');
+    })->name('edit_link');
+
+    Route::get('/independent_company_permission_settings', function () {
+        return view('admin.independent_company_permission_settings');
+    })->name('independent_company_permission_settings');
+
+    Route::get('/affiliation_information_list', function () {
+        return view('admin.affiliation_information_list');
+    })->name('affiliation_information_list');
     Route::get('/user_permission_list', function () {
         return view('admin.user_permission');
     })->name('user_permission_list');
