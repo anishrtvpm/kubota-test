@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
 
 Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
+
     Route::get('/admin_dashboard', function () {
         return view('admin.dashboard');
     })->name('admin_dashboard');
@@ -69,6 +70,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/template_edit', function () {
         return view('admin.template_edit');
     })->name('template_edit');
+
     Route::get('/admin_notice_list', function () {
         return view('admin.admin_notice_list');
     })->name('admin_notice_list');
@@ -81,9 +83,22 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
         return view('admin.independent_company_list');
     })->name('independent_company_list');
 
+    Route::get('/user_permission_list', function () {
+        return view('admin.user_permission');
+    })->name('user_permission_list');
+
+    Route::get('/user_permission_add', function () {
+        return view('admin.user_permission_add');
+    })->name('user_permission_add');
+
+    Route::get('/user_permission_independent', function () {
+        return view('admin.user_permission_independent');
+    })->name('user_permission_independent');
+
 });
 
 Route::group(['middleware' => ['auth', 'web']], function () {
+
     Route::get('/dashboard', function () {
         return view('user.dashboard');
     })->name('dashboard');

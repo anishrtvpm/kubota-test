@@ -6,8 +6,7 @@
             <ol class="breadcrumb breadcrumb-style2 mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">ホーム</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">管理画面</a></li>
-                <li class="breadcrumb-item"><a href="#">ユーザー情報一覧</a></li>
-                <li class="breadcrumb-item active" aria-current="page">ユーザー情報</li>
+                <li class="breadcrumb-item active" aria-current="page">ユーザーグループ権限情報管理</li>
             </ol>
         </nav>
         <form class="row row-cols-lg-auto g-3 align-items-center">
@@ -29,7 +28,7 @@
         </form>
     </div>
     <div class="alert alert-solid-dark alert-dismissible fade show text-white mt-4">
-        ユーザー情報
+        ユーザーグループ権限情報管理
     </div>
     <div class="row">
         <div class="col-xxl-12 col-xl-12">
@@ -37,151 +36,208 @@
                 <div class="col-xl-12">
                     <div class="card custom-card mb-5">
                         <div class="card-body">
-                            <form>
+                            <form class="row">
                                 <div class="col-md-6 row mb-3">
-                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">FAQ No.</label>
-                                    <div class="col-sm-7 mb-2 me-1">
-                                        <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">999999</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 row mb-3">
-                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">システム</label>
+                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">ユーザーグループ</label>
                                     <div class="col-sm-7 mb-2">
                                         <select class="form-select" id="inlineFormSelectCatParent3">
-                                            <option selected>Datalizer</option>
-                                            <option value="1">Datalizer A</option>
-                                            <option value="2">Datalizer B</option>
-                                            <option value="3">Datalizer C</option>
+                                            <option selected>グループ1</option>
+                                            <option value="1">グループ2</option>
+                                            <option value="2">グループ3</option>
+                                            <option value="3">グループ4</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6 row mb-3">
-                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">カテゴリ</label>
+                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">グループ名(JP)</label>
                                     <div class="col-sm-7 mb-2">
-                                        <select class="form-select" id="inlineFormSelectCatParent4">
-                                            <option selected>調査報告/再発防止報告</option>
-                                            <option value="1">調査報告/再発防止報告A</option>
-                                            <option value="2">調査報告/再発防止報告B</option>
-                                            <option value="3">調査報告/再発防止報告C</option>
+                                        <select class="form-select" id="inlineFormSelectCatParent3">
+                                            <option selected>機械CF品質本部・国内事業所・研究開発部門</option>
+                                            <option value="1">国内販社</option>
+                                            <option value="2">海外事業所(K-QUIC利用あり)</option>
+                                            <option value="3">海外事業所(K-QUIC利用なし)</option>
+                                            <option value="4">M&A</option>
+                                            <option value="5">独立系販社</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6 row mb-3">
-                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">タイトル</label>
+                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">グループ名(EN)</label>
                                     <div class="col-sm-7 mb-2">
-                                        <input type="email" class="form-control" id="input-email1" placeholder="●●●●の設定を有効にするには?">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 row mb-2">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">質問内容</label>
-                                    <div class="col-sm-9 mb-2">
-                                        <div id="summernote-jp"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 row mb-2">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">回答内容</label>
-                                    <div class="col-sm-9 mb-2">
-                                        <div id="summernote-en"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 row mb-3">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">参加画像</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="file" id="formFile" placeholder="●●●●の設定を有効にするには?">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 row mb-3">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">参加URL</label>
-                                    <div class="col-sm-9 mb-2">
-                                        <textarea class="form-control" id="text-area66" rows="1" style="height: 175px;" placeholder="参加URLを入力してください"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 row mb-3">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">質問日</label>
-                                    <div class="col-sm-2 mb-2">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
-                                                <input type="text" class="form-control" id="date1" placeholder="Choose date">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <label for="text-area" class="col-sm-1 col-form-label col-form-label text-end">回答日</label>
-                                    <div class="col-sm-2 mb-2">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
-                                                <input type="text" class="form-control" id="date2" placeholder="Choose date">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <label for="text-area" class="col-sm-1 col-form-label col-form-label text-end">回答者</label>
-                                    <div class="col-sm-2 mb-2">
-                                        <input type="text" class="form-control" id="input-email2" placeholder="山田　太郎">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 row mb-3">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">状態</label>
-                                    <div class="col-sm-2 mb-2">
-                                        <select class="form-select" id="inlineFormSelectCatParent5">
-                                            <option selected>公開中</option>
-                                            <option value="1">未公開</option>
-                                            <option value="2">保留中</option>
+                                        <select class="form-select" id="inlineFormSelectCatParent3">
+                                            <option selected>Machinery CF Quality Division</option>
+                                            <option value="1">Domestic sales company</option>
+                                            <option value="2">Overseas offices (with K-QUIC)</option>
+                                            <option value="3">Overseas office (without K-QUIC)</option>
+                                            <option value="4">M&A</option>
+                                            <option value="5">Independent sales company</option>
                                         </select>
                                     </div>
-                                    <label for="text-area" class="col-sm-1 col-form-label col-form-label text-end">言語</label>
-                                    <div class="col-sm-2 mb-2">
-                                        <select class="form-select" id="inlineFormSelectCatParent1">
-                                            <option selected>日本語</option>
-                                            <option value="1">日本語</option>
-                                            <option value="2">英語</option>
+                                </div>
+                                <div class="col-md-6 row mb-3">
+                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">グループ概要(JP)</label>
+                                    <div class="col-sm-7 mb-2">
+                                        <select class="form-select" id="inlineFormSelectCatParent3">
+                                            <option selected>機械CF品質本部・国内事業所・研究開発部門など</option>
+                                            <option value="1">国内販社</option>
+                                            <option value="2">海外事業所(K-QUIC利用あり)</option>
+                                            <option value="3">海外事業所(K-QUIC利用なし)</option>
+                                            <option value="4">M&A</option>
+                                            <option value="5">独立系販社</option>
                                         </select>
                                     </div>
-                                    <label for="text-area" class="col-sm-1 col-form-label col-form-label text-end"></label>
-                                    <div class="col-sm-2 mb-2">
+                                </div>
+                                <div class="col-md-6 row mb-3">
+                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">グループ概要(EN)</label>
+                                    <div class="col-sm-7 mb-2">
+                                        <select class="form-select" id="inlineFormSelectCatParent3">
+                                            <option selected>Machinery CF Quality Division Etc.</option>
+                                            <option value="1">Domestic sales company</option>
+                                            <option value="2">Overseas offices (with K-QUIC)</option>
+                                            <option value="3">Overseas office (without K-QUIC)</option>
+                                            <option value="4">M&A</option>
+                                            <option value="5">Independent sales company</option>
+                                        </select>
                                     </div>
                                 </div>
-
-                                <div class="col-md-12 row mb-5">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">配信先</label>
-                                    <div class="col-sm-9 mb-5">
-                                        <div class="form-check form-check-lg d-flex align-items-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="checkebox-lg14" checked="">
-                                            <label class="form-check-label me-5" for="checkebox-lg">
-                                                01:機械CF品質本部・国内事業所・研究開発部門
-                                            </label>
-                                            <input class="form-check-input" type="checkbox" value="" id="checkebox-lg15">
-                                            <label class="form-check-label" for="checkebox-lg">
-                                                02:国内販社
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-lg d-flex align-items-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="checkebox-lg16">
-                                            <label class="form-check-label me-5" for="checkebox-lg">
-                                                03:海外事業所(K-QUIC利用あり)
-                                            </label>
-                                            <input class="form-check-input" type="checkbox" value="" id="checkebox-lg17">
-                                            <label class="form-check-label" for="checkebox-lg">
-                                                04:海外事業所(K-QUIC利用なし)
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-lg d-flex align-items-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="checkebox-lg18">
-                                            <label class="form-check-label me-5" for="checkebox-lg">
-                                                05:M&A
-                                            </label>
-                                            <input class="form-check-input" type="checkbox" value="" id="checkebox-lg19">
-                                            <label class="form-check-label" for="checkebox-lg">
-                                                06:独立系販社
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="gap-2 col-3 mx-auto mb-3">
-                                        <button class="btn btn-danger px-4 me-3" type="button">削除する</button>
-                                        <button class="btn btn-warning px-4" type="button">投稿する</button>
+                                <div class="col-md-12 text-end">
+                                    <div class="btn-list">
+                                        <a href="javascript:void(0);"><button type="button" class="btn btn-primary btn-wave px-4">新規グループ作成</button></a>
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <b>グループ1のポータルメニュー制御情報</b>
+                                <div class="row datatable_scroll">
+                                    <table id="datatable-basic" class="table table-bordered text-nowrap" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>カテゴリ</th>
+                                                <th>表示順</th>
+                                                <th>システム名</th>
+                                                <th>設定值</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>参照系</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                                <td>1</td>
+                                                <td>クレーム全検索</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>表示</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>参照系</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                                <td>2</td>
+                                                <td>販売型式検索</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>表示</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>参照系</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                                <td>3</td>
+                                                <td>故障処置検索</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>表示</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>品質改善(受付）</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                                <td>1</td>
+                                                <td>TSR （クレ速</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>表示</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>品質改善(受付）</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                                <td>2</td>
+                                                <td>Flash Report</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>表示</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>品質改善(受付）</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                                <td>3</td>
+                                                <td>OA案件管理</td>
+                                                <td>
+                                                    <select class="form-select" id="inlineFormSelectCatParent3">
+                                                        <option selected>表示</option>
+                                                        <option value="1">..</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12 text-end">
+                                    <div class="btn-list">
+                                        <a href="javascript:void(0);"><button type="button" class="btn btn-danger btn-wave px-3">削除する</button></a>
+                                        <a href="javascript:void(0);"><button type="button" class="btn btn-warning btn-wave px-4">登録する</button></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
