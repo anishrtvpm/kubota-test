@@ -1,10 +1,13 @@
 <!-- app-header -->
+<?php
+$employee=App\Models\Employee::where('guid', auth()->user()->employee_id)->first();
+?>
 <header class="app-header">
     <div class="main-header-container container-fluid">
         <div class="header-content-left">
             <div class="header-element">
                 <div class="horizontal-logo">
-                    <a href="{{ route('dashboard') }}" class="header-logo">
+                    <a href="{{ $employee->is_admin ? route('admin_dashboard') : route('dashboard') }}" class="header-logo">
                         <p class="HeaderLogo__img"><img src="{{ asset('images/brand-logos/logo_kubota.svg') }}" alt="logo" class=""></p>
                         <p class="HeaderLogo__text"><span>品保ポータル（坂）</span></p>
                     </a>

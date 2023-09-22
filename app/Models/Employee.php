@@ -29,4 +29,9 @@ class Employee extends Model
         'start_date',
         'language',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

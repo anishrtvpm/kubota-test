@@ -28,8 +28,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        if (auth()->check()) {
+            $employee=\App\Models\Employee::where('guid', auth()->user()->employee_id)->first();
+            $route=$employee->is_admin ? 'admin_dashboard' : 'dashboard';
+        }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended($route);
     }
 
     /**

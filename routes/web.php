@@ -77,6 +77,10 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
         return view('admin.faq_article_list');
     })->name('faq_article_list');
 
+    Route::get('/independent_company_list', function () {
+        return view('admin.independent_company_list');
+    })->name('independent_company_list');
+
 });
 
 Route::group(['middleware' => ['auth', 'web']], function () {
