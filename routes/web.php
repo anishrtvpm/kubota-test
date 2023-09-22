@@ -115,6 +115,10 @@ Route::group(['middleware' => ['auth', 'web']], function () {
     Route::get('/document_view', function () {
         return view('user.document_view');
     })->name('document_view');
+    
+    Route::get('/faq_confirm', function () {
+        return view('user.faq_confirm');
+    })->name('faq_confirm');
 });
 
 require __DIR__ . '/auth.php';

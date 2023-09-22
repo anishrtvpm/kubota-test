@@ -153,7 +153,7 @@
                         <div class="card custom-card">
                             <div class="card-header  justify-content-between">
                                 <div class="card-title">
-                                    申請フォーマット・テンプレート等
+                                   <a href="{{ route('link_template_list') }}"> 申請フォーマット・テンプレート等 </a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -345,7 +345,7 @@
                                     <div class="card custom-card">
                                         <div class="card-header  justify-content-between">
                                             <div class="card-title">
-                                                <a href="#"> 各種リンク </a>
+                                                <a href="{{ route('link_template_list') }}"> 各種リンク </a>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -543,11 +543,11 @@
                                             <li><a href="{{ route('admin_notice_list') }}">お知らせ管理</a></li>
                                             <li><a href="{{ route('announcement_edit') }}">アナウンス編集</a></li>
                                             <li><a href="{{ route('contact_information_edit') }}">お問い合わせ先情報編集</a></li>
-                                            <li><a href="{{ route('faq_article_list') }}">ユーザー管理</a></li>
+                                            <li><a href="{{ route('user_info') }}">ユーザー管理</a></li>
                                             <li><a href="#">所属情報管理</a></li>
                                             <li><a href="{{ route('user_independant') }}">独立系販社管理</a></li>
-                                            <li><a href="#">システムリンク管理</a></li>
-                                            <li><a href="#">リンク・テンプレート管理</a></li>
+                                            <li><a href="{{ route('system_link_list') }}">システムリンク管理</a></li>
+                                            <li><a href="{{ route('link_template_list') }}">リンク・テンプレート管理</a></li>
                                             <li><a href="#">ユーザグループ権限情報管理</a></li>
                                             <li><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
                                             <li><a href="{{ route('enquiry_management') }}">お問い合わせフォーム管理</a></li>
@@ -565,7 +565,7 @@
                                     <div class="card custom-card">
                                         <div class="card-header  justify-content-between">
                                             <div class="card-title">
-                                                お知らせ
+                                                <a href="{{ route('admin_notice_list') }}">お知らせ</a>
                                             </div>
                                             <div class="prism-toggle">
                                             <a href="{{ route('admin_notice_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
@@ -588,7 +588,7 @@
                                         <div class="card custom-card">
                                             <div class="card-header  justify-content-between">
                                                 <div class="card-title">
-                                                    FAQ
+                                                    <a href="{{ route('faq_article_list') }}">FAQ</a>
                                                 </div>
                                                 <div class="prism-toggle">
                                                 <a href="{{ route('faq_article_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i

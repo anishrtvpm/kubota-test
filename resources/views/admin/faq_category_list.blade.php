@@ -4,13 +4,29 @@
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">ポータルトップ </a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">管理画面</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">FAQ管理</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">ポータルトップ </a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">管理画面</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
                 <li class="breadcrumb-item active" aria-current="page">FAQカテゴリー覧</li>
             </ol>
         </nav>
-        @include('layouts.navigation')
+        <form class="row row-cols-lg-auto g-3 align-items-center">
+            <div class="col-12">
+                <label class="fw-bold">クイックナビ</label>
+            </div>
+            <div class="col-12">
+                <select class="form-select" id="inlineFormSelectPref">
+                    <option selected value="1">申請フォーマット・テンプレート等一覧</option>
+                    <option value="2">各種リンク</option>
+                    <option value="3">FAQ一覧</option>
+                    <option value="4">お知らせ</option>
+                    <option value="5">基幹システム(文書管理)</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Go</button>
+            </div>
+        </form>
     </div>
     <div class="alert alert-solid-dark alert-dismissible fade show text-white mt-4">
       FAQカテゴリー覧
