@@ -6,7 +6,7 @@
             <ol class="breadcrumb breadcrumb-style2 mb-0">
                 <li class="breadcrumb-item"><a href="javascript:void(0);">ポータルトップ</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0);">管理画面</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">リンクテンプレート管理 </a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">リンク・テンプレート管理 </a></li>
                 <li class="breadcrumb-item active" aria-current="page">リンク・テンプレート編集</li>
             </ol>
         </nav>
@@ -29,7 +29,7 @@
         </form>
     </div>
     <div class="alert alert-solid-dark alert-dismissible fade show text-white mt-4">
-       リンク テンプレート編集
+     リンク テンプレート編集
     </div>
     <div class="row">
         <div class="col-xxl-12 col-xl-12">
@@ -49,7 +49,7 @@
                                             <option value="3">Datalizer C</option>
                                         </select>
                                     </div>
-                                    <label for="text-area" class="col-sm-1 col-form-label col-form-label text-end">システム</label>
+                                    <label for="text-area" class="col-sm-1 col-form-label col-form-label text-end">カテゴリ</label>
                                     <div class="col-sm-2 mb-2">
                                         <select class="form-select" id="inlineFormSelectCatParent3">
                                             <option selected>Datalizer</option>
@@ -57,6 +57,9 @@
                                             <option value="2">Datalizer B</option>
                                             <option value="3">Datalizer C</option>
                                         </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="submit" class="btn btn-primary" style="width: 180px;">カテゴリ管理</button>
                                     </div>
                                 </div>
 
@@ -168,23 +171,13 @@
                                    
                                 </div>
 
-                                <div class="col-md-12 row mb-3">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">添付ファイル</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="text" id="formFile" placeholder="添付ファイル?">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 row mb-3">
-                                    <label for="text-area" class="col-sm-2 col-form-label col-form-label">ファイル名称</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="file" id="formFile" placeholder="●●●●の設定を有効にするには?">
-                                    </div>
-                                </div>
+                               
                                 
                                 <div class="gap-2 col-3 mx-auto mb-3">
-                                    <button class="btn btn-warning px-4" type="button">投稿する</button>
-                                    <button class="btn btn-danger px-4 me-3" type="button">削除する</button>
-                                </div>
+                                         <button class="btn btn-warning px-4" type="button">投稿する</button>
+
+                                        <button class="btn btn-danger px-4 me-3" type="button">削除する</button>
+                                    </div>
                                 
                             </form>
                         </div>

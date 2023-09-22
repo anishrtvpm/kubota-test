@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/template_edit', function () {
         return view('admin.template_edit');
     })->name('template_edit');
+
     Route::get('/admin_notice_list', function () {
         return view('admin.admin_notice_list');
     })->name('admin_notice_list');
@@ -80,6 +81,18 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/independent_company_list', function () {
         return view('admin.independent_company_list');
     })->name('independent_company_list');
+
+    Route::get('/edit_link', function () {
+        return view('admin.edit_link');
+    })->name('edit_link');
+
+    Route::get('/independent_company_permission_settings', function () {
+        return view('admin.independent_company_permission_settings');
+    })->name('independent_company_permission_settings');
+
+    Route::get('/affiliation_information_list', function () {
+        return view('admin.affiliation_information_list');
+    })->name('affiliation_information_list');
 
 });
 
