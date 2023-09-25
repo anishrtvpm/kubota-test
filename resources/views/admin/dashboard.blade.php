@@ -10,7 +10,7 @@
             <div class="card custom-card">
                 <div class="card-header  justify-content-between">
                     <div class="card-title">
-                        システム
+                        @lang('messages.system')
                     </div>
                 </div>
                 <br>
@@ -153,7 +153,7 @@
                         <div class="card custom-card">
                             <div class="card-header  justify-content-between">
                                 <div class="card-title">
-                                   <a href="{{ route('link_template_list') }}"> 申請フォーマット・テンプレート等 </a>
+                                   <a href="{{ route('link_template_list') }}"> @lang('messages.application_format_template') </a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -345,7 +345,7 @@
                                     <div class="card custom-card">
                                         <div class="card-header  justify-content-between">
                                             <div class="card-title">
-                                                <a href="{{ route('link_template_list') }}"> 各種リンク </a>
+                                                <a href="{{ route('link_template_list') }}"> @lang('messages.various_link') </a>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -535,7 +535,7 @@
                                 <div class="card custom-card">
                                     <div class="card-header  justify-content-between">
                                         <div class="card-title">
-                                            管理機能
+                                            @lang('messages.management_function')
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -565,7 +565,7 @@
                                     <div class="card custom-card">
                                         <div class="card-header  justify-content-between">
                                             <div class="card-title">
-                                                <a href="{{ route('admin_notice_list') }}">お知らせ</a>
+                                                <a href="{{ route('admin_notice_list') }}">@lang('messages.notice')</a>
                                             </div>
                                             <div class="prism-toggle">
                                             <a href="{{ route('admin_notice_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
@@ -588,7 +588,7 @@
                                         <div class="card custom-card">
                                             <div class="card-header  justify-content-between">
                                                 <div class="card-title">
-                                                    <a href="{{ route('faq_article_list') }}">FAQ</a>
+                                                    <a href="{{ route('faq_article_list') }}">@lang('messages.faq')</a>
                                                 </div>
                                                 <div class="prism-toggle">
                                                 <a href="{{ route('faq_article_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
@@ -612,7 +612,7 @@
                                         <div class="card custom-card">
                                             <div class="card-header  justify-content-between">
                                                 <div class="card-title">
-                                                    <a href="#"> 基幹システム(文書管理) </a>
+                                                    <a href="#"> @lang('messages.core_system_doc_management') </a>
                                                 </div>
                                             </div>
                                             <div class="card-body">
@@ -803,7 +803,7 @@
                                         <div class="card custom-card">
                                             <div class="card-header  justify-content-between">
                                                 <div class="card-title">
-                                                    お問い合わせ先
+                                                    @lang('messages.contact_information')
                                                 </div>
                                             </div>
                                             <div class="card-body contact">
