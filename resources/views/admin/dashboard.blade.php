@@ -10,7 +10,7 @@
             <div class="card custom-card">
                 <div class="card-header  justify-content-between">
                     <div class="card-title">
-                        @lang('messages.system')
+                    {{ __('application_format_template') }}
                     </div>
                 </div>
                 <br>
