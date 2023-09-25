@@ -3,6 +3,7 @@
     <head>
         <!-- Meta Data -->
         <meta charset="UTF-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>品保ポータルサイト</title>
@@ -10,6 +11,10 @@
         <meta name="Author" content="品保ポータルサイト">
         <meta name="keywords" content="品保ポータルサイト">
         @include('layouts.header_component')
+
+        <script>
+            var config = <?php echo json_encode(config('constants')) ?>;
+        </script>
     </head>
 
     <body>

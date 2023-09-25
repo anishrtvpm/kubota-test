@@ -546,7 +546,7 @@
                                             <li><a href="{{ route('user_info') }}">ユーザー管理</a></li>
                                             <li><a href="#">所属情報管理</a></li>
                                             <li><a href="{{ route('user_independant') }}">独立系販社管理</a></li>
-                                            <li><a href="{{ route('system_link_list') }}">システムリンク管理</a></li>
+                                            <li><a href="{{ route('system_link.list') }}">システムリンク管理</a></li>
                                             <li><a href="{{ route('link_template_list') }}">リンク・テンプレート管理</a></li>
                                             <li><a href="{{ route('user_permission_list') }}">ユーザグループ権限情報管理</a></li>
                                             <li><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
