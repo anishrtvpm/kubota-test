@@ -30,7 +30,7 @@ $(document).ready(function () {
             {
                 data: 'system_id',
                 "mRender": function (data, type, full) {
-                    return '<a href="edit/' + data + '" id="' + data + '">' + data + '</a>';
+                    return '<a class="systemLinkEdit" href="javascript:void(0)"  id="' + data + '">' + data + '</a>';
                 }
             },
             { data: 'category_id' },
@@ -42,4 +42,57 @@ $(document).ready(function () {
         ]
     });
 
+    $('body').on('click', '.systemLinkEdit', function () {
+        let id = $(this).attr('id');
+        $.ajax({
+            url: '/system_link/edit', // URL to which the request will be sent
+            method: 'POST',     
+            data: { id: id },      // HTTP request method (GET, POST, PUT, DELETE, etc.)
+            success: function(response) {
+                $('#systemLinkModal').html(response);
+                $('#systemLinkModal').modal('show'); // Show the modal
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    })
+
+});
+$.validator.addMethod("urlCheck", function (value) {
+    return isValidUrl(value);
+});
+
+$('#systeLinkForm').validate({
+    // errorLabelContainer: "#errorMessages",
+    rules: {
+        category: {
+            required: true,
+        },
+        sort: {
+            required: true,
+        },
+        ja_system_name: {
+            required: true,
+        },
+        en_system_name: {
+            required: true,
+        },
+        ja_url: {
+            urlCheck: true,
+        },
+        en_url: {
+            urlCheck: true,
+        },
+    },
+    messages: {
+        url: {
+            urlCheck: 'invalid url',
+        },
+    },
+
+    submitHandler: function (form) {
+        $('#submitBtn').attr('disabled', 'disabled');
+        form.submit();
+    },
 });

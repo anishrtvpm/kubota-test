@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
     Route::get('/system_link', [SystemLinksController::class, 'index'])->name('system_link.list');
     Route::post('/system_link/get', [SystemLinksController::class, 'get'])->name('system_link.get');
+    Route::post('/system_link/edit', [SystemLinksController::class, 'edit'])->name('system_link.edit');
+    Route::post('/system_link/store', [SystemLinksController::class, 'store'])->name('system_link.store');
 
 
     Route::get('/faq_edit', function () {

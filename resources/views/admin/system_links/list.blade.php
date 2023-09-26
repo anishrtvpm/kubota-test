@@ -23,10 +23,12 @@
                         <div class="card-body">
                             <div class="row  mb-3">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary"data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8" style="float: right;">新規追加</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#systemLinkModal" style="float: right;">新規追加</button>
                                 </div>
                             </div>
-                            
+                            <div class="modal fade" id="systemLinkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                @include('admin.system_links.form_modal');
+                            </div>
                             <div class="row">
                                 <div class="col-xl-12">
                                     <table id="systemLinksTable" class="table table-bordered text-nowrap" style="width:100%">
@@ -53,6 +55,9 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/admin/system_links.js') }}"></script>
+<script src="{{ asset('js/admin/jquery.validate.js') }}"></script>
+<script src="{{ asset('js/admin/system_links.js') }}"></script>
+<!-- <script src="{{ asset('js/admin/system_links_form.js') }}"></script> -->
+
 @endsection
          

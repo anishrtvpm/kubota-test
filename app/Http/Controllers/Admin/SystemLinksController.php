@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SystemLinks;
 use App\Models\SystemLinkCategory;
+use Illuminate\Support\Facades\Redirect;
 
 class SystemLinksController extends Controller
 {
@@ -34,5 +35,20 @@ class SystemLinksController extends Controller
             "aaData" => $records
         );
         return response()->json($response);
+    }
+
+    public function edit(Request $request)
+    {
+        $id = $request->get('id');
+        try {
+            $systemLinkCategory = SystemLinkCategory::orderBy('category_id', 'asc')->get();
+            $systemLinkData=SystemLinks::where('system_id', $id)->where('is_deleted', 0)->first();
+            if (!$systemLinkData) {
+                return Redirect::back()->with('error', __('language.invalid_request_error'));
+            }
+            return view('admin.system_links.form_modal')->with(['systemLinkData'=>$systemLinkData,'systemLinkCategory'=> $systemLinkCategory]);
+        } catch (\Exception $e) {
+            return Redirect::back()->with('error', __('language.invalid_request_error'));
+        }
     }
 }
