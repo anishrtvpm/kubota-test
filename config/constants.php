@@ -20,4 +20,6 @@ return [
     'default_column_order'=>'id',
     'default_column_sort_order'=>'desc',
     'get_type_count' => 'count',
+    'active' => 0,
+    'inactive' => 1,
 ];

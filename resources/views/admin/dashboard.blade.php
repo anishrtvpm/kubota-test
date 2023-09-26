@@ -541,7 +541,7 @@
                                     <div class="card-body">
                                         <ul>
                                             <li><a href="{{ route('admin_notice_list') }}">お知らせ管理</a></li>
-                                            <li><a href="{{ route('announcement_edit') }}">アナウンス編集</a></li>
+                                            <li><a href="{{ route('announcement.create') }}">アナウンス編集</a></li>
                                             <li><a href="{{ route('contact_information_edit') }}">お問い合わせ先情報編集</a></li>
                                             <li><a href="{{ route('user_info') }}">ユーザー管理</a></li>
                                             <li><a href="#">所属情報管理</a></li>
