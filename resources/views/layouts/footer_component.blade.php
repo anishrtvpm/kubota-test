@@ -15,7 +15,7 @@
     <!-- <script src="{{ asset('js/select2.js') }}"></script> -->
     <!-- Modal JS -->
     <!--  <script src="{{ asset('js/modal.js') }}"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js" integrity="sha256-5slxYrL5Ct3mhMAp/dgnb5JSnTYMtkr4dHby34N10qw=" crossorigin="anonymous"></script>
     <!-- language pack -->
     <script src="{{ asset('libs/summernote/lang/summernote-ja-JP.min.js') }}"></script>
@@ -34,7 +34,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
         
     <!-- Internal Datatables JS -->
-    <script src="{{ asset('js/datatables.js') }}"></script>
+    <!-- <script src="{{ asset('js/datatables.js') }}"></script> -->
+    @yield('js')
     <script>
         $('#summernote-jp').summernote({
             placeholder: 'こちらは日本語バージョンのリッチテキストエディタになります。',

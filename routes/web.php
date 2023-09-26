@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\SystemLinksController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +22,11 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/admin_dashboard', function () {
         return view('admin.dashboard');
     })->name('admin_dashboard');
+
+
+    Route::get('/system_link', [SystemLinksController::class, 'index'])->name('system_link.list');
+    Route::post('/system_link/get', [SystemLinksController::class, 'get'])->name('system_link.get');
+
 
     Route::get('/faq_edit', function () {
         return view('admin.faq_edit');
@@ -47,9 +52,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
         return view('admin.enquiry_management');
     })->name('enquiry_management');
    
-    Route::get('/system_link_list', function () {
-        return view('admin.system_link_list');
-    })->name('system_link_list');
+   
 
     Route::get('/faq_category_list', function () {
         return view('admin.faq_category_list');
