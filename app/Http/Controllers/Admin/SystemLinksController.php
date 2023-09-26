@@ -33,7 +33,6 @@ class SystemLinksController extends Controller
             "iTotalDisplayRecords" => $totalRecordswithFilter,
             "aaData" => $records
         );
-        echo json_encode($response);
-        exit;
+        return response()->json($response);
     }
 }
