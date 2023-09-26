@@ -10,6 +10,10 @@ class SystemLinks extends Model
     use HasFactory;
     protected $table = 'system_links';
 
+    public function systemLinkCategory()
+    {
+        return $this->belongsTo(SystemLinkCategory::class,'category_id','category_id');
+    }
     /**
      * Total records
      */
@@ -41,7 +45,7 @@ class SystemLinks extends Model
              foreach ($records as $record) {
                  $dataArr[] = array(
                     "system_id" => $record->system_id,
-                    "category_id" => $record->category_id,
+                    "category_id" => $record->systemLinkCategory->ja_category_name,
                     "sort" => $record->sort,
                     "ja_system_name" => $record->ja_system_name,
                     "en_system_name" => $record->en_system_name,
