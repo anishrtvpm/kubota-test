@@ -44,13 +44,13 @@ class User extends Authenticatable
     ];
 
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function employee()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->hasOne(Employee::class,'guid','employee_id');
+    }
+
+    public function indUser()
+    {
+        return $this->hasOne(IndSalesCorpsUsers::class,'guid','employee_id');
     }
 }
