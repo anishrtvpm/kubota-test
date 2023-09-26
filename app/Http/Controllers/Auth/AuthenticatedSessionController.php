@@ -29,11 +29,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         if (auth()->check()) {
-            $employee=\App\Models\Employee::where('guid', auth()->user()->employee_id)->first();
-            $route=$employee->is_admin ? 'admin_dashboard' : 'dashboard';
+            if(Auth::user()->user_type == config('constants.kubota_user'))
+            {
+                $route=isset(Auth::user()->employee->is_admin) ? 'admin_dashboard' : 'dashboard';
+                return redirect()->intended($route)->with('is_admin', Auth::user()->employee->is_admin);
+            }
+            else{
+                return redirect()->intended('dashboard')->with('is_admin', false);
+            }
         }
-
-        return redirect()->intended($route);
     }
 
     /**

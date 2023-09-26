@@ -17,7 +17,7 @@ return new class () extends Migration {
             $table->char('section_cd', 12)->comment('所属コード');
             $table->char('branch_no', 2)->comment('枝番');
             $table->string('ja_name', 160)->comment('氏名(日)');
-            $table->string('en_dame', 80)->nullable(true)->comment('氏名(英)');
+            $table->string('en_name', 80)->nullable(true)->comment('氏名(英)');
             $table->string('email', 255)->comment('メールアドレス');
             $table->string('disp_section', 500)->comment('アドレス帳組織');
             $table->char('office_cd', 2)->nullable(true)->comment('事業所コード');

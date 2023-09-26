@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class IndSalesCorpsUsers extends Model
 {
     use HasFactory;
+
     /**
      * @var string
      */
-    protected $table = 'employee';
+    protected $table = 'ind_sales_corps_users';
 
     /**
      * The attributes that are mass assignable.
@@ -19,15 +20,19 @@ class Employee extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
+        'guid',
         'company_cd',
-        'section_cd',
-        'branch_no',
-        'ja_name',
+        'ja_user_name',
+        'en_user_name',
+        'section',
         'email',
-        'disp_section',
-        'office_name',
-        'start_date',
+        'phone',
         'language',
+        'start_date',
+        'end_date',
+        'memo',
+        'is_deleted'
     ];
 
     public function user()
