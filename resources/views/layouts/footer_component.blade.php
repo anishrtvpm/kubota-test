@@ -7,7 +7,6 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ asset('js/custom.js') }}" defer></script>
-    <!-- Jquery Cdn -->
     <!-- Select2 Cdn -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Internal Select-2.js -->

@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'kubota_user' => 1,
+    'ind_user' => 2,
     'temporary_password_chars' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
     'data_table_starting_column_index' => 3,
     'data_table_starting_column_index_order' => 'desc',
@@ -18,4 +20,6 @@ return [
     'default_column_order'=>'id',
     'default_column_sort_order'=>'desc',
     'get_type_count' => 'count',
+    'active' => 0,
+    'inactive' => 1,
 ];

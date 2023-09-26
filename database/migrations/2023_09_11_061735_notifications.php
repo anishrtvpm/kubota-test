@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-return new class () extends Migration {
+return new class() extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -17,8 +18,12 @@ return new class () extends Migration {
             $table->integer('sort')->unsigned()->nullable(true)->comment('並び順');
             $table->string("ja_title")->comment('タイトル(日)');
             $table->binary('ja_message')->nullable(true)->comment('メッセージ(日)');
+            $table->string("ja_file1")->comment('添付ファイル1(日)');
+            $table->string("ja_file2")->comment('添付ファイル2(日)');
             $table->string("en_title")->comment('タイトル(英)');
-            $table->binary('eb_message')->nullable(true)->comment('メッセージ(英)');
+            $table->binary('en_message')->nullable(true)->comment('メッセージ(英)');
+            $table->string("en_file1")->comment('添付ファイル1(英)');
+            $table->string("en_file2")->comment('添付ファイル2(英)');
             $table->string('display_group', 100)->comment('表示グループ');
             $table->date('start_date')->nullable(true)->comment('掲載開始日');
             $table->date('end_date')->nullable(true)->comment('掲載終了日');

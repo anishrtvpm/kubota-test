@@ -18,6 +18,7 @@ return new class () extends Migration {
             $table->string('sub_category_ja_name', 100)->comment('大カテゴリ名(日)');
             $table->string('sub_category_en_name', 100)->comment('大カテゴリ名(英)');
             $table->integer('sort')->unsigned()->comment('並び順');
+            $table->tinyInteger('status')->unsigned()->nullable(true)->comment('状態');
             $table->integer('mail_form_id')->unsigned()->comment('接続するメールフォームID');
             $table->boolean('is_deleted')->default(false)->comment('削除フラグ');
             $table->dateTime('created_at')->useCurrent()->comment('作成日時');

@@ -5,7 +5,21 @@
     "contact_information": "お問い合わせ先",
     "notice": "お知らせ",
     "various_link": "各種リンク",
-    "faq" : "FAQ",
-    "core_system_doc_management" : "基幹システム(文書管理)",
-    "management_function" : "管理機能"
+    "faq": "FAQ",
+    "core_system_doc_management": "基幹システム(文書管理)",
+    "management_function": "管理機能",
+    "management_screen": "管理画面",
+    "announcement_management": "アナウンス管理",
+    "quick_navigation" : "クイックナビ",
+    "button_go": "Go",
+    "header_qa_portal": "品保ポータル（坂）",
+    "delivery_period": "配信期間",
+    "label_jp": "JP",
+    "label_en": "EN",
+    "button_register": "登録する",
+    "JP_message_required": "JP メッセージを入力",
+    "EN_message_required": "EN メッセージを入力",
+    "announcement_create_error": "アナウンス作成にエラーが発生しました。",
+    "announcement_create_success": "アナウンス登録しました。"
+    
 }
