@@ -1,4 +1,6 @@
     
+    <!-- Common Js -->
+    <script src="{{ asset('js/admin/common.js') }}"></script>
     <!-- Bootstrap JS -->
     <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Choices JS -->
