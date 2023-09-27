@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,9 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::post('/system_link/edit', [SystemLinksController::class, 'edit'])->name('system_link.edit');
     Route::post('/system_link/store', [SystemLinksController::class, 'store'])->name('system_link.store');
     Route::delete('/system_link/delete', [SystemLinksController::class, 'delete'])->name('system_link.delete');
+
+    Route::get('/faq/categories', [FaqController::class, 'categories'])->name('faq_category.list');
+    Route::post('/faq/get_all_categories', [FaqController::class, 'getAllCategories'])->name('system_link.get');
 
     Route::get('/announcement/create', [AnnouncementController::class, 'create'])->name('announcement.create');
     Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
