@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,9 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
     Route::get('/system_link', [SystemLinksController::class, 'index'])->name('system_link.list');
     Route::post('/system_link/get', [SystemLinksController::class, 'get'])->name('system_link.get');
+
+    Route::get('/faq/categories', [FaqController::class, 'categories'])->name('faq_category.list');
+    Route::post('/faq/get_all_categories', [FaqController::class, 'getAllCategories'])->name('system_link.get');
 
 
     Route::get('/faq_edit', function () {
