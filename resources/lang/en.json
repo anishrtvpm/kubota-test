@@ -20,5 +20,9 @@
     "JP_message_required": "JP message required",
     "EN_message_required": "EN message required",
     "announcement_create_error": "Error on creating announcement",
-    "announcement_create_success": "Announcement created successfully"
+    "announcement_create_success": "Announcement created successfully",
+    "system_links_create_error": "Error on creating system links",
+    "system_links_create_success": "System links created successfully",
+    "system_links_update_success": "System links updated successfully",
+    "invalid_request_error":"Sorry, but the request was invalid or could not be understood by the server.Please check your input and try again."
 }

@@ -20,6 +20,10 @@
     "JP_message_required": "JP メッセージを入力",
     "EN_message_required": "EN メッセージを入力",
     "announcement_create_error": "アナウンス作成にエラーが発生しました。",
-    "announcement_create_success": "アナウンス登録しました。"
+    "announcement_create_success": "アナウンス登録しました。",
+    "system_links_create_error": "Error on creating system links",
+    "system_links_create_success": "System links created successfully",
+    "system_links_update_success": "System links updated successfully",
+    "invalid_request_error":"Sorry, but the request was invalid or could not be understood by the server.Please check your input and try again."
     
 }

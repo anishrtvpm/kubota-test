@@ -22,6 +22,7 @@ if(!empty($systemLinkData)){
                 </div>
             <form method="POST" id="systeLinkForm" action="{{route('system_link.store')}}">
                 @csrf
+                <input type="hidden" name="system_id" value="{{$system_id ? $system_id : ''}}">
                 <div class="modal-body text-start">
                     <div class="row">
                         <?php

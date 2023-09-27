@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class SystemLinks extends Model
 {
     use HasFactory;
     protected $table = 'system_links';
-
+    const UPDATED_AT = 'modified_at';
+    protected $primaryKey = 'system_id';
     public function systemLinkCategory()
     {
         return $this->belongsTo(SystemLinkCategory::class,'category_id','category_id');
@@ -74,4 +76,23 @@ class SystemLinks extends Model
         }
  
      }
+
+
+    public function saveRecords($request)
+    {
+        try {
+            $id = $request->get('system_id');
+            $systemLinks = $id ? SystemLinks::where('system_id', $id)->first() : new SystemLinks;
+            $systemLinks->category_id = $request->input('category');
+            $systemLinks->sort = $request->input('sort');
+            $systemLinks->ja_system_name = $request->input('ja_system_name');
+            $systemLinks->en_system_name = $request->input('en_system_name');
+            $systemLinks->ja_url = $request->input('ja_url');
+            $systemLinks->en_url = $request->input('en_url');
+            $systemLinks->save();
+            return $systemLinks->system_id;
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

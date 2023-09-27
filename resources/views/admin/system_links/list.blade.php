@@ -25,6 +25,26 @@
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#systemLinkModal" style="float: right;">新規追加</button>
                                 </div>
+                            @if(session('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                            @if($errors->any())
+                                @foreach($errors->all() as $error)
+                                    <label  class="error">{{ $error }}</label>
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $error }}
+                                    </div>
+                                @endforeach
+                            @endif
+                            @if (session('error'))
+                            <div class="alert alert-danger" role="alert">
+                                 {{ $error }}
+                            </div>
+                            @endif
+
+
                             </div>
                             <div class="modal fade" id="systemLinkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 @include('admin.system_links.form_modal');
@@ -57,7 +77,5 @@
 @section('js')
 <script src="{{ asset('js/admin/jquery.validate.js') }}"></script>
 <script src="{{ asset('js/admin/system_links.js') }}"></script>
-<!-- <script src="{{ asset('js/admin/system_links_form.js') }}"></script> -->
-
 @endsection
          

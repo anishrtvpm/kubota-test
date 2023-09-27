@@ -23,6 +23,9 @@ $(document).ready(function () {
             zeroRecords: "データがありません",
             sInfoEmpty: "全_TOTAL_件中_START_から_END_件を表示",
         },
+        order: [
+            [config.data_table_starting_column_index, config.data_table_starting_column_index_order]
+        ],
         ajax: {
             url: '/system_link/get',
         },
@@ -86,7 +89,10 @@ $('#systeLinkForm').validate({
         },
     },
     messages: {
-        url: {
+        ja_url: {
+            urlCheck: 'invalid url',
+        },
+        en_url: {
             urlCheck: 'invalid url',
         },
     },

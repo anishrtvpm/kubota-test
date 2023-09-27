@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SystemLinks;
 use App\Models\SystemLinkCategory;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\SystemLinkRequestValidation;
 
 class SystemLinksController extends Controller
 {
@@ -50,5 +51,16 @@ class SystemLinksController extends Controller
         } catch (\Exception $e) {
             return Redirect::back()->with('error', __('language.invalid_request_error'));
         }
+    }
+
+    public function store(SystemLinkRequestValidation $request)
+    {
+        $systemId = $this->systemLinks->saveRecords($request);
+        if (!$systemId) {
+            return Redirect::back()->with('error',  trans('invalid_request_error'));
+        }
+        $successMessage = $request->get('system_id') ? trans('system_links_update_success') : trans('system_links_create_success');
+        
+        return redirect('system_link')->with('success', $successMessage);
     }
 }
