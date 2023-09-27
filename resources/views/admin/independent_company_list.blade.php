@@ -50,7 +50,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">1234567890</a></td>
+                                                <td><a  href="{{route('independent_company_permission_settings')}}">1234567890</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -62,7 +62,7 @@
                                                 
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">2345678900</a></td>
+                                                <td><a  href="{{route('independent_company_permission_settings')}}">2345678900</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -74,7 +74,7 @@
                                                
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">3456789010</a></td>
+                                                <td><a  href="{{route('independent_company_permission_settings')}}">3456789010</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -86,7 +86,7 @@
                                                
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">4567890120</a></td>
+                                                <td><a  href="{{route('independent_company_permission_settings')}}">4567890120</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -98,7 +98,7 @@
                                                 
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">5678901230</a></td>
+                                                <td><a  href="{{route('independent_company_permission_settings')}}">5678901230</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -110,7 +110,7 @@
                                                 
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">6789012340</a></td>
+                                                <td><a  href="{{route('independent_company_permission_settings')}}">6789012340</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
@@ -122,7 +122,7 @@
                                                 
                                             </tr>
                                             <tr>
-                                                <td><a class="modal-effect" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8">1111111111</a></td>
+                                                <td><a  href="{{route('independent_company_permission_settings')}}">1111111111</a></td>
                                                 <td>申請フフォーマット</td>
                                                 <td><a href="#" target="_blank">●●●●●●●●●申請書</a></td>
                                                 <td><a href="#" target="_blank"><i class="bi bi-file-earmark-pdf-fill fs-18 btn-outline-danger"></i>PDFファイル</a></td>
