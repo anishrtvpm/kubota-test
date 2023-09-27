@@ -22,6 +22,7 @@ $(document).ready(function () {
             info: "全_TOTAL_件中_START_から_END_件を表示",
             zeroRecords: "データがありません",
             sInfoEmpty: "全_TOTAL_件中_START_から_END_件を表示",
+            sInfoFiltered: "",
         },
         order: [
             [config.data_table_starting_column_index, config.data_table_starting_column_index_order]
