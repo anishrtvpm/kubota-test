@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SystemLinks;
 use App\Models\SystemLinkCategory;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\SystemLinkRequestValidation;
 
@@ -47,11 +48,11 @@ class SystemLinksController extends Controller
             try {
                 $systemLinkData = SystemLinks::where('system_id', $id)->where('is_deleted', 0)->first();
                 if (!$systemLinkData) {
-                    return Redirect::back()->with('error', __('language.invalid_request_error'));
+                    return Redirect::back()->with('error', trans('invalid_request_error'));
                 }
                 return view('admin.system_links.form_modal')->with(['systemLinkData' => $systemLinkData, 'systemLinkCategory' => $systemLinkCategory]);
             } catch (\Exception $e) {
-                return Redirect::back()->with('error', __('language.invalid_request_error'));
+                return Redirect::back()->with('error', trans('invalid_request_error'));
             }
         } else {
             return view('admin.system_links.form_modal')->with(['systemLinkData' => [], 'systemLinkCategory' => $systemLinkCategory]);
@@ -66,7 +67,15 @@ class SystemLinksController extends Controller
             return Redirect::back()->with('error', trans('invalid_request_error'));
         }
         $successMessage = $request->get('system_id') ? trans('system_links_update_success') : trans('system_links_create_success');
+        return response()->json(['message' => $successMessage]);
+    }
 
-        return redirect('system_link')->with('success', $successMessage);
+    public function delete(Request $request)
+    {
+        $systemLinks = $this->systemLinks->deleteRecords($request);
+        if ($systemLinks) {
+            return response()->json(['message' => trans('delete_success')]);
+        }
+        return response()->json(['error' => trans('invalid_request_error')]);
     }
 }

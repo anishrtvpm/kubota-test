@@ -30,6 +30,7 @@
     "invalid_request_error":"Sorry, but the request was invalid or could not be understood by the server.Please check your input and try again.",
     "category_required": "Category required",
     "sort_required": "Sort required",
+    "sort_number_validate": " Please enter a valid number.",
     "jp_system_name_required": "Title(JP) required",
     "en_system_name_required": "Title(EN) required",
     "url_invalid": "Please enter valid URL",
@@ -37,5 +38,6 @@
     "jp_system_name_max_length": "Title(JP) length should not exceed 100 characters",
     "en_system_name_max_length": "Title(EN) length should not exceed 100 characters",
     "url_jp_max_length": "Title(JP) length should not exceed 100 characters",
-    "url_en_max_length": "Title(EN) length should not exceed 100 characters"
+    "url_en_max_length": "Title(EN) length should not exceed 100 characters",
+    "delete_success":"Successfully deleted"
 }

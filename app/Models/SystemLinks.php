@@ -66,17 +66,16 @@ class SystemLinks extends Model
      {
          if ($type == config('constants.get_type_count')) {
              $systemLinkData = SystemLinks::select('count(*) as allcount');
+             $systemLinkData->where('is_deleted', config('constants.active'));
+             return $systemLinkData->count();
          } else {
              $systemLinkData = SystemLinks::orderBy($columnName, $columnSortOrder);
+             $systemLinkData->where('is_deleted', config('constants.active'));
+             return $systemLinkData->skip($offset)->take($chunkSize)->get();
          }
-         if ($type == config('constants.get_type_count')) {
-            return $systemLinkData->count();
-        } else {
-            return $systemLinkData->skip($offset)->take($chunkSize)->get();
-        }
+        
  
      }
-
 
     public function saveRecords($request)
     {
@@ -94,5 +93,13 @@ class SystemLinks extends Model
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    public function deleteRecords($request)
+    {
+        $systemLink = self::find($request->id);
+        $systemLink->is_deleted = !$systemLink->is_deleted;
+        $systemLink->save();
+        return $systemLink;
     }
 }

@@ -28,5 +28,10 @@
     <!-- Color Picker Css -->
     <link rel="stylesheet" href="{{ asset('libs/@simonwep/pickr/themes/nano.min.css') }}">    
     <!-- Jquery Cdn -->
+    <link rel="stylesheet" href="{{ asset('css/toastr.css') }}">
+
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    
+    <script src="{{ asset('js/toastr.js') }}"></script>
+
+    <script src="{{ asset('js/sweetalert.js') }}"></script>
+

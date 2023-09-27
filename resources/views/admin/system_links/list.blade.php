@@ -23,7 +23,7 @@
                         <div class="card-body">
                             <div class="row  mb-3">
                                 <div class="col-12">
-                                    <button type="button" class="btn btn-primary systemLinkBtn" style="float: right;">新規追加</button>
+                                <button type="button" class="btn btn-primary systemLinkBtn"  style="float: right;">新規追加</button>
                                 </div>
                             @if(session('success'))
                                 <div class="alert alert-success mt-2" role="alert">
@@ -74,7 +74,10 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/admin/jquery.validate.js') }}"></script>
+<script>
+    var slTable;
+</script>
 <script src="{{ asset('js/admin/system_links.js') }}"></script>
+
 @endsection
          
