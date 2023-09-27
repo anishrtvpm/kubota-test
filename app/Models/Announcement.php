@@ -28,7 +28,7 @@ class Announcement extends Model
         'start_date',
         'end_date',
     ];
-
+    /* Fetch active user groups*/
     public function getActiveUserGroups()
     {
         return UserGroups::select('group_id', 'group_ja_name', 'group_en_name')
@@ -36,21 +36,21 @@ class Announcement extends Model
             ->where('is_deleted', config('constants.active'))
             ->get();
     }
-
+    /* Fetch announcements and convert to array format*/
     public function getAnnouncements()
     {
         $result = [];
         $announcements = self::orderBy('group_id', 'asc')->get();
         foreach ($announcements as $announcement) {
             $result[$announcement->group_id]['group_id'] = $announcement->group_id;
-            $result[$announcement->group_id]['ja_message'] =  $announcement->ja_message;
-            $result[$announcement->group_id]['en_message'] =  $announcement->en_message;
-            $result[$announcement->group_id]['daterange'] =  ($announcement->start_date && $announcement->end_date) ? $announcement->start_date . ' to '. $announcement->end_date : '';
+            $result[$announcement->group_id]['ja_message'] = $announcement->ja_message;
+            $result[$announcement->group_id]['en_message'] = $announcement->en_message;
+            $result[$announcement->group_id]['daterange'] = ($announcement->start_date && $announcement->end_date) ? $announcement->start_date . ' to ' . $announcement->end_date : '';
         }
         return $result;
-        
-    }
 
+    }
+    /* Create new records or updating existing records*/
     public function saveRecords($request)
     {
         $userGroup = $this->getActiveUserGroups();
@@ -85,7 +85,35 @@ class Announcement extends Model
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-
     }
+    /* custom validation rules*/
+    public function validateInputData($request)
+    {
+        $userGroup = $this->getActiveUserGroups();
 
+        $response['error'] = $response['message'] = '';
+        foreach ($userGroup as $group) {
+            if (!$request['ja_message' . $group->group_id]) {
+                $response['error'] = true;
+                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('JP_message_required');
+                break;
+            }
+            if (!$request['en_message' . $group->group_id]) {
+                $response['error'] = true;
+                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('EN_message_required');
+                break;
+            }
+            if ($request['ja_message' . $group->group_id] && strlen($request['ja_message' . $group->group_id]) > 120) {
+                $response['error'] = true;
+                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('JP_message_length');
+                break;
+            }
+            if ($request['en_message' . $group->group_id] && strlen($request['en_message' . $group->group_id]) > 120) {
+                $response['error'] = true;
+                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('EN_message_length');
+                break;
+            }
+        }
+        return $response;
+    }
 }

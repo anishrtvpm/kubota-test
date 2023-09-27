@@ -19,10 +19,23 @@
     "button_register": "Register",
     "JP_message_required": "JP message required",
     "EN_message_required": "EN message required",
+    "JP_message_length": "JP message length should not exceed 120 characters",
+    "EN_message_length": "EN message length should not exceed 120 characters",
     "announcement_create_error": "Error on creating announcement",
     "announcement_create_success": "Announcement created successfully",
+    
     "system_links_create_error": "Error on creating system links",
     "system_links_create_success": "System links created successfully",
     "system_links_update_success": "System links updated successfully",
-    "invalid_request_error":"Sorry, but the request was invalid or could not be understood by the server.Please check your input and try again."
+    "invalid_request_error":"Sorry, but the request was invalid or could not be understood by the server.Please check your input and try again.",
+    "category_required": "Category required",
+    "sort_required": "Sort required",
+    "jp_system_name_required": "Title(JP) required",
+    "en_system_name_required": "Title(EN) required",
+    "url_invalid": "Please enter valid URL",
+    "sort_max_length": "Sort length should not exceed 3 characters",
+    "jp_system_name_max_length": "Title(JP) length should not exceed 100 characters",
+    "en_system_name_max_length": "Title(EN) length should not exceed 100 characters",
+    "url_jp_max_length": "Title(JP) length should not exceed 100 characters",
+    "url_en_max_length": "Title(EN) length should not exceed 100 characters"
 }

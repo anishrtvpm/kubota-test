@@ -35,7 +35,7 @@ if(!empty($systemLinkData)){
                         <?php } ?>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">カテゴリ</label>
                         <div class="col-sm-8">
-                            <select class="form-select" name="category" id="inlineFormSelectPref">
+                            <select class="form-select @error('category') is-invalid @enderror" name="category" id="inlineFormSelectPref">
                                 <option value="">Select</option>
                                 @if(!empty($systemLinkCategory))
                                     @foreach($systemLinkCategory as $category)
@@ -52,24 +52,24 @@ if(!empty($systemLinkData)){
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">表示順</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control " placeholder="0" name="sort" value="{{$sort ? $sort : ''}}">
+                            <input type="number" class="form-control @error('sort') is-invalid @enderror" maxlength="3"  placeholder="0" name="sort" value="{{$sort ? $sort : ''}}">
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">タイトル(JP)</label>
                         <div class="col-sm-8">
-                            <input type="text" name="ja_system_name" class="form-control"  placeholder="タイトル(JP)" value="{{$ja_system_name ? $ja_system_name : ''}}">
+                            <input type="text" name="ja_system_name" maxlength="100" class="form-control @error('ja_system_name') is-invalid @enderror"  placeholder="タイトル(JP)" value="{{$ja_system_name ? $ja_system_name : ''}}">
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">タイトル(EN)</label>
                         <div class="col-sm-8">
-                            <input type="text" name="en_system_name"  class="form-control" placeholder="タイトル(EN)" value="{{$en_system_name ? $en_system_name : ''}}">
+                            <input type="text" name="en_system_name" maxlength="100" class="form-control @error('en_system_name') is-invalid @enderror" placeholder="タイトル(EN)" value="{{$en_system_name ? $en_system_name : ''}}">
                         </div>
                         
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">URL(JP)</label>
                         <div class="col-sm-8">
-                            <input type="text" name="ja_url" class="form-control"  placeholder="URL(JP)" value="{{$ja_url ? $ja_url : ''}}">
+                            <input type="text" name="ja_url" maxlength="8000" class="form-control @error('ja_url') is-invalid @enderror"  placeholder="URL(JP)" value="{{$ja_url ? $ja_url : ''}}">
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">URL(EN)</label>
                         <div class="col-sm-8">
-                            <input type="text"  name="en_url" class="form-control" placeholder="URL(JP)" value="{{$en_url ? $en_url : ''}}">
+                            <input type="text"  name="en_url" maxlength="8000" class="form-control @error('en_url') is-invalid @enderror" placeholder="URL(JP)" value="{{$en_url ? $en_url : ''}}">
                         </div>
                         
                     </div>

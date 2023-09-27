@@ -4,3 +4,5 @@ function isValidUrl(value) {
     }
     return true;
 }
+$('.alert-success').delay(config.toastr_time_out).fadeOut(config.toastr_time_out);
+$('.alert-danger').delay(config.toastr_time_out).fadeOut(config.toastr_time_out);

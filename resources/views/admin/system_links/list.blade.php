@@ -23,23 +23,22 @@
                         <div class="card-body">
                             <div class="row  mb-3">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#systemLinkModal" style="float: right;">新規追加</button>
+                                    <button type="button" class="btn btn-primary systemLinkBtn" style="float: right;">新規追加</button>
                                 </div>
                             @if(session('success'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('message') }}
+                                <div class="alert alert-success mt-2" role="alert">
+                                    {{ session('success') }}
                                 </div>
                             @endif
                             @if($errors->any())
                                 @foreach($errors->all() as $error)
-                                    <label  class="error">{{ $error }}</label>
-                                    <div class="alert alert-danger" role="alert">
+                                    <div class="alert alert-danger mt-2" role="alert">
                                         {{ $error }}
                                     </div>
                                 @endforeach
                             @endif
                             @if (session('error'))
-                            <div class="alert alert-danger" role="alert">
+                            <div class="alert alert-danger mt-2" role="alert">
                                  {{ $error }}
                             </div>
                             @endif

@@ -30,9 +30,14 @@ class AnnouncementController extends Controller
 
     public function store(Request $request)
     {
-        if (!$this->announcement->saveRecords($request)) {
-            return Redirect::back()->with('error', trans('announcement_create_error'));
+        $validateData = $this->announcement->validateInputData($request);
+        if ($validateData['error']) {
+            return Redirect::back()->with('error', $validateData['message']);
         }
-        return Redirect::back()->with('message', trans('announcement_create_success'));
+
+        if (!$this->announcement->saveRecords($request)) {
+            return Redirect::back()->with('error', __('announcement_create_error'));
+        }
+        return Redirect::back()->with('message', __('announcement_create_success'));
     }
 }

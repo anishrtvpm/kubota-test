@@ -33,7 +33,7 @@ $(document).ready(function () {
             {
                 data: 'system_id',
                 "mRender": function (data, type, full) {
-                    return '<a class="systemLinkEdit" href="javascript:void(0)"  id="' + data + '">' + data + '</a>';
+                    return '<a class="systemLinkBtn" href="javascript:void(0)"  id="' + data + '">' + data + '</a>';
                 }
             },
             { data: 'category_id' },
@@ -45,17 +45,17 @@ $(document).ready(function () {
         ]
     });
 
-    $('body').on('click', '.systemLinkEdit', function () {
+    $('body').on('click', '.systemLinkBtn', function () {
         let id = $(this).attr('id');
         $.ajax({
             url: '/system_link/edit', // URL to which the request will be sent
-            method: 'POST',     
+            method: 'POST',
             data: { id: id },      // HTTP request method (GET, POST, PUT, DELETE, etc.)
-            success: function(response) {
+            success: function (response) {
                 $('#systemLinkModal').html(response);
                 $('#systemLinkModal').modal('show'); // Show the modal
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error(error);
             }
         });
@@ -67,33 +67,54 @@ $.validator.addMethod("urlCheck", function (value) {
 });
 
 $('#systeLinkForm').validate({
-    // errorLabelContainer: "#errorMessages",
     rules: {
         category: {
             required: true,
         },
         sort: {
             required: true,
+            maxlength: 3,
         },
         ja_system_name: {
             required: true,
+            maxlength: 100,
         },
         en_system_name: {
             required: true,
+            maxlength: 100,
         },
         ja_url: {
             urlCheck: true,
+            maxlength: 8000,
         },
         en_url: {
             urlCheck: true,
+            maxlength: 8000,
         },
     },
     messages: {
+        category: {
+            required: translations.category_required,
+        },
+        sort: {
+            required: translations.sort_required,
+            maxlength: translations.sort_max_length,
+        },
+        ja_system_name: {
+            required: translations.jp_system_name_required,
+            maxlength: translations.jp_system_name_max_length,
+        },
+        en_system_name: {
+            required: translations.en_system_name_required,
+            maxlength: translations.en_system_name_max_length,
+        },
         ja_url: {
-            urlCheck: 'invalid url',
+            urlCheck: translations.url_invalid,
+            maxlength: translations.url_jp_max_length,
         },
         en_url: {
-            urlCheck: 'invalid url',
+            urlCheck: translations.url_invalid,
+            maxlength: translations.url_en_max_length,
         },
     },
 

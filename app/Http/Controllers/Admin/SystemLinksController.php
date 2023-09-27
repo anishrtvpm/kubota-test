@@ -23,7 +23,8 @@ class SystemLinksController extends Controller
         return view('admin.system_links.list')->with(['systemLinkCategory' => $systemLinkCategory]);
     }
 
-    public function get(Request $request){
+    public function get(Request $request)
+    {
         $draw = $request->get('draw');
         $totalRecords = $this->systemLinks->totalRecords();
         $totalRecordswithFilter = $this->systemLinks->getSystemLinkData($request, '', '', '', '', config('constants.get_type_count'));
@@ -41,26 +42,31 @@ class SystemLinksController extends Controller
     public function edit(Request $request)
     {
         $id = $request->get('id');
-        try {
-            $systemLinkCategory = SystemLinkCategory::orderBy('category_id', 'asc')->get();
-            $systemLinkData=SystemLinks::where('system_id', $id)->where('is_deleted', 0)->first();
-            if (!$systemLinkData) {
+        $systemLinkCategory = SystemLinkCategory::orderBy('category_id', 'asc')->get();
+        if ($id) {
+            try {
+                $systemLinkData = SystemLinks::where('system_id', $id)->where('is_deleted', 0)->first();
+                if (!$systemLinkData) {
+                    return Redirect::back()->with('error', __('language.invalid_request_error'));
+                }
+                return view('admin.system_links.form_modal')->with(['systemLinkData' => $systemLinkData, 'systemLinkCategory' => $systemLinkCategory]);
+            } catch (\Exception $e) {
                 return Redirect::back()->with('error', __('language.invalid_request_error'));
             }
-            return view('admin.system_links.form_modal')->with(['systemLinkData'=>$systemLinkData,'systemLinkCategory'=> $systemLinkCategory]);
-        } catch (\Exception $e) {
-            return Redirect::back()->with('error', __('language.invalid_request_error'));
+        } else {
+            return view('admin.system_links.form_modal')->with(['systemLinkData' => [], 'systemLinkCategory' => $systemLinkCategory]);
         }
+
     }
 
     public function store(SystemLinkRequestValidation $request)
     {
         $systemId = $this->systemLinks->saveRecords($request);
         if (!$systemId) {
-            return Redirect::back()->with('error',  trans('invalid_request_error'));
+            return Redirect::back()->with('error', trans('invalid_request_error'));
         }
         $successMessage = $request->get('system_id') ? trans('system_links_update_success') : trans('system_links_create_success');
-        
+
         return redirect('system_link')->with('success', $successMessage);
     }
 }
