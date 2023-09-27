@@ -19,6 +19,8 @@
     "button_register": "登録する",
     "JP_message_required": "JP メッセージを入力",
     "EN_message_required": "EN メッセージを入力",
+    "JP_message_length": "JPメッセージは 120文字以内で設定してください。",
+    "EN_message_length": "ENメッセージは 120文字以内で設定してください。",
     "announcement_create_error": "アナウンス作成にエラーが発生しました。",
     "announcement_create_success": "アナウンス登録しました。"
     

@@ -11,9 +11,13 @@
         <meta name="Author" content="品保ポータルサイト">
         <meta name="keywords" content="品保ポータルサイト">
         @include('layouts.header_component')
+        @php
+            $lang = getAppLocale();
+        @endphp
 
         <script>
             var config = <?php echo json_encode(config('constants')) ?>;
+            var translations = <?php echo file_get_contents(resource_path('lang/'.$lang.'.json')); ?>;
         </script>
     </head>
 
