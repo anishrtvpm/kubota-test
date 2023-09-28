@@ -1,20 +1,15 @@
 @extends('layouts.base')
 @section('content')
 
-    @if($annoucement)
-        <div class="alert alert-solid-dark alert-dismissible fade show text-white mt-4">
-            {{ $annoucement }}
-            <button type="button" class="btn-close text-white" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x"></i></button>
-        </div>
-    @endif
-    <div class="row">
-        <div class="col-xxl-12 col-xl-12">
-            <div class="card custom-card">
-                <div class="card-header  justify-content-between">
-                    <div class="card-title">
-                        システム
-                    </div>
+@include('components.announcement')
+<div class="row">
+    <div class="col-xxl-12 col-xl-12">
+        <div class="card custom-card">
+            <div class="card-header  justify-content-between">
+                <div class="card-title">
+                    システム
                 </div>
+            </div>
                 <br>
                 <div class="row px-2">
                     <div class="col-xl-2">

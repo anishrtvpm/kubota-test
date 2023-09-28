@@ -350,3 +350,13 @@ input.error:focus {
     color: #dc3545 !important;
     margin-bottom: 0.5rem !important;
 }
+
+textarea.error {
+    border-color: #dc3545 !important;
+}
+
+input.error:focus {
+    select.error:focus, input.error:focus {
+        border: 1px solid #dc3545 !important;
+    }
+}

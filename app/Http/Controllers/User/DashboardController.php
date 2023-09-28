@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Models\User;
+use App\Models\Dashboard;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
 
-    private $user;
+    private $dashboard;
 
-    public function __construct(User $user)
+    public function __construct(Dashboard $dashboard)
     {
         $this->middleware('auth');
-        $this->user = $user;
+        $this->dashboard = $dashboard;
     }
     public function index()
     {
-        $annoucement = $this->user->getUserGroupAnnouncement();
+        $annoucement = $this->dashboard->getUserGroupAnnouncement();
         return view('user.dashboard.index')->with([
             'annoucement' => $annoucement
         ]);
