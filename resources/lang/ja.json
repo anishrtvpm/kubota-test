@@ -22,6 +22,24 @@
     "JP_message_length": "JPメッセージは 120文字以内で設定してください。",
     "EN_message_length": "ENメッセージは 120文字以内で設定してください。",
     "announcement_create_error": "アナウンス作成にエラーが発生しました。",
-    "announcement_create_success": "アナウンス登録しました。"
+    "announcement_create_success": "アナウンス登録しました。",
+
+
+    "system_links_create_error": "システムリンク作成時のエラー",
+    "system_links_create_success": "システムリンクの作成に成功",
+    "system_links_update_success": "システムリンクが正常に更新された",
+    "invalid_request_error":"申し訳ございませんが、リクエストが無効であるか、サーバーが理解できませんでした。",
+    "category_required": "要カテゴリー",
+    "sort_required": "要ソート",
+    "sort_number_validate": " 有効な番号を入力してください。",
+    "jp_system_name_required": "タイトル(JP) 必須",
+    "en_system_name_required": "タイトル(EN) 必須",
+    "url_invalid": "有効なURLを入力してください",
+    "sort_max_length": "ソートの長さは3文字以内",
+    "jp_system_name_max_length": "タイトル(JP)の長さは100文字を超えないこと",
+    "en_system_name_max_length": "タイトル(EN)の長さは100文字を超えないこと",
+    "url_jp_max_length": "タイトル(JP)の長さは100文字を超えないこと",
+    "url_en_max_length": "タイトル(EN)の長さは100文字を超えないこと",
+    "delete_success":"削除に成功"
     
 }

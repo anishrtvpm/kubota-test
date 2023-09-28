@@ -28,6 +28,9 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
     Route::get('/system_link', [SystemLinksController::class, 'index'])->name('system_link.list');
     Route::post('/system_link/get', [SystemLinksController::class, 'get'])->name('system_link.get');
+    Route::post('/system_link/edit', [SystemLinksController::class, 'edit'])->name('system_link.edit');
+    Route::post('/system_link/store', [SystemLinksController::class, 'store'])->name('system_link.store');
+    Route::delete('/system_link/delete', [SystemLinksController::class, 'delete'])->name('system_link.delete');
 
     Route::get('/faq/categories', [FaqController::class, 'categories'])->name('faq_category.list');
     Route::post('/faq/get_all_categories', [FaqController::class, 'getAllCategories'])->name('system_link.get');

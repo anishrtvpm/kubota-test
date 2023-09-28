@@ -35,6 +35,8 @@
         
     <!-- Internal Datatables JS -->
     <!-- <script src="{{ asset('js/datatables.js') }}"></script> -->
+    <script src="{{ asset('js/admin/common.js') }}"></script>
+    
     @yield('js')
     <script>
         $('#summernote-jp').summernote({

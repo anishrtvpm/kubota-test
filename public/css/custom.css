@@ -326,11 +326,11 @@ label.error {
     color: #dc3545 !important;
 }
 
-input.error {
+select.error , input.error {
     border-color: #dc3545 !important;
 }
 
-input.error:focus {
+select.error:focus, input.error:focus {
     border: 1px solid #dc3545 !important;
 }
 
