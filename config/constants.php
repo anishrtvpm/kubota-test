@@ -22,4 +22,5 @@ return [
     'get_type_count' => 'count',
     'active' => 0,
     'inactive' => 1,
+    'ind_user_group_id' => 6,
 ];

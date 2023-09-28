@@ -22,5 +22,6 @@
     "JP_message_length": "JP message length should not exceed 120 characters",
     "EN_message_length": "EN message length should not exceed 120 characters",
     "announcement_create_error": "Error on creating announcement",
-    "announcement_create_success": "Announcement created successfully"
+    "announcement_create_success": "Announcement created successfully",
+    "delivery_period_required": "Delivery period required"
 }

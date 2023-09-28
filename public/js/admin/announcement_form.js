@@ -21,3 +21,11 @@ $('[id^=en_message]').each(function(e) {
         }       
     });          
 });
+$('[id^=daterange]').each(function(e) {
+    $(this).rules('add', {
+        required : true,
+        messages:{
+            required: translations.delivery_period_required,
+        }       
+    });          
+});

@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
+use App\Http\Controllers\User\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,9 +118,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
 Route::group(['middleware' => ['auth', 'web']], function () {
 
-    Route::get('/dashboard', function () {
-        return view('user.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/faq_list', function () {
         return view('user.faq_list');
