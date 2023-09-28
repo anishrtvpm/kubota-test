@@ -19,8 +19,13 @@
                     data-bs-auto-close="outside" aria-expanded="false">
                     <div class="d-flex align-items-center">
                         <div class="d-sm-block d-none">
-                            <span class="op-7 fw-normal d-block fs-11">{{ Auth::user()->email }}</span>
-                            <p class="fw-semibold mb-0 lh-2 text-end">{{ Auth::user()->name }}</p>
+                            @if (Auth::user()->user_type == 1)
+                                <span class="op-7 fw-normal d-block fs-11">{{ Auth::user()->employee->email }}</span>
+                                <p class="fw-semibold mb-0 lh-2 text-end">{{ Auth::user()->employee->ja_name }}</p>
+                            @else
+                                <span class="op-7 fw-normal d-block fs-11">{{ Auth::user()->indUser->email }}</span>
+                                <p class="fw-semibold mb-0 lh-2 text-end">{{ Auth::user()->indUser->ja_user_name }}</p>
+                            @endif
                         </div>
                         <div class="ms-sm-2 me-0">
                             <img src="{{ asset('images/profile/1.jpg') }}" alt="img" width="32" height="32"
@@ -34,13 +39,18 @@
                         <div class="p-2 flex-shrink-1"> <img src="{{ asset('images/profile/1.jpg') }}" alt="img"
                                 width="60" height="60" class="rounded-circle"></div>
                         <div class="p-2 w-100 align-middle mt-3">
-                            <h5>{{ Auth::user()->name }}</h5>
+                            <h5>{{ Auth::user()->user_type == 1 ? Auth::user()->employee->ja_name : Auth::user()->indUser->ja_user_name }}</h5>
                         </div>
                     </div>
                     <p><strong>株式会社 クボタ</strong><br>
                         機械事業本部 <i class="bi bi-chevron-right"></i> 機械カスタマーファースト品質本部 <i class="bi bi-chevron-right"></i>
                         機械カスタマーファースト情報管理部 <i class="bi bi-chevron-right"></i> 情報管理第一課 (グローバル技術研究所)<br><br>
-                        メールアドレス：<a href="{{ Auth::user()->email }}">{{ Auth::user()->email }}</a>
+                        メールアドレス：
+                        @if (Auth::user()->user_type == 1)
+                            <a href="{{ Auth::user()->employee->email }}">{{ Auth::user()->employee->email }}</a>
+                        @else
+                            <a href="{{ Auth::user()->indUser->email }}">{{ Auth::user()->email }}</a>
+                        @endif
                     </p>
                     @if (!session('is_admin'))
                     <div class="row mb-1">
