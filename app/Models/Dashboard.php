@@ -43,26 +43,15 @@ class Dashboard extends Model
         }
 
         $groupId = Organization::select('organization.group_id')
-    ->join('employee', function ($join) {
-        $join->on('organization.company_cd', '=', 'employee.company_cd')
-            ->on('organization.section_cd', '=', 'employee.section_cd')
-            ->on('organization.branch_no', '=', 'employee.branch_no')
-            ->where('employee.guid', '=', Auth::user()->id);
-    })
-    ->value('group_id');
+            ->join('employee', function ($join) {
+                $join->on('organization.company_cd', '=', 'employee.company_cd')
+                    ->on('organization.section_cd', '=', 'employee.section_cd')
+                    ->on('organization.branch_no', '=', 'employee.branch_no')
+                    ->where('employee.guid', '=', Auth::user()->employee_id);
+            })
+            ->value('group_id');
 
-return $groupId ?? false;
+        return $groupId ?? false;
 
-        /* $employee = Employee::where('guid', Auth::user()->employee_id)->first();
-        if ($employee) {
-            $organization = Organization::select('group_id')
-                ->where('company_cd', $employee->company_cd)
-                ->where('section_cd', $employee->section_cd)
-                ->where('branch_no', $employee->branch_no)
-                ->first();
-            return $organization ? $organization->group_id : false;
-
-        }
-        return false; */
     }
 }
