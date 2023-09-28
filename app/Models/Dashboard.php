@@ -17,21 +17,21 @@ class Dashboard extends Model
         if (!$userGroup) {
             return false;
         }
-        $announcement = $this->getAnnouncement($userGroup);
-        if ($announcement) {
-            return getAppLocale() == 'ja' ? $announcement->ja_message : $announcement->en_message;
-        }
-        return false;
+        return $this->getAnnouncement($userGroup);
     }
 
     public function getAnnouncement($group_id)
     {
         $currentDate = now();
-        return Announcement::where('group_id', $group_id)
+        $announcement = Announcement::where('group_id', $group_id)
             ->where('is_deleted', config('constants.active'))
             ->whereDate('start_date', '<=', $currentDate)
             ->whereDate('end_date', '>=', $currentDate)
             ->first();
+        if ($announcement) {
+            return getAppLocale() == 'ja' ? $announcement->ja_message : $announcement->en_message;
+        }
+        return false;
     }
 
     public function getUserGroup()
