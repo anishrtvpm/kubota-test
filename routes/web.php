@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\SystemLinksController;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
+Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
 
     Route::get('/admin_dashboard', function () {
         return view('admin.dashboard');
@@ -111,7 +111,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
 });
 
-Route::group(['middleware' => ['auth', 'web']], function () {
+Route::group(['middleware' => ['auth:kubota,independent']], function () {
 
     Route::get('/dashboard', function () {
         return view('user.dashboard');

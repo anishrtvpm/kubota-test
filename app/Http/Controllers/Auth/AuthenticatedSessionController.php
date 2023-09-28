@@ -28,15 +28,13 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if (auth()->check()) {
-            if(Auth::user()->user_type == config('constants.kubota_user'))
+        if (auth(getCurrentGuard())->check()) {
+            if(getCurrentGuard() == 'kubota')
             {
-                $route=isset(Auth::user()->employee->is_admin) ? 'admin_dashboard' : 'dashboard';
-                return redirect()->intended($route)->with('is_admin', Auth::user()->employee->is_admin);
+                $route=Auth::guard(getCurrentGuard())->user()->is_admin ? 'admin_dashboard' : 'dashboard';
+                return redirect()->intended($route)->with('is_admin', Auth::guard(getCurrentGuard())->user()->is_admin);
             }
-            else{
-                return redirect()->intended('dashboard')->with('is_admin', false);
-            }
+            return redirect()->intended('dashboard')->with('is_admin', false);
         }
     }
 
@@ -45,7 +43,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::guard(getCurrentGuard())->logout();
 
         $request->session()->invalidate();
 

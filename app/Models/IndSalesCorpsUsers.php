@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class IndSalesCorpsUsers extends Model
+class IndSalesCorpsUsers extends Authenticatable
 {
     use HasFactory;
 
@@ -13,6 +14,8 @@ class IndSalesCorpsUsers extends Model
      * @var string
      */
     protected $table = 'ind_sales_corps_users';
+
+    protected $primaryKey = 'guid';
 
     /**
      * The attributes that are mass assignable.
