@@ -1,5 +1,6 @@
 <?php
 
+/* To get the language selection of logged user */
 if (! function_exists('getAppLocale')) {
     function getAppLocale()
     {

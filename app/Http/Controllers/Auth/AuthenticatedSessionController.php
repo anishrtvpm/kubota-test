@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         if (auth()->check()) {
             if(Auth::user()->user_type == config('constants.kubota_user'))
             {
-                $route=isset(Auth::user()->employee->is_admin) ? 'admin_dashboard' : 'dashboard';
+                $route=isset(Auth::user()->employee->is_admin) ? RouteServiceProvider::DASHBOARD : RouteServiceProvider::HOME;
                 return redirect()->intended($route)->with('is_admin', Auth::user()->employee->is_admin);
             }
             else{
