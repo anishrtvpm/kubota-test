@@ -67,6 +67,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 row mb-3">
+                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">表示順</label>
+                                    <div class="col-sm-7 mb-2">
+                                        <input type="text" class="form-control" id="input-email1" value="999">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 row mb-3">
                                     <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">タイトル</label>
                                     <div class="col-sm-7 mb-2">
                                         <input type="email" class="form-control" id="input-email1" placeholder="●●●●の設定を有効にするには?">
