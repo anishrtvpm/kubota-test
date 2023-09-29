@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
+use App\Http\Controllers\CommonController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +22,11 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login'
 
 Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
-    Route::get('/admin_dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin_dashboard');
+    // Route::get('/admin_dashboard', function () {
+    //     return view('admin.dashboard');
+    // })->name('admin_dashboard');
+
+    Route::get('/admin_dashboard', [CommonController::class, 'index'])->name('admin.dashboard');
 
 
     Route::get('/system_link', [SystemLinksController::class, 'index'])->name('system_link.list');
