@@ -24,8 +24,6 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login'
 
 Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
-    Route::get('/admin_dashboard', [CommonController::class, 'index'])->name('admin.dashboard');
-
     Route::get('/admin_dashboard', [AdminDashboardController::class, 'index'])->name('admin_dashboard');
 
     Route::get('/system_link', [SystemLinksController::class, 'index'])->name('system_link.list');
