@@ -18,8 +18,10 @@ class DashboardController extends Controller
     public function index()
     {
         $annoucement = $this->dashboard->getUserGroupAnnouncement();
+        $systemLinks = $this->dashboard->getSystemLinkData();
         return view('user.dashboard.index')->with([
-            'annoucement' => $annoucement
+            'annoucement' => $annoucement,
+            'systemLinks' => $systemLinks,
         ]);
     }
 
