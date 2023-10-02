@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
 
     // DataTable
-    $('#faqCategoryTable').DataTable({
+    faqCatTable =$('#faqCategoryTable').DataTable({
         processing: true,
         serverSide: true,
         serverMethod: 'post',
@@ -24,14 +24,17 @@ $(document).ready(function () {
             zeroRecords: "データがありません",
             sInfoEmpty: "全_TOTAL_件中_START_から_END_件を表示",
         },
+        order: [
+            [config.data_table_starting_column_index, config.data_table_starting_column_index_order]
+        ],
         ajax: {
-            url: '/faq/get_all_categories',
+            url: '/faq_category/get',
         },
         columns: [
             {
                 data: 'category_id',
                 "mRender": function (data, type, full) {
-                    return '<a href="edit/' + data + '" id="' + data + '">' + data + '</a>';
+                    return '<a class="faqCategoryBtn" href="javascript:void(0)"  id="' + data + '">' + data + '</a>';
                 }
             },
             { data: 'top_category_ja_name' },
@@ -48,5 +51,25 @@ $(document).ready(function () {
             { data: 'mail_form_id' }
         ]
     });
+
+
+        // prevent esc key
+    $('#faqCategoryModal').modal({
+        keyboard: false
+    })
+
+    //fetch data for form edit
+    $('body').on('click', '.faqCategoryBtn', function () {
+        let id = $(this).attr('id');
+        $.ajax({
+            url: '/faq_category/edit', // URL to which the request will be sent
+            method: 'POST',
+            data: { id: id },      // HTTP request method (GET, POST, PUT, DELETE, etc.)
+            success: function (response) {
+                $('#faqCategoryModal').html(response);
+                $('#faqCategoryModal').modal('show'); // Show the modal
+            },
+        });
+    })
 
 });

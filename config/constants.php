@@ -28,4 +28,6 @@ return [
     'primary_user' => 1,
     'language_japanese' => 'ja',
     'language_english' => 'en',
+    'public' => 1,
+    'private' => 0,
 ];
