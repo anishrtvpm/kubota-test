@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
 use App\Http\Controllers\CommonController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,12 +24,9 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login'
 
 Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
-    // Route::get('/admin_dashboard', function () {
-    //     return view('admin.dashboard');
-    // })->name('admin_dashboard');
-
     Route::get('/admin_dashboard', [CommonController::class, 'index'])->name('admin.dashboard');
 
+    Route::get('/admin_dashboard', [AdminDashboardController::class, 'index'])->name('admin_dashboard');
 
     Route::get('/system_link', [SystemLinksController::class, 'index'])->name('system_link.list');
     Route::post('/system_link/get', [SystemLinksController::class, 'get'])->name('system_link.get');
@@ -126,9 +125,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
 Route::group(['middleware' => ['auth', 'web']], function () {
 
-    Route::get('/dashboard', function () {
-        return view('user.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/faq_list', function () {
         return view('user.faq_list');

@@ -113,6 +113,11 @@ class Announcement extends Model
                 $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('EN_message_length');
                 break;
             }
+            if (!$request['daterange' . $group->group_id]) {
+                $response['error'] = true;
+                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('delivery_period_required');
+                break;
+            }
         }
         return $response;
     }

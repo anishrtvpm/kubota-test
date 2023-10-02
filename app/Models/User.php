@@ -46,11 +46,12 @@ class User extends Authenticatable
 
     public function employee()
     {
-        return $this->hasOne(Employee::class,'guid','employee_id');
+        return $this->hasOne(Employee::class, 'guid', 'employee_id');
     }
 
     public function indUser()
     {
-        return $this->hasOne(IndSalesCorpsUsers::class,'guid','employee_id');
+        return $this->hasOne(IndSalesCorpsUsers::class, 'guid', 'employee_id');
     }
+
 }

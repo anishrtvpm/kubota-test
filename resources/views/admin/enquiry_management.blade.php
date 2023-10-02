@@ -211,7 +211,16 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                <div class="col-md-12 text-end">
+                                                    <div class="btn-list">
+                                                        <a href="javascript:void(0);"><button type="button" class="btn btn-primary btn-wave px-3">項目追加</button></a>
+                                                        <a href="javascript:void(0);"><button type="button" class="btn btn-danger btn-wave px-4">項目削除</button></a>
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="gap-2 col-3 mx-auto mb-3">
+                                            <button class="btn btn-warning px-4 me-3" type="button">保存する</button>
                                         </div>
                                     </div>
                                 </div>
