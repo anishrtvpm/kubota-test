@@ -8,59 +8,65 @@ $.validator.addMethod("urlCheck", function (value) {
     return isValidUrl(value);
 });
 
-$('#systeLinkForm').validate({
+$('#faqCategoryForm').validate({
     // errorLabelContainer: "#errorMessages",
     rules: {
-        category: {
+        top_category_ja_name: {
             required: true,
+            maxlength: 100,
+        },
+        top_category_en_name: {
+            required: true,
+            maxlength: 100,
+        },
+        sub_category_ja_name: {
+            required: true,
+            maxlength: 100,
+        },
+        sub_category_en_name: {
+            required: true,
+            maxlength: 100,
         },
         sort: {
             required: true,
             number: true,  // Ensure it's a valid number
             maxlength: 3,
         },
-        ja_system_name: {
+
+        mail_form_id: {
             required: true,
-            maxlength: 100,
-        },
-        en_system_name: {
-            required: true,
-            maxlength: 100,
-        },
-        ja_url: {
-            urlCheck: true,
-            maxlength: 8000,
-        },
-        en_url: {
-            urlCheck: true,
-            maxlength: 8000,
+            number: true,
+            maxlength: 3,
         },
     },
     messages: {
-        category: {
-            required: translations.category_required,
+        top_category_ja_name: {
+            required: 'システム (JP) 必須',
+            maxlength: 'システム(JP)の長さは100文字を超えないこと',
+        },
+        top_category_en_name: {
+            required: 'カテゴリー名 (EN) 必須',
+            maxlength: 'カテゴリー名(EN)の長さは100文字を超えないこと',
+        },
+        sub_category_ja_name: {
+            required: 'システム (JP) 必須',
+            maxlength: 'システム(JP)の長さは100文字を超えないこと',
+        },
+        sub_category_en_name: {
+            required: 'カテゴリー名 (EN) 必須',
+            maxlength: 'カテゴリー名(EN)の長さは100文字を超えないこと',
         },
         sort: {
-            required: translations.sort_required,
-            number: translations.sort_number_validate,
-            maxlength: translations.sort_max_length,
+            required: '要ソート',
+            number: '有効な番号を入力してください。',
+            maxlength: 'ソートの長さは3文字以内',
         },
-        ja_system_name: {
-            required: translations.jp_system_name_required,
-            maxlength: translations.jp_system_name_max_length,
+        mail_form_id: {
+            required: 'フォームID必須',
+            number: '有効な番号を入力してください。',
+            maxlength: 'ソートの長さは3文字以内',
         },
-        en_system_name: {
-            required: translations.en_system_name_required,
-            maxlength: translations.en_system_name_max_length,
-        },
-        ja_url: {
-            urlCheck: translations.url_invalid,
-            maxlength: translations.url_jp_max_length,
-        },
-        en_url: {
-            urlCheck: translations.url_invalid,
-            maxlength: translations.url_en_max_length,
-        },
+       
     },
 
     submitHandler: function (form) {
@@ -72,8 +78,8 @@ $('#systeLinkForm').validate({
             data: formData,
             dataType: 'json',
             success: function (response) {
-                $('#systemLinkModal').modal('hide');
-                slTable.draw();
+                $('#faqCategoryModal').modal('hide');
+                faqCatTable.draw();
                 toastr.success(response.message);
             },
             error: function(xhr, status, error) {
