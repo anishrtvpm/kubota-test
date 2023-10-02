@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <h6 class="mb-5">グループ6 独市系販社</h6>
+                                    <h6 class="mb-5">グループ6 独立系販社</h6>
                                     <div class="col-md-6 row mb-3">
                                         <label for="inputEmail3" class="col-sm-3 col-form-label fw-bold text-center mt-5">JP</label>
                                         <div class="col-sm-8">

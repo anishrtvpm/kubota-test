@@ -23,4 +23,9 @@ return [
     'active' => 0,
     'inactive' => 1,
     'ind_user_group_id' => 6,
+    'kubota_user_guid_length' => 10,
+    'ind_user_guid_length' => 64,
+    'primary_user' => 1,
+    'language_japanese' => 'ja',
+    'language_english' => 'en',
 ];

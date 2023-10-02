@@ -538,7 +538,7 @@
                             <li><a href="{{ route('independent_company_list') }}">独立系販社管理</a></li>
                             <li><a href="{{ route('system_link.list') }}">システムリンク管理</a></li>
                             <li><a href="{{ route('link_template_list') }}">リンク・テンプレート管理</a></li>
-                            <li><a href="{{ route('user_permission_list') }}">ユーザグループ権限情報管理</a></li>
+                            <li><a href="{{ route('user_permission_list') }}">ユーザーグループ権限情報管理</a></li>
                             <li><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
                             <li><a href="{{ route('enquiry_management') }}">お問い合わせフォーム管理</a></li>
                         </ul>

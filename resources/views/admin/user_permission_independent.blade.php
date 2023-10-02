@@ -39,7 +39,7 @@
                         <div class="card-body">
                             <form class="row">
                                 <div class="col-md-6 row mb-3">
-                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">ユーザID</label>
+                                    <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label">ユーザーID</label>
                                     <div class="col-sm-6 mb-2">
                                         <input type="text" class="form-control" id="input-text" value="1111111111">
                                     </div>

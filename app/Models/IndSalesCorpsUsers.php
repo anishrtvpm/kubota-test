@@ -13,6 +13,10 @@ class IndSalesCorpsUsers extends Model
      * @var string
      */
     protected $table = 'ind_sales_corps_users';
+    protected $primaryKey = 'user_id';
+    public $incrementing = false;
+    protected $keyType = 'integer';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -37,6 +41,6 @@ class IndSalesCorpsUsers extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'employee_id','guid');
+        return $this->belongsTo(User::class, 'employee_id', 'guid');
     }
 }
