@@ -23,4 +23,6 @@ return [
     'active' => 0,
     'inactive' => 1,
     'ind_user_group_id' => 6,
+    'public' => 1,
+    'private' => 0,
 ];

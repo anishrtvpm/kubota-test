@@ -10,7 +10,8 @@ class FaqCategory extends Model
     use HasFactory;
 
     protected $table = 'faqs_categories';
-
+    const UPDATED_AT = 'modified_at';
+    protected $primaryKey = 'category_id';
     /**
      * Total records
      */
@@ -23,11 +24,13 @@ class FaqCategory extends Model
     public function recordsWithFilter($offset, $chunkSize, $columnName, $columnSortOrder, $type = '')
     {
         if ($type == config('constants.get_type_count')) {
-            $systemLinkData = FaqCategory::select('count(*) as allcount');
-            return $systemLinkData->count();
+            $faqCategoryData = FaqCategory::select('count(*) as allcount');
+            $faqCategoryData->where('is_deleted', config('constants.active'));
+            return $faqCategoryData->count();
         } else {
-            $systemLinkData = FaqCategory::orderBy($columnName, $columnSortOrder);
-            return $systemLinkData->skip($offset)->take($chunkSize)->get();
+            $faqCategoryData = FaqCategory::orderBy($columnName, $columnSortOrder);
+            $faqCategoryData->where('is_deleted', config('constants.active'));
+            return $faqCategoryData->skip($offset)->take($chunkSize)->get();
         }
     }
 
@@ -63,5 +66,25 @@ class FaqCategory extends Model
             }
         }
         return $dataArr;
+    }
+
+
+    public function saveRecords($request)
+    {
+        try {
+            $id = $request->get('faq_category_id');
+            $faqCategory = $id ? FaqCategory::where('category_id', $id)->first() : new FaqCategory;
+            $faqCategory->top_category_ja_name = $request->input('top_category_ja_name');
+            $faqCategory->top_category_en_name = $request->input('top_category_en_name');
+            $faqCategory->sub_category_ja_name = $request->input('sub_category_ja_name');
+            $faqCategory->sub_category_en_name = $request->input('sub_category_en_name');
+            $faqCategory->sort = $request->input('sort');
+            $faqCategory->status = $request->get('status');
+            $faqCategory->mail_form_id = $request->input('mail_form_id');
+            $faqCategory->save();
+            return $faqCategory->category_id;
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
