@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\Employee;
+use App\Models\IndSalesCorpsUsers;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -40,8 +42,9 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $this->type == 'kubota' ? $user = Employee::where('email', '=', $this->email)->first() :
+            $user = IndSalesCorpsUsers::where('email', '=', $this->email)->first();
+        if (!$user || !Auth::guard($this->type)->loginUsingId($user->guid)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

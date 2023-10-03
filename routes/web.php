@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
+Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
 
     Route::get('/admin_dashboard', [AdminDashboardController::class, 'index'])->name('admin_dashboard');
 
@@ -120,7 +120,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
 });
 
-Route::group(['middleware' => ['auth', 'web']], function () {
+Route::group(['middleware' => ['auth:kubota,independent']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     

@@ -4,6 +4,7 @@ use App\Models\Employee;
 use App\Models\IndSalesCorps;
 use App\Models\IndSalesCorpsUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Get user information based on guid.
@@ -38,7 +39,7 @@ if (!function_exists('getUser')) {
                         'kubota_corps.ja_name as ja_company_name',
                         'kubota_corps.en_name as en_company_name',
                     )->first();
-
+                    // dd($org);
                 if ($org) {
                     $userArray['ja_section_name'] = $org->ja_section_name;
                     $userArray['en_section_name'] = $org->en_section_name;
@@ -73,6 +74,17 @@ if (!function_exists('getUser')) {
                 }
             }
             return false;
+        }
+    }
+}
+
+function getCurrentGuard()
+{
+    $guards = ['kubota', 'independent'];
+
+    foreach ($guards as $guard) {
+        if(Auth::guard($guard)->check()) {
+            return $guard;
         }
     }
 }

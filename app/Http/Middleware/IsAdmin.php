@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Employee;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsAdmin
@@ -16,9 +16,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $employeeId=auth()->user()->employee_id;
-        $employee=Employee::where('guid', $employeeId)->first();
-        if($employee->is_admin == 1){
+        if(Auth::guard(getCurrentGuard())->user()->is_admin){
             return $next($request);
         }
         return redirect('dashboard')->with('error',"You don't have admin access.");

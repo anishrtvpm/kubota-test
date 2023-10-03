@@ -91,9 +91,9 @@ class Announcement extends Model
                 $announcement->start_date = $startDate;
                 $announcement->end_date = $endDate;
                 if ($announcement->id) {
-                    $announcement->modified_user = Auth::user()->id;
+                    $announcement->modified_user = Auth::guard(getCurrentGuard())->user()->guid;
                 } else {
-                    $announcement->created_user = Auth::user()->id;
+                    $announcement->created_user = Auth::guard(getCurrentGuard())->user()->guid;
                 }
                 $announcement->save();
             }
