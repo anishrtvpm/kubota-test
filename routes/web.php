@@ -2,11 +2,9 @@
 
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\FaqCategoryController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
-use App\Http\Controllers\CommonController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 /*
@@ -37,7 +35,6 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::post('/faq_category/edit', [FaqCategoryController::class, 'edit'])->name('faq_category.edit');
     Route::post('/faq_category/store', [FaqCategoryController::class, 'store'])->name('faq_category.store');
 
-
     Route::get('/announcement/create', [AnnouncementController::class, 'create'])->name('announcement.create');
     Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
     
@@ -63,9 +60,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
 
     Route::get('/enquiry_management', function () {
         return view('admin.enquiry_management');
-    })->name('enquiry_management');
-   
-   
+    })->name('enquiry_management');     
 
     Route::get('/faq_category_list', function () {
         return view('admin.faq_category_list');
@@ -110,6 +105,7 @@ Route::group(['middleware' => ['auth', 'web', 'is_admin']], function () {
     Route::get('/affiliation_information_list', function () {
         return view('admin.affiliation_information_list');
     })->name('affiliation_information_list');
+    
     Route::get('/user_permission_list', function () {
         return view('admin.user_permission');
     })->name('user_permission_list');

@@ -28,7 +28,12 @@ class Announcement extends Model
         'start_date',
         'end_date',
     ];
-    /* Fetch active user groups*/
+
+    /**
+     * Fetch active user groups
+     *
+     * @return array
+     */
     public function getActiveUserGroups()
     {
         return UserGroups::select('group_id', 'group_ja_name', 'group_en_name')
@@ -36,7 +41,12 @@ class Announcement extends Model
             ->where('is_deleted', config('constants.active'))
             ->get();
     }
-    /* Fetch announcements and convert to array format*/
+
+    /**
+     * Fetch announcements by user group
+     *
+     * @return array
+     */
     public function getAnnouncements()
     {
         $result = [];
@@ -50,7 +60,13 @@ class Announcement extends Model
         return $result;
 
     }
-    /* Create new records or updating existing records*/
+
+    /**
+     * Create new records or updating existing records
+     *
+     * @param object $request
+     * @return mixed
+     */
     public function saveRecords($request)
     {
         $userGroup = $this->getActiveUserGroups();
@@ -86,7 +102,13 @@ class Announcement extends Model
             return $e->getMessage();
         }
     }
-    /* custom validation rules*/
+
+    /**
+     * custom validation rules
+     *
+     * @param object $request
+     * @return array
+     */
     public function validateInputData($request)
     {
         $userGroup = $this->getActiveUserGroups();

@@ -11,6 +11,10 @@ class Dashboard extends Model
 {
     use HasFactory;
 
+    /**
+     * Fetch announcements
+     * @return mixed
+     */
     public function getUserGroupAnnouncement()
     {
         $userInfo = getUser(Auth::user()->employee_id);
@@ -21,6 +25,12 @@ class Dashboard extends Model
         return $this->getAnnouncement($groupId, app()->getLocale());
     }
 
+    /**
+     * Get announcements based on user group and language
+     * @param int $groupId
+     * @param string $language
+     * @return mixed
+     */
     public function getAnnouncement($groupId, $language)
     {
         $today = now();
@@ -39,14 +49,19 @@ class Dashboard extends Model
         return false;
     }
 
+    /**
+     * Get system links based on user group and language
+     *
+     * @return mixed
+     */
     public function getSystemLinkData()
     {
         $lang = app()->getLocale();
-        $categoryField =  $lang. '_category_name';
-        $itemField =  $lang. '_system_name';
-        $urlField =  $lang. '_url';
+        $categoryField = $lang . '_category_name';
+        $itemField = $lang . '_system_name';
+        $urlField = $lang . '_url';
         $systemLinks = SystemLinks::join('system_links_categories', 'system_links_categories.category_id', '=', 'system_links.category_id')
-            ->select('system_links.'. $itemField . ' as system_name', 'system_links.'. $urlField . ' as url', 'system_links_categories.'. $categoryField)
+            ->select('system_links.' . $itemField . ' as system_name', 'system_links.' . $urlField . ' as url', 'system_links_categories.' . $categoryField)
             ->orderByRaw('system_links.sort ASC')
             ->get();
         $groupedItems = [];
