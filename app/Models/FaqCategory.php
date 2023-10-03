@@ -13,7 +13,8 @@ class FaqCategory extends Model
     const UPDATED_AT = 'modified_at';
     protected $primaryKey = 'category_id';
     /**
-     * Total records
+     * count of total records for table listing
+     * @return integer
      */
 
     public function totalRecords()
@@ -21,6 +22,16 @@ class FaqCategory extends Model
         return self::select('count(*) as allcount')->count();
     }
 
+    
+    /**
+     * get array of data or total count of data with filter(if any) 
+     * @param integer $offset
+     * @param integer $chunkSize
+     * @param string $columnName
+     * @param string $columnSortOrder
+     * @param string $type
+     * @return array for data array
+     */
     public function recordsWithFilter($offset, $chunkSize, $columnName, $columnSortOrder, $type = '')
     {
         if ($type == config('constants.get_type_count')) {
@@ -34,6 +45,11 @@ class FaqCategory extends Model
         }
     }
 
+    /**
+     * Total records with filter
+     * @return array
+     */
+
     public function getFilteredData($request)
     {
         $start = $request->get("start");
@@ -44,10 +60,6 @@ class FaqCategory extends Model
         $columnIndex = $columnIndexArr[0]['column']; // Column index
         $columnName = $columnNameArr[$columnIndex]['data']; // Column name
         $columnSortOrder = $orderArr[0]['dir']; // asc or desc
-
-        /**
-         * Total records with filter
-         */
 
         $records = $this->recordsWithFilter($start, $rowperpage, $columnName, $columnSortOrder, '');
         $dataArr = array();
@@ -68,6 +80,10 @@ class FaqCategory extends Model
         return $dataArr;
     }
 
+    /**
+     * To insert and update data
+     * @return integer
+     */
 
     public function saveRecords($request)
     {
