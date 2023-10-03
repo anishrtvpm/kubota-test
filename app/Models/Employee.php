@@ -14,11 +14,11 @@ class Employee extends Authenticatable
      * @var string
      */
     protected $table = 'employee';
-    protected $primaryKey = ['guid', 'company_cd', 'section_cd', 'branch_no'];
+    protected $primaryKey = 'guid';
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $primaryKey = 'guid';
+    // protected $primaryKey = 'guid';
 
     /**
      * The attributes that are mass assignable.
@@ -36,9 +36,4 @@ class Employee extends Authenticatable
         'start_date',
         'language',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class,'employee_id','guid');
-    }
 }

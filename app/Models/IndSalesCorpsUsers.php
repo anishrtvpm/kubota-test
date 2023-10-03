@@ -14,12 +14,12 @@ class IndSalesCorpsUsers extends Authenticatable
      * @var string
      */
     protected $table = 'ind_sales_corps_users';
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'guid';
     public $incrementing = false;
     protected $keyType = 'integer';
     public $timestamps = false;
 
-    protected $primaryKey = 'guid';
+    // protected $primaryKey = 'guid';
 
     /**
      * The attributes that are mass assignable.
@@ -41,9 +41,4 @@ class IndSalesCorpsUsers extends Authenticatable
         'memo',
         'is_deleted'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'employee_id', 'guid');
-    }
 }

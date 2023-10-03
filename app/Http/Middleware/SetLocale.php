@@ -17,8 +17,8 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
-            $userData = getUser(Auth::user()->employee_id);
+        if (Auth::check(getCurrentGuard())) {
+            $userData = getUser(Auth::guard(getCurrentGuard())->user()->guid);
             $language = $userData ? $userData['language'] : config('constants.language_japanese');
             App::setLocale($language);
         }

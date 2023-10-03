@@ -17,13 +17,15 @@ class Dashboard extends Model
      */
     public function getUserGroupAnnouncement()
     {
+        $announcements = null;
         $userInfo = getUser(Auth::user()->employee_id);
         $groupId = $userInfo ? $userInfo['group_id'] : null;
-        if (!$groupId) {
-            return Redirect::back()->with('error', __('invalid_user_error'));
+        if ($groupId) {
+            $announcements = $this->getAnnouncement($groupId, app()->getLocale());
         }
-        return $this->getAnnouncement($groupId, app()->getLocale());
+        return $announcements;
     }
+ 
 
     /**
      * Get announcements based on user group and language
