@@ -5,7 +5,12 @@ use App\Models\IndSalesCorps;
 use App\Models\IndSalesCorpsUsers;
 use Illuminate\Support\Facades\DB;
 
-/* To get the logged user details */
+/**
+ * Get user information based on guid.
+ *
+ * @param string $guid
+ * @return array
+ */
 if (!function_exists('getUser')) {
     function getUser($guid)
     {
