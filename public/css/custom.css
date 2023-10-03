@@ -318,3 +318,45 @@ table.dataTable thead th {
 .datatable_scroll{
     overflow-x: scroll;
 }
+
+label.error {
+    width: 100% !important;
+    margin-top: 0.25rem !important;
+    font-size: .875em !important;
+    color: #dc3545 !important;
+}
+
+select.error , input.error {
+    border-color: #dc3545 !important;
+}
+
+select.error:focus, input.error:focus {
+    border: 1px solid #dc3545 !important;
+}
+
+#errorMessages {
+    color: #58151c;
+    font-size: 14px;
+    background-color: #f0cfd2;
+    padding: 4px 0px 0px 9px;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+}
+
+#errorMessages label.error {
+    width: 100% !important;
+    margin-top: 0.05rem !important;
+    font-size: .875rem !important;
+    color: #dc3545 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+textarea.error {
+    border-color: #dc3545 !important;
+}
+
+input.error:focus {
+    select.error:focus, input.error:focus {
+        border: 1px solid #dc3545 !important;
+    }
+}

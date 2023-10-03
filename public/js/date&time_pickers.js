@@ -19,20 +19,11 @@
         dateFormat: "Y-m-d",
     });
 
-    /* For Date Range Picker */
-    flatpickr("#daterange1", {
+     /* Use in date range picker input fields */
+     flatpickr(".daterange", {
         mode: "range",
         dateFormat: "Y-m-d",
-    });
-
-    flatpickr("#daterange2", {
-        mode: "range",
-        dateFormat: "Y-m-d",
-    });
-
-    flatpickr("#daterange3", {
-        mode: "range",
-        dateFormat: "Y-m-d",
+        minDate: "today",
     });
 
     /* For Time Picker */

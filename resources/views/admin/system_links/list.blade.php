@@ -23,18 +23,39 @@
                         <div class="card-body">
                             <div class="row  mb-3">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary"data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8" style="float: right;">新規追加</button>
+                                <button type="button" class="btn btn-primary systemLinkBtn"  style="float: right;">新規追加</button>
                                 </div>
+                            @if(session('success'))
+                                <div class="alert alert-success mt-2" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            @if($errors->any())
+                                @foreach($errors->all() as $error)
+                                    <div class="alert alert-danger mt-2" role="alert">
+                                        {{ $error }}
+                                    </div>
+                                @endforeach
+                            @endif
+                            @if (session('error'))
+                            <div class="alert alert-danger mt-2" role="alert">
+                                 {{ $error }}
                             </div>
-                            
+                            @endif
+
+
+                            </div>
+                            <div class="modal fade" id="systemLinkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                @include('admin.system_links.form_modal');
+                            </div>
                             <div class="row">
                                 <div class="col-xl-12">
                                     <table id="systemLinksTable" class="table table-bordered text-nowrap" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>No.</th>
+                                                <th style="width: 40px;">No.</th>
                                                 <th>カテゴリ</th>
-                                                <th>表示順</th>
+                                                <th style="width: 70px;">表示順</th>
                                                 <th>システム名(JP)</th>
                                                 <th>システム名(EN)</th>
                                                 <th>URL(JP)</th>
@@ -53,6 +74,10 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/admin/system_links.js') }}"></script>
+<script>
+    var slTable;
+</script>
+<script src="{{ asset('js/admin/system_links.js') }}"></script>
+
 @endsection
          

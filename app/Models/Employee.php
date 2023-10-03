@@ -14,6 +14,9 @@ class Employee extends Authenticatable
      * @var string
      */
     protected $table = 'employee';
+    protected $primaryKey = ['guid', 'company_cd', 'section_cd', 'branch_no'];
+    public $incrementing = false;
+    public $timestamps = false;
 
     protected $primaryKey = 'guid';
 

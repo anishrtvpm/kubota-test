@@ -1,11 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
     // DataTable
-   $('#systemLinksTable').DataTable({
+     slTable =$('#systemLinksTable').DataTable({
         processing: true,
         serverSide: true,
         serverMethod: 'post',
@@ -14,13 +14,19 @@ $(document).ready(function(){
         searching: false,
         iDisplayLength: config.data_table_per_page,
         language: {
-            "paginate": {
-            "previous": "前へ",
-            "next": "次へ"
+            paginate: {
+                previous: "前へ",
+                next: "次へ"
             },
-            "lengthMenu": "表示 _MENU_ 件",
-            "info": "全_TOTAL_件中_START_から_END_件を表示",
+            lengthMenu: "表示 _MENU_ 件",
+            info: "全_TOTAL_件中_START_から_END_件を表示",
+            zeroRecords: "データがありません",
+            sInfoEmpty: "全_TOTAL_件中_START_から_END_件を表示",
+            sInfoFiltered: "",
         },
+        order: [
+            [config.data_table_starting_column_index, config.data_table_starting_column_index_order]
+        ],
         ajax: {
             url: '/system_link/get',
         },
@@ -28,7 +34,7 @@ $(document).ready(function(){
             {
                 data: 'system_id',
                 "mRender": function (data, type, full) {
-                    return '<a href="edit/' + data + '" id="' + data + '">' + data + '</a>';
+                    return '<a class="systemLinkBtn" href="javascript:void(0)"  id="' + data + '">' + data + '</a>';
                 }
             },
             { data: 'category_id' },
@@ -39,5 +45,23 @@ $(document).ready(function(){
             { data: 'en_url' },
         ]
     });
+    // prevent esc key
+    $('#systemLinkModal').modal({
+        keyboard: false
+    })
 
- });
+    //fetch data for form edit
+    $('body').on('click', '.systemLinkBtn', function () {
+        let id = $(this).attr('id');
+        $.ajax({
+            url: '/system_link/edit', // URL to which the request will be sent
+            method: 'POST',
+            data: { id: id },      // HTTP request method (GET, POST, PUT, DELETE, etc.)
+            success: function (response) {
+                $('#systemLinkModal').html(response);
+                $('#systemLinkModal').modal('show'); // Show the modal
+            },
+        });
+    })
+
+});

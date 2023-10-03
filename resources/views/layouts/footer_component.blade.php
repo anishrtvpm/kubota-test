@@ -1,4 +1,6 @@
     
+    <!-- Common Js -->
+    <script src="{{ asset('js/admin/common.js') }}"></script>
     <!-- Bootstrap JS -->
     <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Choices JS -->
@@ -7,8 +9,6 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ asset('js/custom.js') }}" defer></script>
-    <!-- Jquery Cdn -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <!-- Select2 Cdn -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Internal Select-2.js -->
@@ -35,6 +35,8 @@
         
     <!-- Internal Datatables JS -->
     <!-- <script src="{{ asset('js/datatables.js') }}"></script> -->
+    <script src="{{ asset('js/admin/common.js') }}"></script>
+    
     @yield('js')
     <script>
         $('#summernote-jp').summernote({

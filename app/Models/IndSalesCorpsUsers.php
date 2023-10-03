@@ -14,6 +14,10 @@ class IndSalesCorpsUsers extends Authenticatable
      * @var string
      */
     protected $table = 'ind_sales_corps_users';
+    protected $primaryKey = 'user_id';
+    public $incrementing = false;
+    protected $keyType = 'integer';
+    public $timestamps = false;
 
     protected $primaryKey = 'guid';
 
@@ -40,6 +44,6 @@ class IndSalesCorpsUsers extends Authenticatable
 
     public function user()
     {
-        return $this->belongsTo(User::class,'employee_id','guid');
+        return $this->belongsTo(User::class, 'employee_id', 'guid');
     }
 }

@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,15 +22,22 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login'
 
 Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
 
-    Route::get('/admin_dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin_dashboard');
-
+    Route::get('/admin_dashboard', [AdminDashboardController::class, 'index'])->name('admin_dashboard');
 
     Route::get('/system_link', [SystemLinksController::class, 'index'])->name('system_link.list');
     Route::post('/system_link/get', [SystemLinksController::class, 'get'])->name('system_link.get');
+    Route::post('/system_link/edit', [SystemLinksController::class, 'edit'])->name('system_link.edit');
+    Route::post('/system_link/store', [SystemLinksController::class, 'store'])->name('system_link.store');
+    Route::delete('/system_link/delete', [SystemLinksController::class, 'delete'])->name('system_link.delete');
 
+    Route::get('/faq_category', [FaqCategoryController::class, 'index'])->name('faq_category.list');
+    Route::post('/faq_category/get', [FaqCategoryController::class, 'get'])->name('faq_category.get');
+    Route::post('/faq_category/edit', [FaqCategoryController::class, 'edit'])->name('faq_category.edit');
+    Route::post('/faq_category/store', [FaqCategoryController::class, 'store'])->name('faq_category.store');
 
+    Route::get('/announcement/create', [AnnouncementController::class, 'create'])->name('announcement.create');
+    Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
+    
     Route::get('/faq_edit', function () {
         return view('admin.faq_edit');
     })->name('faq_edit');
@@ -50,9 +60,7 @@ Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
 
     Route::get('/enquiry_management', function () {
         return view('admin.enquiry_management');
-    })->name('enquiry_management');
-   
-   
+    })->name('enquiry_management');     
 
     Route::get('/faq_category_list', function () {
         return view('admin.faq_category_list');
@@ -97,6 +105,7 @@ Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
     Route::get('/affiliation_information_list', function () {
         return view('admin.affiliation_information_list');
     })->name('affiliation_information_list');
+    
     Route::get('/user_permission_list', function () {
         return view('admin.user_permission');
     })->name('user_permission_list');
@@ -113,9 +122,7 @@ Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
 
 Route::group(['middleware' => ['auth:kubota,independent']], function () {
 
-    Route::get('/dashboard', function () {
-        return view('user.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/faq_list', function () {
         return view('user.faq_list');
