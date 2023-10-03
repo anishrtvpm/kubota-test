@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Dashboard;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -17,8 +18,10 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        $annoucement = $this->dashboard->getUserGroupAnnouncement();
-        $systemLinks=$this->dashboard->getSystemLinkData();
+        $userInfo = getUser(Auth::user()->employee_id);
+        $groupId=$userInfo ? $userInfo['group_id'] : null ;
+        $annoucement = $this->dashboard->getUserGroupAnnouncement($groupId);
+        $systemLinks=$this->dashboard->getSystemLinkData($groupId);
 
         return view('admin.dashboard.index')->with([
             'annoucement' => $annoucement,

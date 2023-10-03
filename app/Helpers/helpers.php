@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\DB;
 if (!function_exists('getUser')) {
     function getUser($guid)
     {
+
+        
         $today = now();
         if (strlen($guid) == config('constants.kubota_user_guid_length')) {
-
+           
             $user = Employee::where('guid', $guid)
                 ->where('primary_flg', config('constants.primary_user'))
                 ->whereDate('start_date', '<=', $today)
                 ->whereDate('end_date', '>=', $today)
                 ->first();
             if ($user) {
+               
                 $userArray = $user->attributesToArray();
                 $userArray['isKubota'] = true;
-
+                
                 $org = DB::table('organization')
                     ->join('kubota_corps', 'organization.company_cd', '=', 'kubota_corps.company_cd')
                     ->where('organization.company_cd', $user['company_cd'])
@@ -38,7 +41,6 @@ if (!function_exists('getUser')) {
                         'kubota_corps.ja_name as ja_company_name',
                         'kubota_corps.en_name as en_company_name',
                     )->first();
-
                 if ($org) {
                     $userArray['ja_section_name'] = $org->ja_section_name;
                     $userArray['en_section_name'] = $org->en_section_name;
