@@ -28,7 +28,7 @@ class SystemLinksController extends Controller
     {
         $draw = $request->get('draw');
         $totalRecords = $this->systemLinks->totalRecords();
-        $totalRecordswithFilter = $this->systemLinks->getSystemLinkData($request, '', '', '', '', config('constants.get_type_count'));
+        $totalRecordswithFilter = $this->systemLinks->getSystemLinkData('', '', '', '', config('constants.get_type_count'));
         $records = $this->systemLinks->getFilteredData($request, 'data');
 
         $response = array(

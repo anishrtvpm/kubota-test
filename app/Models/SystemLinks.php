@@ -14,38 +14,42 @@ class SystemLinks extends Model
     protected $primaryKey = 'system_id';
     public function systemLinkCategory()
     {
-        return $this->belongsTo(SystemLinkCategory::class,'category_id','category_id');
+        return $this->belongsTo(SystemLinkCategory::class, 'category_id', 'category_id');
     }
     /**
-     * Total records
+     * count of total records for table listing
+     * @return integer
+     */
+    public function totalRecords()
+    {
+        return self::select('count(*) as allcount')->count();
+    }
+    /**
+     * Total records with filter
+     * @return array
      */
 
-     public function totalRecords()
-     {
-         return self::select('count(*) as allcount')->count();
-     }
- 
-     public function getFilteredData($request, $type)
-     {
-         $start = $request->get("start");
-         $rowperpage = $request->get("length"); // Rows display per page
-         $columnIndexArr = $request->get('order');
-         $columnNameArr = $request->get('columns');
-         $orderArr = $request->get('order');
-         $columnIndex = $columnIndexArr[0]['column']; // Column index
-         $columnName = $columnNameArr[$columnIndex]['data']; // Column name
-         $columnSortOrder = $orderArr[0]['dir']; // asc or desc
- 
+    public function getFilteredData($request, $type)
+    {
+        $start = $request->get("start");
+        $rowperpage = $request->get("length"); // Rows display per page
+        $columnIndexArr = $request->get('order');
+        $columnNameArr = $request->get('columns');
+        $orderArr = $request->get('order');
+        $columnIndex = $columnIndexArr[0]['column']; // Column index
+        $columnName = $columnNameArr[$columnIndex]['data']; // Column name
+        $columnSortOrder = $orderArr[0]['dir']; // asc or desc
 
-         /**
-          * Total records with filter
-          */
- 
-         $records = $this->getSystemLinkData($request, $start, $rowperpage, $columnName, $columnSortOrder,'');
-         $dataArr = array();
-         if ($records) {
-             foreach ($records as $record) {
-                 $dataArr[] = array(
+
+        /**
+         * Total records with filter
+         */
+
+        $records = $this->getSystemLinkData($start, $rowperpage, $columnName, $columnSortOrder, '');
+        $dataArr = array();
+        if ($records) {
+            foreach ($records as $record) {
+                $dataArr[] = array(
                     "system_id" => $record->system_id,
                     "category_id" => $record->systemLinkCategory->ja_category_name,
                     "sort" => $record->sort,
@@ -53,30 +57,39 @@ class SystemLinks extends Model
                     "en_system_name" => $record->en_system_name,
                     "ja_url" => $record->ja_url,
                     "en_url" => $record->en_url,
-                 );
-             }
-         }
-         return $dataArr;
-     }
- 
-     /**
-      * Get system links count and data for listing and csv export
-      */
-     public function getSystemLinkData($request, $offset, $chunkSize, $columnName, $columnSortOrder, $type = '')
-     {
-         if ($type == config('constants.get_type_count')) {
-             $systemLinkData = SystemLinks::select('count(*) as allcount');
-             $systemLinkData->where('is_deleted', config('constants.active'));
-             return $systemLinkData->count();
-         } else {
-             $systemLinkData = SystemLinks::orderBy($columnName, $columnSortOrder);
-             $systemLinkData->where('is_deleted', config('constants.active'));
-             return $systemLinkData->skip($offset)->take($chunkSize)->get();
-         }
-        
- 
-     }
+                );
+            }
+        }
+        return $dataArr;
+    }
 
+    /**
+     * get array of data or total count of data with filter(if any) 
+     * @param integer $offset
+     * @param integer $chunkSize
+     * @param string $columnName
+     * @param string $columnSortOrder
+     * @param string $type
+     * @return array for data array
+     */
+    public function getSystemLinkData($offset, $chunkSize, $columnName, $columnSortOrder, $type = '')
+    {
+        if ($type == config('constants.get_type_count')) {
+            $systemLinkData = SystemLinks::select('count(*) as allcount');
+            $systemLinkData->where('is_deleted', config('constants.active'));
+            return $systemLinkData->count();
+        } else {
+            $systemLinkData = SystemLinks::orderBy($columnName, $columnSortOrder);
+            $systemLinkData->where('is_deleted', config('constants.active'));
+            return $systemLinkData->skip($offset)->take($chunkSize)->get();
+        }
+
+
+    }
+    /**
+     * To insert and update data
+     * @return integer
+     */
     public function saveRecords($request)
     {
         try {
@@ -94,6 +107,10 @@ class SystemLinks extends Model
             return $e->getMessage();
         }
     }
+
+    /**
+     * @return integer
+     */
 
     public function deleteRecords($request)
     {
