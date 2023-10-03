@@ -8,37 +8,35 @@
         <div class="card custom-card">
             <div class="card-header  justify-content-between">
                 <div class="card-title">
-                {{ __('system') }}
+                    システム
                 </div>
             </div>
             <br>
             <div class="row px-2">
-                
                 <?php
                     if($systemLinks){
                         foreach($systemLinks as $key=> $systemLink){
                             ?>
-                    <div class="col-xl-2">
-                        <div class="col-xl-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title text-center">
-                                        <strong>{{$key}}</strong>
-                                    </div>
-                                    <div class="btn-list">
-                                    <?php foreach($systemLink as $item) { ?>
-                                        <a href="{{$item->ja_url}}"><button type="button" class="btn btn-outline-primary w-100">{{$item->ja_system_name}}</button></a>
-                                    <?php } ?>
+                            <div class="col-xl-2">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-title text-center">
+                                                <strong>{{$key}}</strong>
+                                            </div>
+                                            <div class="btn-list">
+                                                <?php foreach($systemLink as $item) { ?>
+                                                    <a href="{{ $item->url }}"><button type="button" class="btn btn-outline-primary w-100">{{ $item->system_name }}</button></a>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                <?php
+                        <?php
+                        }
                     }
-                }
                 ?>
-                
             </div>
         </div>
     </div>
@@ -49,7 +47,7 @@
                     <div class="card custom-card">
                         <div class="card-header  justify-content-between">
                             <div class="card-title">
-                                <a href="{{ route('link_template_list') }}">{{ __('application_format_template') }} </a>
+                                <a href="{{ route('link_template_list') }}"> 申請フォーマット・テンプレート等 </a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -240,7 +238,7 @@
                     <div class="card custom-card">
                         <div class="card-header  justify-content-between">
                             <div class="card-title">
-                                <a href="{{ route('link_template_list') }}"> {{ __('various_link') }} </a>
+                                <a href="{{ route('link_template_list') }}"> 各種リンク </a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -443,7 +441,7 @@
                             <li><a href="{{ route('independent_company_list') }}">独立系販社管理</a></li>
                             <li><a href="{{ route('system_link.list') }}">システムリンク管理</a></li>
                             <li><a href="{{ route('link_template_list') }}">リンク・テンプレート管理</a></li>
-                            <li><a href="{{ route('user_permission_list') }}">ユーザグループ権限情報管理</a></li>
+                            <li><a href="{{ route('user_permission_list') }}">ユーザーグループ権限情報管理</a></li>
                             <li><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
                             <li><a href="{{ route('enquiry_management') }}">お問い合わせフォーム管理</a></li>
                         </ul>
@@ -459,7 +457,7 @@
                     <div class="card custom-card">
                         <div class="card-header  justify-content-between">
                             <div class="card-title">
-                                <a href="{{ route('admin_notice_list') }}">{{ __('notice') }}</a>
+                                <a href="{{ route('admin_notice_list') }}">お知らせ</a>
                             </div>
                             <div class="prism-toggle">
                             <a href="{{ route('admin_notice_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
@@ -506,7 +504,7 @@
                         <div class="card custom-card">
                             <div class="card-header  justify-content-between">
                                 <div class="card-title">
-                                    <a href="#"> {{ __('core_system_doc_management') }} </a>
+                                    <a href="#"> 基幹システム(文書管理) </a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -697,7 +695,7 @@
                         <div class="card custom-card">
                             <div class="card-header  justify-content-between">
                                 <div class="card-title">
-                                    {{ __('contact_information') }}
+                                    お問い合わせ先
                                 </div>
                             </div>
                             <div class="card-body contact">

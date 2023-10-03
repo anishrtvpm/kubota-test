@@ -12,7 +12,7 @@
         <meta name="keywords" content="品保ポータルサイト">
         @include('layouts.header_component')
         @php
-            $lang = getAppLocale();
+            $lang = app()->getLocale();
         @endphp
 
         <script>

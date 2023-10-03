@@ -7,138 +7,35 @@
         <div class="card custom-card">
             <div class="card-header  justify-content-between">
                 <div class="card-title">
-                    システム
+                    {{ __('system') }}
                 </div>
             </div>
-                <br>
-                <div class="row px-2">
-                    <div class="col-xl-2">
-                        <div class="col-xl-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title text-center">
-                                        <strong>品質レポート</strong>
-                                    </div>
-                                    <div class="btn-list">
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">国内品質レポート</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">J-MAP</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">FlashReport</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">重要案件管理</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">着荷不良連絡</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">クレーム費用<br>集計・配賦</button></a>
+            <br>
+            <div class="row px-2">
+                <?php
+                    if($systemLinks){
+                        foreach($systemLinks as $key=> $systemLink){
+                            ?>
+                            <div class="col-xl-2">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-title text-center">
+                                                <strong>{{ $key }}</strong>
+                                            </div>
+                                            <div class="btn-list">
+                                                <?php foreach($systemLink as $item) { ?>
+                                                    <a href="{{ $item->url }}"><button type="button" class="btn btn-outline-primary w-100">{{ $item->system_name }}</button></a>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="col-xl-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title text-center">
-                                        <strong>ワランティ</strong>
-                                    </div>
-                                    <div class="btn-list">
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">国内ワランティ</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">系統費用処理</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">海外ワランティ</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">KWRS</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">キャンペーン<br>進捗管理</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="col-xl-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title text-center">
-                                        <strong>分析</strong>
-                                    </div>
-                                    <div class="btn-list">
-
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">EDAS</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">Power-Bl</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="col-xl-12">
-                            <div class="card">
-
-                                <div class="card-body">
-                                    <div class="card-title text-center">
-                                        <strong>情報系</strong>
-                                    </div>
-                                    <div class="btn-list">
-
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">ワランティ検索</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">K-PTM<br>(製品取れザビリティ)</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">EDI</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">DWH</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="col-xl-12">
-                            <div class="card">
-
-                                <div class="card-body">
-                                    <div class="card-title text-center">
-                                        <strong>集計</strong>
-                                    </div>
-                                    <div class="btn-list">
-
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">Dr.Sum</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">新K-Action</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="col-xl-12">
-                            <div class="card">
-
-                                <div class="card-body">
-                                    <div class="card-title text-center">
-                                        <strong>その他</strong>
-                                    </div>
-                                    <div class="btn-list">
-
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">回収部品</button></a>
-                                        <a href="#"><button type="button"
-                                                class="btn btn-outline-primary w-100">マスタ管理</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -150,7 +47,7 @@
                         <div class="card custom-card">
                             <div class="card-header  justify-content-between">
                                 <div class="card-title">
-                                    申請フォーマット・テンプレート等
+                                    <a href="{{ route('document_list') }}">{{ __('application_format_template') }} </a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -342,7 +239,7 @@
                                     <div class="card custom-card">
                                         <div class="card-header  justify-content-between">
                                             <div class="card-title">
-                                                <a href="{{ route('link_list') }}"> 各種リンク </a>
+                                                <a href="{{ route('link_list') }}"> {{ __('various_link') }} </a>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -538,7 +435,7 @@
                                     <div class="card custom-card">
                                         <div class="card-header  justify-content-between">
                                             <div class="card-title">
-                                                お知らせ
+                                                <a href="{{ route('notice_list') }}">{{ __('notice') }}</a>
                                             </div>
                                             <div class="prism-toggle">
                                             <a href="{{ route('notice_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
@@ -561,7 +458,7 @@
                                         <div class="card custom-card">
                                             <div class="card-header  justify-content-between">
                                                 <div class="card-title">
-                                                    FAQ
+                                                    <a href="{{ route('faq_list') }}">{{ __('faq') }}</a>
                                                 </div>
                                                 <div class="prism-toggle">
                                                 <a href="{{ route('faq_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
@@ -585,7 +482,7 @@
                                         <div class="card custom-card">
                                             <div class="card-header  justify-content-between">
                                                 <div class="card-title">
-                                                    <a href="{{ route('document_list') }}"> 基幹システム(文書管理) </a>
+                                                    <a href="{{ route('document_list') }}"> {{ __('core_system_doc_management') }} </a>
                                                 </div>
                                             </div>
                                             <div class="card-body">
@@ -783,7 +680,7 @@
                         <div class="card custom-card">
                             <div class="card-header  justify-content-between">
                                 <div class="card-title">
-                                    お問い合わせ先
+                                    {{ __('contact_information') }}
                                 </div>
                             </div>
                             <div class="card-body contact">

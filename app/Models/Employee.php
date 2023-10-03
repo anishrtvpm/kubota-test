@@ -12,6 +12,9 @@ class Employee extends Model
      * @var string
      */
     protected $table = 'employee';
+    protected $primaryKey = ['guid', 'company_cd', 'section_cd', 'branch_no'];
+    public $incrementing = false;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

@@ -95,27 +95,27 @@ class Announcement extends Model
         foreach ($userGroup as $group) {
             if (!$request['ja_message' . $group->group_id]) {
                 $response['error'] = true;
-                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('JP_message_required');
+                $response['message'] = (app()->getLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('JP_message_required');
                 break;
             }
             if (!$request['en_message' . $group->group_id]) {
                 $response['error'] = true;
-                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('EN_message_required');
+                $response['message'] = (app()->getLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('EN_message_required');
                 break;
             }
             if ($request['ja_message' . $group->group_id] && strlen($request['ja_message' . $group->group_id]) > 120) {
                 $response['error'] = true;
-                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('JP_message_length');
+                $response['message'] = (app()->getLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('JP_message_length');
                 break;
             }
             if ($request['en_message' . $group->group_id] && strlen($request['en_message' . $group->group_id]) > 120) {
                 $response['error'] = true;
-                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('EN_message_length');
+                $response['message'] = (app()->getLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('EN_message_length');
                 break;
             }
             if (!$request['daterange' . $group->group_id]) {
                 $response['error'] = true;
-                $response['message'] = (getAppLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('delivery_period_required');
+                $response['message'] = (app()->getLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('delivery_period_required');
                 break;
             }
         }

@@ -42,7 +42,7 @@
                                 @foreach ($userGroups as $group)
                                     <div class="row">
 
-                                        @if(getAppLocale() == 'ja')
+                                        @if(app()->getLocale() == 'ja')
                                             <h6>{{ $group->group_ja_name }}</h6>
                                         @else
                                             <h6>{{ $group->group_en_name }}</h6>

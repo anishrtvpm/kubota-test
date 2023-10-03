@@ -39,5 +39,6 @@
     "en_system_name_max_length": "Title(EN) length should not exceed 100 characters",
     "url_jp_max_length": "Title(JP) length should not exceed 100 characters",
     "url_en_max_length": "Title(EN) length should not exceed 100 characters",
-    "delete_success":"Successfully deleted"
+    "delete_success":"Successfully deleted",
+    "invalid_user_error": "Invalid user"
 }

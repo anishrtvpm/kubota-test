@@ -5,65 +5,54 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class Dashboard extends Model
 {
     use HasFactory;
 
-
     public function getUserGroupAnnouncement()
     {
-        $userGroup = $this->getUserGroup();
-        if (!$userGroup) {
-            return false;
+        $userInfo = getUser(Auth::user()->employee_id);
+        $groupId = $userInfo ? $userInfo['group_id'] : null;
+        if (!$groupId) {
+            return Redirect::back()->with('error', __('invalid_user_error'));
         }
-        return $this->getAnnouncement($userGroup);
+        return $this->getAnnouncement($groupId, app()->getLocale());
     }
 
-    public function getAnnouncement($group_id)
+    public function getAnnouncement($groupId, $language)
     {
-        $currentDate = now();
-        $announcement = Announcement::where('group_id', $group_id)
-            ->where('is_deleted', config('constants.active'))
-            ->whereDate('start_date', '<=', $currentDate)
-            ->whereDate('end_date', '>=', $currentDate)
+        $today = now();
+        $column = $language . '_message';
+
+        $results = Announcement::select($column)
+            ->where('group_id', $groupId)
+            ->where('is_deleted', 0)
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
             ->first();
-        if ($announcement) {
-            return getAppLocale() == 'ja' ? $announcement->ja_message : $announcement->en_message;
+
+        if ($results) {
+            return ($language == config('constants.language_japanese')) ? $results->ja_message : $results->en_message;
         }
         return false;
     }
 
-    public function getUserGroup()
+    public function getSystemLinkData()
     {
-        $userType = Auth::user()->user_type;
-        //If logged user type is independent user, then group 6 is directly assigned.
-        if ($userType == config('constants.ind_user')) {
-            return config('constants.ind_user_group_id');
-        }
-
-        $groupId = Organization::select('organization.group_id')
-            ->join('employee', function ($join) {
-                $join->on('organization.company_cd', '=', 'employee.company_cd')
-                    ->on('organization.section_cd', '=', 'employee.section_cd')
-                    ->on('organization.branch_no', '=', 'employee.branch_no')
-                    ->where('employee.guid', '=', Auth::user()->employee_id);
-            })
-            ->value('group_id');
-
-        return $groupId ?? false;
-
-    }
-
-    public function getSystemLinkData(){
+        $lang = app()->getLocale();
+        $categoryField =  $lang. '_category_name';
+        $itemField =  $lang. '_system_name';
+        $urlField =  $lang. '_url';
         $systemLinks = SystemLinks::join('system_links_categories', 'system_links_categories.category_id', '=', 'system_links.category_id')
-        ->select('system_links.*', 'system_links_categories.ja_category_name')
-        ->orderByRaw('system_links.sort ASC')
-        ->get();
+            ->select('system_links.'. $itemField . ' as system_name', 'system_links.'. $urlField . ' as url', 'system_links_categories.'. $categoryField)
+            ->orderByRaw('system_links.sort ASC')
+            ->get();
         $groupedItems = [];
 
         foreach ($systemLinks as $item) {
-            $categoryId = $item['ja_category_name'];
+            $categoryId = $item[$categoryField];
             if (!isset($groupedItems[$categoryId])) {
                 $groupedItems[$categoryId] = [];
             }
