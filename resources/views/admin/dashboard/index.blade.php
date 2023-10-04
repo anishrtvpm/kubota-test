@@ -428,7 +428,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-12">
+            <div class="col-xl-12" id="manage">
                 <div class="card custom-card">
                     <div class="card-header  justify-content-between">
                         <div class="card-title">

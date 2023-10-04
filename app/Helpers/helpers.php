@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Auth;
  * @return mixed
  */
 if (!function_exists('getUser')) {
-    function getUser()
+    function getUser($guid)
     {
-        $guid = authUser()->guid;
         $today = now();
         if (strlen($guid) == config('constants.kubota_user_guid_length')) {
            

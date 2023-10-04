@@ -17,7 +17,7 @@ class Dashboard extends Model
     public function getUserGroupAnnouncement()
     {
         $announcements = null;
-        $userInfo = getUser();
+        $userInfo = getUser(authUser()->guid);
         $groupId = $userInfo ? $userInfo['group_id'] : null;
         if ($groupId) {
             $announcements = $this->getAnnouncement($groupId, app()->getLocale());
