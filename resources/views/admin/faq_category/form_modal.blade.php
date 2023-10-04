@@ -25,7 +25,7 @@ if(!empty($faqCategoryData)){
             <h6 class="modal-title">FAQカテゴリ追加</h6><button aria-label="Close"
                 class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        
+        <div class="alert alert-danger mt-2 error-modal" role="alert" style="display: none;"></div>
         <form method="POST" id="faqCategoryForm" action="{{route('faq_category.store')}}">
         @csrf
         <input type="hidden" name="faq_category_id" value="{{$faq_category_id ? $faq_category_id : ''}}">
@@ -44,14 +44,17 @@ if(!empty($faqCategoryData)){
                 <div class="col-sm-8">
                     <input type="text" name="top_category_ja_name" class="mt-2 form-control form-control-lg" id="top_category_ja_name" value="{{$top_category_ja_name ? $top_category_ja_name : ''}}" placeholder="システム(JP)">
                 </div>
-                <label for="top_category_en_name" class="mt-2 col-sm-4 col-form-label col-form-label">カテゴリ名(JP)</label>
+                
+                <label for="sub_category_ja_name" class="mt-2 col-sm-4 col-form-label col-form-label">カテゴリ名(JP)</label>
                 <div class="col-sm-8">
-                    <input type="text" name="top_category_en_name" value="{{$top_category_en_name ? $top_category_en_name : ''}}" class="mt-2 form-control form-control-lg" id="top_category_en_name" placeholder="カテゴリ名(JP)">
+                    <input type="text" name="sub_category_ja_name" value="{{$sub_category_ja_name ? $sub_category_ja_name : ''}}" class="mt-2 form-control form-control-lg" id="sub_category_ja_name" placeholder="カテゴリ名(JP)">
                 </div>
-                <label for="sub_category_ja_name" class="mt-2 col-sm-4 col-form-label col-form-label">システム(EN)</label>
+                
+                <label for="top_category_en_name" class="mt-2 col-sm-4 col-form-label col-form-label">システム(EN)</label>
                 <div class="col-sm-8">
-                    <input type="text" name="sub_category_ja_name" value="{{$sub_category_ja_name ? $sub_category_ja_name : ''}}" class="mt-2 form-control form-control-lg" id="sub_category_ja_name" placeholder="システム(EN)">
+                    <input type="text" name="top_category_en_name" value="{{$top_category_en_name ? $top_category_en_name : ''}}" class="mt-2 form-control form-control-lg" id="top_category_en_name" placeholder="システム(EN)">
                 </div>
+               
                 <label for="sub_category_en_name" class="mt-2 col-sm-4 col-form-label col-form-label">カテゴリ名(EN)</label>
                 <div class="col-sm-8">
                     <input type="text" name="sub_category_en_name" value="{{$sub_category_en_name ? $sub_category_en_name : ''}}" id="sub_category_en_name" class="mt-2 form-control" placeholder="カテゴリ名(EN)">
