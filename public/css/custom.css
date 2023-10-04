@@ -302,7 +302,16 @@ table.dataTable thead th {
     color: #008486;
 }
 
-.note-editor .dropdown-toggle::after { all: unset; } .note-editor .note-dropdown-menu { box-sizing: content-box; } .note-editor .note-modal-footer { box-sizing: content-box;
+.note-editor .dropdown-toggle::after {
+    all: unset;
+}
+
+.note-editor .note-dropdown-menu {
+    box-sizing: content-box;
+}
+
+.note-editor .note-modal-footer {
+    box-sizing: content-box;
 }
 
 .data-table-btn {
@@ -315,7 +324,7 @@ table.dataTable thead th {
     margin: 0.3rem 0 0 0;
 }
 
-.datatable_scroll{
+.datatable_scroll {
     overflow-x: scroll;
 }
 
@@ -326,11 +335,13 @@ label.error {
     color: #dc3545 !important;
 }
 
-select.error , input.error {
+select.error,
+input.error {
     border-color: #dc3545 !important;
 }
 
-select.error:focus, input.error:focus {
+select.error:focus,
+input.error:focus {
     border: 1px solid #dc3545 !important;
 }
 
@@ -356,14 +367,25 @@ textarea.error {
 }
 
 input.error:focus {
-    select.error:focus, input.error:focus {
+
+    select.error:focus,
+    input.error:focus {
         border: 1px solid #dc3545 !important;
     }
 }
+
 textarea.resize {
     height: 150px;
     resize: none;
 }
+
 .btn-warning:focus {
-    border: 1px solid #f36a09  !important;
+    border: 1px solid #f36a09 !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
 }
