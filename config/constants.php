@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'kubota_user' => 1,
-    'ind_user' => 2,
+    'kubota_user' => 'kubota',
+    'ind_user' => 'independent',
     'temporary_password_chars' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
     'data_table_starting_column_index' => 0,
     'data_table_starting_column_index_order' => 'desc',
@@ -30,4 +30,5 @@ return [
     'language_english' => 'en',
     'public' => 1,
     'private' => 0,
+    'is_admin' => 1,
 ];

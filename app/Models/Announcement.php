@@ -5,7 +5,6 @@ namespace App\Models;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class Announcement extends Model
 {
@@ -91,9 +90,9 @@ class Announcement extends Model
                 $announcement->start_date = $startDate;
                 $announcement->end_date = $endDate;
                 if ($announcement->id) {
-                    $announcement->modified_user = Auth::guard(getCurrentGuard())->user()->guid;
+                    $announcement->modified_user = authUser()->guid;
                 } else {
-                    $announcement->created_user = Auth::guard(getCurrentGuard())->user()->guid;
+                    $announcement->created_user = authUser()->guid;
                 }
                 $announcement->save();
             }

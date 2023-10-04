@@ -21,6 +21,7 @@
     <script src="{{ asset('libs/summernote/lang/summernote-ja-JP.min.js') }}"></script>
     <!-- Date & Time Picker JS -->
     <script src="{{ asset('libs/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <script src="{{ asset('js/date&time_pickers.js') }}"></script>
     <!-- Datatables Cdn -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
