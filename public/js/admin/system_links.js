@@ -60,6 +60,9 @@ $(document).ready(function () {
             success: function (response) {
                 $('#systemLinkModal').html(response);
                 $('#systemLinkModal').modal('show'); // Show the modal
+                $('#systemLinkModal').on('shown.bs.modal', function () {
+                    $('#category').focus();
+                });
             },
         });
     })

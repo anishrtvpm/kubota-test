@@ -38,28 +38,28 @@ $('#systeLinkForm').validate({
     },
     messages: {
         category: {
-            required: translations.category_required,
+            required: "要カテゴリー",
         },
         sort: {
-            required: translations.sort_required,
-            number: translations.sort_number_validate,
-            maxlength: translations.sort_max_length,
+            required: "要ソート",
+            number: "有効な番号を入力してください。",
+            maxlength: "ソートの長さは3文字以内",
         },
         ja_system_name: {
-            required: translations.jp_system_name_required,
-            maxlength: translations.jp_system_name_max_length,
+            required: "タイトル(JP) 必須",
+            maxlength: "タイトル(JP)の長さは100文字を超えないこと",
         },
         en_system_name: {
-            required: translations.en_system_name_required,
-            maxlength: translations.en_system_name_max_length,
+            required: "タイトル(EN) 必須",
+            maxlength: "タイトル(EN)の長さは100文字を超えないこと",
         },
         ja_url: {
-            urlCheck: translations.url_invalid,
-            maxlength: translations.url_jp_max_length,
+            urlCheck: "有効なURLを入力してください",
+            maxlength: "タイトル(JP)の長さは255文字を超えないこと",
         },
         en_url: {
-            urlCheck: translations.url_invalid,
-            maxlength: translations.url_en_max_length,
+            urlCheck: "有効なURLを入力してください",
+            maxlength: "タイトル(EN)の長さは255文字を超えないこと",
         },
     },
 

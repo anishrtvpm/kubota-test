@@ -36,17 +36,17 @@ class SystemLinkRequestValidation extends FormRequest
     public function messages(): array
     {
         return [
-            'category.required' => trans('category_required'),
-            'sort.required' => trans('sort_required'),
-            'sort.max' => trans('sort_max_length'),
-            'ja_system_name.required'=> trans('jp_system_name_required'),
-            'ja_system_name.max'=> trans('jp_system_name_max_length'),
-            'en_system_name.required'=> trans('en_system_name_required'),
-            'en_system_name.max'=> trans('en_system_name_max_length'),
-            'ja_url.max'=> trans('url_jp_max_length'),
-            'ja_url.regex'=> trans('url_invalid'),
-            'en_url.max' => trans('url_en_max_length'),
-            'en_url.regex' => trans('url_invalid'),
+            'category.required' => '要カテゴリー',
+            'sort.required' =>'要ソート',
+            'sort.max' => 'ソートの長さは3文字以内',
+            'ja_system_name.required'=> 'タイトル(JP) 必須',
+            'ja_system_name.max'=> 'タイトル(JP)の長さは100文字を超えないこと',
+            'en_system_name.required'=> 'タイトル(EN) 必須',
+            'en_system_name.max'=> 'タイトル(EN)の長さは100文字を超えないこと',
+            'ja_url.max'=> 'タイトル(JP)の長さは255文字を超えないこと',
+            'ja_url.regex'=> '有効なURLを入力してください',
+            'en_url.max' => 'タイトル(EN)の長さは255文字を超えないこと',
+            'en_url.regex' => '有効なURLを入力してください',
             'sort.min' => '数値は0より大きくなければならない。',
         ];
     }

@@ -18,7 +18,7 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        $userInfo = getUser(Auth::user()->employee_id);
+        $userInfo = getUser();
         $groupId=$userInfo ? $userInfo['group_id'] : null ;
         $annoucement = $this->dashboard->getUserGroupAnnouncement($groupId);
         $systemLinks=$this->dashboard->getSystemLinkData($groupId);
