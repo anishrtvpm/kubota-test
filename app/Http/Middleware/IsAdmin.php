@@ -16,7 +16,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::guard(getCurrentGuard())->user()->is_admin){
+        if(authUser()->is_admin){
             return $next($request);
         }
         return redirect('dashboard')->with('error',"You don't have admin access.");

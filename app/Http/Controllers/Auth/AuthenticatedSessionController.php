@@ -31,8 +31,8 @@ class AuthenticatedSessionController extends Controller
         if (auth(getCurrentGuard())->check()) {
             if(getCurrentGuard() == 'kubota')
             {
-                $route = Auth::guard(getCurrentGuard())->user()->is_admin ? 'admin_dashboard' : 'dashboard';
-                return redirect()->intended($route)->with('is_admin', Auth::guard(getCurrentGuard())->user()->is_admin);
+                $route = authUser()->is_admin ? 'admin_dashboard' : 'dashboard';
+                return redirect()->intended($route)->with('is_admin', authUser()->is_admin);
             }
             return redirect()->intended('dashboard')->with('is_admin', false);
         }

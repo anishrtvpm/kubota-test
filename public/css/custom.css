@@ -360,3 +360,10 @@ input.error:focus {
         border: 1px solid #dc3545 !important;
     }
 }
+textarea.resize {
+    height: 150px;
+    resize: none;
+}
+.btn-warning:focus {
+    border: 1px solid #f36a09  !important;
+}

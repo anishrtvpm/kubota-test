@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class Dashboard extends Model
 {
@@ -18,7 +16,7 @@ class Dashboard extends Model
     public function getUserGroupAnnouncement()
     {
         $announcements = null;
-        $userInfo = getUser(Auth::user()->employee_id);
+        $userInfo = getUser();
         $groupId = $userInfo ? $userInfo['group_id'] : null;
         if ($groupId) {
             $announcements = $this->getAnnouncement($groupId, app()->getLocale());
