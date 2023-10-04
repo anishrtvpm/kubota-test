@@ -1,6 +1,5 @@
 @extends('layouts.base')
 @section('content')
-
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
@@ -53,10 +52,10 @@
                                     <table id="systemLinksTable" class="table table-bordered text-nowrap" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th style="width: 40px;">No.</th>
+                                                <th style="width: 18px;">No.</th>
                                                 <th>カテゴリ</th>
-                                                <th style="width: 70px;">表示順</th>
-                                                <th>システム名(JP)</th>
+                                                <th style="width: 10px;">表示順</th>
+                                                <th >システム名(JP)</th>
                                                 <th>システム名(EN)</th>
                                                 <th>URL(JP)</th>
                                                 <th>URL(EN)</th>

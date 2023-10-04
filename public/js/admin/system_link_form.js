@@ -8,8 +8,14 @@ $.validator.addMethod("urlCheck", function (value) {
     return isValidUrl(value);
 });
 
+$.validator.addMethod("characterCheckJa", function (value) {
+    return isValidCharacterJapanese(value);
+});
+$.validator.addMethod("characterCheckEn", function (value) {
+    return isValidCharacterEnglish(value);
+});
+
 $('#systeLinkForm').validate({
-    // errorLabelContainer: "#errorMessages",
     rules: {
         category: {
             required: true,
@@ -18,14 +24,17 @@ $('#systeLinkForm').validate({
             required: true,
             number: true,  // Ensure it's a valid number
             maxlength: 3,
+            min:0,
         },
         ja_system_name: {
             required: true,
             maxlength: 100,
+            characterCheckJa: true,
         },
         en_system_name: {
             required: true,
             maxlength: 100,
+            characterCheckEn: true,
         },
         ja_url: {
             urlCheck: true,
@@ -44,14 +53,17 @@ $('#systeLinkForm').validate({
             required: "要ソート",
             number: "有効な番号を入力してください。",
             maxlength: "ソートの長さは3文字以内",
+            min: "数値は0より大きくなければならない。" 
         },
         ja_system_name: {
             required: "タイトル(JP) 必須",
             maxlength: "タイトル(JP)の長さは100文字を超えないこと",
+            characterCheckJa:"日本語のみを入力してください。"
         },
         en_system_name: {
             required: "タイトル(EN) 必須",
             maxlength: "タイトル(EN)の長さは100文字を超えないこと",
+            characterCheckEn:"英字のみ入力してください。"
         },
         ja_url: {
             urlCheck: "有効なURLを入力してください",
@@ -98,8 +110,8 @@ $('#deleteBtn').click(function() {
         text: '本当にこのレコードを削除しますか？',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'はい',
-        cancelButtonText: 'キャンセル',
+        confirmButtonText: '<span data-toggle="tooltip" title="はい">はい</span>',
+        cancelButtonText: '<span data-toggle="tooltip" title="キャンセル">キャンセル</span>',
         customClass: {
             confirmButton: 'btn-lg'
         },

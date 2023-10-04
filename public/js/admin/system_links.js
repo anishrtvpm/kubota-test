@@ -5,11 +5,10 @@ $(document).ready(function () {
         }
     });
     // DataTable
-     slTable =$('#systemLinksTable').DataTable({
+    slTable = $('#systemLinksTable').DataTable({
         processing: true,
         serverSide: true,
         serverMethod: 'post',
-        responsive: true,
         bLengthChange: false,
         searching: false,
         iDisplayLength: config.data_table_per_page,
@@ -41,10 +40,22 @@ $(document).ready(function () {
             { data: 'sort' },
             { data: 'ja_system_name' },
             { data: 'en_system_name' },
-            { data: 'ja_url' },
-            { data: 'en_url' },
+            {
+                data: 'ja_url',
+                "mRender": function (data, type, full) {
+                    return '<a  target="_blank" href="' + data + '" >' + data + '</a>';
+                }
+            },
+            {
+                data: 'en_url',
+                "mRender": function (data, type, full) {
+                    return '<a  target="_blank" href="' + data + '" >' + data + '</a>';
+                }
+            },
         ]
     });
+
+
     // prevent esc key
     $('#systemLinkModal').modal({
         keyboard: false

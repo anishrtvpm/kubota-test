@@ -390,6 +390,14 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.dataTable th,
+.dataTable td {
+    max-width: 100px ;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
 .dataTables_processing {
     background-color: transparent;
     color: red !important;
