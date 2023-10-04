@@ -76,7 +76,7 @@ $('#faqCategoryForm').validate({
     },
 
     submitHandler: function (form) {
-        $('#submitBtn').attr('disabled', 'disabled');
+        // $('#submitBtn').attr('disabled', 'disabled');
         let formData = $(form).serialize();
         $.ajax({
             type: 'POST',
@@ -96,6 +96,14 @@ $('#faqCategoryForm').validate({
                         $('.' + field).siblings('.text-danger').remove();
                         $('.' + field).after('<span class="text-danger">' + messages[0] + '</span>');
                     });
+                    if(response.error){
+                        $('.error-modal').show();
+                        let message_error='';
+                        $.each(response.error, function(key, message) {
+                            message_error += '<span class="text-danger">'  + message + '</span><br>';
+                        });
+                        $('.error-modal').html('<span class="text-danger">' + message_error + '</span>');
+                    }
                 } 
             }
         })
