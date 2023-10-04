@@ -56,8 +56,13 @@ class FaqCategoryController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(FaqCategoryRequest $request)
     {
+
+        $validateData = $this->faqCategories->categoryCombinationExists($request);
+        if ($validateData['error']) {
+            return response()->json(['error' => $validateData['message']], 422);
+        }
         $categoryId = $this->faqCategories->saveRecords($request);
         if (!$categoryId) {
             return Redirect::back()->with('error', trans('invalid_request_error'));
