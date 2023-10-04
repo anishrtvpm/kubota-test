@@ -40,6 +40,7 @@
     "url_jp_max_length": "タイトル(JP)の長さは100文字を超えないこと",
     "url_en_max_length": "タイトル(EN)の長さは100文字を超えないこと",
     "delete_success":"削除に成功",
-    "invalid_user_error": "無効なユーザー"
+    "invalid_user_error": "無効なユーザー",
+    "no_groups_error":"このユーザーにはグループが割り当てられていません..！"
     
 }

@@ -34,7 +34,12 @@
                             </div>
                         <?php
                         }
+                    } else  {
+                        ?>
+                        <div class="card-title text-center mb-2"><strong>{{ __('no_groups_error') }}</strong></div>
+                        <?php
                     }
+
                     ?>
                 </div>
             </div>
