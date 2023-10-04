@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Auth;
  * Get user information based on guid.
  *
  * @param string $guid
- * @return array
+ * @return mixed
  */
 if (!function_exists('getUser')) {
     function getUser()
     {
         $guid = authUser()->guid;
-
-        
         $today = now();
         if (strlen($guid) == config('constants.kubota_user_guid_length')) {
            
