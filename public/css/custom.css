@@ -389,3 +389,12 @@ input[type="number"]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
+
+.dataTables_processing {
+    background-color: transparent;
+    color: red !important;
+}
+
+.dataTables_processing>div:last-child>div {
+    background-color: var(--primary-color) !important; 
+}
