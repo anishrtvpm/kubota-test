@@ -24,7 +24,7 @@
         mode: "range",
         dateFormat: "Y-m-d",
         minDate: "today",
-        locale: "ja"
+        locale: locale
     });
 
     /* For Time Picker */

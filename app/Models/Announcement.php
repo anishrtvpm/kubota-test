@@ -54,7 +54,7 @@ class Announcement extends Model
             $result[$announcement->group_id]['group_id'] = $announcement->group_id;
             $result[$announcement->group_id]['ja_message'] = $announcement->ja_message;
             $result[$announcement->group_id]['en_message'] = $announcement->en_message;
-            $result[$announcement->group_id]['daterange'] = ($announcement->start_date && $announcement->end_date) ? $announcement->start_date . ' to ' . $announcement->end_date : '';
+            $result[$announcement->group_id]['daterange'] = ($announcement->start_date && $announcement->end_date) ? $announcement->start_date . ' から ' . $announcement->end_date : '';
         }
         return $result;
 
@@ -75,9 +75,9 @@ class Announcement extends Model
 
                 $startDate = $endDate = null;
                 if ($request->input('daterange' . $group->group_id)) {
-                    $dateRangeArray = explode(' to ', $request->input('daterange' . $group->group_id));
+                    $dateRangeArray = explode(' ', $request->input('daterange' . $group->group_id));
                     $startDateTime = new DateTime($dateRangeArray[0]);
-                    $endDateTime = isset($dateRangeArray[1]) ? new DateTime($dateRangeArray[1]) : $startDateTime; //When choosing same date as start and end date
+                    $endDateTime = isset($dateRangeArray[2]) ? new DateTime($dateRangeArray[2]) : $startDateTime; //When choosing same date as start and end date
 
                     $startDate = $startDateTime->format('Y-m-d');
                     $endDate = $endDateTime->format('Y-m-d');
