@@ -41,6 +41,9 @@
     "url_en_max_length": "Title(EN) length should not exceed 100 characters",
     "delete_success":"Successfully deleted",
     "invalid_user_error": "Invalid user",
+    "email_address" : "Email",
+    "logout" : "Logout",
+    "language" : "Language",
     "no_groups_error":"No groups assigned to this user..！"
 
 }

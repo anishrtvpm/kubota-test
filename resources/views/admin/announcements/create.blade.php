@@ -51,13 +51,13 @@
                                         <div class="col-md-6 row mb-3">
                                             <label class="col-sm-3 col-form-label fw-bold text-center mt-5">{{ __('label_jp')}}</label>
                                             <div class="col-sm-8">
-                                                <textarea class="form-control" id="ja_message{{ $group->group_id }}" name="ja_message{{ $group->group_id }}" rows="1" style="height: 150px;" tabindex="{{ $tab++ }}">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['ja_message'] : ''}}</textarea>
+                                                <textarea class="form-control resize" id="ja_message{{ $group->group_id }}" name="ja_message{{ $group->group_id }}" rows="1" tabindex="{{ $tab++ }}">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['ja_message'] : ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6 row mb-3">
                                             <label class="col-sm-3 col-form-label fw-bold text-center mt-5">{{ __('label_en')}}</label>
                                             <div class="col-sm-8">
-                                                <textarea class="form-control" id="en_message{{ $group->group_id }}" name="en_message{{ $group->group_id }}" rows="1" style="height: 150px;" tabindex="{{ $tab++ }}">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['en_message'] : ''}}</textarea>
+                                                <textarea class="form-control resize" id="en_message{{ $group->group_id }}" name="en_message{{ $group->group_id }}" rows="1" tabindex="{{ $tab++ }}">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['en_message'] : ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6 row mb-5 me-1">

@@ -41,6 +41,9 @@
     "url_en_max_length": "タイトル(EN)の長さは100文字を超えないこと",
     "delete_success":"削除に成功",
     "invalid_user_error": "無効なユーザー",
+    "email_address" : "メールアドレス",
+    "logout" : "ログアウト",
+    "language" : "使用言語",
     "no_groups_error":"このユーザーにはグループが割り当てられていません..！"
     
 }

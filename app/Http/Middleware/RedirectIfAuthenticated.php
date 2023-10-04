@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if(getCurrentGuard() == 'kubota' && Auth::guard(getCurrentGuard())->user()->is_admin)
+                if(getCurrentGuard() == 'kubota' && authUser()->is_admin)
                 {
                     return redirect(RouteServiceProvider::ADMIN_DASHBOARD);
                 }
