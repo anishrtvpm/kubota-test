@@ -26,8 +26,8 @@ class FaqCategoryRequest extends FormRequest
             'top_category_en_name'=> ['required','string','max:100'],
             'sub_category_ja_name'=> ['required','string','max:100'],
             'sub_category_en_name'=> ['required','string','max:100'],
-            'sort' => ['required','integer','max:3'],
-            'mail_form_id' => ['nullable','string','max:8000',],
+            'sort' => ['required','integer','max:3','min:0'],
+            'mail_form_id' => ['nullable','string','max:8000','min:0'],
         ];
     }
 
@@ -44,6 +44,8 @@ class FaqCategoryRequest extends FormRequest
             'sub_category_en_name.max'=> 'カテゴリー名(EN)の長さは100文字を超えないこと',
             'sort.required' => '要ソート',
             'sort.max' => 'ソートの長さは3文字以内',
+            'sort.min'=>'数値は0より大きくなければならない。',
+            'mail_form_id.min'=>'数値は0より大きくなければならない。',
         ];
     }
 }

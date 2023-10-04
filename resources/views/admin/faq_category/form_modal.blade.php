@@ -42,7 +42,7 @@ if(!empty($faqCategoryData)){
             <?php } ?>
                 <label for="top_category_ja_name" class="col-sm-4 col-form-label col-form-label mt-2">システム(JP)</label>
                 <div class="col-sm-8">
-                    <input type="text" name="top_category_ja_name" class="mt-2 form-control form-control-lg" id="top_category_ja_name" value="{{$top_category_ja_name ? $top_category_ja_name : ''}}" placeholder="システム(JP)">
+                    <input type="text" name="top_category_ja_name" class="mt-2 form-control form-control-lg" id="top_category_ja_name" tabindex="1" value="{{$top_category_ja_name ? $top_category_ja_name : ''}}" placeholder="システム(JP)">
                 </div>
                 <label for="top_category_en_name" class="mt-2 col-sm-4 col-form-label col-form-label">カテゴリ名(JP)</label>
                 <div class="col-sm-8">
@@ -58,7 +58,7 @@ if(!empty($faqCategoryData)){
                 </div>
                 <label for="sort" class="mt-2 col-sm-4 col-form-label col-form-label">表示順</label>
                 <div class="col-sm-8">
-                    <input type="number" name="sort" value="{{$sort ? $sort : ''}}" class="mt-2 form-control form-control-lg" id="sort" placeholder="0">
+                    <input type="number" name="sort" value="{{$sort ? $sort : ''}}" class="mt-2 form-control form-control-lg" id="sort" placeholder="0" min="0">
                 </div>
                 <label for="status" class="mt-2 col-sm-4 col-form-label col-form-label">状態</label>
                 <div class="col-sm-8">
@@ -69,13 +69,13 @@ if(!empty($faqCategoryData)){
                 </div>
                 <label for="mail_form_id" class="mt-2 col-sm-4 col-form-label col-form-label">フォームID</label>
                 <div class="col-sm-8">
-                    <input type="number" name="mail_form_id" value="{{$mail_form_id ? $mail_form_id : ''}}" class="mt-2 form-control form-control-lg" id="mail_form_id" placeholder="0">
+                    <input type="number" name="mail_form_id" value="{{$mail_form_id ? $mail_form_id : ''}}" class="mt-2 form-control form-control-lg" id="mail_form_id" placeholder="0" min="0">
                 </div>
 
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-warning" id="submitBtn">追加する</button>
+            <button class="btn btn-warning" id="submitBtn" title="追加する">追加する</button>
         </div>
 
       </form>

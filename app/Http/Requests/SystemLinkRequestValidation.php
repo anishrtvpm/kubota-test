@@ -23,12 +23,12 @@ class SystemLinkRequestValidation extends FormRequest
     {
         return [
             'category' => ['required','integer'],
-            'sort' => ['required','integer','max:3'],
+            'sort' => ['required','integer','max:3','min:0'],
             'ja_system_name'=> ['required','string','max:100'],
             'en_system_name'=> ['required','string','max:100'],
-            'ja_url'=> ['nullable','string','max:8000',
+            'ja_url'=> ['nullable','string','max:255',
             'regex:/^(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/'],
-            'en_url' => ['nullable','string','max:8000',
+            'en_url' => ['nullable','string','max:255',
             'regex:/^(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/'],
         ];
     }
@@ -47,6 +47,7 @@ class SystemLinkRequestValidation extends FormRequest
             'ja_url.regex'=> trans('url_invalid'),
             'en_url.max' => trans('url_en_max_length'),
             'en_url.regex' => trans('url_invalid'),
+            'sort.min' => '数値は0より大きくなければならない。',
         ];
     }
 }

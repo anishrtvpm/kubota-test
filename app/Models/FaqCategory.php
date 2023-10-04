@@ -30,7 +30,7 @@ class FaqCategory extends Model
      * @param string $columnName
      * @param string $columnSortOrder
      * @param string $type
-     * @return array for data array
+     * @return mixed for data array
      */
     public function recordsWithFilter($offset, $chunkSize, $columnName, $columnSortOrder, $type = '')
     {
@@ -82,7 +82,7 @@ class FaqCategory extends Model
 
     /**
      * To insert and update data
-     * @return integer
+     * @return mixed
      */
 
     public function saveRecords($request)
