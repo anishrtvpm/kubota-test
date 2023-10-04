@@ -43,5 +43,7 @@
     "invalid_user_error": "Invalid user",
     "email_address" : "Email",
     "logout" : "Logout",
-    "language" : "Language"
+    "language" : "Language",
+    "no_groups_error":"No groups assigned to this user..！"
+
 }

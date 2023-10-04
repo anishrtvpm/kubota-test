@@ -22,7 +22,7 @@ class FaqCategory extends Model
         return self::select('count(*) as allcount')->count();
     }
 
-    
+
     /**
      * get array of data or total count of data with filter(if any) 
      * @param integer $offset
@@ -102,5 +102,48 @@ class FaqCategory extends Model
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    public function categoryCombinationExists($request)
+    {
+
+        $top_category_ja_name = $request->input('top_category_ja_name');
+        $sub_category_ja_name = $request->input('sub_category_ja_name');
+        $top_category_en_name = $request->input('top_category_en_name');
+        $sub_category_en_name = $request->input('sub_category_en_name');
+        
+        $error =false;
+        $message = [];
+
+        $categoryId = $request->input('faq_category_id');
+        if ($categoryId) {
+            $jaComb = FaqCategory::where('top_category_ja_name', $top_category_ja_name)
+                ->where('sub_category_ja_name', $sub_category_ja_name)
+                ->where('category_id', '!=', $categoryId)
+                ->first();
+            $enComb = FaqCategory::where('top_category_en_name', $top_category_en_name)
+                ->where('sub_category_en_name', $sub_category_en_name)
+                ->where('category_id', '!=', $categoryId)
+                ->first();
+        } else {
+
+            $jaComb = FaqCategory::where('top_category_ja_name', $top_category_ja_name)
+                ->where('sub_category_ja_name', $sub_category_ja_name)
+                ->first();
+            $enComb = FaqCategory::where('top_category_en_name', $top_category_en_name)
+                ->where('sub_category_en_name', $sub_category_en_name)
+                ->first();
+        }
+
+        if ($jaComb) {
+            $error = true;
+            $message[] = 'Jaカテゴリの組み合わせはすでに存在する。';
+        }
+        if ($enComb) {
+            $error = true;
+            $message[] = 'Enカテゴリの組み合わせはすでに存在する。';
+        }
+
+        return  ['error'=>$error,'message'=>$message];
     }
 }

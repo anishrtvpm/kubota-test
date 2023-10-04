@@ -43,6 +43,7 @@
     "invalid_user_error": "無効なユーザー",
     "email_address" : "メールアドレス",
     "logout" : "ログアウト",
-    "language" : "使用言語"
+    "language" : "使用言語",
+    "no_groups_error":"このユーザーにはグループが割り当てられていません..！"
     
 }

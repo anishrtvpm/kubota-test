@@ -16,15 +16,18 @@ if (!function_exists('getUser')) {
     function getUser()
     {
         $guid = authUser()->guid;
+
+        
         $today = now();
         if (strlen($guid) == config('constants.kubota_user_guid_length')) {
-
+           
             $user = Employee::where('guid', $guid)
                 ->where('primary_flg', config('constants.primary_user'))
                 ->whereDate('start_date', '<=', $today)
                 ->whereDate('end_date', '>=', $today)
                 ->first();
             if ($user) {
+               
                 $userArray = $user->attributesToArray();
                 $userArray['isKubota'] = true;
 
