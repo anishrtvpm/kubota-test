@@ -68,6 +68,10 @@ $(document).ready(function () {
             success: function (response) {
                 $('#faqCategoryModal').html(response);
                 $('#faqCategoryModal').modal('show'); // Show the modal
+                $('#faqCategoryModal').on('shown.bs.modal', function () {
+                    $('#top_category_ja_name').focus();
+                });
+
             },
         });
     })

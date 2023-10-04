@@ -31,12 +31,14 @@ $('#faqCategoryForm').validate({
             required: true,
             number: true,  // Ensure it's a valid number
             maxlength: 3,
+            min: 0,
         },
 
         mail_form_id: {
             required: true,
             number: true,
             maxlength: 3,
+            min: 0,
         },
     },
     messages: {
@@ -60,11 +62,15 @@ $('#faqCategoryForm').validate({
             required: '要ソート',
             number: '有効な番号を入力してください。',
             maxlength: 'ソートの長さは3文字以内',
+            min: "数値は0より大きくなければならない。" // Custom error message for min rule
+
         },
         mail_form_id: {
             required: 'フォームID必須',
             number: '有効な番号を入力してください。',
             maxlength: 'ソートの長さは3文字以内',
+            min: "数値は0より大きくなければならない。" // Custom error message for min rule
+
         },
        
     },
