@@ -1,7 +1,7 @@
 <!-- Quick Navigation Start -->
 <form class="row row-cols-lg-auto g-3 align-items-center">
 	<div class="col-12">
-		<label class="fw-bold">{{ __('quick_navigation') }}</label>
+		<label class="fw-bold">クイックナビ</label>
 	</div>
 	<div class="col-12">
 		<select class="form-select" id="inlineFormSelectPref">

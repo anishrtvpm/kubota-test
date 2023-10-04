@@ -16,6 +16,7 @@
         @endphp
 
         <script>
+            var locale = "{{ $lang }}";
             var config = <?php echo json_encode(config('constants')) ?>;
             var translations = <?php echo file_get_contents(resource_path('lang/'.$lang.'.json')); ?>;
         </script>

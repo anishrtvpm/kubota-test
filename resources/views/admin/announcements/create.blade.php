@@ -1,11 +1,11 @@
 @extends('layouts.base')
 @section('content')
 
-<div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
+<div class="d-md-flex d-block align-items-center justify-content-between page-header-breadcrumb">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-style2 mb-0">
             <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">{{ __('home')}}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">{{ __('management_screen')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}#manage">{{ __('management_screen')}}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ __('announcement_management')}}</li>
         </ol>
     </nav>
@@ -88,6 +88,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
 <script src="{{ asset('js/admin/jquery.validate.js') }}"></script>
 <script src="{{ asset('js/admin/announcement_form.js') }}"></script>
 @endsection
