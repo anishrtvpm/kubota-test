@@ -26,6 +26,7 @@ class Dashboard extends Model
         }
         return $announcements;
     }
+ 
 
     /**
      * Get announcements based on user group and language

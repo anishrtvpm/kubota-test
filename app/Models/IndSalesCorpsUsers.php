@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class IndSalesCorpsUsers extends Model
+class IndSalesCorpsUsers extends Authenticatable
 {
     use HasFactory;
 
@@ -13,10 +14,12 @@ class IndSalesCorpsUsers extends Model
      * @var string
      */
     protected $table = 'ind_sales_corps_users';
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'guid';
     public $incrementing = false;
     protected $keyType = 'integer';
     public $timestamps = false;
+
+    // protected $primaryKey = 'guid';
 
     /**
      * The attributes that are mass assignable.
@@ -38,9 +41,4 @@ class IndSalesCorpsUsers extends Model
         'memo',
         'is_deleted'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'employee_id', 'guid');
-    }
 }

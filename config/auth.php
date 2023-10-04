@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'kubota' => [
+            'driver' => 'session',
+            'provider' => 'kubota_users',
+        ],
+        'independent' => [
+            'driver' => 'session',
+            'provider' => 'independent_users',
+        ],
     ],
 
     /*
@@ -69,6 +77,15 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'kubota_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
+        ],
+        'independent_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\IndSalesCorpsUsers::class,
+        ],
     ],
 
     /*

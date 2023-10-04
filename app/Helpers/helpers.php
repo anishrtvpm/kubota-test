@@ -4,6 +4,7 @@ use App\Models\Employee;
 use App\Models\IndSalesCorps;
 use App\Models\IndSalesCorpsUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Get user information based on guid.
@@ -75,6 +76,17 @@ if (!function_exists('getUser')) {
                 }
             }
             return false;
+        }
+    }
+}
+
+function getCurrentGuard()
+{
+    $guards = ['kubota', 'independent'];
+
+    foreach ($guards as $guard) {
+        if(Auth::guard($guard)->check()) {
+            return $guard;
         }
     }
 }
