@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="col-md-12 text-end">
                                     <div class="btn-list">
-                                        <a href="{{ route('faq_category_list') }}"><button type="button" class="btn btn-primary btn-wave px-4">カテゴリ管理</button></a>
+                                        <a href="{{ route('faq_category.list') }}"><button type="button" class="btn btn-primary btn-wave px-4">カテゴリ管理</button></a>
                                         <a href="{{ route('faq_edit') }}"><button type="button" class="btn btn-warning btn-wave px-3">新規FAQ作成</button></a>
                                     </div>
                                 </div>
