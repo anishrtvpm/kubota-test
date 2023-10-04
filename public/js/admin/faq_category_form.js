@@ -7,25 +7,34 @@ $.ajaxSetup({
 $.validator.addMethod("urlCheck", function (value) {
     return isValidUrl(value);
 });
+$.validator.addMethod("characterCheckJa", function (value) {
+    return isValidCharacterJapanese(value);
+});
+$.validator.addMethod("characterCheckEn", function (value) {
+    return isValidCharacterEnglish(value);
+});
 
 $('#faqCategoryForm').validate({
-    // errorLabelContainer: "#errorMessages",
     rules: {
         top_category_ja_name: {
             required: true,
             maxlength: 100,
+            characterCheckJa: true,
         },
         top_category_en_name: {
             required: true,
             maxlength: 100,
+            characterCheckEn: true,
         },
         sub_category_ja_name: {
             required: true,
             maxlength: 100,
+            characterCheckJa: true,
         },
         sub_category_en_name: {
             required: true,
             maxlength: 100,
+            characterCheckEn: true,
         },
         sort: {
             required: true,
@@ -45,18 +54,22 @@ $('#faqCategoryForm').validate({
         top_category_ja_name: {
             required: 'システム (JP) 必須',
             maxlength: 'システム(JP)の長さは100文字を超えないこと',
+            characterCheckJa:"日本語のみを入力してください。"
         },
         top_category_en_name: {
             required: 'カテゴリー名 (EN) 必須',
             maxlength: 'カテゴリー名(EN)の長さは100文字を超えないこと',
+            characterCheckEn:"英字のみ入力してください。"
         },
         sub_category_ja_name: {
             required: 'システム (JP) 必須',
             maxlength: 'システム(JP)の長さは100文字を超えないこと',
+            characterCheckJa:"日本語のみを入力してください。"
         },
         sub_category_en_name: {
             required: 'カテゴリー名 (EN) 必須',
             maxlength: 'カテゴリー名(EN)の長さは100文字を超えないこと',
+            characterCheckEn:"英字のみ入力してください。"
         },
         sort: {
             required: '要ソート',

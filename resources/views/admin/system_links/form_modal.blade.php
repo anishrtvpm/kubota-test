@@ -55,21 +55,21 @@ if(!empty($systemLinkData)){
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label mt-2">表示順</label>
                         <div class="col-sm-8 mt-2">
-                            <input type="text" tabindex="2" class="sort form-control @error('sort') is-invalid @enderror" maxlength="3"  placeholder="0" name="sort" value="{{$sort ? $sort : ''}}">
+                            <input type="text" tabindex="2" autocomplete="off" class="sort form-control @error('sort') is-invalid @enderror" maxlength="3"  placeholder="0" name="sort" value="{{$sort ? $sort : ''}}">
                             @error('sort')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label mt-2">タイトル(JP)</label>
                         <div class="col-sm-8 mt-2">
-                            <input type="text" tabindex="3" name="ja_system_name" maxlength="100" class="form-control @error('ja_system_name') is-invalid @enderror ja_system_name"  placeholder="タイトル(JP)" value="{{$ja_system_name ? $ja_system_name : ''}}">
+                            <input type="text" tabindex="3" autocomplete="off" name="ja_system_name" maxlength="100" class="form-control @error('ja_system_name') is-invalid @enderror ja_system_name"  placeholder="タイトル(JP)" value="{{$ja_system_name ? $ja_system_name : ''}}">
                             @error('ja_system_name')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label mt-2">タイトル(EN)</label>
                         <div class="col-sm-8 mt-2">
-                            <input type="text" tabindex="4" name="en_system_name" maxlength="100" class="form-control @error('en_system_name') is-invalid @enderror en_system_name" placeholder="タイトル(EN)" value="{{$en_system_name ? $en_system_name : ''}}">
+                            <input type="text" tabindex="4" autocomplete="off" name="en_system_name" maxlength="100" class="form-control @error('en_system_name') is-invalid @enderror en_system_name" placeholder="タイトル(EN)" value="{{$en_system_name ? $en_system_name : ''}}">
                             @error('en_system_name')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -77,14 +77,14 @@ if(!empty($systemLinkData)){
                         
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label mt-2">URL(JP)</label>
                         <div class="col-sm-8 mt-2">
-                            <input type="text" tabindex="5" name="ja_url" maxlength="255" class="ja_url form-control @error('ja_url') is-invalid @enderror"  placeholder="URL(JP)" value="{{$ja_url ? $ja_url : ''}}">
+                            <input type="text" tabindex="5" autocomplete="off" name="ja_url" maxlength="255" class="ja_url form-control @error('ja_url') is-invalid @enderror"  placeholder="URL(JP)" value="{{$ja_url ? $ja_url : ''}}">
                             @error('ja_url')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label mt-2">URL(EN)</label>
                         <div class="col-sm-8 mt-2">
-                            <input type="text" tabindex="6" name="en_url" maxlength="255" class="en_url form-control @error('en_url') is-invalid @enderror" placeholder="URL(JP)" value="{{$en_url ? $en_url : ''}}">
+                            <input type="text" tabindex="6" autocomplete="off" name="en_url" maxlength="255" class="en_url form-control @error('en_url') is-invalid @enderror" placeholder="URL(JP)" value="{{$en_url ? $en_url : ''}}">
                             @error('en_url')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -93,9 +93,9 @@ if(!empty($systemLinkData)){
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" tabindex="7" id="submitBtn" type="submit">投稿する</button>
+                    <button class="btn btn-warning" tabindex="7" title="投稿する" id="submitBtn" type="submit">投稿する</button>
                     <?php if(!empty($systemLinkData)){ ?>
-                    <button class="btn btn-danger" tabindex="8" id="deleteBtn" data-id="{{$system_id ? $system_id : ''}}" type="button">削除する</button>
+                    <button class="btn btn-danger" tabindex="8" title="削除する" id="deleteBtn" data-id="{{$system_id ? $system_id : ''}}" type="button">削除する</button>
                     <?php } ?>
                 </div>
             </form>
