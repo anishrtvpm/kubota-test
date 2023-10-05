@@ -120,3 +120,116 @@ if (!function_exists('authUser')) {
         return Auth::guard(getCurrentGuard())->user();
     }
 }
+/**
+ * get system links
+ *
+ * @param integer $groupId
+ * @param string $language
+ * @return mixed
+ */
+if (!function_exists('getSystemLink')) {
+    function getSystemLink($groupId, $language)
+    {
+        if (!$groupId) {
+            return false;
+        }
+
+        $results = DB::table('user_groups_perms as ugp')
+            ->select(
+                'ugp.system_category as category_id',
+                'slc.ja_category_name',
+                'slc.en_category_name',
+                'sl.sort',
+                'sl.system_id',
+                'sl.ja_system_name',
+                'sl.en_system_name',
+                'sl.ja_url',
+                'sl.en_url',
+            )
+            ->join('system_links as sl', 'ugp.system_id', '=', 'sl.system_id')
+            ->join('system_links_categories as slc', 'ugp.system_category', '=', 'slc.category_id')
+            ->where('ugp.group_id', $groupId)
+            ->where('ugp.is_visible', 1)
+            ->where('ugp.is_deleted', config('constants.active'))
+            ->orderByRaw("ugp.system_category ASC, sl.sort ASC")
+            ->get();
+
+        $systemLinks = [];
+
+        foreach ($results as $result) {
+            $categoryId = $result->category_id;
+            $categoryName = ($language == config('constants.language_japanese')) ? $result->ja_category_name : $result->en_category_name;
+            $sort = $result->sort;
+            $systemId = $result->system_id;
+            $systemName = ($language == config('constants.language_japanese')) ? $result->ja_system_name : $result->en_system_name;
+            $systemUrl = ($language == config('constants.language_japanese')) ? $result->ja_url : $result->en_url;
+
+            // カテゴリがまだ存在しない場合、初期化
+            if (!isset($systemLinks[$categoryId])) {
+                $systemLinks[$categoryId] = [
+                    'category_name' => $categoryName,
+                    'links' => [],
+                ];
+            }
+
+            // リンクを追加
+            $systemLinks[$categoryId]['links'][] = [
+                'system_id' => $systemId,
+                'sort' => $sort,
+                'system_name' => $systemName,
+                'system_url' => $systemUrl,
+            ];
+        }
+        return $systemLinks;
+    }
+}
+
+/**
+ * Get the quick navigation at the top.
+ *
+ * @param integer $groupId
+ * @return mixed
+ */
+
+if (!function_exists('getQuickNavigation')) {
+    function getQuickNavigation()
+    {
+
+       $navigation_ja = array(
+            route('admin_notice_list') => "お知らせ",
+            route('faq_article_list') => "FAQ",
+            route('faq_category_list') => "各種リンク",
+            route('link_template_category_list') => "テンプレート・フォーマット",
+            route('link_template_list') => "基幹システム(文書管理)"
+        );
+        
+        $navigation_en = array(
+            route('admin_notice_list') => "Notice",
+            route('faq_article_list') => "FAQ",
+            route('faq_category_list') => "Links",
+            route('link_template_category_list') => "Format Template, etc.",
+            route('link_template_list') => "Core system (document management)"
+        );
+        $language = app()->getLocale();
+        $groupId = getUser(authUser()->guid)['group_id'];
+        $links = getSystemLink($groupId, $language);
+
+        $str = "<select id='quick_navigation' class='form-select'>";
+        $str .= "<option>Select Location</option>";
+        $str .= "<option disabled>System Links</option>";
+        foreach ($links as $link) {
+            $str .= "<option disabled style='font-weight :bold'>" . $link['category_name'] . "</option>";
+
+            foreach ($link['links'] as $systemlink) {
+                $str .= '<option value="' . $systemlink['system_url'] . '">' . $systemlink['system_name'] . '</option>';
+            }
+        }
+
+        $list = ($language == config('constants.language_japanese')) ? $navigation_ja : $navigation_en;
+        foreach ($list as $key => $val) {
+            $str .= '<option value="' . $key . '">' . $val . '</option>';
+        }
+        $str .= "</select>";
+        return $str;
+    }
+}

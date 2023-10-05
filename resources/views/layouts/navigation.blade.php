@@ -4,16 +4,10 @@
 		<label class="fw-bold">クイックナビ</label>
 	</div>
 	<div class="col-12">
-		<select class="form-select" id="inlineFormSelectPref">
-			<option selected value="1">申請フォーマット・テンプレート等一覧</option>
-			<option value="2">各種リンク</option>
-			<option value="3">FAQ一覧</option>
-			<option value="4">お知らせ</option>
-			<option value="5">基幹システム(文書管理)</option>
-		</select>
+		@php echo getQuickNavigation(); @endphp
 	</div>
 	<div class="col-12">
-		<button type="submit" class="btn btn-primary">Go</button>
+		<button type="button" class="btn btn-primary" onclick="redirectToSelectedOption()">Go</button>
 	</div>
 </form>
 <!-- Quick Navigation End -->
