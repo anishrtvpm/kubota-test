@@ -13,6 +13,7 @@ return new class () extends Migration {
     {
         Schema::create('link_template_categories', function (Blueprint $table) {
             $table->increments('category_id')->comment('カテゴリID');
+            $table->tinyInteger('kind')->unsigned()->comment('種別(リンク/テンプレート/フォーマット)');
             $table->string('top_category_ja_name', 100)->comment('大カテゴリ名(日)');
             $table->string('top_category_en_name', 100)->comment('大カテゴリ名(英)');
             $table->string('sub_category_ja_name', 100)->comment('大カテゴリ名(日)');

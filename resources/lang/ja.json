@@ -44,6 +44,10 @@
     "email_address" : "メールアドレス",
     "logout" : "ログアウト",
     "language" : "使用言語",
-    "no_groups_error":"このユーザーにはグループが割り当てられていません..！"
+    "no_groups_error":"このユーザーにはグループが割り当てられていません..!",
+    "terms_of_use": "サイトのご利用にあたって",
+    "privacy_policy": "個人情報保護方針",
+    "social_media_policy": "ソーシャルメディアポリシー",
+    "sitemap": "サイトマップ"
     
 }

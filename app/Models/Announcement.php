@@ -124,7 +124,7 @@ class Announcement extends Model
                 $response['message'] = (app()->getLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('EN_message_required');
                 break;
             }
-            if ($request['ja_message' . $group->group_id] && strlen($request['ja_message' . $group->group_id]) > 120) {
+            if ($request['ja_message' . $group->group_id] && mb_strlen($request['ja_message' . $group->group_id], 'UTF-8') > 120) {
                 $response['error'] = true;
                 $response['message'] = (app()->getLocale() == 'ja' ? $group->group_ja_name : $group->group_en_name) . ': ' . __('JP_message_length');
                 break;

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\User\LanguageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,10 +43,6 @@ Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
     Route::get('/faq_edit', function () {
         return view('admin.faq_edit');
     })->name('faq_edit');
-
-    Route::get('/announcement_edit', function () {
-        return view('admin.announcement_edit');
-    })->name('announcement_edit');
 
     Route::get('/notice_edit', function () {
         return view('admin.notice_edit');
@@ -123,6 +121,8 @@ Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
 Route::group(['middleware' => ['auth:kubota,independent']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::post('/language/edit', [LanguageController::class, 'edit'])->name('language.edit');
     
     Route::get('/faq_list', function () {
         return view('user.faq_list');

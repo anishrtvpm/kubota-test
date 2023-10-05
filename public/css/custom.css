@@ -166,7 +166,7 @@ footer .list-inline {
 }
 
 .list-inline-item:not(:last-child) {
-    margin-right: 1rem;
+    margin-right: 3rem;
 }
 
 .header-profile-dropdown {

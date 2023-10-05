@@ -1,5 +1,6 @@
-@php 
-    $userInfo = authUser(); 
+@php
+    $userInfo = authUser();
+    $userProfile = getUser($userInfo->guid);
 @endphp
 <header class="app-header">
     <div class="main-header-container container-fluid">
@@ -23,7 +24,11 @@
                     <div class="d-flex align-items-center">
                         <div class="d-sm-block d-none">
                             <span class="op-7 fw-normal d-block fs-11">{{ $userInfo->email }}</span>
-                            <p class="fw-semibold mb-0 lh-2 text-end">{{ getCurrentGuard() == config('constants.kubota_user') ? ($userInfo->language == 'ja' ? $userInfo->ja_name : $userInfo->en_name) : $userInfo->ja_user_name}}</p>
+                            <p class="fw-semibold mb-0 lh-2 text-end">
+                                {{ getCurrentGuard() == config('constants.kubota_user') ?
+                                ($userInfo->language == config('constants.language_japanese') ? $userInfo->ja_name : $userInfo->en_name):
+                                ($userInfo->language == config('constants.language_japanese') ? $userInfo->ja_user_name : $userInfo->en_user_name) }}
+                            </p>
                         </div>
                         <div class="ms-sm-2 me-0">
                             <img src="{{ asset('images/profile/1.jpg') }}" alt="img" width="32" height="32"
@@ -37,35 +42,41 @@
                         <div class="p-2 flex-shrink-1"> <img src="{{ asset('images/profile/1.jpg') }}" alt="img"
                                 width="60" height="60" class="rounded-circle"></div>
                         <div class="p-2 w-100 align-middle mt-3">
-                            <h5>{{ getCurrentGuard() == config('constants.kubota_user') ? ($userInfo->language == 'ja' ? $userInfo->ja_name : $userInfo->en_name) : $userInfo->ja_user_name }}</h5>
+                            <h5>
+                                {{ getCurrentGuard() == config('constants.kubota_user') ?
+                                 ($userInfo->language == config('constants.language_japanese') ? $userInfo->ja_name : $userInfo->en_name):
+                                 ($userInfo->language == config('constants.language_japanese') ? $userInfo->ja_user_name : $userInfo->en_user_name) }}
+                                </h5>
                         </div>
                     </div>
-                    <p><strong>株式会社 クボタ</strong><br>
-                        機械事業本部 <i class="bi bi-chevron-right"></i> 機械カスタマーファースト品質本部 <i class="bi bi-chevron-right"></i>
-                        機械カスタマーファースト情報管理部 <i class="bi bi-chevron-right"></i> 情報管理第一課 (グローバル技術研究所)<br><br>
+                    <p><strong>
+                        {{ getCurrentGuard() == config('constants.kubota_user') ?
+                        ($userInfo->language == config('constants.language_japanese') ? $userProfile['ja_company_name'] : $userProfile['en_company_name']):
+                        $userProfile['company_name'] }}
+                    </strong><br>
+                        {{ getCurrentGuard() == config('constants.kubota_user') ?
+                        ($userInfo->language == config('constants.language_japanese') ? $userProfile['ja_section_name'] : $userProfile['en_section_name']): '' }}
+                        <br><br>
                         {{ __('email_address') }}：
                         <a href="{{ $userInfo->email }}">{{ $userInfo->email }}</a>
                     </p>
-                    @if (!session('is_admin'))
+                    @if (!checkIsAdmin())
                     <div class="row mb-1">
                         <label class="form-label mb-1">{{ __('language') }}</label>
-                        <div class="col-xl-3">
-                            <div class="form-check form-check-lg">
-                                <input class="form-check-input" type="radio" name="Radio" id="Radio-lg1"
-                                    checked="">
-                                <label class="form-check-label">
-                                    日本語
-                                </label>
+                        @php
+                            $language = ['ja' => '日本語', 'en' => 'English'];
+                        @endphp
+                        @foreach($language as $key => $value)
+                            <div class="col-xl-3">
+                                <div class="form-check form-check-lg">
+                                    <input class="form-check-input" type="radio" name="locale" value="{{ $key }}"
+                                    {{ app()->getLocale() === $key ? 'checked' : '' }}>
+                                    <label class="form-check-label">
+                                        {{ $value }}
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3">
-                            <div class="form-check form-check-lg">
-                                <input class="form-check-input" type="radio" name="Radio" id="Radio-lg2">
-                                <label class="form-check-label">
-                                    English
-                                </label>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     @endif
                     <form method="POST" action="{{ route('logout') }}">
@@ -80,4 +91,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/user/language.js') }}"></script>
 </header>

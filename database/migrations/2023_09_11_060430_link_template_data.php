@@ -13,7 +13,6 @@ return new class () extends Migration {
     {
         Schema::create('link_template_data', function (Blueprint $table) {
             $table->increments('item_id')->comment('アイテムID');
-            $table->tinyInteger('kind')->unsigned()->comment('種別(リンク/テンプレート/フォーマット)');
             $table->integer('category_id')->unsigned()->comment('カテゴリID');
             $table->tinyInteger('sort')->unsigned()->comment('並び順');
             $table->string('title', 200)->comment('タイトル');

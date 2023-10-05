@@ -16,15 +16,16 @@ if (!function_exists('getUser')) {
     function getUser($guid)
     {
         $today = now();
+        $userArray = [];
         if (strlen($guid) == config('constants.kubota_user_guid_length')) {
-           
+
             $user = Employee::where('guid', $guid)
                 ->where('primary_flg', config('constants.primary_user'))
                 ->whereDate('start_date', '<=', $today)
                 ->whereDate('end_date', '>=', $today)
                 ->first();
             if ($user) {
-               
+
                 $userArray = $user->attributesToArray();
                 $userArray['isKubota'] = true;
 
@@ -46,10 +47,9 @@ if (!function_exists('getUser')) {
                     $userArray['ja_company_name'] = $organization->ja_company_name;
                     $userArray['en_company_name'] = $organization->en_company_name;
                     $userArray['group_id'] = $organization->group_id;
-                    return $userArray;
                 }
             }
-            return false;
+            return $userArray;
 
         } else {
             $user = IndSalesCorpsUsers::where('guid', $guid)
@@ -70,10 +70,9 @@ if (!function_exists('getUser')) {
                 if ($organization) {
                     $userArray['company_name'] = $organization->company_name;
                     $userArray['group_id'] = config('constants.ind_user_group_id');
-                    return $userArray;
                 }
             }
-            return false;
+            return $userArray;
         }
     }
 }
