@@ -42,14 +42,16 @@ $(document).ready(function () {
             { data: 'en_system_name' },
             {
                 data: 'ja_url',
-                "mRender": function (data, type, full) {
-                    return '<a  target="_blank" href="' + data + '" >' + data + '</a>';
+                "mRender": function (data, type, row) {
+                    data = data ? '<a  target="_blank" href="' + data + '" >' + data + '</a>' : '';
+                    return data;
                 }
             },
             {
                 data: 'en_url',
                 "mRender": function (data, type, full) {
-                    return '<a  target="_blank" href="' + data + '" >' + data + '</a>';
+                    data = data ? '<a  target="_blank" href="' + data + '" >' + data + '</a>' : '';
+                    return data;
                 }
             },
         ]
