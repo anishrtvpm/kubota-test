@@ -4,7 +4,7 @@
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">ホーム</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">トップページ</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">FAQ</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('faq_list') }}">FAQ一覧</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('faq_view') }}">FAQ No.12345</a></li>

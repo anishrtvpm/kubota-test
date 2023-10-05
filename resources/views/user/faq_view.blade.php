@@ -4,7 +4,7 @@
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">ホーム</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">トップページ</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0);">FAQ</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0);">FAQ一覧</a></li>
                 <li class="breadcrumb-item active" aria-current="page">FAQ No.12345</li>
