@@ -119,4 +119,31 @@ class SystemLinks extends Model
         $systemLink->save();
         return $systemLink;
     }
+
+    public function systemNameExists($request)
+    {
+        $systemId = $request->get('system_id');
+        $categoryId = $request->get('category');
+        $language = $request->get('language');
+
+        if($request->get('ja_system_name')){
+            $systemName = $request->get('ja_system_name');
+            $systemField='ja_system_name';
+        }
+        if($request->get('en_system_name')){
+            $systemName = $request->get('en_system_name');
+            $systemField='en_system_name';
+        }
+
+        if ($systemId) {
+            return SystemLinks::where($systemField, $systemName)
+            ->where('category_id', $categoryId)
+            ->where('system_id', '!=', $systemId)
+            ->first();
+        } else {
+            return SystemLinks::where($systemField, $systemName)
+            ->where('category_id', $categoryId)
+            ->first();
+        }
+    }
 }

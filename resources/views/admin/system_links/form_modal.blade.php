@@ -18,11 +18,11 @@ if(!empty($systemLinkData)){
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">システムリンク追加</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h6 class="modal-title">システムリンク編集</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
             <form method="POST" id="systeLinkForm" action="{{route('system_link.store')}}">
                 @csrf
-                <input type="hidden" name="system_id" value="{{$system_id ? $system_id : ''}}">
+                <input type="hidden" name="system_id" id="system_id" value="{{$system_id ? $system_id : ''}}">
                 <div class="modal-body text-start">
                     <div class="row">
                         <?php
@@ -62,14 +62,14 @@ if(!empty($systemLinkData)){
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label mt-2">タイトル(JP)</label>
                         <div class="col-sm-8 mt-2">
-                            <input type="text" tabindex="3" autocomplete="off" name="ja_system_name" maxlength="100" class="form-control @error('ja_system_name') is-invalid @enderror ja_system_name"  placeholder="タイトル(JP)" value="{{$ja_system_name ? $ja_system_name : ''}}">
+                            <input type="text" tabindex="3" autocomplete="off" name="ja_system_name" maxlength="100" class="form-control @error('ja_system_name') is-invalid @enderror ja_system_name" id="ja_system_name" placeholder="タイトル(JP)" value="{{$ja_system_name ? $ja_system_name : ''}}">
                             @error('ja_system_name')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label mt-2">タイトル(EN)</label>
                         <div class="col-sm-8 mt-2">
-                            <input type="text" tabindex="4" autocomplete="off" name="en_system_name" maxlength="100" class="form-control @error('en_system_name') is-invalid @enderror en_system_name" placeholder="タイトル(EN)" value="{{$en_system_name ? $en_system_name : ''}}">
+                            <input type="text" tabindex="4" autocomplete="off" name="en_system_name" maxlength="100" id="en_system_name" class="form-control @error('en_system_name') is-invalid @enderror en_system_name" placeholder="タイトル(EN)" value="{{$en_system_name ? $en_system_name : ''}}">
                             @error('en_system_name')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror

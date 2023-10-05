@@ -30,37 +30,41 @@ $('#systeLinkForm').validate({
             maxlength: 100,
         },
         ja_url: {
+            required: true,
             urlCheck: true,
             maxlength: 8000,
         },
         en_url: {
+            required: true,
             urlCheck: true,
             maxlength: 8000,
         },
     },
     messages: {
         category: {
-            required: "要カテゴリー",
+            required: "カテゴリは必須項目です。",
         },
         sort: {
-            required: "要ソート",
-            number: "有効な番号を入力してください。",
+            required: "表示順は必須項目です。",
+            number: "表示順は半角数値で入力してください。",
             maxlength: "ソートの長さは3文字以内",
-            min: "数値は0より大きくなければならない。" 
+            min: "数値は0より大きくなければならない。"
         },
         ja_system_name: {
-            required: "タイトル(JP) 必須",
+            required: "タイトル(JP)は必須項目です。",
             maxlength: "タイトル(JP)の長さは100文字を超えないこと",
         },
         en_system_name: {
-            required: "タイトル(EN) 必須",
+            required: "タイトル(EN)は必須項目です。",
             maxlength: "タイトル(EN)の長さは100文字を超えないこと",
         },
         ja_url: {
+            required: 'URL(JP)は必須項目です。',
             urlCheck: "有効なURLを入力してください",
             maxlength: "タイトル(JP)の長さは255文字を超えないこと",
         },
         en_url: {
+            required: 'URL(EN)は必須項目です。',
             urlCheck: "有効なURLを入力してください",
             maxlength: "タイトル(EN)の長さは255文字を超えないこと",
         },
@@ -79,22 +83,22 @@ $('#systeLinkForm').validate({
                 slTable.draw();
                 toastr.success(response.message);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 let response = JSON.parse(xhr.responseText);
                 if (xhr.status === 422) {
                     $('#submitBtn').prop('disabled', false);
-                    $.each(response.errors, function(field, messages) {
+                    $.each(response.errors, function (field, messages) {
                         $('.' + field).siblings('.text-danger').remove();
                         $('.' + field).after('<span class="text-danger">' + messages[0] + '</span>');
                     });
-                } 
+                }
             }
         })
     },
 });
 
 
-$('#deleteBtn').click(function() {
+$('#deleteBtn').click(function () {
     var recordId = $(this).data('id');
     Swal.fire({
         title: '削除の確認',
@@ -113,7 +117,7 @@ $('#deleteBtn').click(function() {
                 type: 'DELETE',
                 url: 'system_link/delete/', // Replace with your delete route
                 data: { id: recordId },
-                success: function(response) {
+                success: function (response) {
                     $('#systemLinkModal').modal('hide');
                     slTable.draw();
                     toastr.success(response.message);
