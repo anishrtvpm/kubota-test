@@ -26,7 +26,7 @@ class FaqCategoryRequest extends FormRequest
             'top_category_en_name'=> ['required','string','max:100'],
             'sub_category_ja_name'=> ['required','string','max:100'],
             'sub_category_en_name'=> ['required','string','max:100'],
-            'sort' => ['required','integer','max:3','min:0'],
+            'sort' => ['required','integer','min:0','max:999'],
             'mail_form_id' => ['nullable','string','max:8000','min:0'],
         ];
     }

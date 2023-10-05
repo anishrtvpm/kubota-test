@@ -104,6 +104,7 @@ class FaqCategory extends Model
         }
     }
 
+    
     public function categoryCombinationExists($request)
     {
 
@@ -111,28 +112,42 @@ class FaqCategory extends Model
         $sub_category_ja_name = $request->input('sub_category_ja_name');
         $top_category_en_name = $request->input('top_category_en_name');
         $sub_category_en_name = $request->input('sub_category_en_name');
-        
-        $error =false;
+
+        $error = false;
         $message = [];
 
         $categoryId = $request->input('faq_category_id');
-        if ($categoryId) {
-            $jaComb = FaqCategory::where('top_category_ja_name', $top_category_ja_name)
-                ->where('sub_category_ja_name', $sub_category_ja_name)
-                ->where('category_id', '!=', $categoryId)
-                ->first();
-            $enComb = FaqCategory::where('top_category_en_name', $top_category_en_name)
-                ->where('sub_category_en_name', $sub_category_en_name)
-                ->where('category_id', '!=', $categoryId)
-                ->first();
-        } else {
 
-            $jaComb = FaqCategory::where('top_category_ja_name', $top_category_ja_name)
-                ->where('sub_category_ja_name', $sub_category_ja_name)
-                ->first();
-            $enComb = FaqCategory::where('top_category_en_name', $top_category_en_name)
-                ->where('sub_category_en_name', $sub_category_en_name)
-                ->first();
+        $jaComb = FaqCategory::where(function ($query) use ($top_category_ja_name, $sub_category_ja_name) {
+            $topCategoryhalfName = mb_convert_kana($top_category_ja_name, 'k');
+            $topCategoryfullName = mb_convert_kana($top_category_ja_name, 'KV');
+
+            $subCategoryhalfName = mb_convert_kana($sub_category_ja_name, 'k');
+            $subCategoryfullName = mb_convert_kana($sub_category_ja_name, 'KV');
+
+            $query->where(function ($query) use ($topCategoryhalfName, $topCategoryfullName) {
+                $query->where('top_category_ja_name', 'like', $topCategoryhalfName)
+                    ->orWhere('top_category_ja_name', 'like', $topCategoryfullName);
+            });
+
+            $query->Where(function ($query) use ($subCategoryhalfName, $subCategoryfullName) {
+                $query->where('sub_category_ja_name', 'like', $subCategoryhalfName)
+                    ->orWhere('sub_category_ja_name', 'like', $subCategoryfullName);
+            });
+            $query->Where('top_category_ja_name', 'like', $top_category_ja_name)
+                ->Where('sub_category_ja_name', 'like', $sub_category_ja_name);
+        });
+
+
+        $enComb = FaqCategory::where('top_category_en_name', $top_category_en_name)
+            ->where('sub_category_en_name', $sub_category_en_name);
+
+        if ($categoryId) {
+            $jaComb = $jaComb->where('category_id', '!=', $categoryId)->first();
+            $enComb = $enComb->where('category_id', '!=', $categoryId)->first();
+        } else {
+            $jaComb = $jaComb->first();
+            $enComb = $enComb->first();
         }
 
         if ($jaComb) {
@@ -144,6 +159,6 @@ class FaqCategory extends Model
             $message[] = 'Enカテゴリの組み合わせはすでに存在する。';
         }
 
-        return  ['error'=>$error,'message'=>$message];
+        return ['error' => $error, 'message' => $message];
     }
 }

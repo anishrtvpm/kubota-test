@@ -8,12 +8,7 @@ $.validator.addMethod("urlCheck", function (value) {
     return isValidUrl(value);
 });
 
-$.validator.addMethod("characterCheckJa", function (value) {
-    return isValidCharacterJapanese(value);
-});
-$.validator.addMethod("characterCheckEn", function (value) {
-    return isValidCharacterEnglish(value);
-});
+
 
 $('#systeLinkForm').validate({
     rules: {
@@ -29,12 +24,10 @@ $('#systeLinkForm').validate({
         ja_system_name: {
             required: true,
             maxlength: 100,
-            characterCheckJa: true,
         },
         en_system_name: {
             required: true,
             maxlength: 100,
-            characterCheckEn: true,
         },
         ja_url: {
             urlCheck: true,
@@ -58,12 +51,10 @@ $('#systeLinkForm').validate({
         ja_system_name: {
             required: "タイトル(JP) 必須",
             maxlength: "タイトル(JP)の長さは100文字を超えないこと",
-            characterCheckJa:"日本語のみを入力してください。"
         },
         en_system_name: {
             required: "タイトル(EN) 必須",
             maxlength: "タイトル(EN)の長さは100文字を超えないこと",
-            characterCheckEn:"英字のみ入力してください。"
         },
         ja_url: {
             urlCheck: "有効なURLを入力してください",
