@@ -12,7 +12,7 @@
                         <p class="HeaderLogo__img">
                             <img src="{{ asset('images/brand-logos/logo_kubota.svg') }}" alt="logo" class="">
                         </p>
-                        <p class="HeaderLogo__text"><span>品保ポータル（仮）</span></p>
+                        <p class="HeaderLogo__text"><span>{{ __('header_qa_portal')}}</span></p>
                     </a>
                 </div>
             </div>
