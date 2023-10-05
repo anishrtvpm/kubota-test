@@ -218,13 +218,14 @@ if (!function_exists('getQuickNavigation')) {
         $str .= "<option>Select Location</option>";
         $str .= "<option disabled>System Links</option>";
         foreach ($links as $link) {
-            $str .= "<option disabled style='font-weight :bold'>" . $link['category_name'] . "</option>";
+            $str .= "<optgroup style='font-weight :bold' label=".$link['category_name']." >";
 
             foreach ($link['links'] as $systemlink) {
                 $str .= '<option value="' . $systemlink['system_url'] . '">' . $systemlink['system_name'] . '</option>';
             }
+            $str .="</optgroup>";
         }
-
+        
         $list = ($language == config('constants.language_japanese')) ? $navigation_ja : $navigation_en;
         foreach ($list as $key => $val) {
             $str .= '<option value="' . $key . '">' . $val . '</option>';
