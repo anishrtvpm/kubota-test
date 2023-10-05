@@ -36,7 +36,7 @@ if(!empty($systemLinkData)){
                         <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label mt-2">カテゴリ</label>
                         <div class="col-sm-8 mt-2">
                             <select class="form-select @error('category') is-invalid @enderror category" name="category" id="category" tabindex="1">
-                                <option value="">Select</option>
+                                <option value="">選択してください</option>
                                 @if(!empty($systemLinkCategory))
                                     @foreach($systemLinkCategory as $category)
                                     @if(!empty($systemLinkData))

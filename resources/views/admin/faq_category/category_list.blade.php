@@ -3,7 +3,7 @@
     <div class="d-md-flex d-block align-items-center justify-content-between page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">ポータルトップ </a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">ホーム </a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">管理画面</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
                 <li class="breadcrumb-item active" aria-current="page">FAQカテゴリー覧</li>
@@ -25,7 +25,7 @@
                             <div class="row  mb-3">
 
                                 <div class="col-12">
-                                    <button type="submit" class="faqCategoryBtn Btn btn btn-primary" style="float: right;">新規カテゴリ追加
+                                    <button type="submit" class="faqCategoryBtn Btn btn btn-primary" title="新規カテゴリ追加" style="float: right;">新規カテゴリ追加
                                     </button>
                                 </div>
                             </div>
