@@ -1,5 +1,6 @@
 @php
     $userInfo = authUser();
+    $userProfile = getUser($userInfo->guid);
 @endphp
 <header class="app-header">
     <div class="main-header-container container-fluid">
@@ -48,9 +49,14 @@
                                 </h5>
                         </div>
                     </div>
-                    <p><strong>株式会社 クボタ</strong><br>
-                        機械事業本部 <i class="bi bi-chevron-right"></i> 機械カスタマーファースト品質本部 <i class="bi bi-chevron-right"></i>
-                        機械カスタマーファースト情報管理部 <i class="bi bi-chevron-right"></i> 情報管理第一課 (グローバル技術研究所)<br><br>
+                    <p><strong>
+                        {{ getCurrentGuard() == config('constants.kubota_user') ?
+                        ($userInfo->language == config('constants.language_japanese') ? $userProfile['ja_company_name'] : $userProfile['en_company_name']):
+                        $userProfile['company_name'] }}
+                    </strong><br>
+                        {{ getCurrentGuard() == config('constants.kubota_user') ?
+                        ($userInfo->language == config('constants.language_japanese') ? $userProfile['ja_section_name'] : $userProfile['en_section_name']): '' }}
+                        <br><br>
                         {{ __('email_address') }}：
                         <a href="{{ $userInfo->email }}">{{ $userInfo->email }}</a>
                     </p>

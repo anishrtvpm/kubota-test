@@ -44,10 +44,6 @@ Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
         return view('admin.faq_edit');
     })->name('faq_edit');
 
-    Route::get('/announcement_edit', function () {
-        return view('admin.announcement_edit');
-    })->name('announcement_edit');
-
     Route::get('/notice_edit', function () {
         return view('admin.notice_edit');
     })->name('notice_edit');
