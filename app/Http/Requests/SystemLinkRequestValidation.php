@@ -23,7 +23,7 @@ class SystemLinkRequestValidation extends FormRequest
     {
         return [
             'category' => ['required','integer'],
-            'sort' => ['required','integer','max:3','min:0'],
+            'sort' => ['required','integer','min:0','max:999'],
             'ja_system_name'=> ['required','string','max:100'],
             'en_system_name'=> ['required','string','max:100'],
             'ja_url'=> ['nullable','string','max:255',
