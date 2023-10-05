@@ -19,9 +19,9 @@ class DashboardController extends Controller
     public function index()
     {
         $userInfo = getUser(authUser()->guid);
-        $groupId=$userInfo ? $userInfo['group_id'] : null ;
+        $groupId = $userInfo ? $userInfo['group_id'] : null;
         $annoucement = $this->dashboard->getUserGroupAnnouncement($groupId);
-        $systemLinks=$this->dashboard->getSystemLinkData($groupId);
+        $systemLinks = $this->dashboard->getSystemLinkData($groupId);
 
         return view('admin.dashboard.index')->with([
             'annoucement' => $annoucement,

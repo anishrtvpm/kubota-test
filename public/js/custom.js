@@ -392,3 +392,7 @@ headerbtn1.forEach(button => {
     });
 });
 /* for notifications dropdown */
+function redirectToSelectedOption() {
+    var selectElement = document.getElementById('quick_navigation');
+    window.location.href = selectElement.value;
+  }
