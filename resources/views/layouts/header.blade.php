@@ -49,14 +49,17 @@
                                 </h5>
                         </div>
                     </div>
-                    <p><strong>
+                    <p>
+                        <strong>
                         {{ getCurrentGuard() == config('constants.kubota_user') ?
                         ($userInfo->language == config('constants.language_japanese') ? $userProfile['ja_company_name'] : $userProfile['en_company_name']):
                         $userProfile['company_name'] }}
-                    </strong><br>
-                        {{ getCurrentGuard() == config('constants.kubota_user') ?
-                        ($userInfo->language == config('constants.language_japanese') ? $userProfile['ja_section_name'] : $userProfile['en_section_name']): '' }}
-                        <br><br>
+                        </strong>
+                        <br>
+                        @if (getCurrentGuard() == config('constants.kubota_user'))
+                            {{ $userInfo->language == config('constants.language_japanese') ? $userProfile['ja_section_name'] : $userProfile['en_section_name'] }}                        
+                            <br>
+                        @endif
                         {{ __('email_address') }}：
                         <a href="{{ $userInfo->email }}">{{ $userInfo->email }}</a>
                     </p>
@@ -64,7 +67,7 @@
                     <div class="row mb-1">
                         <label class="form-label mb-1">{{ __('language') }}</label>
                         @php
-                            $language = ['ja' => '日本語', 'en' => 'English'];
+                            $language = [config('constants.language_japanese') => '日本語', config('constants.language_english') => 'English'];
                         @endphp
                         @foreach($language as $key => $value)
                             <div class="col-xl-3">
@@ -83,7 +86,7 @@
                         @csrf
                         <p class="text-end">
                             <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                                <button type="button" class="btn btn-light btn-wave">{{ __('logout') }}</button>
+                                <button type="button" class="btn btn-light btn-wave" title="{{ __('logout') }}">{{ __('logout') }}</button>
                             </a>
                         </p>
                     </form>
@@ -91,5 +94,5 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/user/language.js') }}"></script>
+<script src="{{ asset('js/user/language.js') }}"></script>
 </header>

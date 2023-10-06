@@ -22,7 +22,7 @@ if(!empty($faqCategoryData)){
 <div class="modal-dialog modal-dialog-centered text-center" role="document">
     <div class="modal-content modal-content-demo">
         <div class="modal-header">
-            <h6 class="modal-title">FAQカテゴリ追加</h6><button aria-label="Close"
+            <h6 class="modal-title">{{ $faq_category_id ? 'FAQカテゴリ編集' : 'FAQカテゴリ追加' }}</h6><button aria-label="Close"
                 class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="alert alert-danger mt-2 error-modal" role="alert" style="display: none;"></div>
@@ -99,7 +99,7 @@ if(!empty($faqCategoryData)){
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-warning" id="submitBtn" tabindex="8" title="追加する">追加する</button>
+            <button class="btn btn-warning" id="submitBtn" tabindex="8" title="{{ $faq_category_id ? '更新する' : '追加する' }}">{{ $faq_category_id ? '更新する' : '追加する' }}</button>
         </div>
 
       </form>

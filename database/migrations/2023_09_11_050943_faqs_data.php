@@ -16,8 +16,8 @@ return new class () extends Migration {
             $table->integer('category_id')->unsigned()->comment('カテゴリID');
             $table->integer('sort')->unsigned()->comment('並び順');
             $table->string('title', 100)->comment('タイトル');
-            $table->binary('q_message')->comment('質問(Q)内容');
-            $table->binary('a_message')->comment('回答(A)内容');
+            $table->longText('q_message')->comment('質問(Q)内容');
+            $table->longText('a_message')->comment('回答(A)内容');
             $table->text('search_qa_message')->comment('検索用(QA)内容');
             $table->string('image_path1', 255)->nullable(true)->comment('添付画像パス1');
             $table->string('image_path2', 255)->nullable(true)->comment('添付画像パス2');
@@ -40,7 +40,7 @@ return new class () extends Migration {
             //index設定
             $table->index(['category_id']);
             $table->index(['sort']);
-            // $table->index(['search_qa_message']);
+            $table->index(['search_qa_message']);
             $table->index(['language']);
             $table->index(['display_group']);
             $table->index(['is_deleted']);
