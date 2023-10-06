@@ -60,7 +60,7 @@ $('#faqCategoryForm').validate({
         },
         sort: {
             required: '表示順は必須項目です。',
-            number: '有効な番号を入力してください。',
+            number: '表示順は半角数値で入力してください。',
             maxlength: 'ソートの長さは3文字以内',
             min: "数値は0より大きくなければならない。" // Custom error message for min rule
 
