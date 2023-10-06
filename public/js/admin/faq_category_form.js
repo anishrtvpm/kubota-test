@@ -43,30 +43,30 @@ $('#faqCategoryForm').validate({
     },
     messages: {
         top_category_ja_name: {
-            required: 'システム (JP) 必須',
-            maxlength: 'システム(JP)の長さは100文字を超えないこと',
+            required: 'システム(JP)は必須項目です。',
+            maxlength: 'システム(JP)は 100文字以内で設定してください。',
         },
         top_category_en_name: {
-            required: 'カテゴリー名 (EN) 必須',
-            maxlength: 'カテゴリー名(EN)の長さは100文字を超えないこと',
+            required: 'システム(EN)は必須項目です。',
+            maxlength: 'システム(EN)は 100文字以内で設定してください。',
         },
         sub_category_ja_name: {
-            required: 'システム (JP) 必須',
-            maxlength: 'システム(JP)の長さは100文字を超えないこと',
+            required: 'カテゴリ名(JP)は必須項目です。',
+            maxlength: 'カテゴリ名(JP)は 100文字以内で設定してください。',
         },
         sub_category_en_name: {
-            required: 'カテゴリー名 (EN) 必須',
-            maxlength: 'カテゴリー名(EN)の長さは100文字を超えないこと',
+            required: 'カテゴリ名(EN)は必須項目です。',
+            maxlength: 'カテゴリ名(EN)は 100文字以内で設定してください。',
         },
         sort: {
-            required: '要ソート',
+            required: '表示順は必須項目です。',
             number: '有効な番号を入力してください。',
             maxlength: 'ソートの長さは3文字以内',
             min: "数値は0より大きくなければならない。" // Custom error message for min rule
 
         },
         mail_form_id: {
-            required: 'フォームID必須',
+            required: 'フォームIDは必須項目です。',
             number: '有効な番号を入力してください。',
             maxlength: 'ソートの長さは3文字以内',
             min: "数値は0より大きくなければならない。" // Custom error message for min rule
