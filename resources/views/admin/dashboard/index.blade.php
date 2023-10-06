@@ -15,6 +15,7 @@
             <div class="row px-2">
                 <?php
                     if($systemLinks){
+                        $tab = 1;
                         foreach($systemLinks as $key=> $systemLink){
                             ?>
                             <div class="col-xl-2">
@@ -26,7 +27,7 @@
                                             </div>
                                             <div class="btn-list">
                                                 <?php foreach($systemLink as $item) { ?>
-                                                    <a href="{{ $item->url }}" target="_blank"><button type="button" class="btn btn-outline-primary w-100">{{ $item->system_name }}</button></a>
+                                                    <a href="{{ $item->url }}" target="_blank"><button type="button" class="btn btn-outline-primary w-100" tabindex="{{ $tab++ }}">{{ $item->system_name }}</button></a>
                                                 <?php } ?>
                                             </div>
                                         </div>

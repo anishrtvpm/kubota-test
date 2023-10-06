@@ -17,11 +17,11 @@ return new class() extends Migration
             $table->integer('system_id')->unsigned()->nullable(true)->comment('システムID');
             $table->integer('sort')->unsigned()->nullable(true)->comment('並び順');
             $table->string("ja_title")->comment('タイトル(日)');
-            $table->binary('ja_message')->nullable(true)->comment('メッセージ(日)');
+            $table->longText('ja_message')->nullable(true)->comment('メッセージ(日)');
             $table->string("ja_file1")->comment('添付ファイル1(日)');
             $table->string("ja_file2")->comment('添付ファイル2(日)');
             $table->string("en_title")->comment('タイトル(英)');
-            $table->binary('en_message')->nullable(true)->comment('メッセージ(英)');
+            $table->longText('en_message')->nullable(true)->comment('メッセージ(英)');
             $table->string("en_file1")->comment('添付ファイル1(英)');
             $table->string("en_file2")->comment('添付ファイル2(英)');
             $table->string('display_group', 100)->comment('表示グループ');

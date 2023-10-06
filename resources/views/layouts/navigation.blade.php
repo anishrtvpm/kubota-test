@@ -7,7 +7,7 @@
 		@php echo getQuickNavigation(); @endphp
 	</div>
 	<div class="col-12">
-		<button type="button" class="btn btn-primary" onclick="redirectToSelectedOption()">Go</button>
+		<button type="button" class="btn btn-primary" onclick="redirectToSelectedOption()" title="Go">Go</button>
 	</div>
 </form>
 <!-- Quick Navigation End -->
