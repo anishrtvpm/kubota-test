@@ -8,7 +8,7 @@ $(document).ready(function () {
     slTable = $('#systemLinksTable').DataTable({
         processing: true,
         serverSide: true,
-        serverMethod: 'post',
+        serverMethod: 'get',
         bLengthChange: false,
         searching: false,
         iDisplayLength: config.data_table_per_page,

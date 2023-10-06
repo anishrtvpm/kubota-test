@@ -10,7 +10,7 @@
 			</ul>
             </div>
             <div class="col-12 col-sm-auto text-end copyright">
-			  <p class="mb-0 text-400">© 1996-2023 KUBOTA Corporation.</p>
+			  <p class="mb-0 text-400">© 1996-<?php echo date('Y'); ?> KUBOTA Corporation.</p>
             </div>
           </div>
 </footer>
