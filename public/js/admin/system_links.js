@@ -12,6 +12,13 @@ $(document).ready(function () {
         bLengthChange: false,
         searching: false,
         iDisplayLength: config.data_table_per_page,
+        columnDefs: [
+            {
+                targets: 0, // Index of the column you want to center-align
+                className: 'dt-center' // Apply center alignment class
+            }
+            // Add more columnDefs as needed for other columns
+        ],
         language: {
             paginate: {
                 previous: "前へ",
