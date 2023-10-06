@@ -18,7 +18,7 @@ if(!empty($systemLinkData)){
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">システムリンク編集</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h6 class="modal-title">{{ $system_id ? 'システムリンク編集' : 'システムリンク追加' }}</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
             <form method="POST" id="systeLinkForm" action="{{route('system_link.store')}}">
                 @csrf
