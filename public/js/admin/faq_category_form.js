@@ -72,7 +72,7 @@ $('#faqCategoryForm').validate({
             min: "数値は0より大きくなければならない。" // Custom error message for min rule
 
         },
-       
+
     },
 
     submitHandler: function (form) {
@@ -88,30 +88,40 @@ $('#faqCategoryForm').validate({
                 faqCatTable.draw();
                 toastr.success(response.message);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 let response = JSON.parse(xhr.responseText);
                 if (xhr.status === 422) {
                     $('#submitBtn').prop('disabled', false);
-                    $.each(response.errors, function(field, messages) {
+                    $.each(response.errors, function (field, messages) {
                         $('#' + field).siblings('.text-danger').remove();
                         $('#' + field).after('<span class="text-danger">' + messages[0] + '</span>');
                     });
-                    if(response.error){
+                    if (response.error) {
                         $('.error-modal').show();
-                        let message_error='';
-                        $.each(response.error, function(key, message) {
-                            message_error += '<span class="text-danger">'  + message + '</span><br>';
-                        });
+                        let message_error = '';
+                        message_error += '<span class="text-danger">' + response.error + '</span><br>';
                         $('.error-modal').html('<span class="text-danger">' + message_error + '</span>');
+                        if(response.field=='ja'){
+                            $('#top_category_ja_name').addClass('error');
+                            $('#sub_category_ja_name').addClass('error');
+                            $('#top_category_en_name').removeClass('error');
+                            $('#sub_category_en_name').removeClass('error');
+                        } else if(response.field=='en'){
+                            $('#top_category_ja_name').removeClass('error');
+                            $('#sub_category_ja_name').removeClass('error');
+                            $('#top_category_en_name').addClass('error');
+                            $('#sub_category_en_name').addClass('error');
+                          
+                        }
                     }
-                } 
+                }
             }
         })
     },
 });
 
 
-$('#deleteBtn').click(function() {
+$('#deleteBtn').click(function () {
     var recordId = $(this).data('id');
     Swal.fire({
         title: '削除の確認',
@@ -130,7 +140,7 @@ $('#deleteBtn').click(function() {
                 type: 'DELETE',
                 url: 'system_link/delete/', // Replace with your delete route
                 data: { id: recordId },
-                success: function(response) {
+                success: function (response) {
                     $('#systemLinkModal').modal('hide');
                     slTable.draw();
                     toastr.success(response.message);
