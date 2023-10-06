@@ -104,17 +104,29 @@ class FaqCategory extends Model
         }
     }
 
-    
-    public function categoryCombinationExists($request)
+    public function validateInputData($request)
+    {
+        $response['error'] = $response['message'] = $response['field'] = '';
+        $jaCategoryCombinationExists = $this->jaCategoryCombinationExists($request);
+        $enCategoryCombinationExists = $this->enCategoryCombinationExists($request);
+
+        if ($jaCategoryCombinationExists) {
+            $response['error'] = true;
+            $response['message'] = "同じ組み合わせのカテゴリーがすでに存在する";
+            $response['field'] = 'ja';
+        } elseif ($enCategoryCombinationExists) {
+            $response['error'] = true;
+            $response['message'] = "同じ組み合わせのカテゴリーがすでに存在する";
+            $response['field'] = 'en';
+        }
+
+        return $response;
+    }
+    public function jaCategoryCombinationExists($request)
     {
 
         $top_category_ja_name = $request->input('top_category_ja_name');
         $sub_category_ja_name = $request->input('sub_category_ja_name');
-        $top_category_en_name = $request->input('top_category_en_name');
-        $sub_category_en_name = $request->input('sub_category_en_name');
-
-        $error = false;
-        $message = [];
 
         $categoryId = $request->input('faq_category_id');
 
@@ -137,28 +149,24 @@ class FaqCategory extends Model
             $query->Where('top_category_ja_name', 'like', $top_category_ja_name)
                 ->Where('sub_category_ja_name', 'like', $sub_category_ja_name);
         });
+        if ($categoryId) {
+            return $jaComb = $jaComb->where('category_id', '!=', $categoryId)->first();
+        } else {
+            return $jaComb = $jaComb->first();
+        }
+    }
 
-
+    public function enCategoryCombinationExists($request)
+    {
+        $top_category_en_name = $request->input('top_category_en_name');
+        $sub_category_en_name = $request->input('sub_category_en_name');
+        $categoryId = $request->input('faq_category_id');
         $enComb = FaqCategory::where('top_category_en_name', $top_category_en_name)
             ->where('sub_category_en_name', $sub_category_en_name);
-
         if ($categoryId) {
-            $jaComb = $jaComb->where('category_id', '!=', $categoryId)->first();
-            $enComb = $enComb->where('category_id', '!=', $categoryId)->first();
+            return $enComb = $enComb->where('category_id', '!=', $categoryId)->first();
         } else {
-            $jaComb = $jaComb->first();
-            $enComb = $enComb->first();
+            return $enComb = $enComb->first();
         }
-
-        if ($jaComb) {
-            $error = true;
-            $message[] = 'Jaカテゴリの組み合わせはすでに存在する。';
-        }
-        if ($enComb) {
-            $error = true;
-            $message[] = 'Enカテゴリの組み合わせはすでに存在する。';
-        }
-
-        return ['error' => $error, 'message' => $message];
     }
 }
