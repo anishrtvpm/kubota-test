@@ -10,52 +10,17 @@ $.validator.addMethod("urlCheck", function (value) {
 
 
 $(document).ready(function () {
-    // $('#myForm').validate({
-    //     rules: {
-    //         email: {
-    //             required: true,
-    //             email: true,
-    //             remote: {
-    //                 url: "check-email.php", // Replace with the actual URL to check email existence on the server
-    //                 type: "post", // HTTP method (post or get)
-    //                 data: {
-    //                     // Optional data to send to the server, e.g., to identify the user
-    //                     dropdownValue: function () {
-    //                         return $("#dropdown").val();
-    //                     }
-    //                 }
-    //             }
-    //         },
-    //         dropdown: {
-    //             required: true,
-    //         },
-    //     },
-    //     messages: {
-    //         email: {
-    //             required: "Email is required",
-    //             email: "Please enter a valid email address",
-    //             remote: "This email is already in use"
-    //         },
-    //         dropdown: {
-    //             required: "Please select an option",
-    //         },
-    //     },
-    //     onfocusout: function (element) {
-    //         // Validate on blur (when focus leaves the field)
-    //         this.element(element);
-    //     },
-    //     submitHandler: function (form) {
-    //         // Handle form submission here if it's valid
-    //         alert("Form submitted successfully!");
-    //     }
-    // });
-
     // Add an "on change" event listener to the dropdown to trigger validation
     $('#category').on('change', function () {
-        alert('dfdg');
-        $('body').find("#systeLinkForm").validate();// Trigger validation for the email field
-        // $('#systeLinkForm').validate().element('#ja_system_name');
-
+        if($("#ja_system_name").val() !== '' && $("#en_system_name").val() !== '') {
+            $("#ja_system_name").removeData("previousValue"); //clear cache
+            $("#systeLinkForm").data('validator').element('#ja_system_name'); //retrigger remote call
+            $('#ja_system_name').blur()
+           
+            $("#en_system_name").removeData("previousValue"); //clear cache
+            $("#systeLinkForm").data('validator').element('#en_system_name'); //retrigger remote call
+            $('#en_system_name').blur()
+        }
     });
 });
 
@@ -148,12 +113,12 @@ $('#systeLinkForm').validate({
         ja_system_name: {
             required: "タイトル(JP)は必須項目です。",
             maxlength: "タイトル(JP)の長さは100文字を超えないこと",
-            remote: 'already exists',
+            remote: 'タイトル(JP)はすでにこのカテゴリにあります。',
         },
         en_system_name: {
             required: "タイトル(EN)は必須項目です。",
             maxlength: "タイトル(EN)の長さは100文字を超えないこと",
-            remote: 'already exists',
+            remote: 'タイトル(EN)はすでにこのカテゴリにあります。',
         },
         ja_url: {
             required: 'URL(JP)は必須項目です。',
@@ -192,6 +157,13 @@ $('#systeLinkForm').validate({
                         $('.' + field).siblings('.text-danger').remove();
                         $('.' + field).after('<span class="text-danger">' + messages[0] + '</span>');
                     });
+                }
+
+                if (response.error) {
+                    $('.error-modal').show();
+                    let message_error = '';
+                    message_error += '<span class="text-danger">' + response.error + '</span><br>';
+                    $('.error-modal').html('<span class="text-danger">' + message_error + '</span>');
                 }
             }
         })

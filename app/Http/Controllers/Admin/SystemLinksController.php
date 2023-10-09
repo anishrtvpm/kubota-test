@@ -64,7 +64,7 @@ class SystemLinksController extends Controller
     {
         $validateData = $this->systemLinks->systemNameExists($request);
         if ($validateData) {
-            return response()->json(['error' => 'already exists'], 422);
+            return response()->json(['error' => 'タイトルはすでにこのカテゴリにあります。'], 422);
         }
         $systemId = $this->systemLinks->saveRecords($request);
         if (!$systemId) {
