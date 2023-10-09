@@ -9,6 +9,57 @@ $.validator.addMethod("urlCheck", function (value) {
 });
 
 
+$(document).ready(function () {
+    // $('#myForm').validate({
+    //     rules: {
+    //         email: {
+    //             required: true,
+    //             email: true,
+    //             remote: {
+    //                 url: "check-email.php", // Replace with the actual URL to check email existence on the server
+    //                 type: "post", // HTTP method (post or get)
+    //                 data: {
+    //                     // Optional data to send to the server, e.g., to identify the user
+    //                     dropdownValue: function () {
+    //                         return $("#dropdown").val();
+    //                     }
+    //                 }
+    //             }
+    //         },
+    //         dropdown: {
+    //             required: true,
+    //         },
+    //     },
+    //     messages: {
+    //         email: {
+    //             required: "Email is required",
+    //             email: "Please enter a valid email address",
+    //             remote: "This email is already in use"
+    //         },
+    //         dropdown: {
+    //             required: "Please select an option",
+    //         },
+    //     },
+    //     onfocusout: function (element) {
+    //         // Validate on blur (when focus leaves the field)
+    //         this.element(element);
+    //     },
+    //     submitHandler: function (form) {
+    //         // Handle form submission here if it's valid
+    //         alert("Form submitted successfully!");
+    //     }
+    // });
+
+    // Add an "on change" event listener to the dropdown to trigger validation
+    $('#category').on('change', function () {
+        alert('dfdg');
+        $('body').find("#systeLinkForm").validate();// Trigger validation for the email field
+        // $('#systeLinkForm').validate().element('#ja_system_name');
+
+    });
+});
+
+
 
 $('#systeLinkForm').validate({
     rules: {
@@ -19,15 +70,59 @@ $('#systeLinkForm').validate({
             required: true,
             number: true,  // Ensure it's a valid number
             maxlength: 3,
-            min:0,
+            min: 0,
         },
         ja_system_name: {
             required: true,
             maxlength: 100,
+            remote: {
+                url: '/system_link/system-name-exists',
+                type: 'POST',
+                data: {
+                    system_name: function () {
+                        return $("#ja_system_name").val();
+                    },
+                    system_id: function () {
+                        return $('#system_id').val();
+                    },
+                    category: function () {
+                        return $('#category').val();
+                    },
+                },
+                dataFilter: function (responseData) {
+                    if (responseData) {
+                        return JSON.stringify(false);
+                    } else {
+                        return JSON.stringify(true);
+                    }
+                },
+            },
         },
         en_system_name: {
             required: true,
             maxlength: 100,
+            remote: {
+                url: '/system_link/system-name-exists',
+                type: 'POST',
+                data: {
+                    system_name: function () {
+                        return $("#en_system_name").val();
+                    },
+                    system_id: function () {
+                        return $('#system_id').val();
+                    },
+                    category: function () {
+                        return $('#category').val();
+                    },
+                },
+                dataFilter: function (responseData) {
+                    if (responseData) {
+                        return JSON.stringify(false);
+                    } else {
+                        return JSON.stringify(true);
+                    }
+                },
+            },
         },
         ja_url: {
             required: true,
@@ -53,10 +148,12 @@ $('#systeLinkForm').validate({
         ja_system_name: {
             required: "タイトル(JP)は必須項目です。",
             maxlength: "タイトル(JP)の長さは100文字を超えないこと",
+            remote: 'already exists',
         },
         en_system_name: {
             required: "タイトル(EN)は必須項目です。",
             maxlength: "タイトル(EN)の長さは100文字を超えないこと",
+            remote: 'already exists',
         },
         ja_url: {
             required: 'URL(JP)は必須項目です。',
@@ -69,6 +166,10 @@ $('#systeLinkForm').validate({
             maxlength: "タイトル(EN)の長さは255文字を超えないこと",
         },
     },
+
+    onfocusout: function(element) {
+        this.element(element);
+      },
 
     submitHandler: function (form) {
         $('#submitBtn').attr('disabled', 'disabled');
@@ -99,7 +200,7 @@ $('#systeLinkForm').validate({
 
 
 $('#deleteBtn').click(function () {
-    var recordId = $(this).data('id');
+    let recordId = $(this).data('id');
     Swal.fire({
         title: '削除の確認',
         text: '本当にこのレコードを削除しますか？',

@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
     Route::post('/system_link/edit', [SystemLinksController::class, 'edit'])->name('system_link.edit');
     Route::post('/system_link/store', [SystemLinksController::class, 'store'])->name('system_link.store');
     Route::delete('/system_link/delete', [SystemLinksController::class, 'delete'])->name('system_link.delete');
+    Route::post('/system_link/system-name-exists', [SystemLinksController::class, 'systemNameExists'])->name('system_link.system-name-exists');
 
     Route::get('/faq_category', [FaqCategoryController::class, 'index'])->name('faq_category.list');
     Route::post('/faq_category/get', [FaqCategoryController::class, 'get'])->name('faq_category.get');
