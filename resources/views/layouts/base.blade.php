@@ -10,6 +10,7 @@
         <meta name="Description" content="品保ポータルサイト">
         <meta name="Author" content="品保ポータルサイト">
         <meta name="keywords" content="品保ポータルサイト">
+        <META NAME="robots" CONTENT="noindex,nofollow">
         @include('layouts.header_component')
         @php
             $lang = app()->getLocale();
