@@ -48,6 +48,7 @@
     "terms_of_use": "サイトのご利用にあたって",
     "privacy_policy": "個人情報保護方針",
     "social_media_policy": "ソーシャルメディアポリシー",
-    "sitemap": "サイトマップ"
+    "sitemap": "サイトマップ",
+    "ip_restriction_message" : "ポータルへのアクセスが許可されていません。"
     
 }
