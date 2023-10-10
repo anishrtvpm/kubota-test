@@ -9,7 +9,7 @@ $(document).ready(function () {
     faqCatTable =$('#faqCategoryTable').DataTable({
         processing: true,
         serverSide: true,
-        serverMethod: 'post',
+        serverMethod: 'get',
         responsive: true,
         bLengthChange: false,
         searching: false,
