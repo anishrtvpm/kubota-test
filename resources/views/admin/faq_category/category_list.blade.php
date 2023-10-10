@@ -28,6 +28,25 @@
                                     <button type="submit" class="faqCategoryBtn Btn btn btn-primary" title="新規カテゴリ追加" style="float: right;">新規カテゴリ追加
                                     </button>
                                 </div>
+
+                                @if(session('success'))
+                                    <div class="alert alert-success mt-2" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if($errors->any())
+                                    @foreach($errors->all() as $error)
+                                        <div class="alert alert-danger mt-2" role="alert">
+                                            {{ $error }}
+                                        </div>
+                                    @endforeach
+                                @endif
+                                @if (session('error'))
+                                <div class="alert alert-danger mt-2" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
+
                             </div>
 
                             <div class="modal fade" id="faqCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

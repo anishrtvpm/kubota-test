@@ -124,8 +124,7 @@ class SystemLinks extends Model
     {
         $systemId = $request->get('system_id');
         $categoryId = $request->get('category');
-        $language = $request->get('language');
-
+        
         if($request->get('ja_system_name')){
             $systemName = $request->get('ja_system_name');
             $systemField='ja_system_name';

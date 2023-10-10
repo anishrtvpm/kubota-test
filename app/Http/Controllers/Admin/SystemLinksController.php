@@ -62,6 +62,10 @@ class SystemLinksController extends Controller
 
     public function store(SystemLinkRequestValidation $request)
     {
+        $validateData = $this->systemLinks->systemNameExists($request);
+        if ($validateData) {
+            return response()->json(['error' => 'タイトルはすでにこのカテゴリにあります。'], 422);
+        }
         $systemId = $this->systemLinks->saveRecords($request);
         if (!$systemId) {
             return Redirect::back()->with('error', trans('invalid_request_error'));
@@ -77,5 +81,14 @@ class SystemLinksController extends Controller
             return response()->json(['message' => trans('delete_success')]);
         }
         return response()->json(['error' => trans('invalid_request_error')]);
+    }
+
+    public function systemNameExists(Request $request)
+    {
+        $isExists = $this->systemLinks->systemNameExists($request);
+        if ($isExists) {
+            return true;
+        }
+        return false;
     }
 }

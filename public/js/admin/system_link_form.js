@@ -9,6 +9,22 @@ $.validator.addMethod("urlCheck", function (value) {
 });
 
 
+$(document).ready(function () {
+    // Add an "on change" event listener to the dropdown to trigger validation
+    $('#category').on('change', function () {
+        if($("#ja_system_name").val() !== '' && $("#en_system_name").val() !== '') {
+            $("#ja_system_name").removeData("previousValue"); //clear cache
+            $("#systeLinkForm").data('validator').element('#ja_system_name'); //retrigger remote call
+            $('#ja_system_name').blur()
+           
+            $("#en_system_name").removeData("previousValue"); //clear cache
+            $("#systeLinkForm").data('validator').element('#en_system_name'); //retrigger remote call
+            $('#en_system_name').blur()
+        }
+    });
+});
+
+
 
 $('#systeLinkForm').validate({
     rules: {
@@ -19,15 +35,59 @@ $('#systeLinkForm').validate({
             required: true,
             number: true,  // Ensure it's a valid number
             maxlength: 3,
-            min:0,
+            min: 0,
         },
         ja_system_name: {
             required: true,
             maxlength: 100,
+            remote: {
+                url: '/system_link/system-name-exists',
+                type: 'POST',
+                data: {
+                    system_name: function () {
+                        return $("#ja_system_name").val();
+                    },
+                    system_id: function () {
+                        return $('#system_id').val();
+                    },
+                    category: function () {
+                        return $('#category').val();
+                    },
+                },
+                dataFilter: function (responseData) {
+                    if (responseData) {
+                        return JSON.stringify(false);
+                    } else {
+                        return JSON.stringify(true);
+                    }
+                },
+            },
         },
         en_system_name: {
             required: true,
             maxlength: 100,
+            remote: {
+                url: '/system_link/system-name-exists',
+                type: 'POST',
+                data: {
+                    system_name: function () {
+                        return $("#en_system_name").val();
+                    },
+                    system_id: function () {
+                        return $('#system_id').val();
+                    },
+                    category: function () {
+                        return $('#category').val();
+                    },
+                },
+                dataFilter: function (responseData) {
+                    if (responseData) {
+                        return JSON.stringify(false);
+                    } else {
+                        return JSON.stringify(true);
+                    }
+                },
+            },
         },
         ja_url: {
             required: true,
@@ -53,10 +113,12 @@ $('#systeLinkForm').validate({
         ja_system_name: {
             required: "タイトル(JP)は必須項目です。",
             maxlength: "タイトル(JP)の長さは100文字を超えないこと",
+            remote: 'タイトル(JP)はすでにこのカテゴリにあります。',
         },
         en_system_name: {
             required: "タイトル(EN)は必須項目です。",
             maxlength: "タイトル(EN)の長さは100文字を超えないこと",
+            remote: 'タイトル(EN)はすでにこのカテゴリにあります。',
         },
         ja_url: {
             required: 'URL(JP)は必須項目です。',
@@ -69,6 +131,10 @@ $('#systeLinkForm').validate({
             maxlength: "タイトル(EN)の長さは255文字を超えないこと",
         },
     },
+
+    onfocusout: function(element) {
+        this.element(element);
+      },
 
     submitHandler: function (form) {
         $('#submitBtn').attr('disabled', 'disabled');
@@ -92,6 +158,13 @@ $('#systeLinkForm').validate({
                         $('.' + field).after('<span class="text-danger">' + messages[0] + '</span>');
                     });
                 }
+
+                if (response.error) {
+                    $('.error-modal').show();
+                    let message_error = '';
+                    message_error += '<span class="text-danger">' + response.error + '</span><br>';
+                    $('.error-modal').html('<span class="text-danger">' + message_error + '</span>');
+                }
             }
         })
     },
@@ -99,7 +172,7 @@ $('#systeLinkForm').validate({
 
 
 $('#deleteBtn').click(function () {
-    var recordId = $(this).data('id');
+    let recordId = $(this).data('id');
     Swal.fire({
         title: '削除の確認',
         text: '本当にこのレコードを削除しますか？',
