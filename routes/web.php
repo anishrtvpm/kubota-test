@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\User\FaqController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
 use App\Http\Controllers\User\DashboardController;
@@ -124,10 +125,10 @@ Route::group(['middleware' => ['auth:kubota,independent']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::post('/language/edit', [LanguageController::class, 'edit'])->name('language.edit');
+
+    Route::get('/faq/list', [FaqController::class, 'index'])->name('faq.list');
+    Route::get('/faq/get', [FaqController::class, 'getFaqList'])->name('faq.get');
     
-    Route::get('/faq_list', function () {
-        return view('user.faq_list');
-    })->name('faq_list');
 
     Route::get('/faq_view', function () {
         return view('user.faq_view');

@@ -48,6 +48,14 @@
     "terms_of_use": "サイトのご利用にあたって",
     "privacy_policy": "個人情報保護方針",
     "social_media_policy": "ソーシャルメディアポリシー",
-    "sitemap": "サイトマップ"
+    "sitemap": "サイトマップ",
+    "faq_list":"FAQ一覧",
+    "keyword-search":"キーワード検索",
+    "category_search":"カテゴリ検索",
+    "search":"検索",
+    "enter_keywords":"キーワードを入力",
+    "previous":"前へ",
+    "next":"次へ",
+    "open_contact_form":"お問い合わせフォームを開く"
     
 }

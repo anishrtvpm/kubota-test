@@ -48,5 +48,13 @@
     "terms_of_use": "Terms of Use",
     "privacy_policy": "Privacy Policy",
     "social_media_policy": "Social Media Policy",
-    "sitemap": "Sitemap"
+    "sitemap": "Sitemap",
+    "faq_list":"FAQ List",
+    "keyword_search":"Keyword Search",
+    "category_search":"Category Search",
+    "search":"Search",
+    "enter_keywords":"Enter Keywords",
+    "previous":"Previous",
+    "next":"Next",
+    "open_contact_form":"Open Contact Form"
 }
