@@ -20,6 +20,7 @@ if(!empty($systemLinkData)){
                 <div class="modal-header">
                     <h6 class="modal-title">{{ $system_id ? 'システムリンク編集' : 'システムリンク追加' }}</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+            <div class="alert alert-danger mt-2 error-modal" role="alert" style="display: none;"></div>
             <form method="POST" id="systeLinkForm" action="{{route('system_link.store')}}">
                 @csrf
                 <input type="hidden" name="system_id" id="system_id" value="{{$system_id ? $system_id : ''}}">
