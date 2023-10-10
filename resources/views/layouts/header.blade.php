@@ -63,7 +63,7 @@
                         {{ __('email_address') }}：
                         <a href="{{ $userInfo->email }}">{{ $userInfo->email }}</a>
                     </p>
-                    @if (!checkIsAdmin())
+                    
                     <div class="row mb-1">
                         <label class="form-label mb-1">{{ __('language') }}</label>
                         @php
@@ -81,7 +81,7 @@
                             </div>
                         @endforeach
                     </div>
-                    @endif
+                   
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <p class="text-end">
