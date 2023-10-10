@@ -4,15 +4,15 @@
 <div class="d-md-flex d-block align-items-center justify-content-between page-header-breadcrumb">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-style2 mb-0">
-            <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">{{ __('home')}}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}#manage">{{ __('management_screen')}}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('announcement_management')}}</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">トップページ</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}#manage">管理画面</a></li>
+            <li class="breadcrumb-item active" aria-current="page">アナウンス管理</li>
         </ol>
     </nav>
     @include('layouts.navigation')
 </div>
 <div class="alert alert-solid-dark alert-dismissible fade show text-white mt-4">
-    {{ __('announcement_management')}}
+    アナウンス管理
 </div>
 <div class="row">
     <div class="col-xxl-12 col-xl-12">
@@ -41,27 +41,21 @@
 
                                 @foreach ($userGroups as $group)
                                     <div class="row">
-
-                                        @if(app()->getLocale() == 'ja')
-                                            <h6>{{ $group->group_ja_name }}</h6>
-                                        @else
-                                            <h6>{{ $group->group_en_name }}</h6>
-                                        @endif
-
+                                        <h6>{{ $group->group_ja_name }}</h6>
                                         <div class="col-md-6 row mb-3">
-                                            <label class="col-sm-3 col-form-label fw-bold text-center mt-5">{{ __('label_jp')}}</label>
+                                            <label class="col-sm-3 col-form-label fw-bold text-center mt-5">JP</label>
                                             <div class="col-sm-8">
-                                                <textarea class="form-control resize" id="ja_message{{ $group->group_id }}" name="ja_message{{ $group->group_id }}" rows="1" tabindex="{{ $tab++ }}">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['ja_message'] : ''}}</textarea>
+                                                <textarea class="form-control resize" id="ja_message{{ $group->group_id }}" name="ja_message{{ $group->group_id }}" rows="1" tabindex="{{ $tab++ }}" maxlength="120">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['ja_message'] : ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6 row mb-3">
-                                            <label class="col-sm-3 col-form-label fw-bold text-center mt-5">{{ __('label_en')}}</label>
+                                            <label class="col-sm-3 col-form-label fw-bold text-center mt-5">EN</label>
                                             <div class="col-sm-8">
-                                                <textarea class="form-control resize" id="en_message{{ $group->group_id }}" name="en_message{{ $group->group_id }}" rows="1" tabindex="{{ $tab++ }}">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['en_message'] : ''}}</textarea>
+                                                <textarea class="form-control resize" id="en_message{{ $group->group_id }}" name="en_message{{ $group->group_id }}" rows="1" tabindex="{{ $tab++ }}" maxlength="120">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['en_message'] : ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6 row mb-5 me-1">
-                                            <label class="col-sm-3 col-form-label">{{ __('delivery_period')}}</label>
+                                            <label class="col-sm-3 col-form-label custom_label">配信期間</label>
                                             <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -78,7 +72,7 @@
                                     </div>
                                 @endforeach
                                 <div class="gap-2 col-2 mx-auto mb-5">
-                                    <button class="btn btn-warning px-4" type="submit" id="announcement_submit" tabindex="{{ $tab++ }}" title="登録する">{{ __('button_register')}}</button>
+                                    <button class="btn btn-warning px-4" type="submit" id="announcement_submit" tabindex="{{ $tab++ }}" title="登録する">登録する</button>
                                 </div>
                             </div>
                         </form>
