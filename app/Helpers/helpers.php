@@ -215,8 +215,8 @@ if (!function_exists('getQuickNavigation')) {
         $links = getSystemLink($groupId, $language);
 
         $str = "<select id='quick_navigation' class='form-select'>";
-        $str .= "<option>Select Location</option>";
-        $str .= "<option disabled>System Links</option>";
+        $str .= "<option>選択</option>";
+        $str .= "<option disabled>システムリンク</option>";
         foreach ($links as $link) {
             $str .= "<optgroup style='font-weight :bold' label=".$link['category_name']." >";
 

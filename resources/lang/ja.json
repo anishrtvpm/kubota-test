@@ -56,6 +56,7 @@
     "enter_keywords":"キーワードを入力",
     "previous":"前へ",
     "next":"次へ",
-    "open_contact_form":"お問い合わせフォームを開く"
+    "open_contact_form":"お問い合わせフォームを開く",
+    "ip_restriction_message" : "ポータルへのアクセスが許可されていません。"
     
 }

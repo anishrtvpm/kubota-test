@@ -56,5 +56,6 @@
     "enter_keywords":"Enter Keywords",
     "previous":"Previous",
     "next":"Next",
-    "open_contact_form":"Open Contact Form"
+    "open_contact_form":"Open Contact Form",
+    "ip_restriction_message" : "You are unauthorised to access the portal"
 }
