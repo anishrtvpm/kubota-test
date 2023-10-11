@@ -78,9 +78,9 @@ if(!empty($faqCategoryData)){
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <label for="status" class="mt-2 col-sm-4 col-form-label col-form-label">状態</label>
+                <label for="status" class="mt-2 col-sm-4 col-form-label col-form-label ">状態</label>
                 <div class="col-sm-8">
-                    <select name="status" id="status" tabindex="6" class="mt-2 form-control form-control-lg">
+                    <select name="status" id="status" tabindex="6" class="mt-2 form-control form-select form-control-lg">
                         <option value="{{config('constants.public')}}" <?php echo ($status==config('constants.public')) ? 'selected':''; ?>>公開</option>
                         <option value="{{config('constants.private')}}" <?php echo ($status==config('constants.private')) ? 'selected':''; ?>>非公開</option>
                     </select>

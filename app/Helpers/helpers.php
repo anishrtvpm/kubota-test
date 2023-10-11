@@ -124,11 +124,10 @@ if (!function_exists('authUser')) {
  * get system links
  *
  * @param integer $groupId
- * @param string $language
  * @return mixed
  */
 if (!function_exists('getSystemLink')) {
-    function getSystemLink($groupId, $language)
+    function getSystemLink($groupId)
     {
         if (!$groupId) {
             return false;
@@ -158,11 +157,11 @@ if (!function_exists('getSystemLink')) {
 
         foreach ($results as $result) {
             $categoryId = $result->category_id;
-            $categoryName = ($language == config('constants.language_japanese')) ? $result->ja_category_name : $result->en_category_name;
+            $categoryName = $result->ja_category_name;
             $sort = $result->sort;
             $systemId = $result->system_id;
-            $systemName = ($language == config('constants.language_japanese')) ? $result->ja_system_name : $result->en_system_name;
-            $systemUrl = ($language == config('constants.language_japanese')) ? $result->ja_url : $result->en_url;
+            $systemName = $result->ja_system_name;
+            $systemUrl = $result->ja_url;
 
             // カテゴリがまだ存在しない場合、初期化
             if (!isset($systemLinks[$categoryId])) {
@@ -195,40 +194,31 @@ if (!function_exists('getQuickNavigation')) {
     function getQuickNavigation()
     {
 
-       $navigation_ja = array(
+       $navigation = array(
             route('admin_notice_list') => "お知らせ",
             route('faq_article_list') => "FAQ",
             route('faq_category_list') => "各種リンク",
             route('link_template_category_list') => "テンプレート・フォーマット",
             route('link_template_list') => "基幹システム(文書管理)"
         );
-        
-        $navigation_en = array(
-            route('admin_notice_list') => "Notice",
-            route('faq_article_list') => "FAQ",
-            route('faq_category_list') => "Links",
-            route('link_template_category_list') => "Format Template, etc.",
-            route('link_template_list') => "Core system (document management)"
-        );
-        $language = app()->getLocale();
+       
         $groupId = getUser(authUser()->guid)['group_id'];
-        $links = getSystemLink($groupId, $language);
+        $links = getSystemLink($groupId);
 
         $str = "<select id='quick_navigation' class='form-select'>";
-        $str .= "<option>選択</option>";
+        $str .= "<option value='#'>選択</option>";
         $str .= "<option disabled>システムリンク</option>";
         foreach ($links as $link) {
             $str .= "<optgroup style='font-weight :bold' label=".$link['category_name']." >";
 
             foreach ($link['links'] as $systemlink) {
-                $str .= '<option value="' . $systemlink['system_url'] . '">' . $systemlink['system_name'] . '</option>';
+                $str .= '<option value="' . $systemlink['system_url'] . '" data-open="newTab">' . $systemlink['system_name'] . '</option>';
             }
             $str .="</optgroup>";
         }
         
-        $list = ($language == config('constants.language_japanese')) ? $navigation_ja : $navigation_en;
-        foreach ($list as $key => $val) {
-            $str .= '<option value="' . $key . '">' . $val . '</option>';
+        foreach ($navigation as $key => $val) {
+            $str .= '<option value="' . $key . '" data-open="currentTab">' . $val . '</option>';
         }
         $str .= "</select>";
         return $str;
