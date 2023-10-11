@@ -52,9 +52,9 @@
                                     <table id="systemLinksTable" class="table table-bordered text-nowrap" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th style="width: 18px;">No.</th>
+                                                <th >No</th>
                                                 <th>カテゴリ</th>
-                                                <th style="width: 10px;">表示順</th>
+                                                <th >表示順</th>
                                                 <th >システム名(JP)</th>
                                                 <th>システム名(EN)</th>
                                                 <th>URL(JP)</th>
