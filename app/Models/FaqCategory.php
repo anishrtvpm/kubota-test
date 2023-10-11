@@ -169,4 +169,26 @@ class FaqCategory extends Model
             return $enComb = $enComb->first();
         }
     }
+
+    public function getFaqCategory()
+    {
+        $language=app()->getLocale();
+        $topCategory = 'top_category_'.$language.'_name';
+        $subCategory = 'sub_category_'.$language.'_name';
+
+        $results = FaqCategory::select($topCategory,$subCategory,'category_id')
+            ->where('status', config('constants.public'))
+            ->orderBy('sort', 'asc')
+            ->get();
+
+        $category=[];
+        if ($results) {
+            foreach($results as $res){
+                $category['mainCategory'][]=['category_id'=>$res->category_id,'topCategory'=>$res->$topCategory];
+                $category['subCategory'][]=['category_id'=>$res->category_id,'subCategory'=>$res->$subCategory];
+            }
+            return $category;
+        }
+        return false;
+    }
 }

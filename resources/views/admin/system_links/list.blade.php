@@ -47,7 +47,7 @@
                             <div class="modal fade" id="systemLinkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 @include('admin.system_links.form_modal');
                             </div>
-                            <div class="row">
+                            <div class="row datatable_scroll">
                                 <div class="col-xl-12">
                                     <table id="systemLinksTable" class="table table-bordered text-nowrap" style="width:100%">
                                         <thead>

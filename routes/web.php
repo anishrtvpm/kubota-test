@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\User\FaqController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
 use App\Http\Controllers\User\DashboardController;
@@ -19,10 +20,11 @@ use App\Http\Controllers\User\LanguageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['guest','block_ip'])->group(function () {
+    Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
+});
 
-Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
-
-Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
+Route::group(['middleware' => ['auth:kubota', 'block_ip', 'is_admin']], function () {
 
     Route::get('/admin_dashboard', [AdminDashboardController::class, 'index'])->name('admin_dashboard');
 
@@ -119,15 +121,15 @@ Route::group(['middleware' => ['auth:kubota', 'is_admin']], function () {
 
 });
 
-Route::group(['middleware' => ['auth:kubota,independent']], function () {
+Route::group(['middleware' => ['auth:kubota,independent', 'block_ip']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::post('/language/edit', [LanguageController::class, 'edit'])->name('language.edit');
+
+    Route::get('/faq/list', [FaqController::class, 'index'])->name('faq.list');
+    Route::get('/faq/get', [FaqController::class, 'getFaqList'])->name('faq.get');
     
-    Route::get('/faq_list', function () {
-        return view('user.faq_list');
-    })->name('faq_list');
 
     Route::get('/faq_view', function () {
         return view('user.faq_view');
