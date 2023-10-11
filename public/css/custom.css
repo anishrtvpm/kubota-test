@@ -419,3 +419,14 @@ input[type="number"]::-webkit-outer-spin-button {
 .custom_label{
     padding-left: 10%;
 }
+
+.dashboard-faq-list ul{
+    padding-left: 0;
+}
+
+.dashboard-faq-list ul li{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  list-style-position:inside
+}

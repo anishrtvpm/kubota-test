@@ -129,6 +129,7 @@ Route::group(['middleware' => ['auth:kubota,independent', 'block_ip']], function
 
     Route::get('/faq/list', [FaqController::class, 'index'])->name('faq.list');
     Route::get('/faq/get', [FaqController::class, 'getFaqList'])->name('faq.get');
+    Route::get('/faq/detail/{id}', [FaqController::class, 'index'])->name('faq.detail');
     
 
     Route::get('/faq_view', function () {
