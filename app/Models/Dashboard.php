@@ -75,6 +75,7 @@ class Dashboard extends Model
             $systemLinks->join('system_links_categories as slc', 'ugp.system_category', '=', 'slc.category_id');
             $systemLinks->where('ugp.group_id', $groupId);
             $systemLinks->where('ugp.is_visible', 1);
+            $systemLinks->where('sl.is_deleted', 0);
             $systemLinks->where('ugp.is_deleted', 0);
             $systemLinks->orderByRaw("ugp.system_category ASC, sl.sort ASC");
 

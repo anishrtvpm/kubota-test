@@ -25,12 +25,9 @@ class FaqController extends Controller
         ]);
     }
 
-    public function getFaqList()
+    public function getFaqList(Request $request)
     {
-        $faqData = FaqArticle::select('faq_id', 'category_id', 'title', 'search_qa_message')
-            ->where('status', config('constants.public'))
-            ->orderBy('sort', 'asc')
-            ->paginate(config('constants.data_table_per_page'));
+        $faqData=$this->faqArticle->getFaqList($request);
         return view('user.faq.ajax_list')->with(['faqData' => $faqData]);
     }
 }
