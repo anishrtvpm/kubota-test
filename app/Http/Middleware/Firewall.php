@@ -13,12 +13,15 @@ final class Firewall
         '127.0.0.1', // 例) ローカルからのアクセスは許可
        
         '103.72.179.127', // Anish.R IP
-        '103.154.37.134', // Nikhil IP
+        '103.166.244.1', // Nikhil IP
         '103.121.27.178', // Experion office
         '103.79.223.18', // Experion office
         '101.188.67.134', // Indocosmo japan
         '103.135.95.18' , // Indocosmo japan
         '115.65.6.254', // Indocosmo japan
+        '60.120.128.22', //lithin
+        '2400:2410:85e0:1300:7ca4:7d02:6589:6d55', //lithin
+        '2400:2410:85e0:1300:a033:4715:e4cd:678c', // deepthy
 
         '58.191.6.1',
         '58.191.6.2',

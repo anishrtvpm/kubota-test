@@ -36,8 +36,8 @@ class AnnouncementController extends Controller
         }
 
         if (!$this->announcement->saveRecords($request)) {
-            return Redirect::back()->with('error', __('announcement_create_error'));
+            return Redirect::back()->with('error', 'アナウンス作成にエラーが発生しました。');
         }
-        return Redirect::back()->with('message', __('announcement_create_success'));
+        return Redirect::back()->with('message', 'アナウンス登録しました。');
     }
 }

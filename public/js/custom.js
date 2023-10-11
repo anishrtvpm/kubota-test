@@ -393,6 +393,14 @@ headerbtn1.forEach(button => {
 });
 /* for notifications dropdown */
 function redirectToSelectedOption() {
-    var selectElement = document.getElementById('quick_navigation');
-    window.location.href = selectElement.value;
+    let selectElement = document.getElementById('quick_navigation');
+    let selectedOption = selectElement.options[selectElement.selectedIndex];
+    let openInNewTab = selectedOption.getAttribute('data-open') === 'newTab';
+
+    if (openInNewTab) {
+        window.open(selectedOption.value, '_blank');
+    } else {
+        window.location.href = selectedOption.value;
+    }
   }
+  
