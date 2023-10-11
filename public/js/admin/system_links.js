@@ -45,8 +45,21 @@ $(document).ready(function () {
             },
             { data: 'category_id' },
             { data: 'sort' },
-            { data: 'ja_system_name' },
-            { data: 'en_system_name' },
+            {
+                data: 'ja_system_name',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
+
+            {
+                data: 'en_system_name',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
+
+
             {
                 data: 'ja_url',
                 "mRender": function (data, type, row) {

@@ -18,3 +18,23 @@ function isValidCharacterEnglish(value) {
 }
 $('.alert-success').delay(config.toastr_time_out).fadeOut(config.toastr_time_out);
 $('.alert-danger').delay(config.toastr_time_out).fadeOut(config.toastr_time_out);
+
+
+function textFormat(input) {
+    let isFullWidthJapanese = checkFullWidthJapanese(input);
+    if (isFullWidthJapanese) {
+        return input.length > config.full_width_text_display_max_length ? input.substring(0, config.full_width_text_display_max_length) + '..' : input;
+    } else {
+        return input.length > config.text_display_max_length ? input.substring(0, config.text_display_max_length) + '..' : input;
+    }
+}
+
+function checkFullWidthJapanese(text) {
+    for (let i = 0; i < text.length; i++) {
+        let charCode = text.charCodeAt(i);
+        if (charCode >= 0xFF01 && charCode <= 0xFF5E) {
+            return true;
+        }
+    }
+    return false;
+}

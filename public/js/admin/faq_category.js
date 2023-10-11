@@ -10,7 +10,6 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         serverMethod: 'get',
-        responsive: true,
         bLengthChange: false,
         searching: false,
         iDisplayLength: config.data_table_per_page,
@@ -44,10 +43,32 @@ $(document).ready(function () {
                     return '<a class="faqCategoryBtn" href="javascript:void(0)"  id="' + data + '">' + data + '</a>';
                 }
             },
-            { data: 'top_category_ja_name' },
-            { data: 'sub_category_ja_name' },
-            { data: 'top_category_en_name' },
-            { data: 'sub_category_en_name' },
+
+            {
+                data: 'top_category_ja_name',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
+            {
+                data: 'sub_category_ja_name',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
+            {
+                data: 'top_category_en_name',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
+            {
+                data: 'sub_category_en_name',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
+
             { data: 'sort' },
             {
                 data: 'status',

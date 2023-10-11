@@ -68,7 +68,7 @@ class FaqCategoryController extends Controller
         if (!$categoryId) {
             return Redirect::back()->with('error', trans('invalid_request_error'));
         }
-        $successMessage = $request->get('faq_category_id') ? trans('system_links_update_success') : trans('system_links_create_success');
+        $successMessage = $request->get('faq_category_id') ? "FAQカテゴリが更新されました。" : "FAQカテゴリが正常に作成されました。";
         return response()->json(['message' => $successMessage]);
     }
 }
