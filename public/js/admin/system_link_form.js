@@ -24,6 +24,9 @@ $(document).ready(function () {
     });
 });
 
+$.validator.addMethod("fullwidth", function (value, element) {
+    return fullWidthValidation(value);
+});
 
 
 $('#systeLinkForm').validate({
@@ -66,6 +69,7 @@ $('#systeLinkForm').validate({
         en_system_name: {
             required: true,
             maxlength: 100,
+            fullwidth:true,
             remote: {
                 url: '/system_link/system-name-exists',
                 type: 'POST',
@@ -119,6 +123,7 @@ $('#systeLinkForm').validate({
             required: "タイトル(EN)は必須項目です。",
             maxlength: "タイトル(EN)の長さは100文字を超えないこと",
             remote: 'タイトル(EN)はすでにこのカテゴリにあります。',
+            fullwidth:"半角のみで入力してください。",
         },
         ja_url: {
             required: 'URL(JP)は必須項目です。',
