@@ -78,7 +78,7 @@ class SystemLinksController extends Controller
     {
         $systemLinks = $this->systemLinks->deleteRecords($request);
         if ($systemLinks) {
-            return response()->json(['message' => trans('delete_success')]);
+            return response()->json(['message' => "削除に成功"]);
         }
         return response()->json(['error' => trans('invalid_request_error')]);
     }

@@ -76,7 +76,8 @@ $(document).ready(function () {
             },
         ]
     });
-
+    $('#systemLinksTable_info').detach().appendTo('#targetInfo');
+    $('#systemLinksTable_paginate').detach().appendTo('#targetPagination');
 
     // prevent esc key
     $('#systemLinkModal').modal({

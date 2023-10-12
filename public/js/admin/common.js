@@ -1,18 +1,28 @@
+// Use a regular expression to check for valid url
 function isValidUrl(value) {
     if (value) {
         return /^(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/.test(value)
     }
     return true;
 }
+// Use a regular expression to check for japanese characters only
 function isValidCharacterJapanese(value) {
     if (value) {
         return /^[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9０-９]*$/u.test(value);
     }
     return true;
 }
+// Use a regular expression to check for english characters only
 function isValidCharacterEnglish(value) {
     if (value) {
         return /^[a-zA-Z!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]*$/u.test(value);
+    }
+    return true;
+}
+// Use a regular expression to check for half-width characters (ASCII characters)
+function fullWidthValidation(value) {
+    if (value) {
+        return /^[\x20-\x7E]*$/.test(value);
     }
     return true;
 }

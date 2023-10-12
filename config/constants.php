@@ -31,5 +31,7 @@ return [
     'public' => 1,
     'private' => 0,
     'is_admin' => 1,
+    'full_width_text_display_max_length' => 10,
+    'telephonw_text_display_max_length' => 11,
     'dashboard_list_limit' => 5,
 ];
