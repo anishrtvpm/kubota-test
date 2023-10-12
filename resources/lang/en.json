@@ -58,5 +58,7 @@
     "next":"Next",
     "open_contact_form":"Open Contact Form",
     "ip_restriction_message" : "You are unauthorised to access the portal",
-    "clear":"Clear"
+    "clear":"Clear",
+    "no_data_available" : "No Data Available",
+    "list" : "List"
 }

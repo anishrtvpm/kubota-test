@@ -58,6 +58,8 @@
     "next":"次へ",
     "open_contact_form":"お問い合わせフォームを開く",
     "ip_restriction_message" : "ポータルへのアクセスが許可されていません。",
-    "clear":"クリア"
+    "clear":"クリア",
+    "no_data_available" : "データがありません",
+    "list" : "一覧"
     
 }
