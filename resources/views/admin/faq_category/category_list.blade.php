@@ -59,7 +59,7 @@
                                         style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th style="min-width:50px">ID</th>
+                                                <th>ID</th>
                                                 <th>システム(JP)</th>
                                                 <th>カテゴリ名(JP)</th>
                                                 <th>システム名(EN)</th>
