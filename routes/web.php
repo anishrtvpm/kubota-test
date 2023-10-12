@@ -21,11 +21,11 @@ use App\Http\Controllers\User\LanguageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware(['guest','block_ip'])->group(function () {
+Route::middleware(['guest', 'block_ip'])->group(function () {
     Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
 });
 
-Route::group(['middleware' => ['auth:kubota', 'block_ip', 'is_admin']], function () {
+Route::group(['middleware' => ['auth:kubota', 'block_ip','is_admin']], function () {
 
     Route::get('/admin_dashboard', [AdminDashboardController::class, 'index'])->name('admin_dashboard');
 

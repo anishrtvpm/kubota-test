@@ -464,10 +464,10 @@
                                         <div class="card custom-card">
                                             <div class="card-header  justify-content-between">
                                                 <div class="card-title">
-                                                    <a href="{{ route('faq_list') }}">{{ __('faq') }}</a>
+                                                    <a href="{{ route('faq.list') }}">{{ __('faq') }}</a>
                                                 </div>
                                                 <div class="prism-toggle">
-                                                <a href="{{ route('faq_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
+                                                <a href="{{ route('faq.list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
                                                             class="bi bi-chevron-right"></i></button></a>
                                                 </div>
                                             </div>

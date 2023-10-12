@@ -431,3 +431,6 @@ input[type="number"]::-webkit-outer-spin-button {
         padding-top: 85px !important; /* Adjust the padding as needed */
       }
   }
+.form-control::-webkit-search-cancel-button {
+    display: none;
+}

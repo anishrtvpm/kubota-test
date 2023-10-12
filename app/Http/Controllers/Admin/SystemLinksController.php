@@ -70,7 +70,7 @@ class SystemLinksController extends Controller
         if (!$systemId) {
             return Redirect::back()->with('error', trans('invalid_request_error'));
         }
-        $successMessage = $request->get('system_id') ? trans('system_links_update_success') : trans('system_links_create_success');
+        $successMessage = $request->get('system_id') ? "システムリンクが正常に更新された" : "システムリンクの作成に成功";
         return response()->json(['message' => $successMessage]);
     }
 
@@ -78,7 +78,7 @@ class SystemLinksController extends Controller
     {
         $systemLinks = $this->systemLinks->deleteRecords($request);
         if ($systemLinks) {
-            return response()->json(['message' => trans('delete_success')]);
+            return response()->json(['message' => "削除に成功"]);
         }
         return response()->json(['error' => trans('invalid_request_error')]);
     }

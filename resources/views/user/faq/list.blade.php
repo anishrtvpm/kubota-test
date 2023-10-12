@@ -32,8 +32,8 @@
                                     </div>
                                     <div class="col-12 w-50">
                                         <div class="input-group">
-                                            <input type="search" class="form-control border-1 px-2" placeholder="{{ __('enter_keywords')}}" aria-label="Username">
-                                            <a href="javascript:void(0);" class="input-group-text" id="Search-Grid"><i class="fe fe-search header-link-icon fs-18"></i></a>
+                                            <input type="search" class="form-control border-1 px-2" placeholder="{{ __('enter_keywords')}}" aria-label="Username" id="search_keyword">
+                                            <a href="javascript:void(0);" class="input-group-text keyword_btn" id="search-grid"><i class="fas fa-search"></i></a>
                                         </div>
                                     </div>
                                 </form>
@@ -44,7 +44,7 @@
 
                                    
                                     <div class="col-12 w-25">
-                                        <select class="form-select" id="inlineFormSelectCatParent">
+                                        <select class="form-select top_category" id="inlineFormSelectCatParent">
                                             <option selected>Select</option>
                                             
                                             @if(!empty($faqCategory))
@@ -56,7 +56,7 @@
                                         </select>
                                     </div>
                                     <div class="col-12 w-25">
-                                        <select class="form-select" id="inlineFormSelectCatChild">
+                                        <select class="form-select sub_category" id="inlineFormSelectCatChild">
                                             <option selected>Select</option>
                                             @if(!empty($faqCategory))
                                                 @foreach($faqCategory['subCategory'] as $subCategory)
@@ -66,7 +66,10 @@
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">{{ __('search') }}</button>
+                                        <button type="button" class="btn btn-primary">{{ __('search') }}</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-warning clear_btn">{{ __('clear') }}</button>
                                     </div>
                                 </form>
                                 <div class="faq_list_wrapper">
@@ -87,7 +90,5 @@
 @endsection
 
 @section('js')
-
 <script src="{{ asset('js/user/faq.js') }}"></script>
-
 @endsection

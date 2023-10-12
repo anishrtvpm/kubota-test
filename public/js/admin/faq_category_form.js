@@ -7,7 +7,9 @@ $.ajaxSetup({
 $.validator.addMethod("urlCheck", function (value) {
     return isValidUrl(value);
 });
-
+$.validator.addMethod("fullwidth", function (value, element) {
+    return fullWidthValidation(value);
+});
 
 $('#faqCategoryForm').validate({
     rules: {
@@ -18,6 +20,7 @@ $('#faqCategoryForm').validate({
         top_category_en_name: {
             required: true,
             maxlength: 100,
+            fullwidth:true,
         },
         sub_category_ja_name: {
             required: true,
@@ -26,6 +29,7 @@ $('#faqCategoryForm').validate({
         sub_category_en_name: {
             required: true,
             maxlength: 100,
+            fullwidth:true,
         },
         sort: {
             required: true,
@@ -49,6 +53,7 @@ $('#faqCategoryForm').validate({
         top_category_en_name: {
             required: 'システム(EN)は必須項目です。',
             maxlength: 'システム(EN)は 100文字以内で設定してください。',
+            fullwidth:"半角のみで入力してください。",
         },
         sub_category_ja_name: {
             required: 'カテゴリ名(JP)は必須項目です。',
@@ -57,6 +62,7 @@ $('#faqCategoryForm').validate({
         sub_category_en_name: {
             required: 'カテゴリ名(EN)は必須項目です。',
             maxlength: 'カテゴリ名(EN)は 100文字以内で設定してください。',
+            fullwidth:"半角のみで入力してください。",
         },
         sort: {
             required: '表示順は必須項目です。',

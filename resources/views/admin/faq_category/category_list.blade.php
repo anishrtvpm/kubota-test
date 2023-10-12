@@ -53,13 +53,13 @@
                                 @include('admin.faq_category.form_modal');
                             </div>
 
-                            <div class="row">
+                            <div class="row datatable_scroll">
                                 <div class="col-xl-12">
                                     <table id="faqCategoryTable" class="table table-bordered text-nowrap"
                                         style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th style="min-width:50px">ID</th>
+                                                <th>ID</th>
                                                 <th>システム(JP)</th>
                                                 <th>カテゴリ名(JP)</th>
                                                 <th>システム名(EN)</th>
@@ -72,6 +72,12 @@
                                     </table>
                                 </div>
                             </div>
+                            <div class="row dataTables_wrapper ">
+                                <div class="col-sm-12 col-md-5" id="targetInfo"></div>
+                                <div class="col-sm-12 col-md-7" id="targetPagination"></div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
