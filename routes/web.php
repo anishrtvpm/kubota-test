@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\FaqDataController;
 use App\Http\Controllers\User\LanguageController;
 
 /*
@@ -42,6 +43,10 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip', 'is_admin']], function
 
     Route::get('/announcement/create', [AnnouncementController::class, 'create'])->name('announcement.create');
     Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
+    
+    Route::get('/faq_data/create', [FaqDataController::class, 'create'])->name('faq_data.create');
+    Route::post('/faq_data/store', [FaqDataController::class, 'store'])->name('faq_data.store');
+    Route::get('/faq_data/get-category', [FaqDataController::class, 'getCategory'])->name('faq_data.get-category');
     
     Route::get('/faq_edit', function () {
         return view('admin.faq_edit');

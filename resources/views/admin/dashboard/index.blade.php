@@ -462,10 +462,10 @@
                     <div class="card custom-card">
                         <div class="card-header  justify-content-between">
                             <div class="card-title">
-                                <a href="{{ route('admin_notice_list') }}">{{ __('notice') }}</a>
+                                <a href="{{ route('notice_list') }}">{{ __('notice') }}</a>
                             </div>
                             <div class="prism-toggle">
-                            <a href="{{ route('admin_notice_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
+                            <a href="{{ route('notice_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
                                         class="bi bi-chevron-right"></i></button></a>
                             </div>
                         </div>

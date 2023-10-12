@@ -34,4 +34,7 @@
     <script src="{{ asset('js/toastr.js') }}"></script>
 
     <script src="{{ asset('js/sweetalert.js') }}"></script>
+    <script src="{{ asset('js/summernote-lite.min.js') }}" integrity="sha256-5slxYrL5Ct3mhMAp/dgnb5JSnTYMtkr4dHby34N10qw=" crossorigin="anonymous"></script>
+    <!-- language pack -->
+    <script src="{{ asset('libs/summernote/lang/summernote-ja-JP.min.js') }}"></script>
 
