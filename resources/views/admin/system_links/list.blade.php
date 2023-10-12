@@ -64,6 +64,14 @@
                                     </table>
                                 </div>
                             </div>
+
+                            <div class="row dataTables_wrapper ">
+                                <div class="col-sm-12 col-md-5" id="targetInfo"></div>
+                                <div class="col-sm-12 col-md-7" id="targetPagination"></div>
+                            </div>
+                            
+
+
                         </div>
                     </div>
                 </div>

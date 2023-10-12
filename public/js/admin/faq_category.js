@@ -81,6 +81,9 @@ $(document).ready(function () {
     });
 
 
+    $('#faqCategoryTable_info').detach().appendTo('#targetInfo');
+    $('#faqCategoryTable_paginate').detach().appendTo('#targetPagination');
+
         // prevent esc key
     $('#faqCategoryModal').modal({
         keyboard: false
