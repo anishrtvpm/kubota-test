@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('content')
 
-    <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
+    <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb gap-3 ">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('home') }}</a></li>
