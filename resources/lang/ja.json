@@ -69,6 +69,8 @@
     "feedback_question_form":"ご意見・ご質問フォーム",
     "feedback_question_form_text":"このQ&Aで問題が解決しない場合やご意見などございましたら、以下ボタンより問合せフォームに移動して メールをお送りください。",
     "category":"カテゴリ",
-    "empty_data":"データが見つかりません！"
+    "empty_data":"データが見つかりません！",
+    "no_data_available" : "データがありません",
+    "list" : "一覧"
     
 }

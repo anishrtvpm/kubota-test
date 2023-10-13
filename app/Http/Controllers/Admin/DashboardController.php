@@ -22,10 +22,12 @@ class DashboardController extends Controller
         $groupId = $userInfo ? $userInfo['group_id'] : null;
         $annoucement = $this->dashboard->getUserGroupAnnouncement($groupId);
         $systemLinks = $this->dashboard->getSystemLinkData($groupId);
+        $faqs = $this->dashboard->getFaqs($groupId);
 
         return view('admin.dashboard.index')->with([
             'annoucement' => $annoucement,
-            'systemLinks' => $systemLinks
+            'systemLinks' => $systemLinks,
+            'faqs'        => $faqs
         ]);
     }
 
