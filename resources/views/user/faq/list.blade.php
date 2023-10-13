@@ -4,8 +4,8 @@
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('home') }}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('faq') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('home') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}#faq">{{ __('faq') }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ __('faq_list') }}</li>
             </ol>
         </nav>
@@ -45,11 +45,10 @@
                                    
                                     <div class="col-12 w-25">
                                         <select class="form-select top_category" id="inlineFormSelectCatParent">
-                                            <option selected>Select</option>
-                                            
-                                            @if(!empty($faqCategory))
-                                                @foreach($faqCategory['mainCategory'] as $mainCategory)
-                                                    <option value="{{$mainCategory['category_id']}}">{{$mainCategory['topCategory']}}</option>
+                                            <option value='' selected>Select</option>
+                                            @if(!empty($topCategories))
+                                                @foreach($topCategories as $topCategory)
+                                                    <option value="{{$topCategory->name}}">{{$topCategory->name}}</option>
                                                 @endforeach
                                             @endif
                                             
@@ -57,16 +56,11 @@
                                     </div>
                                     <div class="col-12 w-25">
                                         <select class="form-select sub_category" id="inlineFormSelectCatChild">
-                                            <option selected>Select</option>
-                                            @if(!empty($faqCategory))
-                                                @foreach($faqCategory['subCategory'] as $subCategory)
-                                                    <option value="{{$subCategory['category_id']}}">{{$subCategory['subCategory']}}</option>
-                                                @endforeach
-                                            @endif
+                                            <option value='' selected>Select</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-primary">{{ __('search') }}</button>
+                                        <button type="button" class="btn btn-primary searchBtn">{{ __('search') }}</button>
                                     </div>
                                     <div class="col-12">
                                         <button type="button" class="btn btn-warning clear_btn">{{ __('clear') }}</button>
