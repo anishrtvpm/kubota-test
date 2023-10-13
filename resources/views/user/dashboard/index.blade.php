@@ -463,7 +463,7 @@
                                 <div class="col-xl-12">
                                     <div class="col-xl-12">
                                         <div class="card custom-card">
-                                            <div class="card-header  justify-content-between">
+                                            <div class="card-header justify-content-between">
                                                 <div class="card-title">
                                                     <a href="{{ route('document_list') }}"> {{ __('core_system_doc_management') }} </a>
                                                 </div>

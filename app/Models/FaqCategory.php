@@ -104,6 +104,13 @@ class FaqCategory extends Model
         }
     }
 
+    /**
+     *
+     * This method validate the category combination already exists
+     *
+     * @param  array  $request
+     * @return array
+     */
     public function validateInputData($request)
     {
         $response['error'] = $response['message'] = $response['field'] = '';
@@ -122,6 +129,14 @@ class FaqCategory extends Model
 
         return $response;
     }
+
+    /**
+     *
+     * This method validate the japanese category combination already exists
+     *
+     * @param  $request
+     * @return array
+     */
     public function jaCategoryCombinationExists($request)
     {
 
@@ -156,6 +171,13 @@ class FaqCategory extends Model
         }
     }
 
+    /**
+     *
+     * This method validate the english category combination already exists
+     *
+     * @param  $request
+     * @return array
+     */
     public function enCategoryCombinationExists($request)
     {
         $top_category_en_name = $request->input('top_category_en_name');
@@ -170,57 +192,47 @@ class FaqCategory extends Model
         }
     }
 
+    /**
+     *
+     * This method retrieves and returns a list of topcategories.
+     *
+     * @param  $request
+     * @return array
+     */
 
     public function getTopCategories()
     {
         $language = app()->getLocale();
         $topCategory = 'top_category_' . $language . '_name';
-        return FaqCategory::select($topCategory.' as name')
+        return FaqCategory::select($topCategory . ' as name')
             ->where('is_deleted', 0)
             ->groupBy('top_category_ja_name')
             ->orderBy('category_id', 'asc')
             ->get();
     }
-
+    /**
+     *
+     * This method retrieves and returns a list of subcategories.
+     *
+     * @param  $request
+     * @return array
+     */
     public function getSubCategories($request)
     {
         $language = app()->getLocale();
         $subCategory = 'sub_category_' . $language . '_name';
         $topCategory = 'top_category_' . $language . '_name';
-        $categories = FaqCategory::select('category_id', $subCategory.' as name')
-            ->where('is_deleted', 0)
+        $categories = FaqCategory::select('category_id', $subCategory . ' as name')
+            ->where('is_deleted', config('constants.active'))
             ->where($topCategory, $request->get('top_category_id'))
             ->orderBy('category_id', 'asc')
             ->get();
-        $option="<option value='' selected>Select</option>";
-        if(!empty($categories)){
-            foreach($categories as $cat){
-                $option .="<option value=".$cat->category_id.">".$cat->name."</option>";
+        $option = "<option value='' selected>Select</option>";
+        if (!empty($categories)) {
+            foreach ($categories as $cat) {
+                $option .= "<option value=" . $cat->category_id . ">" . $cat->name . "</option>";
             }
         }
         return response()->json($option);
-    }
-
-
-    public function getFaqCategory()
-    {
-        $language = app()->getLocale();
-        $topCategory = 'top_category_' . $language . '_name';
-        $subCategory = 'sub_category_' . $language . '_name';
-
-        $results = FaqCategory::select($topCategory, $subCategory, 'category_id')
-            ->where('status', config('constants.public'))
-            ->orderBy('sort', 'asc')
-            ->get();
-
-        $category = [];
-        if ($results) {
-            foreach ($results as $res) {
-                $category['mainCategory'][] = ['category_id' => $res->category_id, 'topCategory' => $res->$topCategory];
-                $category['subCategory'][] = ['category_id' => $res->category_id, 'subCategory' => $res->$subCategory];
-            }
-            return $category;
-        }
-        return false;
     }
 }

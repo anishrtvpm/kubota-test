@@ -45,7 +45,11 @@ class FaqData extends Model
   ];
 
   /**
-   * retrieving faq list for user side 
+   *
+   * This method retrieves and returns a list of faq data.
+   *
+   * @param  $request 
+   * @param  $groupId 
    * @return array
    */
   public function getFaqList($request, $groupId)
@@ -71,7 +75,7 @@ class FaqData extends Model
 
     if ($top_category != "") {
       $categories = FaqCategory::select('category_id')
-        ->where('is_deleted', 0)
+        ->where('is_deleted', config('constants.active'))
         ->where($topCategoryfield, $top_category)
         ->orderBy('category_id', 'asc')
         ->get()->toArray();
@@ -83,13 +87,17 @@ class FaqData extends Model
     }
     $faqData->whereRaw('FIND_IN_SET(?, display_group)', [$groupId]);
     $faqData->where('status', config('constants.public'));
+    $faqData ->where('is_deleted', config('constants.active'));
     $faqData->orderBy('sort', 'asc');
     return $faqData->paginate(config('constants.data_table_per_page'));
   }
 
   /**
-   * retrieving faq detail for user side 
-   * @return mixed
+   *
+   * This method retrieves details of specific faq
+   *
+   * @param  $id
+   * @return array
    */
   public function getFaqDetail($id)
   {
@@ -97,7 +105,7 @@ class FaqData extends Model
     $language = app()->getLocale();
     $topCategoryfield = 'top_category_' . $language . '_name';
     $subCategoryfield = 'sub_category_' . $language . '_name';
-   
+
     return FaqData::select('faqs_data.*', 'faqs_categories.' . $topCategoryfield, 'faqs_categories.' . $subCategoryfield)
       ->join('faqs_categories', 'faqs_data.category_id', '=', 'faqs_categories.category_id')
       ->where('faqs_data.faq_id', $id)
