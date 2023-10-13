@@ -224,3 +224,15 @@ if (!function_exists('getQuickNavigation')) {
         return $str;
     }
 }
+
+
+function dateFormat($date, $format)
+{
+    return $date ? \Carbon\Carbon::parse($date)->format($format) : "";
+}
+
+function textFormat($input)
+{
+    return strlen($input) > config('constants.text_display_max_length') ?
+        mb_substr($input, 0, config('constants.text_display_max_length')) . '..' : $input;
+}

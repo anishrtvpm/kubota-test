@@ -170,22 +170,54 @@ class FaqCategory extends Model
         }
     }
 
+
+    public function getTopCategories()
+    {
+        $language = app()->getLocale();
+        $topCategory = 'top_category_' . $language . '_name';
+        return FaqCategory::select($topCategory.' as name')
+            ->where('is_deleted', 0)
+            ->groupBy('top_category_ja_name')
+            ->orderBy('category_id', 'asc')
+            ->get();
+    }
+
+    public function getSubCategories($request)
+    {
+        $language = app()->getLocale();
+        $subCategory = 'sub_category_' . $language . '_name';
+        $topCategory = 'top_category_' . $language . '_name';
+        $categories = FaqCategory::select('category_id', $subCategory.' as name')
+            ->where('is_deleted', 0)
+            ->where($topCategory, $request->get('top_category_id'))
+            ->orderBy('category_id', 'asc')
+            ->get();
+        $option="<option value='' selected>Select</option>";
+        if(!empty($categories)){
+            foreach($categories as $cat){
+                $option .="<option value=".$cat->category_id.">".$cat->name."</option>";
+            }
+        }
+        return response()->json($option);
+    }
+
+
     public function getFaqCategory()
     {
-        $language=app()->getLocale();
-        $topCategory = 'top_category_'.$language.'_name';
-        $subCategory = 'sub_category_'.$language.'_name';
+        $language = app()->getLocale();
+        $topCategory = 'top_category_' . $language . '_name';
+        $subCategory = 'sub_category_' . $language . '_name';
 
-        $results = FaqCategory::select($topCategory,$subCategory,'category_id')
+        $results = FaqCategory::select($topCategory, $subCategory, 'category_id')
             ->where('status', config('constants.public'))
             ->orderBy('sort', 'asc')
             ->get();
 
-        $category=[];
+        $category = [];
         if ($results) {
-            foreach($results as $res){
-                $category['mainCategory'][]=['category_id'=>$res->category_id,'topCategory'=>$res->$topCategory];
-                $category['subCategory'][]=['category_id'=>$res->category_id,'subCategory'=>$res->$subCategory];
+            foreach ($results as $res) {
+                $category['mainCategory'][] = ['category_id' => $res->category_id, 'topCategory' => $res->$topCategory];
+                $category['subCategory'][] = ['category_id' => $res->category_id, 'subCategory' => $res->$subCategory];
             }
             return $category;
         }

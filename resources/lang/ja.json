@@ -50,7 +50,7 @@
     "social_media_policy": "ソーシャルメディアポリシー",
     "sitemap": "サイトマップ",
     "faq_list":"FAQ一覧",
-    "keyword-search":"キーワード検索",
+    "keyword_search":"キーワード検索",
     "category_search":"カテゴリ検索",
     "search":"検索",
     "enter_keywords":"キーワードを入力",
@@ -58,6 +58,17 @@
     "next":"次へ",
     "open_contact_form":"お問い合わせフォームを開く",
     "ip_restriction_message" : "ポータルへのアクセスが許可されていません。",
-    "clear":"クリア"
+    "clear":"クリア",
+    "faq_number":"FAQ番号",
+    "question_date":"質問日",
+    "answer_date":"回答日",
+    "responder":"回答者",
+    "answer":"回答",
+    "references":"参考資料",
+    "reference_url":"参考URL",
+    "feedback_question_form":"ご意見・ご質問フォーム",
+    "feedback_question_form_text":"このQ&Aで問題が解決しない場合やご意見などございましたら、以下ボタンより問合せフォームに移動して メールをお送りください。",
+    "category":"カテゴリ",
+    "empty_data":"データが見つかりません！"
     
 }
