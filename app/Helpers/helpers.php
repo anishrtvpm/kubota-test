@@ -224,3 +224,19 @@ if (!function_exists('getQuickNavigation')) {
         return $str;
     }
 }
+
+/* Get the language string.
+ *
+ * @param integer $langCode
+ * @return string
+ */
+
+if (!function_exists('getLanguageString')) {
+    function getLanguageString($langCode) {
+        if ($langCode == 'en') {
+            return "English";
+        } elseif($langCode == 'ja') {
+            return "日本語";
+        }
+    }
+}
