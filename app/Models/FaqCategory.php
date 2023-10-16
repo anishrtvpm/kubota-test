@@ -227,7 +227,7 @@ class FaqCategory extends Model
             ->where($topCategory, $request->get('top_category_id'))
             ->orderBy('category_id', 'asc')
             ->get();
-        $option = "<option value='' selected>Select</option>";
+        $option = "<option value='' selected>".trans('sub_category')."</option>";
         if (!empty($categories)) {
             foreach ($categories as $cat) {
                 $option .= "<option value=" . $cat->category_id . ">" . $cat->name . "</option>";

@@ -9,7 +9,7 @@
         </div>
         @endforeach
     @else
-        <p>{{ __('empty_data')}}</p>
+        <p>{{ __('no_data_available')}}</p>
     @endif
 </div>
 <div class="d-grid gap-2 col-3 mx-auto mb-5 pagination-links">

@@ -6,7 +6,7 @@ return [
     'temporary_password_chars' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
     'data_table_starting_column_index' => 0,
     'data_table_starting_column_index_order' => 'desc',
-    'data_table_per_page' => 20,
+    'data_table_per_page' => 2,
     'toastr_time_out' => 3000,
     'ajax_xhr_error_status' => 419,
     'date_format_ymd' => 'Y/m/d',
