@@ -24,54 +24,60 @@
                                 <div class="col-md-4 row mb-3">
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">大カテゴリ</label>
                                     <div class="col-sm-8">
-                                        <select id="inputState1" class="form-select">
-                                            <option selected>Datalizer</option>
-                                            <option>...</option>
+                                        <select name="top-category" class="form-select top_category" id="inlineFormSelectCatParent">
+                                            <option value='' selected>選択する</option>
+                                            @if(!empty($topCategories))
+                                                @foreach($topCategories as $topCategory)
+                                                    <option value="{{$topCategory->name}}">{{$topCategory->name}}</option>
+                                                @endforeach
+                                            @endif
+                                            
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4 row mb-3">
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">中カテゴリ</label>
                                     <div class="col-sm-8">
-                                        <select id="inputState1" class="form-select">
-                                            <option selected>Datalizer</option>
-                                            <option>...</option>
+                                        <select name="sub-category" class="form-select sub_category" id="inlineFormSelectCatChild">
+                                            <option value='' selected>選択する</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4 row mb-3 me-1">
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">言語</label>
                                     <div class="col-sm-8">
-                                        <select class="form-select" id="inlineFormSelectCatParent1">
-                                            <option selected>日本語</option>
-                                            <option value="1">日本語</option>
-                                            <option value="2">英語</option>
+                                        <select name="language" class="form-select" id="inlineFormSelectLanguage">
+                                            <option value=''>選択する</option>
+                                            <option value="ja">日本語</option>
+                                            <option value="en">英語</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4 row mb-3 me-1">
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">キーワード</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="input-keyword" placeholder="キーワードを入力">
+                                        <input name="keyword-search" type="text" class="form-control" id="input-keyword" placeholder="キーワードを入力">
                                     </div>
                                 </div>
                                 <div class="col-md-4 row mb-3">
                                     <label for="text-area" class="col-sm-3 col-form-label">状態</label>
                                     <div class="col-sm-8">
-                                        <select class="form-select" id="inlineFormSelectCatParent5">
-                                            <option selected>公開中</option>
-                                            <option value="1">未公開</option>
-                                            <option value="2">保留中</option>
+                                        <select name="faqstatus" class="form-select" id="inlineFormStatus">
+                                            <option value=''>選択する</option>
+                                            <option value="0">未公開</option>
+                                            <option value="1">保留中</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4 row mb-3">
-                                    <a href="javascript:void(0);"><button type="button" class="btn btn-primary btn-wave px-4">検索</button></a>
+                                    <a href="javascript:void(0);" title="検索"><button id="searchInput" title="検索" type="button" class="btn btn-primary btn-wave px-4">検索</button></a>
+                                    <!--<button type="button" id="clearFilters" class="btn btn-warning clear_btn">Clear</button>-->
                                 </div>
+                                
                                 <div class="col-md-12 text-end">
                                     <div class="btn-list">
-                                        <a href="{{ route('faq_category.list') }}"><button type="button" class="btn btn-primary btn-wave px-4">カテゴリ管理</button></a>
-                                        <a href="{{ route('faq_edit') }}"><button type="button" class="btn btn-warning btn-wave px-3">新規FAQ作成</button></a>
+                                        <a href="{{ route('faq_category.list') }}"><button title="カテゴリ管理" type="button" class="btn btn-primary btn-wave px-4">カテゴリ管理</button></a>
+                                        <a href="{{ route('faq_edit') }}"><button title="新規FAQ作成" type="button" class="btn btn-warning btn-wave px-3">新規FAQ作成</button></a>
                                     </div>
                                 </div>
                             </form>
@@ -86,21 +92,25 @@
                                     <table id="faqListTable" class="table table-bordered text-nowrap" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>No.</th>
-                                                <th>言語</th>
-                                                <th>システム</th>
-                                                <th>中カテゴリ</th>
-                                                <th>並び順</th>
-                                                <th>タイトル</th>
-                                                <th>状態</th>
-                                                <th>質問日</th>
-                                                <th>回答日</th>
-                                                <th>回答者</th>
+                                                <th title="No.">No.</th>
+                                                <th title="言語">言語</th>
+                                                <th title="システム">システム</th>
+                                                <th title="中カテゴリ">中カテゴリ</th>
+                                                <th title="並び順">並び順</th>
+                                                <th title="タイトル">タイトル</th>
+                                                <th title="状態">状態</th>
+                                                <th title="質問日">質問日</th>
+                                                <th title="回答日">回答日</th>
+                                                <th title="回答者">回答者</th>
                                             </tr>
                                         </thead>                                        
                                     </table>
                                 </div>
-                            </div>
+                                    <div class="row dataTables_wrapper ">
+                                    <div class="col-sm-12 col-md-5" id="targetInfo"></div>
+                                    <div class="col-sm-12 col-md-7" id="targetPagination"></div>
+                                </div>
+                            </div>                            
                         </div>
                     </div>
                 </div>
@@ -108,4 +118,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+    var slTable;
+</script>
+<script src="{{ asset('js/admin/faq_list.js') }}"></script>
+
 @endsection

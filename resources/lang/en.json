@@ -72,5 +72,6 @@
     "category":"Category",
     "empty_data":"No data found..!!",
     "no_data_available" : "No Data Available",
-    "list" : "List"
+    "list" : "List",
+    "select_text" : "Select"
 }

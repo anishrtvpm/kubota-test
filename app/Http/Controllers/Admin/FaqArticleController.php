@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Redirect;
 class FaqArticleController extends Controller
 {
     private $faqData;
-    public function __construct(FaqData $faqData)
+    public function __construct(FaqData $faqData, FaqCategory $faqCategory)
     {
         $this->middleware('auth');
         $this->faqData = $faqData;
+        $this->faqCategory = $faqCategory;
     }
 
     /**
@@ -23,7 +24,10 @@ class FaqArticleController extends Controller
      */
     public function index(Request $request)
     {        
-        return view('admin.faq_data.list');
+        $topCategories = $this->faqCategory->getTopCategories('ja');
+        return view('admin.faq_data.list')->with([
+            'topCategories' => $topCategories,
+        ]);
     }
 
     /**
@@ -32,8 +36,8 @@ class FaqArticleController extends Controller
     public function get(Request $request)
     {
         $draw = $request->get('draw');
-        //$totalRecords = $this->systemLinks->totalRecords();
-        $totalRecordswithFilter = $this->faqData->getFaqData('', '', '', '', config('constants.get_type_count'));
+        $totalRecords = $this->faqData->totalRecords();
+        $totalRecordswithFilter = $this->faqData->getFaqData('', '', '', '', config('constants.get_type_count'), $request);
         $records = $this->faqData->getFilteredData($request, 'data');
 
         $response = array(
@@ -43,6 +47,18 @@ class FaqArticleController extends Controller
             "aaData" => $records
         );
         return response()->json($response);
+    }
+
+    /**
+     * Retrieve and return data using AJAX.
+     *
+     * This method handles AJAX requests to fetch sub categories based on selected top categories in faq list page  
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function getSubCategories(Request $request)
+    {
+        return $this->faqCategory->getSubCategories($request);
     }
 
 

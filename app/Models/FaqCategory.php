@@ -12,6 +12,14 @@ class FaqCategory extends Model
     protected $table = 'faqs_categories';
     const UPDATED_AT = 'modified_at';
     protected $primaryKey = 'category_id';
+
+
+    public function faqItems()
+    {
+        return $this->hasMany(FaqData::class,'category_id','category_id');
+    }
+
+
     /**
      * count of total records for table listing
      * @return integer
@@ -200,15 +208,20 @@ class FaqCategory extends Model
      * @return array
      */
 
-    public function getTopCategories()
+    public function getTopCategories($lang = null)
     {
-        $language = app()->getLocale();
+        if (!is_null($lang)) {
+            $language = $lang;
+        } else {
+            $language = app()->getLocale();
+        }
         $topCategory = 'top_category_' . $language . '_name';
         return FaqCategory::select($topCategory . ' as name')
             ->where('is_deleted', 0)
             ->groupBy('top_category_ja_name')
             ->orderBy('category_id', 'asc')
             ->get();
+        
     }
     /**
      *
@@ -220,6 +233,11 @@ class FaqCategory extends Model
     public function getSubCategories($request)
     {
         $language = app()->getLocale();
+        //$selectText = __("select_text");
+        if (!empty($request->get('lang'))){
+            $language = $request->get('lang');
+            //$selectText = "選択する";
+        }
         $subCategory = 'sub_category_' . $language . '_name';
         $topCategory = 'top_category_' . $language . '_name';
         $categories = FaqCategory::select('category_id', $subCategory . ' as name')
@@ -227,12 +245,15 @@ class FaqCategory extends Model
             ->where($topCategory, $request->get('top_category_id'))
             ->orderBy('category_id', 'asc')
             ->get();
-        $option = "<option value='' selected>Select</option>";
+        $option = "<option value='' selected>".trans('sub_category')."</option>";
         if (!empty($categories)) {
             foreach ($categories as $cat) {
                 $option .= "<option value=" . $cat->category_id . ">" . $cat->name . "</option>";
             }
         }
         return response()->json($option);
+        
     }
+
+    
 }

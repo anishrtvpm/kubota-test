@@ -44,8 +44,8 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip','is_admin']], function 
     Route::get('/announcement/create', [AnnouncementController::class, 'create'])->name('announcement.create');
     Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
 
-    Route::get('/faq_list', [FaqArticleController::class, 'index'])->name('faq_admin.list');
-    Route::get('/faq_list/get', [FaqArticleController::class, 'get'])->name('faq_admin.get');
+    Route::get('/admin/faq_list', [FaqArticleController::class, 'index'])->name('faq_admin.list');
+    Route::get('/admin/faq_list/get', [FaqArticleController::class, 'get'])->name('faq_admin.get');
     
     Route::get('/faq_edit', function () {
         return view('admin.faq_edit');

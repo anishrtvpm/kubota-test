@@ -71,6 +71,7 @@
     "category":"カテゴリ",
     "empty_data":"データが見つかりません！",
     "no_data_available" : "データがありません",
-    "list" : "一覧"
+    "list" : "一覧",
+    "select_text" : "選択する"
     
 }
