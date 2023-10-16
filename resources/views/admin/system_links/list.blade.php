@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('content')
-    <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
+    <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb gap-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">トップページ</a></li>
@@ -52,9 +52,9 @@
                                     <table id="systemLinksTable" class="table table-bordered text-nowrap" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th style="width: 18px;">No.</th>
+                                                <th >No</th>
                                                 <th>カテゴリ</th>
-                                                <th style="width: 10px;">表示順</th>
+                                                <th >表示順</th>
                                                 <th >システム名(JP)</th>
                                                 <th>システム名(EN)</th>
                                                 <th>URL(JP)</th>
@@ -64,6 +64,14 @@
                                     </table>
                                 </div>
                             </div>
+
+                            <div class="row dataTables_wrapper ">
+                                <div class="col-sm-12 col-md-5" id="targetInfo"></div>
+                                <div class="col-sm-12 col-md-7" id="targetPagination"></div>
+                            </div>
+                            
+
+
                         </div>
                     </div>
                 </div>

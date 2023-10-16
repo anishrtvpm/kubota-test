@@ -120,29 +120,36 @@ class SystemLinks extends Model
         return $systemLink;
     }
 
+    /**
+     * checking system names exists in both languages and ensure that  perform full-width and half-width checks in Japanese.
+     * @return integer
+     */
     public function systemNameExists($request)
     {
         $systemId = $request->get('system_id');
         $categoryId = $request->get('category');
-        
-        if($request->get('ja_system_name')){
+
+        if ($request->get('ja_system_name')) {
             $systemName = $request->get('ja_system_name');
-            $systemField='ja_system_name';
+            $systemField = 'ja_system_name';
         }
-        if($request->get('en_system_name')){
+        if ($request->get('en_system_name')) {
             $systemName = $request->get('en_system_name');
-            $systemField='en_system_name';
+            $systemField = 'en_system_name';
         }
 
+        $system = self::where(function ($query) use ($systemName, $systemField) {
+            $halfName = mb_convert_kana($systemName, 'k');
+            $fullName = mb_convert_kana($systemName, 'KV');
+            $query->where($systemField, "like", '%' . $halfName . '%')
+                ->orWhere($systemField, "like", '%' . $fullName . '%')
+                ->orWhere($systemField, 'like', '%' . $systemName . '%');
+        });
+        $system->where('category_id', $categoryId);
         if ($systemId) {
-            return SystemLinks::where($systemField, $systemName)
-            ->where('category_id', $categoryId)
-            ->where('system_id', '!=', $systemId)
-            ->first();
+            return $system->where('system_id', '!=', $systemId)->first();
         } else {
-            return SystemLinks::where($systemField, $systemName)
-            ->where('category_id', $categoryId)
-            ->first();
+            return $system->first();
         }
     }
 }

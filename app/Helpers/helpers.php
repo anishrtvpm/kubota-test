@@ -234,9 +234,20 @@ if (!function_exists('getQuickNavigation')) {
 if (!function_exists('getLanguageString')) {
     function getLanguageString($langCode) {
         if ($langCode == 'en') {
-            return "English";
+            return "英語";
         } elseif($langCode == 'ja') {
             return "日本語";
         }
     }
+}
+
+function dateFormat($date, $format)
+{
+    return $date ? \Carbon\Carbon::parse($date)->format($format) : "";
+}
+
+function textFormat($input)
+{
+    return strlen($input) > config('constants.text_display_max_length') ?
+        mb_substr($input, 0, config('constants.text_display_max_length')) . '..' : $input;
 }

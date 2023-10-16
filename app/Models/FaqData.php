@@ -41,6 +41,21 @@ class FaqData extends Model
       'modified_user',
     ];
 
+    public function faqCategory()
+    {
+        return $this->belongsTo(FaqCategory::class, 'category_id', 'category_id');
+    }
+
+    /**
+     * count of total records for table listing
+     * @return integer
+     */
+    public function totalRecords()
+    {
+        return self::select('count(*) as allcount')->count();
+    }
+
+
     /**
      * Get array of data or total count of data with filter(if any) 
      * @param integer $offset
@@ -50,17 +65,50 @@ class FaqData extends Model
      * @param string $type
      * @return array for data array
      */    
-    public function getFaqData($offset, $chunkSize, $columnName, $columnSortOrder, $type = '')
+    public function getFaqData($offset, $chunkSize, $columnName, $columnSortOrder, $type = '', $request)
     {
+
+        $search_keyword = $request->get('inputkeyword');
         if ($type == config('constants.get_type_count')) {
-            $faqData = FaqData::select('count(*) as allcount');
-            $faqData->where('is_deleted', config('constants.active')); // Should we check this? If deleted items can be shown here?
-            return $faqData->count();
+          $faqData = FaqData::select('faqs_data.*', 'faqs_categories.top_category_ja_name AS top_category', 'faqs_categories.sub_category_ja_name AS sub_category');  
+            
         } else {
-            $faqData = FaqData::orderBy($columnName, $columnSortOrder);
-            $faqData->where('is_deleted', config('constants.active')); // Should we check this? If deleted items can be shown here?
-            return $faqData->skip($offset)->take($chunkSize)->get();
+            $faqData = FaqData::select('faqs_data.*', 'faqs_categories.top_category_ja_name AS top_category', 'faqs_categories.sub_category_ja_name AS sub_category')->orderBy($columnName, $columnSortOrder);   
         }
+        $faqData->join('faqs_categories', 'faqs_data.category_id', '=', 'faqs_categories.category_id');
+
+        // filter for sub category
+        if (!empty($request->get('inlineFormSelectCatChild'))){
+          $faqData->where('faqs_data.category_id', $request->get('inlineFormSelectCatChild'));
+        } else if (!empty($request->get('inlineFormSelectCatParent'))){ 
+          $faqData->where('faqs_categories.top_category_ja_name', $request->get('inlineFormSelectCatParent'));
+
+        }
+
+        // filter language
+        if (!empty($request->get('inlineFormSelectLanguage'))){
+          $faqData->where('faqs_data.language', $request->get('inlineFormSelectLanguage'));
+        }        
+
+        // filter status
+        if (!is_null($request->get('inlineFormStatus'))){
+          $faqData->where('faqs_data.status', $request->get('inlineFormStatus'));
+        }
+
+        if (!empty($search_keyword)) {
+          $faqData->where(function ($query) use ($search_keyword) {
+            $halfName = mb_convert_kana($search_keyword, 'k');
+            $fullName = mb_convert_kana($search_keyword, 'KV');
+            $query->where("faqs_data.title", "like", '%' . $halfName . '%')
+              ->orWhere("faqs_data.title", "like", '%' . $fullName . '%')
+              ->orWhere('faqs_data.title', 'like', '%' . $search_keyword . '%');
+          });
+        }
+        
+        // show only non deleted items
+        $faqData->where('faqs_data.is_deleted', config('constants.active')); 
+        
+        return ($type == config('constants.get_type_count')) ? $faqData->count() : $faqData->skip($offset)->take($chunkSize)->get();
     }
 
     
@@ -78,26 +126,103 @@ class FaqData extends Model
          $orderArr = $request->get('order');
          $columnIndex = $columnIndexArr[0]['column']; // Column index
          $columnName = $columnNameArr[$columnIndex]['data']; // Column name
-         $columnSortOrder = $orderArr[0]['dir']; // asc or desc        
+         $columnSortOrder = $orderArr[0]['dir']; // asc or desc  
+               
  
-         $records = $this->getFaqData($start, $rowperpage, $columnName, $columnSortOrder, '');
+         $records = $this->getFaqData($start, $rowperpage, $columnName, $columnSortOrder, '', $request);
          $dataArr = array();
          if ($records) {
              foreach ($records as $record) {
                  $dataArr[] = array(
                      "faq_id" => $record->faq_id,
                      "category_id" => getLanguageString($record->language),
-                     "top_category_ja_name" => 'System',
-                     "sub_category_ja_name" => 'Sub category',
+                     "top_category_ja_name" => $record->top_category,
+                     "sub_category_ja_name" => $record->sub_category,
                      "sort" => $record->sort,
-                     "title" => $record->titles,
-                     "status" => $record->status                   
+                     "title" => $record->title,
+                     "status" => $record->status,
+                     'question_date' => dateFormat($record->question_date, config('constants.date_format_ymd')),
+                     'answer_date' => dateFormat($record->answer_date, config('constants.date_format_ymd')),
+                     'responder' => $record->responder                   
                  );
              }
          }
          return $dataArr;
-     }
+    }
+
+    /**
+     *
+     * This method retrieves and returns a list of faq data.
+     *
+     * @param  $request 
+     * @param  $groupId 
+     * @return array
+     */
+    public function getFaqList($request, $groupId)
+    {
+      $language = app()->getLocale();
+      $search_keyword = $request->get('search_keyword');
+      $top_category = $request->get('top_category');
+      $sub_category = $request->get('sub_category');
+
+
+      $topCategoryfield = 'top_category_' . $language . '_name';
+
+      $faqData = FaqData::select('faq_id', 'category_id', 'title', 'q_message');
+      if ($search_keyword != null) {
+        $faqData->where(function ($query) use ($search_keyword) {
+          $halfName = mb_convert_kana($search_keyword, 'k');
+          $fullName = mb_convert_kana($search_keyword, 'KV');
+          $query->where("title", "like", '%' . $halfName . '%')
+            ->orWhere("title", "like", '%' . $fullName . '%')
+            ->orWhere('title', 'like', '%' . $search_keyword . '%');
+        });
+      }
+
+      if ($top_category != "") {
+        $categories = FaqCategory::select('category_id')
+          ->where('is_deleted', config('constants.active'))
+          ->where($topCategoryfield, $top_category)
+          ->orderBy('category_id', 'asc')
+          ->get()->toArray();
+        $categoryIds = array_column($categories, 'category_id');
+        $faqData->whereIn('category_id', $categoryIds);
+      }
+      if ($sub_category != "") {
+        $faqData->where('category_id', $sub_category);
+      }
+      $faqData->whereRaw('FIND_IN_SET(?, display_group)', [$groupId]);
+      $faqData->where('status', config('constants.public'));
+      $faqData ->where('is_deleted', config('constants.active'));
+      $faqData->orderBy('sort', 'asc');
+      return $faqData->paginate(config('constants.data_table_per_page'));
+    }
+
+    /**
+     *
+     * This method retrieves details of specific faq
+     *
+     * @param  $id
+     * @return array
+     */
+    public function getFaqDetail($id)
+    {
+
+      $language = app()->getLocale();
+      $topCategoryfield = 'top_category_' . $language . '_name';
+      $subCategoryfield = 'sub_category_' . $language . '_name';
+
+      return FaqData::select('faqs_data.*', 'faqs_categories.' . $topCategoryfield, 'faqs_categories.' . $subCategoryfield)
+        ->join('faqs_categories', 'faqs_data.category_id', '=', 'faqs_categories.category_id')
+        ->where('faqs_data.faq_id', $id)
+        ->get();
+    }
 
 
 
 }
+  
+
+  
+
+
