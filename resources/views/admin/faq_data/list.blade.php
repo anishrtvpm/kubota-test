@@ -25,7 +25,7 @@
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">大カテゴリ</label>
                                     <div class="col-sm-8">
                                         <select name="top-category" class="form-select top_category" id="inlineFormSelectCatParent">
-                                            <option value='' selected>選択する</option>
+                                            <option value='' selected>{{ __("top_category") }}</option>
                                             @if(!empty($topCategories))
                                                 @foreach($topCategories as $topCategory)
                                                     <option value="{{$topCategory->name}}">{{$topCategory->name}}</option>
@@ -39,7 +39,7 @@
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">中カテゴリ</label>
                                     <div class="col-sm-8">
                                         <select name="sub-category" class="form-select sub_category" id="inlineFormSelectCatChild">
-                                            <option value='' selected>選択する</option>
+                                            <option value='' selected>{{ __("sub_category") }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -70,8 +70,11 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 row mb-3">
-                                    <a href="javascript:void(0);" title="検索"><button id="searchInput" title="検索" type="button" class="btn btn-primary btn-wave px-4">検索</button></a>
-                                    <!--<button type="button" id="clearFilters" class="btn btn-warning clear_btn">Clear</button>-->
+                                    <a href="javascript:void(0);" title="検索">
+                                        <button id="searchInput" title="検索" type="button" class="btn btn-primary btn-wave px-4">検索</button>
+                                        <button type="button" id="clearFilters" title="クリア" class="btn btn-warning clear_btn">クリア</button>
+                                    </a>
+                                    
                                 </div>
                                 
                                 <div class="col-md-12 text-end">
