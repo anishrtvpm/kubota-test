@@ -99,7 +99,7 @@ class FaqData extends Model
    * @param  $id
    * @return array
    */
-  public function getFaqDetail($id)
+  public function getFaqDetail($id, $groupId)
   {
 
     $language = app()->getLocale();
@@ -109,8 +109,10 @@ class FaqData extends Model
     return FaqData::select('faqs_data.*', 'faqs_categories.' . $topCategoryfield, 'faqs_categories.' . $subCategoryfield)
       ->join('faqs_categories', 'faqs_data.category_id', '=', 'faqs_categories.category_id')
       ->where('faqs_data.faq_id', $id)
+      ->where('faqs_data.status', config('constants.public'))
+      ->where('faqs_data.is_deleted', config('constants.active'))
+      ->whereRaw('FIND_IN_SET(?, faqs_data.display_group)', [$groupId])
       ->get();
   }
-
 
 }
