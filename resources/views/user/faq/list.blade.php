@@ -1,6 +1,17 @@
 @extends('layouts.base')
 @section('content')
+    <?php
+    $mainCategory='';
+    $subCategory='';
+    if(!empty($_GET['topcategory'])){
+        $mainCategory=$_GET['topcategory'];
+    }
+    if(!empty($_GET['subcategory'])){
+        $subCategory=$_GET['subcategory'];
+    }
+    
 
+    ?>
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb gap-3 ">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
@@ -45,10 +56,12 @@
                                    
                                     <div class="col-12 w-25">
                                         <select tabindex="3" class="form-select top_category" id="inlineFormSelectCatParent">
-                                            <option value='' selected>{{ __('top_category')}}</option>
+                                            <option value=''>{{ __('top_category')}}</option>
                                             @if(!empty($topCategories))
                                                 @foreach($topCategories as $topCategory)
-                                                    <option value="{{$topCategory->name}}">{{$topCategory->name}}</option>
+                                                    <option value="{{$topCategory->name}}" {{  !empty($mainCategory) ?
+                                        ($mainCategory == $topCategory->name ?
+                                        'selected' : ''  ) :''  }}>{{$topCategory->name}}</option>
                                                 @endforeach
                                             @endif
                                             
@@ -84,5 +97,10 @@
 @endsection
 
 @section('js')
+<script>
+    var main_category="<?php echo $mainCategory; ?>";
+    var child_category="<?php echo $subCategory; ?>";
+   
+</script>
 <script src="{{ asset('js/user/faq.js') }}"></script>
 @endsection

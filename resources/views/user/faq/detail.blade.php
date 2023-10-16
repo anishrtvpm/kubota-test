@@ -39,8 +39,8 @@
                                         </div>
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                                                <li class="breadcrumb-item"><a href="javascript:void(0);">{{$faqData->$topCategoryfield}}</a></li>
-                                                <li class="breadcrumb-item"><a href="javascript:void(0);">{{$faqData->$subCategoryfield}}</a></li>
+                                                <li class="breadcrumb-item"><a href="{{ route('faq.list') }}?topcategory={{$faqData->$topCategoryfield}}">{{$faqData->$topCategoryfield}}</a></li>
+                                                <li class="breadcrumb-item"><a href="{{ route('faq.list') }}?topcategory={{$faqData->$topCategoryfield}}&subcategory={{$faqData->category_id}}">{{$faqData->$subCategoryfield}}</a></li>
                                             </ol>
                                         </nav>
                                     </div>

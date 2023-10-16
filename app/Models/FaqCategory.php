@@ -206,7 +206,7 @@ class FaqCategory extends Model
         $topCategory = 'top_category_' . $language . '_name';
         return FaqCategory::select($topCategory . ' as name')
             ->where('is_deleted', 0)
-            ->groupBy('top_category_ja_name')
+            ->groupBy($topCategory)
             ->orderBy('category_id', 'asc')
             ->get();
     }
@@ -222,15 +222,24 @@ class FaqCategory extends Model
         $language = app()->getLocale();
         $subCategory = 'sub_category_' . $language . '_name';
         $topCategory = 'top_category_' . $language . '_name';
+        $child_category = '';
+        if (!empty($request->get('child_category'))) {
+            $child_category = $request->get('child_category');
+        }
         $categories = FaqCategory::select('category_id', $subCategory . ' as name')
             ->where('is_deleted', config('constants.active'))
             ->where($topCategory, $request->get('top_category_id'))
             ->orderBy('category_id', 'asc')
             ->get();
-        $option = "<option value='' selected>".trans('sub_category')."</option>";
+        $option = "<option value='' selected>" . trans('sub_category') . "</option>";
         if (!empty($categories)) {
             foreach ($categories as $cat) {
-                $option .= "<option value=" . $cat->category_id . ">" . $cat->name . "</option>";
+                if ($child_category == $cat->category_id) {
+                    $option .= "<option selected value=" . $cat->category_id . ">" . $cat->name . "</option>";
+                } else {
+                    $option .= "<option value=" . $cat->category_id . ">" . $cat->name . "</option>";
+                }
+
             }
         }
         return response()->json($option);

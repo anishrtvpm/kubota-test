@@ -65,8 +65,10 @@ class FaqController extends Controller
      */
     public function detail($id)
     {
+        $userInfo = getUser(authUser()->guid);
+        $groupId = $userInfo ? $userInfo['group_id'] : null;
         try {
-            $faqData = $this->faqData->getFaqDetail($id);
+            $faqData = $this->faqData->getFaqDetail($id, $groupId);
             if (empty($faqData[0])) {
                 return Redirect::back()->with('error', __('invalid_request_error'));
             }
