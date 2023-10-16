@@ -69,7 +69,7 @@ $(document).ready(function () {
     })
 
     function pushNewUrl() {
-        window.history.pushState({ path: '/faq/list' }, 'test', '/faq/list');
+        window.history.pushState({ path: '/faq/list' }, '', '/faq/list');
     }
 
     function getSubCategories(top_category_id) {
