@@ -11,7 +11,7 @@ class FaqData extends Model
     //テーブル名の指定
     protected $table = 'faqs_data';
     //主キー
-    protected $primaryKey = ['faq_id'];
+    protected $primaryKey = 'faq_id';
     //IDの自動増分をしない
     public $incrementing = false;
     //Framework指定のタイムスタンプは使用しない
@@ -40,4 +40,11 @@ class FaqData extends Model
       'modified_at',
       'modified_user',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(FaqCategory::class,'category_id');
+    }
+
+    
 }

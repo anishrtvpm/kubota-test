@@ -224,3 +224,19 @@ if (!function_exists('getQuickNavigation')) {
         return $str;
     }
 }
+
+/**
+ * get Username 
+ *
+ * @return object
+ */
+if (!function_exists('getUsername')) {
+    function getUsername()
+    {
+        if (strlen(authUser()->guid) == config('constants.kubota_user_guid_length')) {
+            return app()->getLocale() == 'ja' ?  authUser()->ja_name : authUser()->en_name;
+        }
+
+        return app()->getLocale() == 'ja' ?  authUser()->ja_user_name : authUser()->en_user_name;
+    }
+}

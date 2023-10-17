@@ -60,6 +60,25 @@
     "ip_restriction_message" : "ポータルへのアクセスが許可されていません。",
     "clear":"クリア",
     "no_data_available" : "データがありません",
-    "list" : "一覧"
-    
+    "list" : "一覧",
+    "faq_no" : "FAQ No.",
+    "inquiry" : "お問い合わせ",
+    "inquiry_form_title" : "」についてのご質問・ご連絡は下記のフォームよりお送り下さい。",
+    "must" : "必須",
+    "items_are_required" : "の項目は必須入力です。",
+    "guid" : "GUID",
+    "id" : "ID",
+    "employee_name" : "従業員名",
+    "name" : "名称",
+    "affiliation" : "所属",
+    "phone_number" : "電話番号",
+    "inquiry_details" : "お問い合わせ内容",
+    "category" : "カテゴリ",
+    "subject" : "件名",
+    "attachment" : "添付ファイル",
+    "save_once" : "一次保存",
+    "confirmation_screen" : "確認画面",
+    "user_information" : "ユーザー情報",
+    "inquiry_form_saved_message" : "フォームが保存されました。",
+    "inquiry_email_sent_success_message" : "メールの送信に成功しました。"
 }

@@ -191,4 +191,9 @@ class FaqCategory extends Model
         }
         return false;
     }
+
+    public function faqData()
+    {
+        return $this->hasMany(FaqData::class, 'category_id');
+    }
 }
