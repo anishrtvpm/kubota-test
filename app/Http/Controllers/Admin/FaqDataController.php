@@ -20,7 +20,9 @@ class FaqDataController extends Controller
     public function create()
     {
         $topCategories = $this->faqData->getTopCategories();
-        return view('admin.faq_data.edit')->with(['topCategories' => $topCategories]);
+        $userGroups = getActiveUserGroups();
+        return view('admin.faq_data.edit')->with(['topCategories' => $topCategories,
+         'userGroups' => $userGroups, 'displayGroups' => []]);
     }
 
     public function store(FaqDataRequest $request)
@@ -32,33 +34,67 @@ class FaqDataController extends Controller
 
         $faqId = $this->faqData->saveRecords($request);
         if (!$faqId) {
-            return Redirect::back()->with('error', 'Invalid request');
+            return Redirect::back()->with('error', trans('invalid_request_error'));
         }
 
-        $successMessage = $request->get('faq_id') ? 'Edit success' : 'Create success';
-        dd($successMessage);
+        $message = $request->get('faq_id') ? 'FAQを更新しました。' : 'FAQを作成しました。';
+        return redirect('faq_data/create')->with('message', $message);
     }
 
     public function edit($id)
     {
+        $topCategories = $this->faqData->getTopCategories();
+        $userGroups = getActiveUserGroups();
+
         try {
-            $faqData = $this->faqData->getCompanyData($id);
+            $faqData = $this->faqData->getFaqData($id);
             if (!$faqData) {
-                return Redirect::back()->with('error', 'Invalid Request');
+                return Redirect::back()->with('error', trans('invalid_request_error'));
             }
-            return view('faq_data.edit')->with([
-                'faqData' => $faqData
+            $displayGroups = explode(',', $faqData->display_group);
+            return view('admin.faq_data.edit')->with([
+                'faqData' => $faqData,
+                'topCategories' => $topCategories,
+                'userGroups' => $userGroups,
+                'displayGroups' => $displayGroups
             ]);
+
         } catch (\Exception $e) {
-            return Redirect::back()->with('error', 'Invalid Request');
+            return redirect('faq_data/create')->with('error', trans('invalid_request_error'));
         }
     }
 
     /**
-     * Fetch categories 
+     * Fetch categories
+     * @param object $request
+     * @return mixed
      */
     public function getCategory(Request $request)
     {
         return $this->faqData->getSubCategories($request);
+    }
+
+    /**
+     * Ajax validation for unique sort order
+     * @param object $request
+     * @return boolean
+     */
+    public function checkSortOrder(Request $request)
+    {
+        $isExist = $this->faqData->checkSortOrderExists($request);
+        if ($isExist) {
+            return true;
+        }
+        return false;
+    }
+
+    
+    public function delete(Request $request)
+    {
+        $faqData = $this->faqData->deleteRecord($request);
+        if ($faqData) {
+            return response()->json(['message' => "削除に成功"]);
+        }
+        return response()->json(['error' => trans('invalid_request_error')]);
     }
 }

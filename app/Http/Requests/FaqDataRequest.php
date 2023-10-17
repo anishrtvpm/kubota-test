@@ -22,30 +22,40 @@ class FaqDataRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'top_category_ja_name' => ['required','string','max:100'],
-            'top_category_en_name'=> ['required','string','max:100'],
-            'sub_category_ja_name'=> ['required','string','max:100'],
-            'sub_category_en_name'=> ['required','string','max:100'],
-            'sort' => ['required','integer','min:0','max:999'],
-            'mail_form_id' => ['nullable','string','max:8000','min:0'],
+            'top_category_name' => ['required'],
+            'category_id' => ['required'],
+            'sort' => ['required', 'integer'],
+            'title' => ['required', 'string', 'max:100'],
+            'reference_url' => ['max:8000'],
+            'question_date' => ['required'],
+            'answer_date' => ['required', 'after_or_equal:question_date'],
+            'responder' => ['required', 'string', 'max:100'],
+            'status' => ['required', 'integer'],
+            'language' => ['required', 'integer'],
+           // 'a_message' => ['required'],
+          //  'q_message' => ['required'],
+           // 'image_path.*' => 'max:3|file|mimes:gif,tif,png,jpg,mov,mpg,wma,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,csv,zip',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'top_category_ja_name.required' => 'システム (JP) 必須',
-            'top_category_ja_name.max'=> 'システム(JP)の長さは100文字を超えないこと',
-            'top_category_en_name.required'=> 'カテゴリー名 (EN) 必須',
-            'top_category_en_name.max'=> 'カテゴリー名(EN)の長さは100文字を超えないこと',
-            'sub_category_ja_name.required'=> 'システム (JP) 必須',
-            'sub_category_ja_name.max'=> 'システム(JP)の長さは100文字を超えないこと',
-            'sub_category_en_name.required'=> 'カテゴリー名 (EN) 必須',
-            'sub_category_en_name.max'=> 'カテゴリー名(EN)の長さは100文字を超えないこと',
-            'sort.required' => '要ソート',
-            'sort.max' => 'ソートの長さは3文字以内',
-            'sort.min'=>'数値は0より大きくなければならない。',
-            'mail_form_id.min'=>'数値は0より大きくなければならない。',
+            'top_category_name.required' => 'システムは必須項目です。',
+            'category_id.required' => 'カテゴリは必須項目です。',
+            'sort.required' => '表示順は必須項目です。',
+            'sort.digits' => '表示順は 8文字以内で設定してください。',
+            'sort.numeric' => '表示順は半角数値で入力してください。',
+            'title.required' => 'タイトルは必須項目です。',
+            'title.max' => 'タイトルは 100文字以内で設定してください。',
+            'reference_url.max' => '参加URLは 8000文字以内で設定してください。',
+            'question_date.required' => '質問日は必須項目です。',
+            'answer_date.required' => '回答日は必須項目です。',
+            'responder.required' => '回答者は必須項目です。',
+            'responder.max' => '回答者は 100文字以内で設定してください。',
+            'status.required' => '状態は必須項目です。',
+            'language.required' => '言語は必須項目です。',
+            'answer_date.after_or_equal' => '回答日は質問日と同じかそれ以上でなければなりません。'
         ];
     }
 }

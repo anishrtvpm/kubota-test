@@ -243,7 +243,7 @@
                     <div class="card custom-card">
                         <div class="card-header  justify-content-between">
                             <div class="card-title">
-                                <a href="{{ route('link_template_list') }}"> {{ __('various_link') }} </a>
+                                <a href="{{ route('link_list') }}"> {{ __('various_link') }} </a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -485,10 +485,10 @@
                         <div class="card custom-card">
                             <div class="card-header  justify-content-between">
                                 <div class="card-title">
-                                    <a href="{{ route('faq_article_list') }}">{{ __('faq') }}</a>
+                                    <a href="{{ route('faq.list') }}">{{ __('faq') }}</a>
                                 </div>
                                 <div class="prism-toggle">
-                                <a href="{{ route('faq_article_list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
+                                <a href="{{ route('faq.list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
                                             class="bi bi-chevron-right"></i></button></a>
                                 </div>
                             </div>
@@ -509,7 +509,7 @@
                         <div class="card custom-card">
                             <div class="card-header  justify-content-between">
                                 <div class="card-title">
-                                    <a href="#"> {{ __('core_system_doc_management') }} </a>
+                                    <a href="{{ route('document_list') }}"> {{ __('core_system_doc_management') }} </a>
                                 </div>
                             </div>
                             <div class="card-body">
