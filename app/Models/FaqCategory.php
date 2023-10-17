@@ -233,10 +233,10 @@ class FaqCategory extends Model
     public function getSubCategories($request)
     {
         $language = app()->getLocale();
-        //$selectText = __("select_text");
+        $selectText = trans('sub_category');
         if (!empty($request->get('lang'))){
             $language = $request->get('lang');
-            //$selectText = "選択する";
+            $selectText = "選択する";
         }
         $subCategory = 'sub_category_' . $language . '_name';
         $topCategory = 'top_category_' . $language . '_name';
@@ -245,7 +245,7 @@ class FaqCategory extends Model
             ->where($topCategory, $request->get('top_category_id'))
             ->orderBy('category_id', 'asc')
             ->get();
-        $option = "<option value='' selected>".trans('sub_category')."</option>";
+        $option = "<option value='' selected>".$selectText."</option>";
         if (!empty($categories)) {
             foreach ($categories as $cat) {
                 $option .= "<option value=" . $cat->category_id . ">" . $cat->name . "</option>";
