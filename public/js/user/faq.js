@@ -49,6 +49,8 @@ $(document).ready(function () {
         if (main_category !== '' || child_category !== '') {
             pushNewUrl();
         }
+        let top_category_id = $('.top_category').val();
+        getSubCategories(top_category_id)
         loadPosts();
     });
 
@@ -79,7 +81,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (response) {
                 $('.sub_category').html(response);
-                
+
             }
         });
 

@@ -163,14 +163,14 @@ class FaqData extends Model
 
     $topCategoryfield = 'top_category_' . $language . '_name';
 
-    $faqData = FaqData::select('faq_id', 'category_id', 'title', 'q_message');
+    $faqData = FaqData::select('faq_id', 'category_id', 'title', 'q_message', 'search_qa_message');
     if ($search_keyword != null) {
       $faqData->where(function ($query) use ($search_keyword) {
         $halfName = mb_convert_kana($search_keyword, 'k');
         $fullName = mb_convert_kana($search_keyword, 'KV');
-        $query->where("title", "like", '%' . $halfName . '%')
-          ->orWhere("title", "like", '%' . $fullName . '%')
-          ->orWhere('title', 'like', '%' . $search_keyword . '%');
+        $query->where("search_qa_message", "LIKE", '%' . $halfName . '%')
+          ->orWhere("search_qa_message", "LIKE", '%' . $fullName . '%')
+          ->orWhere('search_qa_message', 'LIKE', '%' . $search_keyword . '%');
       });
     }
 
