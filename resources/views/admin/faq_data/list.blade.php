@@ -5,7 +5,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">トップページ</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">管理画面</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}#manage">管理画面</a></li>
                 <li class="breadcrumb-item active" aria-current="page">FAQ管理</li>
             </ol>
         </nav>
@@ -80,7 +80,7 @@
                                 <div class="col-md-12 text-end">
                                     <div class="btn-list">
                                         <a href="{{ route('faq_category.list') }}"><button title="カテゴリ管理" type="button" class="btn btn-primary btn-wave px-4">カテゴリ管理</button></a>
-                                        <a href="{{ route('faq_edit') }}"><button title="新規FAQ作成" type="button" class="btn btn-warning btn-wave px-3">新規FAQ作成</button></a>
+                                        <a href="{{ route('faq_data.create') }}"><button title="新規FAQ作成" type="button" class="btn btn-warning btn-wave px-3">新規FAQ作成</button></a>
                                     </div>
                                 </div>
                             </form>

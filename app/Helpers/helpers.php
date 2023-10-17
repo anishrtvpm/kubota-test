@@ -3,6 +3,7 @@
 use App\Models\Employee;
 use App\Models\IndSalesCorps;
 use App\Models\IndSalesCorpsUsers;
+use App\Models\UserGroups;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -238,8 +239,20 @@ if (!function_exists('getQuickNavigation')) {
     }
 }
 
-/* Get the language string.
- *
+
+/**
+ * Fetch active user groups
+ * @return array
+ */
+function getActiveUserGroups()
+{
+    return UserGroups::select('group_id', 'group_ja_name', 'group_en_name')
+        ->orderBy('group_id', 'asc')
+        ->where('is_deleted', config('constants.active'))
+        ->get();
+}
+
+/** Get the language string.
  * @param integer $langCode
  * @return string
  */
@@ -255,11 +268,17 @@ if (!function_exists('getLanguageString')) {
     }
 }
 
+/**
+ * Format date
+ */
 function dateFormat($date, $format)
 {
     return $date ? \Carbon\Carbon::parse($date)->format($format) : "";
 }
 
+/**
+ * Format text
+ */
 function textFormat($input)
 {
     return strlen($input) > config('constants.text_display_max_length') ?
