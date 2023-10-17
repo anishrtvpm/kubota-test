@@ -225,6 +225,21 @@ if (!function_exists('getQuickNavigation')) {
     }
 }
 
+/* Get the language string.
+ *
+ * @param integer $langCode
+ * @return string
+ */
+
+if (!function_exists('getLanguageString')) {
+    function getLanguageString($langCode) {
+        if ($langCode == 'en') {
+            return "英語";
+        } elseif($langCode == 'ja') {
+            return "日本語";
+        }
+    }
+}
 
 function dateFormat($date, $format)
 {

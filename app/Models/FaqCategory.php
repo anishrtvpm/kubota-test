@@ -12,6 +12,14 @@ class FaqCategory extends Model
     protected $table = 'faqs_categories';
     const UPDATED_AT = 'modified_at';
     protected $primaryKey = 'category_id';
+
+
+    public function faqItems()
+    {
+        return $this->hasMany(FaqData::class, 'category_id', 'category_id');
+    }
+
+
     /**
      * count of total records for table listing
      * @return integer
@@ -200,15 +208,20 @@ class FaqCategory extends Model
      * @return array
      */
 
-    public function getTopCategories()
+    public function getTopCategories($lang = null)
     {
-        $language = app()->getLocale();
+        if (!is_null($lang)) {
+            $language = $lang;
+        } else {
+            $language = app()->getLocale();
+        }
         $topCategory = 'top_category_' . $language . '_name';
         return FaqCategory::select($topCategory . ' as name')
             ->where('is_deleted', 0)
             ->groupBy($topCategory)
             ->orderBy('category_id', 'asc')
             ->get();
+
     }
     /**
      *
@@ -220,6 +233,11 @@ class FaqCategory extends Model
     public function getSubCategories($request)
     {
         $language = app()->getLocale();
+        $selectText = trans('sub_category');
+        if (!empty($request->get('lang'))) {
+            $language = $request->get('lang');
+            $selectText = "選択する";
+        }
         $subCategory = 'sub_category_' . $language . '_name';
         $topCategory = 'top_category_' . $language . '_name';
         $child_category = '';
@@ -231,7 +249,7 @@ class FaqCategory extends Model
             ->where($topCategory, $request->get('top_category_id'))
             ->orderBy('category_id', 'asc')
             ->get();
-        $option = "<option value='' selected>" . trans('sub_category') . "</option>";
+        $option = "<option value='' selected>" . $selectText . "</option>";
         if (!empty($categories)) {
             foreach ($categories as $cat) {
                 if ($child_category == $cat->category_id) {
@@ -243,5 +261,8 @@ class FaqCategory extends Model
             }
         }
         return response()->json($option);
+
     }
+
+
 }
