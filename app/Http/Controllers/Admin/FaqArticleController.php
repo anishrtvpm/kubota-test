@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 class FaqArticleController extends Controller
 {
     private $faqData;
+    private $faqCategory;
     public function __construct(FaqData $faqData, FaqCategory $faqCategory)
     {
         $this->middleware('auth');

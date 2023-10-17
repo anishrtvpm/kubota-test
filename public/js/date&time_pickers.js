@@ -2,9 +2,10 @@
     "use strict";
     
     /* To choose date */
-    flatpickr("#date1", {});
-
-    flatpickr("#date2", {});
+    flatpickr(".datepicker", {
+        dateFormat: 'Y-m-d',
+        minDate: 'today',
+    });
 
     /* To choose date and time */
     flatpickr("#datetime", {

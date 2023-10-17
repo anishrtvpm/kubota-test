@@ -45,7 +45,7 @@ $(document).ready(function () {
             [config.data_table_starting_column_index, config.data_table_starting_column_index_order]
         ],
         ajax: {
-            url: '/admin/faq_list/get',
+            url: '/faq_data/get',
             data: function (data) {
                 data.inlineFormSelectLanguage = inlineFormSelectLanguage;
                 data.inputkeyword = inputkeyword;

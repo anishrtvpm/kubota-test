@@ -29,19 +29,6 @@ class Announcement extends Model
     ];
 
     /**
-     * Fetch active user groups
-     *
-     * @return array
-     */
-    public function getActiveUserGroups()
-    {
-        return UserGroups::select('group_id', 'group_ja_name', 'group_en_name')
-            ->orderBy('group_id', 'asc')
-            ->where('is_deleted', config('constants.active'))
-            ->get();
-    }
-
-    /**
      * Fetch announcements by user group
      *
      * @return array
@@ -68,7 +55,7 @@ class Announcement extends Model
      */
     public function saveRecords($request)
     {
-        $userGroup = $this->getActiveUserGroups();
+        $userGroup = getActiveUserGroups();
 
         try {
             foreach ($userGroup as $group) {
@@ -110,7 +97,7 @@ class Announcement extends Model
      */
     public function validateInputData($request)
     {
-        $userGroup = $this->getActiveUserGroups();
+        $userGroup = getActiveUserGroups();
 
         $response['error'] = $response['message'] = '';
         foreach ($userGroup as $group) {

@@ -3,6 +3,7 @@
 use App\Models\Employee;
 use App\Models\IndSalesCorps;
 use App\Models\IndSalesCorpsUsers;
+use App\Models\UserGroups;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -194,14 +195,14 @@ if (!function_exists('getQuickNavigation')) {
     function getQuickNavigation()
     {
 
-       $navigation = array(
+        $navigation = array(
             route('admin_notice_list') => "お知らせ",
-            route('faq_article_list') => "FAQ",
-            route('faq_category_list') => "各種リンク",
+            route('faq_data.list') => "FAQ",
+            route('link_template_list') => "各種リンク",
             route('link_template_category_list') => "テンプレート・フォーマット",
             route('link_template_list') => "基幹システム(文書管理)"
         );
-       
+
         $groupId = getUser(authUser()->guid)['group_id'];
         $links = getSystemLink($groupId);
 
@@ -209,14 +210,14 @@ if (!function_exists('getQuickNavigation')) {
         $str .= "<option value='#'>選択</option>";
         $str .= "<option disabled>システムリンク</option>";
         foreach ($links as $link) {
-            $str .= "<optgroup style='font-weight :bold' label=".$link['category_name']." >";
+            $str .= "<optgroup style='font-weight :bold' label=" . $link['category_name'] . " >";
 
             foreach ($link['links'] as $systemlink) {
                 $str .= '<option value="' . $systemlink['system_url'] . '" data-open="newTab">' . $systemlink['system_name'] . '</option>';
             }
-            $str .="</optgroup>";
+            $str .= "</optgroup>";
         }
-        
+
         foreach ($navigation as $key => $val) {
             $str .= '<option value="' . $key . '" data-open="currentTab">' . $val . '</option>';
         }
@@ -225,27 +226,46 @@ if (!function_exists('getQuickNavigation')) {
     }
 }
 
-/* Get the language string.
- *
+
+/**
+ * Fetch active user groups
+ * @return array
+ */
+function getActiveUserGroups()
+{
+    return UserGroups::select('group_id', 'group_ja_name', 'group_en_name')
+        ->orderBy('group_id', 'asc')
+        ->where('is_deleted', config('constants.active'))
+        ->get();
+}
+
+/** Get the language string.
  * @param integer $langCode
  * @return string
  */
 
 if (!function_exists('getLanguageString')) {
-    function getLanguageString($langCode) {
+    function getLanguageString($langCode)
+    {
         if ($langCode == 'en') {
             return "英語";
-        } elseif($langCode == 'ja') {
+        } elseif ($langCode == 'ja') {
             return "日本語";
         }
     }
 }
 
+/**
+ * Format date
+ */
 function dateFormat($date, $format)
 {
     return $date ? \Carbon\Carbon::parse($date)->format($format) : "";
 }
 
+/**
+ * Format text
+ */
 function textFormat($input)
 {
     return strlen($input) > config('constants.text_display_max_length') ?
