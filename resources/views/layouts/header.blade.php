@@ -12,7 +12,7 @@
                         <p class="HeaderLogo__img">
                             <img src="{{ asset('images/brand-logos/logo_kubota.svg') }}" alt="logo" class="">
                         </p>
-                        <p class="HeaderLogo__text"><span>{{ __('header_qa_portal')}}</span></p>
+                        <p class="HeaderLogo__text" style="font-size: clamp(0.688rem, 0.632rem + 0.28vw, 0.875rem)"><span>{{ __('header_qa_portal')}}</span></p>
                     </a>
                 </div>
             </div>
@@ -41,50 +41,55 @@
                     <div class="d-flex mb-2 mt-2">
                         <div class="p-2 flex-shrink-1"> <img src="{{ asset('images/profile/1.jpg') }}" alt="img"
                                 width="60" height="60" class="rounded-circle"></div>
-                        <div class="p-2 w-100 align-middle mt-3">
-                            <h5>
-                                {{ getCurrentGuard() == config('constants.kubota_user') ?
-                                 ($userInfo->language == config('constants.language_japanese') ? $userInfo->ja_name : $userInfo->en_name):
-                                 ($userInfo->language == config('constants.language_japanese') ? $userInfo->ja_user_name : $userInfo->en_user_name) }}
-                                </h5>
-                        </div>
-                    </div>
-                    <p>
-                        <strong>
-                        {{ getCurrentGuard() == config('constants.kubota_user') ?
-                        ($userInfo->language == config('constants.language_japanese') ? $userProfile['ja_company_name'] : $userProfile['en_company_name']):
-                        $userProfile['company_name'] }}
-                        </strong>
-                        <br>
-                        @if (getCurrentGuard() == config('constants.kubota_user'))
-                            {{ $userInfo->language == config('constants.language_japanese') ? $userProfile['ja_section_name'] : $userProfile['en_section_name'] }}                        
-                            <br>
-                        @endif
-                        {{ __('email_address') }}：
-                        <a href="{{ $userInfo->email }}">{{ $userInfo->email }}</a>
-                    </p>
-                    
-                    <div class="row mb-1">
-                        <label class="form-label mb-1">{{ __('language') }}</label>
-                        @php
-                            $language = [config('constants.language_japanese') => '日本語', config('constants.language_english') => 'English'];
-                        @endphp
-                        @foreach($language as $key => $value)
-                            <div class="col-xl-3">
-                                <div class="form-check form-check-lg">
-                                    <input class="form-check-input" type="radio" name="locale" value="{{ $key }}"
-                                    {{ app()->getLocale() === $key ? 'checked' : '' }}>
-                                    <label class="form-check-label">
-                                        {{ $value }}
-                                    </label>
+                                <div class="p-2 w-100 align-middle mt-3">
+                                    <h5 class="mb-2">
+                                        {{ getCurrentGuard() == config('constants.kubota_user') ?
+                                        ($userInfo->language == config('constants.language_japanese') ? $userInfo->ja_name : $userInfo->en_name):
+                                        ($userInfo->language == config('constants.language_japanese') ? $userInfo->ja_user_name : $userInfo->en_user_name) }}
+                                    </h5>
+
+                                    <p class="mb-0">
+                                        <strong>
+                                        {{ getCurrentGuard() == config('constants.kubota_user') ?
+                                        ($userInfo->language == config('constants.language_japanese') ? $userProfile['ja_company_name'] : $userProfile['en_company_name']):
+                                        $userProfile['company_name'] }}
+                                        </strong>
+                                    </p>
+                                    <p class="mb-0">
+                                        @if (getCurrentGuard() == config('constants.kubota_user'))
+                                        {{ $userInfo->language == config('constants.language_japanese') ? $userProfile['ja_section_name'] : $userProfile['en_section_name'] }}
+                                        @endif
+                                    </p>
+                                    <p class="mb-0">
+                                        {{ __('email_address') }}: <a href="{{ $userInfo->email }}">{{ $userInfo->email }}</a>
+                                    </p>
+                            
+                            <div class="row mt-3 mb-1">
+                                <label class="form-label mb-1">{{ __('language') }}</label>
+                                @php
+                                    $language = [config('constants.language_japanese') => '日本語', config('constants.language_english') => 'English'];
+                                @endphp
+                                <div class="d-flex column-gap-4 row-gap-3 flex-wrap">
+                                @foreach($language as $key => $value)
+                                    <div class="">
+                                        <div class="form-check form-check-lg">
+                                            <input class="form-check-input" type="radio" name="locale" value="{{ $key }}"
+                                            {{ app()->getLocale() === $key ? 'checked' : '' }}>
+                                            <label class="form-check-label ms-1">
+                                                {{ $value }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                @endforeach
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
                     </div>
+                    
                    
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <p class="text-end">
+                        <p class="text-end mb-0">
                             <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                                 <button type="button" class="btn btn-light btn-wave" title="{{ __('logout') }}">{{ __('logout') }}</button>
                             </a>

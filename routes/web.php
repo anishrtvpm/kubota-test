@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SystemLinksController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\FaqDataController;
 use App\Http\Controllers\User\LanguageController;
 
 /*
@@ -24,7 +25,7 @@ Route::middleware(['guest', 'block_ip'])->group(function () {
     Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
 });
 
-Route::group(['middleware' => ['auth:kubota', 'block_ip','is_admin']], function () {
+Route::group(['middleware' => ['auth:kubota', 'block_ip', 'is_admin']], function () {
 
     Route::get('/admin_dashboard', [AdminDashboardController::class, 'index'])->name('admin_dashboard');
 
@@ -42,10 +43,15 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip','is_admin']], function 
 
     Route::get('/announcement/create', [AnnouncementController::class, 'create'])->name('announcement.create');
     Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
-    
-    Route::get('/faq_edit', function () {
-        return view('admin.faq_edit');
-    })->name('faq_edit');
+
+    Route::get('/faq_data/create', [FaqDataController::class, 'create'])->name('faq_data.create');
+    Route::post('/faq_data/store', [FaqDataController::class, 'store'])->name('faq_data.store');
+    Route::get('/faq_data/edit/{id}', [FaqDataController::class, 'edit'])->name('faq_data.edit');
+    Route::get('/faq_data/get-category', [FaqDataController::class, 'getCategory'])->name('faq_data.get-category');
+    Route::get('/faq_data/sort-order-exist', [FaqDataController::class, 'checkSortOrder'])->name('faq_data.sort-order-exist');
+    Route::delete('/faq_data/delete', [FaqDataController::class, 'delete'])->name('faq_data.delete');
+    Route::get('/faq_data', [FaqDataController::class, 'index'])->name('faq_data.list');
+    Route::get('/faq_data/get', [FaqDataController::class, 'get'])->name('faq_data.get');
 
     Route::get('/notice_edit', function () {
         return view('admin.notice_edit');
@@ -61,7 +67,7 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip','is_admin']], function 
 
     Route::get('/enquiry_management', function () {
         return view('admin.enquiry_management');
-    })->name('enquiry_management');     
+    })->name('enquiry_management');
 
     Route::get('/faq_category_list', function () {
         return view('admin.faq_category_list');
@@ -87,10 +93,6 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip','is_admin']], function 
         return view('admin.admin_notice_list');
     })->name('admin_notice_list');
 
-    Route::get('/faq_article_list', function () {
-        return view('admin.faq_article_list');
-    })->name('faq_article_list');
-
     Route::get('/independent_company_list', function () {
         return view('admin.independent_company_list');
     })->name('independent_company_list');
@@ -106,7 +108,7 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip','is_admin']], function 
     Route::get('/affiliation_information_list', function () {
         return view('admin.affiliation_information_list');
     })->name('affiliation_information_list');
-    
+
     Route::get('/user_permission_list', function () {
         return view('admin.user_permission');
     })->name('user_permission_list');
@@ -124,15 +126,13 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip','is_admin']], function 
 Route::group(['middleware' => ['auth:kubota,independent', 'block_ip']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
     Route::post('/language/edit', [LanguageController::class, 'edit'])->name('language.edit');
-
     Route::get('/faq/list', [FaqController::class, 'index'])->name('faq.list');
-    Route::get('/faq/get', [FaqController::class, 'getFaqList'])->name('faq.get');
-    Route::get('/faq/detail/{id}', [FaqController::class, 'index'])->name('faq.detail');
-    Route::get('/faq/inquiry/{id}', [FaqController::class, 'getInquiryForm'])->name('faq.inquiry');
-    Route::post('/faq/inquiry_confirm/{id}', [FaqController::class, 'submitInquiryEmail'])->name('faq.inquiry.confirm');
-    
+    Route::get('/faq/get', [FaqController::class, 'get'])->name('faq.get');
+    Route::get('/faq/detail/{id}', [FaqController::class, 'detail'])->name('faq.detail');
+    Route::get('/faq/get_sub_categories', [FaqController::class, 'getSubCategories'])->name('faq.get_sub_categories');
+
+
     Route::get('/faq_view', function () {
         return view('user.faq_view');
     })->name('faq_view');
@@ -156,7 +156,7 @@ Route::group(['middleware' => ['auth:kubota,independent', 'block_ip']], function
     Route::get('/document_view', function () {
         return view('user.document_view');
     })->name('document_view');
-    
+
     Route::get('/faq_confirm', function () {
         return view('user.faq_confirm');
     })->name('faq_confirm');

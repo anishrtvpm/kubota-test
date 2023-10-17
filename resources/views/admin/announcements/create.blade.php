@@ -43,13 +43,13 @@
                                     <div class="row">
                                         <h6>{{ $group->group_ja_name }}</h6>
                                         <div class="col-md-6 row mb-3">
-                                            <label class="col-sm-3 col-form-label fw-bold text-center mt-5">JP</label>
+                                            <label class="col-sm-3 col-form-label fw-bold text-left text-sm-center mt-5">JP</label>
                                             <div class="col-sm-8">
                                                 <textarea class="form-control resize" id="ja_message{{ $group->group_id }}" name="ja_message{{ $group->group_id }}" rows="1" tabindex="{{ $tab++ }}" maxlength="120">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['ja_message'] : ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6 row mb-3">
-                                            <label class="col-sm-3 col-form-label fw-bold text-center mt-5">EN</label>
+                                            <label class="col-sm-3 col-form-label fw-bold text-left text-sm-center mt-5">EN</label>
                                             <div class="col-sm-8">
                                                 <textarea class="form-control resize" id="en_message{{ $group->group_id }}" name="en_message{{ $group->group_id }}" rows="1" tabindex="{{ $tab++ }}" maxlength="120">{{ isset($announcements[$group->group_id]) ? $announcements[$group->group_id]['en_message'] : ''}}</textarea>
                                             </div>
@@ -71,7 +71,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                <div class="gap-2 col-2 mx-auto mb-5">
+                                <div class="gap-2 col-5 col-sm-4 col-md-2 mx-auto mb-5">
                                     <button class="btn btn-warning px-4" type="submit" id="announcement_submit" tabindex="{{ $tab++ }}" title="登録する">登録する</button>
                                 </div>
                             </div>

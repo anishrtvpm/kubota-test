@@ -1,0 +1,115 @@
+trigger:
+- develop
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  phpVersion: 8.1
+
+steps:
+- checkout: self
+  fetchDepth: 1
+
+- task: InstallSSHKey@0
+  displayName: 'Install an SSH key'
+  inputs:
+    knownHostsEntry: 'SHA256:6tjLWTCwsYJeY9kfavrbx3fQbDpzV9QTZLeHAOkbMjA'
+    sshKeySecureFile: 'kubota_user1.pem'
+
+- script: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+  displayName: 'Use PHP version $(phpVersion)'
+
+- script: composer install --no-interaction --prefer-dist
+  displayName: 'composer install'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install NodeJS'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '$(Build.SourcesDirectory)'
+  displayName: 'npm install'
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '$(Build.SourcesDirectory)'
+    customCommand: 'run build'
+  displayName: 'npm build'
+
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'Kubota-FAQ-Dev-SonarQube-Connection'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'Kubota-FAQ-Dev'
+    cliProjectName: 'Kubota-FAQ-Dev'
+    cliSources: '.'
+    extraProperties: |
+      # Additional properties that will be passed to the scanner, 
+      sonar.language=php
+      sonar.sourceEncoding=UTF-8
+      sonar.exclusions=**/node_modules/**,.scannerwork/**
+  enabled: false
+
+- script: |
+    FILTERED_PARAMS=$(echo $SONARQUBE_SCANNER_PARAMS | sed 's/"sonar.branch.name":"[^"]*"\,//g')
+    echo "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$FILTERED_PARAMS"
+  displayName: Filter out non-CE sonar parameters
+  enabled: false
+
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_11_X64'
+  enabled: false
+
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+  enabled: false
+
+- task: DownloadSEcureFile@1
+  inputs:
+    secureFile: 'env-dev.txt'
+  displayName: "Download Env File"
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: "$(Agent.TempDirectory)"
+    contents: "env-dev.txt"
+    targetFolder: "$(Build.SourcesDirectory)"
+  displayName: "Import .env file"
+
+- script: |
+    # Define the SSH connection information for your Virtual Machine
+    VM_HOST="20.219.125.74"
+    VM_USER="kubota_user"
+    VM_SSH_PORT="22"
+    mv env-dev.txt .env
+    
+    # Use rsync to copy artifacts to the VM
+    rsync -avz -delete --exclude 'storage/' --exclude 'azure-pipelines.yml' --exclude '.scannerwork/'  --exclude '.git/' --exclude 'node_modules/' -e "ssh -o StrictHostKeyChecking=no -p $VM_SSH_PORT" "$(Build.SourcesDirectory)/" "$VM_USER@$VM_HOST:/var/www/kubota/"
+  displayName: 'rsync to Virtual Machine'
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'Kuboto-FAQ-Dev-SSH-SC'
+    runOptions: 'inline'
+    inline: |
+      #! /bin/bash
+      cd /var/www/kubota
+      sudo mkdir -p storage bootstrap/cache
+      sudo chown -R kubota_user:kubota_user .
+      sudo find . -type f -exec chmod 664 {} \;
+      sudo find . -type d -exec chmod 775 {} \;
+      sudo chgrp -R www-data storage bootstrap/cache
+    readyTimeout: '20000'

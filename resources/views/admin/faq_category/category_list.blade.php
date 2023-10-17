@@ -1,11 +1,11 @@
 @extends('layouts.base')
 @section('content')
-    <div class="d-md-flex d-block align-items-center justify-content-between page-header-breadcrumb">
+    <div class="d-md-flex d-block align-items-center justify-content-between page-header-breadcrumb gap-3 mt-2">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">トップページ </a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}#manage">管理画面</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('faq_data.list') }}">FAQ管理</a></li>
                 <li class="breadcrumb-item active" aria-current="page">FAQカテゴリー覧</li>
             </ol>
         </nav>

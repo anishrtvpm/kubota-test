@@ -19,7 +19,7 @@ class SanitizeInput
         $inputData = $request->post();
         if (!empty($inputData)) {
             foreach ($inputData as $key => $value) {
-                if (!is_numeric($value)) {
+                if (is_string($value)) {
                     $inputData[$key] = strip_tags($value);
                 }
             }

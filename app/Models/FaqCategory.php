@@ -12,6 +12,14 @@ class FaqCategory extends Model
     protected $table = 'faqs_categories';
     const UPDATED_AT = 'modified_at';
     protected $primaryKey = 'category_id';
+
+
+    public function faqItems()
+    {
+        return $this->hasMany(FaqData::class, 'category_id', 'category_id');
+    }
+
+
     /**
      * count of total records for table listing
      * @return integer
@@ -104,6 +112,13 @@ class FaqCategory extends Model
         }
     }
 
+    /**
+     *
+     * This method validate the category combination already exists
+     *
+     * @param  array  $request
+     * @return array
+     */
     public function validateInputData($request)
     {
         $response['error'] = $response['message'] = $response['field'] = '';
@@ -122,6 +137,14 @@ class FaqCategory extends Model
 
         return $response;
     }
+
+    /**
+     *
+     * This method validate the japanese category combination already exists
+     *
+     * @param  $request
+     * @return array
+     */
     public function jaCategoryCombinationExists($request)
     {
 
@@ -156,6 +179,13 @@ class FaqCategory extends Model
         }
     }
 
+    /**
+     *
+     * This method validate the english category combination already exists
+     *
+     * @param  $request
+     * @return array
+     */
     public function enCategoryCombinationExists($request)
     {
         $top_category_en_name = $request->input('top_category_en_name');
@@ -170,27 +200,71 @@ class FaqCategory extends Model
         }
     }
 
-    public function getFaqCategory()
-    {
-        $language=app()->getLocale();
-        $topCategory = 'top_category_'.$language.'_name';
-        $subCategory = 'sub_category_'.$language.'_name';
+    /**
+     *
+     * This method retrieves and returns a list of topcategories.
+     *
+     * @param  $request
+     * @return array
+     */
 
-        $results = FaqCategory::select($topCategory,$subCategory,'category_id')
-            ->where('status', config('constants.public'))
-            ->orderBy('sort', 'asc')
+    public function getTopCategories($lang = null)
+    {
+        if (!is_null($lang)) {
+            $language = $lang;
+        } else {
+            $language = app()->getLocale();
+        }
+        $topCategory = 'top_category_' . $language . '_name';
+        return FaqCategory::select($topCategory . ' as name')
+            ->where('is_deleted', 0)
+            ->groupBy($topCategory)
+            ->orderBy('category_id', 'asc')
             ->get();
 
-        $category=[];
-        if ($results) {
-            foreach($results as $res){
-                $category['mainCategory'][]=['category_id'=>$res->category_id,'topCategory'=>$res->$topCategory];
-                $category['subCategory'][]=['category_id'=>$res->category_id,'subCategory'=>$res->$subCategory];
-            }
-            return $category;
-        }
-        return false;
     }
+    /**
+     *
+     * This method retrieves and returns a list of subcategories.
+     *
+     * @param  $request
+     * @return array
+     */
+    public function getSubCategories($request)
+    {
+        $language = app()->getLocale();
+        $selectText = trans('sub_category');
+        if (!empty($request->get('lang'))) {
+            $language = $request->get('lang');
+            $selectText = "選択する";
+        }
+        $subCategory = 'sub_category_' . $language . '_name';
+        $topCategory = 'top_category_' . $language . '_name';
+        $child_category = '';
+        if (!empty($request->get('child_category'))) {
+            $child_category = $request->get('child_category');
+        }
+        $categories = FaqCategory::select('category_id', $subCategory . ' as name')
+            ->where('is_deleted', config('constants.active'))
+            ->where($topCategory, $request->get('top_category_id'))
+            ->orderBy('category_id', 'asc')
+            ->get();
+        $option = "<option value='' selected>" . $selectText . "</option>";
+        if (!empty($categories)) {
+            foreach ($categories as $cat) {
+                if ($child_category == $cat->category_id) {
+                    $option .= "<option selected value=" . $cat->category_id . ">" . $cat->name . "</option>";
+                } else {
+                    $option .= "<option value=" . $cat->category_id . ">" . $cat->name . "</option>";
+                }
+
+            }
+        }
+        return response()->json($option);
+
+    }
+
+
 
     public function faqData()
     {

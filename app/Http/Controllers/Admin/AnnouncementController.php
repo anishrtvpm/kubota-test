@@ -19,7 +19,7 @@ class AnnouncementController extends Controller
 
     public function create()
     {
-        $userGroup = $this->announcement->getActiveUserGroups();
+        $userGroup = getActiveUserGroups();
         $announcements = $this->announcement->getAnnouncements();
 
         return view('admin.announcements.create')->with([

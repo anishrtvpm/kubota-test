@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\SystemLinks;
 use App\Models\SystemLinkCategory;
@@ -18,12 +19,24 @@ class SystemLinksController extends Controller
         $this->middleware('auth');
         $this->systemLinks = $systemLinks;
     }
+
+    /**
+     * This method navigates to the list page
+     */
     public function index(Request $request)
     {
         $systemLinkCategory = SystemLinkCategory::orderBy('category_id', 'asc')->get();
         return view('admin.system_links.list')->with(['systemLinkCategory' => $systemLinkCategory]);
     }
 
+    /**
+     * Retrieve and return data using AJAX.
+     *
+     * This method handles AJAX requests to fetch data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function get(Request $request)
     {
         $draw = $request->get('draw');
@@ -40,6 +53,13 @@ class SystemLinksController extends Controller
         return response()->json($response);
     }
 
+    /**
+     *
+     * This method displays the add form and edit form for a specific system link.
+     *
+     * @param  int  $id
+     * @return mixed
+     */
     public function edit(Request $request)
     {
         $id = $request->get('id');
@@ -60,6 +80,14 @@ class SystemLinksController extends Controller
 
     }
 
+    /**
+     *
+     * This method handles the creation and updation of system links.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+
     public function store(SystemLinkRequestValidation $request)
     {
         $validateData = $this->systemLinks->systemNameExists($request);
@@ -74,6 +102,13 @@ class SystemLinksController extends Controller
         return response()->json(['message' => $successMessage]);
     }
 
+    /**
+     * Remove the specified system links
+     *
+     * This method handles the deletion of a system links
+     *
+     * @param  int  $id
+     */
     public function delete(Request $request)
     {
         $systemLinks = $this->systemLinks->deleteRecords($request);
@@ -83,6 +118,14 @@ class SystemLinksController extends Controller
         return response()->json(['error' => trans('invalid_request_error')]);
     }
 
+    /**
+     * Check if a systemname exists.
+     *
+     * This method checks if a systemname exists in the system.
+     *
+     * @param  string  $name
+     * @return boolean
+     */
     public function systemNameExists(Request $request)
     {
         $isExists = $this->systemLinks->systemNameExists($request);

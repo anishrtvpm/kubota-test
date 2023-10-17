@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\FaqArticle;
 use App\Models\FaqCategory;
+use App\Models\FaqData;
 use App\Models\FaqData;
 use App\Models\IndSalesCorps;
 use App\Models\InquiryForm;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -19,30 +20,76 @@ use stdClass;
 class FaqController extends Controller
 {
     private $faqCategory;
-    private $faqArticle;
+    private $faqData;
     private $organization;
     public function __construct(
         FaqCategory $faqCategory,
-        FaqArticle $faqArticle,
+        FaqData $faqData,
         Organization $organization
     ) {
         $this->middleware('auth');
         $this->faqCategory = $faqCategory;
-        $this->faqArticle = $faqArticle;
+        $this->faqData = $faqData;
         $this->organization = $organization;
     }
+
+    /**
+     * This method navigates to the list page
+     */
     public function index()
     {
-        $faqCategory = $this->faqCategory->getFaqCategory();
+        $topCategories = $this->faqCategory->getTopCategories();
         return view('user.faq.list')->with([
-            'faqCategory' => $faqCategory,
+            'topCategories' => $topCategories,
         ]);
     }
 
-    public function getFaqList(Request $request)
+    /**
+     * Retrieve and return data using AJAX.
+     *
+     * This method handles AJAX requests to fetch data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function get(Request $request)
     {
-        $faqData=$this->faqArticle->getFaqList($request);
+        $userInfo = getUser(authUser()->guid);
+        $groupId = $userInfo ? $userInfo['group_id'] : null;
+        $faqData = $this->faqData->getFaqList($request, $groupId);
         return view('user.faq.ajax_list')->with(['faqData' => $faqData]);
+    }
+
+    /**
+     * Retrieve and return data using AJAX.
+     *
+     * This method handles AJAX requests to fetch sub categories based on selected top categories in faq list page  
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function getSubCategories(Request $request)
+    {
+        return $this->faqCategory->getSubCategories($request);
+    }
+
+    /**
+     * This method shows detailed information about a specific faq .
+     * @param  int  $id
+     * @return mixed
+     */
+    public function detail($id)
+    {
+        $userInfo = getUser(authUser()->guid);
+        $groupId = $userInfo ? $userInfo['group_id'] : null;
+        try {
+            $faqData = $this->faqData->getFaqDetail($id, $groupId);
+            if (empty($faqData[0])) {
+                return Redirect::back()->with('error', __('invalid_request_error'));
+            }
+            return view('user.faq.detail')->with(['faqData' => $faqData]);
+        } catch (\Exception $e) {
+            return Redirect::back()->with('error', __('invalid_request_error'));
+        }
     }
 
     public function getInquiryForm($id)
