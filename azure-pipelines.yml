@@ -108,7 +108,7 @@ steps:
       #! /bin/bash
       cd /var/www/kubota
       sudo mkdir -p storage bootstrap/cache
-      sudo chown -R kubota_user:www-data .
+      sudo chown -R kubota_user:kubota_user .
       sudo find . -type f -exec chmod 664 {} \;
       sudo find . -type d -exec chmod 775 {} \;
       sudo chgrp -R www-data storage bootstrap/cache
