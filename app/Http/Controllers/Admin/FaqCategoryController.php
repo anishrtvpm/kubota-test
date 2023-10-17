@@ -17,11 +17,21 @@ class FaqCategoryController extends Controller
         $this->faqCategories = $faqCategories;
     }
 
+    /**
+     * This method navigates to the list page
+     */
     public function index(Request $request)
     {
         return view('admin.faq_category.category_list');
     }
-
+    /**
+     * Retrieve and return data using AJAX.
+     *
+     * This method handles AJAX requests to fetch data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function get(Request $request)
     {
         $draw = $request->get('draw');
@@ -38,6 +48,13 @@ class FaqCategoryController extends Controller
         return response()->json($response);
     }
 
+    /**
+     *
+     * This method displays the add form and edit form for a specific system link.
+     *
+     * @param  int  $id
+     * @return mixed
+     */
     public function edit(Request $request)
     {
         $id = $request->get('id');
@@ -55,15 +72,21 @@ class FaqCategoryController extends Controller
             return view('admin.faq_category.form_modal')->with('faqCategoryData', []);
         }
     }
-
+    /**
+     *
+     * This method handles the creation and updation of system links.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
     public function store(FaqCategoryRequest $request)
     {
 
         $validateData = $this->faqCategories->validateInputData($request);
         if ($validateData['error']) {
-            return response()->json(['error' => $validateData['message'],'field'=>$validateData['field']], 422);
+            return response()->json(['error' => $validateData['message'], 'field' => $validateData['field']], 422);
         }
- 
+
         $categoryId = $this->faqCategories->saveRecords($request);
         if (!$categoryId) {
             return Redirect::back()->with('error', trans('invalid_request_error'));

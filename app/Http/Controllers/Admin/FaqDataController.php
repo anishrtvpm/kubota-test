@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FaqDataRequest;
+use App\Models\FaqCategory;
 use App\Models\FaqData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -11,18 +12,53 @@ use Illuminate\Support\Facades\Redirect;
 class FaqDataController extends Controller
 {
     private $faqData;
-    public function __construct(FaqData $faqData)
+    private $faqCategory;
+    public function __construct(FaqData $faqData, FaqCategory $faqCategory)
     {
         $this->middleware('auth');
         $this->faqData = $faqData;
+        $this->faqCategory = $faqCategory;
+    }
+
+    /**
+     * Admin: FAQ listing page
+     */
+    public function index(Request $request)
+    {
+        $topCategories = $this->faqCategory->getTopCategories('ja');
+        return view('admin.faq_data.list')->with([
+            'topCategories' => $topCategories,
+        ]);
+    }
+
+    /**
+     * Admin: Get listing of faq items with filtered data
+     */
+    public function get(Request $request)
+    {
+        $draw = $request->get('draw');
+        $totalRecords = $this->faqData->totalRecords();
+        $totalRecordswithFilter = $this->faqData->getFaqData('', '', '', '', config('constants.get_type_count'), $request);
+        $records = $this->faqData->getFilteredData($request, 'data');
+
+        $response = array(
+            "draw" => intval($draw),
+            "iTotalRecords" => $totalRecords,
+            "iTotalDisplayRecords" => $totalRecordswithFilter,
+            "aaData" => $records
+        );
+        return response()->json($response);
     }
 
     public function create()
     {
         $topCategories = $this->faqData->getTopCategories();
         $userGroups = getActiveUserGroups();
-        return view('admin.faq_data.edit')->with(['topCategories' => $topCategories,
-         'userGroups' => $userGroups, 'displayGroups' => []]);
+        return view('admin.faq_data.edit')->with([
+            'topCategories' => $topCategories,
+            'userGroups' => $userGroups,
+            'displayGroups' => []
+        ]);
     }
 
     public function store(FaqDataRequest $request)
@@ -38,7 +74,7 @@ class FaqDataController extends Controller
         }
 
         $message = $request->get('faq_id') ? 'FAQを更新しました。' : 'FAQを作成しました。';
-        return redirect('faq_data/create')->with('message', $message);
+        return redirect('faq_data')->with('message', $message);
     }
 
     public function edit($id)
@@ -47,7 +83,7 @@ class FaqDataController extends Controller
         $userGroups = getActiveUserGroups();
 
         try {
-            $faqData = $this->faqData->getFaqData($id);
+            $faqData = $this->faqData->getFaqDetails($id);
             if (!$faqData) {
                 return Redirect::back()->with('error', trans('invalid_request_error'));
             }
@@ -75,6 +111,18 @@ class FaqDataController extends Controller
     }
 
     /**
+     * Retrieve and return data using AJAX.
+     *
+     * This method handles AJAX requests to fetch sub categories based on selected top categories in faq list page  
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function getSubCategories(Request $request)
+    {
+        return $this->faqCategory->getSubCategories($request);
+    }
+
+    /**
      * Ajax validation for unique sort order
      * @param object $request
      * @return boolean
@@ -88,7 +136,7 @@ class FaqDataController extends Controller
         return false;
     }
 
-    
+
     public function delete(Request $request)
     {
         $faqData = $this->faqData->deleteRecord($request);

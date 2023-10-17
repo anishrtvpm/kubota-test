@@ -197,8 +197,8 @@ if (!function_exists('getQuickNavigation')) {
 
         $navigation = array(
             route('admin_notice_list') => "お知らせ",
-            route('faq_article_list') => "FAQ",
-            route('faq_category_list') => "各種リンク",
+            route('faq_data.list') => "FAQ",
+            route('link_template_list') => "各種リンク",
             route('link_template_category_list') => "テンプレート・フォーマット",
             route('link_template_list') => "基幹システム(文書管理)"
         );
@@ -229,7 +229,6 @@ if (!function_exists('getQuickNavigation')) {
 
 /**
  * Fetch active user groups
- *
  * @return array
  */
 function getActiveUserGroups()
@@ -238,4 +237,37 @@ function getActiveUserGroups()
         ->orderBy('group_id', 'asc')
         ->where('is_deleted', config('constants.active'))
         ->get();
+}
+
+/** Get the language string.
+ * @param integer $langCode
+ * @return string
+ */
+
+if (!function_exists('getLanguageString')) {
+    function getLanguageString($langCode)
+    {
+        if ($langCode == 'en') {
+            return "英語";
+        } elseif ($langCode == 'ja') {
+            return "日本語";
+        }
+    }
+}
+
+/**
+ * Format date
+ */
+function dateFormat($date, $format)
+{
+    return $date ? \Carbon\Carbon::parse($date)->format($format) : "";
+}
+
+/**
+ * Format text
+ */
+function textFormat($input)
+{
+    return strlen($input) > config('constants.text_display_max_length') ?
+        mb_substr($input, 0, config('constants.text_display_max_length')) . '..' : $input;
 }

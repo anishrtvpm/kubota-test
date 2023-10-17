@@ -91,4 +91,22 @@ class Dashboard extends Model
         }
         return $groupedItems;
     }
+
+    /**
+     * Get FAQ's based on user group and language
+     *
+     * @return mixed
+     */
+    public function getFaqs($groupId)
+    {
+        $language = app()->getLocale();
+        return FaqData::select('faq_id', 'title')
+        ->whereIn('display_group', [$groupId])
+        ->where('status', config('constants.public'))
+        ->where('is_deleted', config('constants.active'))
+        ->where('language', $language)
+        ->latest()
+        ->limit(config('constants.dashboard_list_limit'))
+        ->get();
+    }
 }

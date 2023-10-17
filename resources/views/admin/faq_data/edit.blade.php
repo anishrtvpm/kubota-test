@@ -14,7 +14,7 @@
         <ol class="breadcrumb breadcrumb-style2 mb-0">
             <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">トップページ</a></li>
             <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}#manage">管理画面</a></li>
-            <li class="breadcrumb-item"><a href="#">FAQ管理</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('faq_data.list') }}">FAQ管理</a></li>
             <li class="breadcrumb-item active" aria-current="page"><?= $titleHead ?></li>
         </ol>
     </nav>

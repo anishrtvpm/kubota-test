@@ -50,10 +50,8 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip', 'is_admin']], function
     Route::get('/faq_data/get-category', [FaqDataController::class, 'getCategory'])->name('faq_data.get-category');
     Route::get('/faq_data/sort-order-exist', [FaqDataController::class, 'checkSortOrder'])->name('faq_data.sort-order-exist');
     Route::delete('/faq_data/delete', [FaqDataController::class, 'delete'])->name('faq_data.delete');
-
-    Route::get('/faq_edit', function () {
-        return view('admin.faq_edit');
-    })->name('faq_edit');
+    Route::get('/faq_data', [FaqDataController::class, 'index'])->name('faq_data.list');
+    Route::get('/faq_data/get', [FaqDataController::class, 'get'])->name('faq_data.get');
 
     Route::get('/notice_edit', function () {
         return view('admin.notice_edit');
@@ -95,10 +93,6 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip', 'is_admin']], function
         return view('admin.admin_notice_list');
     })->name('admin_notice_list');
 
-    Route::get('/faq_article_list', function () {
-        return view('admin.faq_article_list');
-    })->name('faq_article_list');
-
     Route::get('/independent_company_list', function () {
         return view('admin.independent_company_list');
     })->name('independent_company_list');
@@ -132,11 +126,11 @@ Route::group(['middleware' => ['auth:kubota', 'block_ip', 'is_admin']], function
 Route::group(['middleware' => ['auth:kubota,independent', 'block_ip']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
     Route::post('/language/edit', [LanguageController::class, 'edit'])->name('language.edit');
-
     Route::get('/faq/list', [FaqController::class, 'index'])->name('faq.list');
-    Route::get('/faq/get', [FaqController::class, 'getFaqList'])->name('faq.get');
+    Route::get('/faq/get', [FaqController::class, 'get'])->name('faq.get');
+    Route::get('/faq/detail/{id}', [FaqController::class, 'detail'])->name('faq.detail');
+    Route::get('/faq/get_sub_categories', [FaqController::class, 'getSubCategories'])->name('faq.get_sub_categories');
 
 
     Route::get('/faq_view', function () {

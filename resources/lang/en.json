@@ -12,7 +12,7 @@
     "announcement_management": "Announcement Management",
     "quick_navigation": "Quick Navigation",
     "button_go": "Go",
-    "header_qa_portal": "Quality Assurance Portal (tentative)",
+    "header_qa_portal": "G-QUICK Portal",
     "delivery_period": "Delivery Period",
     "label_jp": "JP",
     "label_en": "EN",
@@ -58,5 +58,20 @@
     "next":"Next",
     "open_contact_form":"Open Contact Form",
     "ip_restriction_message" : "You are unauthorised to access the portal",
-    "clear":"Clear"
+    "clear":"Clear",
+    "faq_number":"FAQ No",
+    "question_date":"Question Date",
+    "answer_date":"Answer Date",
+    "responder":"Responder",
+   
+    "answer":"Answer",
+    "references":"References",
+    "reference_url":"Reference URL",
+    "feedback_question_form":"Feedback and questions form",
+    "feedback_question_form_text":"If this Q&A does not solve your problem or if you have any comments, please click on the button below to go to the enquiry form and send an email.",
+    "category":"Category",
+    "no_data_available" : "No Data Available",
+    "list" : "List",
+    "top_category":"Top Category",
+    "sub_category":"Sub Category"
 }

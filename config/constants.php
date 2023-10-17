@@ -37,5 +37,5 @@ return [
     'max_number_of_files' => 3,
     'video_upload_max_size_in_mb' => 1,
     'files_max_size_in_mb' => 1,
-
+    'dashboard_list_limit' => 5,
 ];

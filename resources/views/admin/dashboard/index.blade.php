@@ -438,17 +438,17 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li><a href="{{ route('admin_notice_list') }}">お知らせ管理</a></li>
-                            <li><a href="{{ route('announcement.create') }}">アナウンス編集</a></li>
-                            <li><a href="{{ route('contact_information_edit') }}">お問い合わせ先情報編集</a></li>
-                            <li><a href="{{ route('user_info') }}">ユーザー管理</a></li>
-                            <li><a href="{{ route('affiliation_information_list') }}">所属情報管理</a></li>
-                            <li><a href="{{ route('independent_company_list') }}">独立系販社管理</a></li>
-                            <li><a href="{{ route('system_link.list') }}">システムリンク管理</a></li>
-                            <li><a href="{{ route('link_template_list') }}">リンク・テンプレート管理</a></li>
-                            <li><a href="{{ route('user_permission_list') }}">ユーザーグループ権限情報管理</a></li>
-                            <li><a href="{{ route('faq_article_list') }}">FAQ管理</a></li>
-                            <li><a href="{{ route('enquiry_management') }}">お問い合わせフォーム管理</a></li>
+                            <li><a title="お知らせ管理" href="{{ route('admin_notice_list') }}">お知らせ管理</a></li>
+                            <li><a title="アナウンス編集" href="{{ route('announcement.create') }}">アナウンス編集</a></li>
+                            <li><a title="お問い合わせ先情報編集" href="{{ route('contact_information_edit') }}">お問い合わせ先情報編集</a></li>
+                            <li><a title="ユーザー管理" href="{{ route('user_info') }}">ユーザー管理</a></li>
+                            <li><a title="所属情報管理" href="{{ route('affiliation_information_list') }}">所属情報管理</a></li>
+                            <li><a title="独立系販社管理" href="{{ route('independent_company_list') }}">独立系販社管理</a></li>
+                            <li><a title="システムリンク管理" href="{{ route('system_link.list') }}">システムリンク管理</a></li>
+                            <li><a title="リンク・テンプレート管理" href="{{ route('link_template_list') }}">リンク・テンプレート管理</a></li>
+                            <li><a title="ユーザーグループ権限情報管理" href="{{ route('user_permission_list') }}">ユーザーグループ権限情報管理</a></li>
+                            <li><a title="FAQ管理" href="{{ route('faq_data.list') }}">FAQ管理</a></li>
+                            <li><a title="お問い合わせフォーム管理" href="{{ route('enquiry_management') }}">お問い合わせフォーム管理</a></li>
                         </ul>
                     </div>
                 </div>
@@ -480,30 +480,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-12">
-                    <div class="col-xl-12">
-                        <div class="card custom-card">
-                            <div class="card-header  justify-content-between">
-                                <div class="card-title">
-                                    <a href="{{ route('faq.list') }}">{{ __('faq') }}</a>
-                                </div>
-                                <div class="prism-toggle">
-                                <a href="{{ route('faq.list') }}"><button class="btn btn-sm btn-primary-light">一覧<i
-                                            class="bi bi-chevron-right"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <ul>
-                                    <li><a href="#">Datalizerの●●●の設定について</a></li>
-                                    <li><a href="#">Datalizerの●●●の設定について</a></li>
-                                    <li><a href="#">Datalizerの●●●の設定について</a></li>
-                                    <li><a href="#">Datalizerの●●●の設定について</a></li>
-                                    <li><a href="#">Datalizerの●●●の設定について</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @include('components.faqs')
                 <div class="col-xl-12">
                     <div class="col-xl-12">
                         <div class="card custom-card">

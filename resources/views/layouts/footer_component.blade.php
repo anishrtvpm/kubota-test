@@ -23,9 +23,9 @@
     <script src="{{ asset('js/date&time_pickers.js') }}"></script>
     <!-- Datatables Cdn -->
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.responsive.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.buttons.min.js') }}"></script>
     <script src="{{ asset('js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('js/pdfmake.min.js') }}"></script>
     <script src="{{ asset('js/vfs_fonts.js') }}"></script>
