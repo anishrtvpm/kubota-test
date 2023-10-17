@@ -38,15 +38,6 @@ return [
     'video_upload_max_size_in_mb' => 1,
     'files_max_size_in_mb' => 1,
     'dashboard_list_limit' => 5,
-    'inquiry_form_mime_types' => 'image/gif,image/tif,image/png,image/jpg,
-                                  application/pdf,
-                                  application/msword,
-                                  application/vnd.openxmlformats-officedocument.wordprocessingml.document,
-                                  application/vnd.ms-excel,
-                                  application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
-                                  application/vnd.ms-powerpoint,
-                                  application/vnd.openxmlformats-officedocument.presentationml.presentation,
-                                  text/plain,
-                                  text/csv',
+    'inquiry_form_mime_types' => 'gif,tif,png,jpg,pdf,doc,docx,xls,xlxs,ppt,pptx,txt,csv',
     'inquiry_from_upload_size_limit' => '5MB'
 ];

@@ -77,7 +77,7 @@
     "faq_no" : "FAQ No.",
     "inquiry" : "Inquiry",
     "inquiry_form_title" : "Please use the form below to send us any questions or comments you may have about",
-    "must" : "must",
+    "must" : "required",
     "items_are_required" : "Items are required",
     "guid" : "GUID",
     "id" : "ID",
@@ -86,12 +86,15 @@
     "affiliation" : "Affiliation",
     "phone_number" : "Phone Number",
     "inquiry_details" : "Inquiry Details",
-    "category" : "Category",
     "subject" : "Subject",
     "attachment" : "Attachment",
     "save_once" : "Save Once",
     "confirmation_screen" : "Confirmation Screen",
     "user_information" : "User Information",
     "inquiry_form_saved_message" : "Your form has been saved.",
-    "inquiry_email_sent_success_message" : "Email Sent Successfully."
+    "inquiry_email_sent_success_message" : "Email Sent Successfully.",
+    "company" : "Company",
+    "back" : "Back",
+    "submit" : "Submit",
+    "email_sending_error" : "We're sorry, but we couldn't send your email at the moment. Please try again later"
 }

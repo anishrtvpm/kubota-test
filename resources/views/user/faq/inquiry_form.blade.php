@@ -7,16 +7,16 @@
     if($userInfo['language'] == config('constants.language_japanese'))
     {
         $langIndex = 0;
-        $system = $faqArticle->category->top_category_ja_name;
-        $category = $faqArticle->category->sub_category_ja_name;
-        $subject = $form->subject_ja;
+        $system = $faqArticle->faqCategory->top_category_ja_name;
+        $category = $faqArticle->faqCategory->sub_category_ja_name;
+        $subject = $form->ja_subject;
     }
     else
     {
         $langIndex = 1;
-        $system = $faqArticle->category->top_category_en_name;
-        $category = $faqArticle->category->sub_category_en_name;
-        $subject = $form->subject_en;
+        $system = $faqArticle->faqCategory->top_category_en_name;
+        $category = $faqArticle->faqCategory->sub_category_en_name;
+        $subject = $form->en_subject;
     }
     $isSaved = false;
 
@@ -30,10 +30,13 @@
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('home') }}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('faq') }}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('faq_list') }}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('faq_no') }} {{ $faqArticle->faq_id }}</a>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('home') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}#manage">{{ __('faq') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('faq.list') }}">{{ __('faq_list') }}</a></li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('faq.detail', ['id' => $faqArticle->faq_id]) }}">
+                        {{ __('faq_no') }} {{ $faqArticle->faq_id }}
+                    </a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ __('inquiry') }}</li>
             </ol>
@@ -55,12 +58,19 @@
                                         {{ session('message') }}
                                     </div>
                                 @endif
+                                @if(session('error'))
+                                <div class="alert alert-danger mt-2" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
                                 <form method="POST" id="faqInquiryForm" action="{{ route('faq.inquiry.confirm', ['id' => $faqArticle->faq_id]) }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="align-items-center justify-content-between mb-4">
                                         <p class="text-muted faq-list pt-0">
                                             {{ __('faq_no') }} {{ $faqArticle->faq_id }} 
-                                            <a href="#" class="link">{{ $faqArticle->title }}</a>
+                                            <a href="{{ route('faq.detail', ['id' => $faqArticle->faq_id]) }}" class="link">
+                                                {{ $faqArticle->title }}
+                                            </a>
                                             {{ __('inquiry_form_title') }}
                                         </p>
                                         <p class="preview-hidden">
@@ -70,7 +80,7 @@
 
                                     <div class="row mb-5">
                                         <h6 class="mb-2 fw-bold">{{ __('user_information') }}</h6>
-                                        <label class="col-sm-2 col-form-label col-form-label">
+                                        <label class="col-sm-2 col-form-label">
                                             {{ $isKubotaUser ? __('guid') : __('id') }}
                                         </label>
                                         <div class="col-sm-10 mb-2">
@@ -183,10 +193,10 @@
 
                                         @foreach ($form->formItems as $formItem)
                                             @php
-                                                $nameSlug = 'inq_' . Str::slug($formItem->item_name_en, '_');
+                                                $nameSlug = 'inq_' . Str::slug($formItem->en_item_name, '_');
                                             @endphp
                                             <label class="col-sm-2 col-form-label">
-                                                {{ $userInfo['language'] == config('constants.language_japanese') ? $formItem->item_name_ja : $formItem->item_name_en }}
+                                                {{ $userInfo['language'] == config('constants.language_japanese') ? $formItem->ja_item_name : $formItem->en_item_name }}
                                                 @if ($formItem->is_required)
                                                     <span class="must preview-hidden">{{ __('must') }}</span>
                                                 @endif
@@ -211,9 +221,7 @@
                                                     <textarea class="form-control preview-hidden" rows="7"
                                                     maxlength="{{ $formItem->max_length }}"
                                                     name="{{ $nameSlug }}"
-                                                    >
-                                                    {{ $isSaved ? $savedData->$nameSlug : ''}}
-                                                    </textarea>
+                                                    >{{ $isSaved ? $savedData->$nameSlug : ''}}</textarea>
                                                     @error($nameSlug)
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -242,7 +250,11 @@
                                         </label>
                                         <div class="col-sm-10 preview-hidden">
                                             <input class="form-control" type="file" id="formFile" name="attachment">
+                                            @error('attachment')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
+                                        
                                     </div>
                                     <div class="col-12 text-center preview-hidden">
                                         <button class="btn btn-primary px-4 me-3" type="submit" name="action"
@@ -251,9 +263,9 @@
                                             value="confirm">{{ __('confirmation_screen') }}</button>
                                     </div>
                                     <div class="col-12 text-center preview-visible">
-                                        <a class="btn btn-primary px-4 me-3 close-preview">Back</a>
+                                        <a class="btn btn-primary px-4 me-3 close-preview">{{ __('back') }}</a>
                                         <button class="btn btn-warning px-4 submit-inquiry" type="submit" name="action"
-                                            value="submit">Submit</button>
+                                            value="submit">{{ __('submit') }}</button>
                                     </div>
                                 </form>
                                 
@@ -268,9 +280,4 @@
     <script src="{{ asset('js/admin/jquery.validate.js') }}"></script>
     <script src="{{ asset('js/admin/additional-methods.min.js') }}"></script>
     <script src="{{ asset('js/user/faq_inquiry_form.js') }}"></script>
-    <style>
-    .preview-visible{
-        display: none;
-    }
-</style>
 @endsection

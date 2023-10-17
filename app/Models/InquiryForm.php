@@ -24,8 +24,8 @@ class InquiryForm extends Model
      */
     protected $fillable = [
         'status',
-        'subject_en',
-        'subject_ja',
+        'en_subject',
+        'ja_subject',
         'to_addr',
         'is_deleted'
     ];

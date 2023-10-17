@@ -25,8 +25,8 @@ class InquiryFormConfig extends Model
     protected $fillable = [
         'form_id',
         'sort',
-        'item_name_ja',
-        'item_name_en',
+        'ja_item_name',
+        'en_item_name',
         'item_type',
         'select_item',
         'max_length',

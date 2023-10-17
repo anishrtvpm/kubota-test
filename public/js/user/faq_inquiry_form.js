@@ -51,7 +51,7 @@ let staticRules = {
     },
     attachment: {
         required: false,
-        accept: config.inquiry_form_mime_types,
+        extension: config.inquiry_form_mime_types.replace(/,/g, '|'),
         filesize: max_file_size * 1048576
     }
 };
@@ -59,7 +59,7 @@ let staticRules = {
 let dynamicRules = {};
 
 formItems.forEach(item => {
-    let name = getNameSlug(item.item_name_en);
+    let name = getNameSlug(item.en_item_name);
     dynamicRules[name] = {
         required: item.is_required == 1,
         maxlength: item.max_length
@@ -101,7 +101,7 @@ let staticMessages = {
         maxlength: locale == config.language_japanese ? '件名は 120文字以内で設定してください。' : 'The subject must be within 100 characters.',
     },
     attachment: {
-        accept: config.language_japanese ? '無効なファイルタイプです。許可されるファイルタイプは、.gif、.tig、.png、.jpg、.pdf、.doc、.docx、.xls、.xlsx、.ppt、.pptx、.txt、.csvです。' : 'Invalid file type. Allowed file types are .gif, .tig, .png, .jpg, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv',
+        extension: config.language_japanese ? '無効なファイルタイプです。許可されるファイルタイプは、.gif、.tif、.png、.jpg、.pdf、.doc、.docx、.xls、.xlsx、.ppt、.pptx、.txt、.csvです。' : 'Invalid file type. Allowed file types are .gif, .tif, .png, .jpg, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv',
         filesize: config.language_japanese ? 'ファイルサイズの上限は' + max_file_size + 'メガバイトです。' :'The maximum allowable file size is '+ max_file_size + 'MB.'
     }
 };
@@ -109,10 +109,10 @@ let staticMessages = {
 let dynamicMessages = {};
 
 formItems.forEach(item => {
-    let name = getNameSlug(item.item_name_en);
+    let name = getNameSlug(item.en_item_name);
     dynamicMessages[name] = {
-        required: locale == config.language_japanese ? item.item_name_ja + 'は必須項目です。' : item.item_name_en + ' is required.',
-        maxlength: config.language_japanese ? item.item_name_ja + 'は' + item.max_length + '文字以内で設定してください。' : item.item_name_ja + ' must be within ' + item.max_length + ' characters.',
+        required: locale == config.language_japanese ? item.ja_item_name + 'は必須項目です。' : item.en_item_name + ' is required.',
+        maxlength: config.language_japanese ? item.ja_item_name + 'は' + item.max_length + '文字以内で設定してください。' : item.ja_item_name + ' must be within ' + item.max_length + ' characters.',
     }
 
     if(item.item_type == 'phone')
@@ -153,7 +153,7 @@ function showPreview()
     $('.user-phone').text($('#input-phone').val());
 
     formItems.forEach(item => {
-        let name = getNameSlug(item.item_name_en);
+        let name = getNameSlug(item.en_item_name);
         let value;
         if(item.item_type == 'single_line' || item.item_type == 'email' || item.item_type == 'phone')
         {

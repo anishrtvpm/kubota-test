@@ -3,13 +3,13 @@
     {
         $system = $faqArticle->category->top_category_ja_name;
         $category = $faqArticle->category->sub_category_ja_name;
-        $subject = $form->subject_ja;
+        $subject = $form->ja_subject;
     }
     else
     {
         $system = $faqArticle->category->top_category_en_name;
         $category = $faqArticle->category->sub_category_en_name;
-        $subject = $form->subject_en;
+        $subject = $form->en_subject;
     }
 @endphp
 
@@ -58,8 +58,7 @@
 </head>
 <body>
     <p class="text-muted faq-list pt-0">
-        {{ __('faq_no') }} {{ $faqArticle->faq_id }} 
-        <a href="#" class="link">{{ $faqArticle->title }}</a>
+        {{ __('faq_no') }} {{ $faqArticle->faq_id }} {{ $faqArticle->title }}
     </p>
   <table border="0" cellpadding="10">
     <tr class="heading">
@@ -106,10 +105,10 @@
     </tr>
     @foreach ($form->formItems as $formItem)
         @php
-            $nameSlug = 'inq_' . Str::slug($formItem->item_name_en, '_');
+            $nameSlug = 'inq_' . Str::slug($formItem->en_item_name, '_');
         @endphp
     <tr>
-        <td>{{ $userInfo['language'] == config('constants.language_japanese') ? $formItem->item_name_ja : $formItem->item_name_en }}</td>
+        <td>{{ $userInfo['language'] == config('constants.language_japanese') ? $formItem->ja_item_name : $formItem->en_item_name }}</td>
         <td>{{ $formData[$nameSlug] }}</td>
     </tr>
     @endforeach
