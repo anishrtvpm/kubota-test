@@ -252,10 +252,12 @@ $('#faq_data_form').validate({
     errorPlacement: function(error, element) {
         if (element.attr("name") === "display_group[]") {
             error.insertAfter($(".display_group:last"));
-        }else if (element.attr("class") === "summernote-custom") {
-            error.insertAfter($(".note-editable"));
-        } else {
-            error.insertAfter(element);
+        }else if (element.attr("name") === "q_message" || element.attr("name") === "a_message") {            
+            error.insertAfter($(".note-editor"));
+            let errorClass = $("div.note-editor");
+            errorClass.css("border", "1px solid red");
+        } else {            
+            error.insertAfter(element);            
         }
     }
 });

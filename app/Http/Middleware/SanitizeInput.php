@@ -19,7 +19,8 @@ class SanitizeInput
         $inputData = $request->post();
         if (!empty($inputData)) {
             foreach ($inputData as $key => $value) {
-                if (is_string($value)) {
+                $summernoteFields = ['q_message', 'a_message'];
+                if (is_string($value) && !in_array($key, $summernoteFields) ) {
                     $inputData[$key] = strip_tags($value);
                 }
             }
