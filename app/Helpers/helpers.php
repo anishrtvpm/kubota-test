@@ -204,7 +204,7 @@ if (!function_exists('getQuickNavigation')) {
         $choice = trans('choice');
         $sysLink = trans('system_links');
         if ($isAdmin) {
-            $choice = "選択";
+            $choice = "選択する";
             $sysLink = "システムリンク";
         }
 

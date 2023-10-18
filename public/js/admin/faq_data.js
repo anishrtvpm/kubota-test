@@ -32,28 +32,12 @@ if($('#faq_id').val() > 0){
 
 $('#q_message').summernote({
     height: 300,
-    lang: 'ja-JP',
-    callbacks: {
-        onKeydown: function(e) {
-            if (e.keyCode === 5) { // Tab key
-                e.preventDefault();
-                // Add your custom tab order logic here
-            }
-        }
-    }
+    lang: 'ja-JP',   
 });
 
 $('#a_message').summernote({
     height: 300,
     lang: 'ja-JP',
-    callbacks: {
-        onKeydown: function(e) {
-            if (e.keyCode === 6) { // Tab key
-                e.preventDefault();
-                // Add your custom tab order logic here
-            }
-        }
-    }
 });
 
 // Full width validation
@@ -173,7 +157,7 @@ $('#faq_data_form').validate({
         a_message: {
             required: true,
         },
-        files: {
+        'files[]': {
             fileNumberCheck: true,
             fileFormatCheck: true,
             fileSizeCheck: true
@@ -228,7 +212,7 @@ $('#faq_data_form').validate({
         a_message: {
             required: '回答内容は必須項目です。',
         },
-        files: {
+        'files[]': {
             fileNumberCheck: '3つのファイルのみアップロードしてください。',
             fileFormatCheck: 'ファイル形式をご確認ください。',
             fileSizeCheck: 'ファイルサイズをご確認ください。'

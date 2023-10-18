@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class FaqData extends Model
 {
@@ -125,7 +126,7 @@ class FaqData extends Model
       $faqData->title = $request->input('title');
       $faqData->q_message = $request->input('q_message');
       $faqData->a_message = $request->input('a_message');
-      $faqData->search_qa_message =  strip_tags($request->input('q_message') . ' ' . $request->input('a_message'));
+      $faqData->search_qa_message = strip_tags($request->input('q_message') . ' ' . $request->input('a_message'));
       $faqData->reference_url = $request->input('reference_url');
       $faqData->question_date = $request->input('question_date');
       $faqData->answer_date = $request->input('answer_date');
@@ -134,11 +135,7 @@ class FaqData extends Model
       $faqData->language = $request->input('language');
       $faqData->display_group = $request->input('display_group') ? implode(',', $request->input('display_group')) : null;
       if ($request->hasFile('files')) {
-        $filePaths = [];
-        foreach ($request->file('files') as $file) {
-          $filePath = $file->store('uploads');
-          $filePaths[] = pathinfo($filePath, PATHINFO_FILENAME);
-        }
+        $filePaths = $this->uploadFile($request);
         $faqData->image_path1 = $filePaths[0] ?? null;
         $faqData->image_path2 = $filePaths[1] ?? null;
         $faqData->image_path3 = $filePaths[2] ?? null;
@@ -154,6 +151,29 @@ class FaqData extends Model
     } catch (\Exception $e) {
       return $e->getMessage();
     }
+  }
+
+  /**
+   * Upload FAQ article file
+   * @param object $request
+   * @return array
+   */
+  public function uploadFile($request)
+  {
+    $filePaths = [];
+    $uploadDirectory = public_path('uploads');
+    if (!File::isDirectory($uploadDirectory)) {
+      File::makeDirectory($uploadDirectory, 0755, true, true);
+    }
+    foreach ($request->file('files') as $file) {
+      $originalName = str_replace(' ', '', strip_tags($file->getClientOriginalName()));
+      $filenameWithoutExtension = pathinfo($originalName, PATHINFO_FILENAME);
+      $extension = $file->getClientOriginalExtension();
+      $fileName = time() . '_' . substr($filenameWithoutExtension, 0, 255) . '.' . $extension;
+      $file->move(public_path('uploads'), $fileName);
+      $filePaths[] = $fileName;
+    }
+    return $filePaths;
   }
 
   /**
@@ -365,8 +385,8 @@ class FaqData extends Model
   public function checkFaqAccess($id, $groupId)
   {
     return FaqData::where('faq_id', $id)
-    ->whereRaw('FIND_IN_SET(?, faqs_data.display_group)', [$groupId])
-    ->exists();
+      ->whereRaw('FIND_IN_SET(?, faqs_data.display_group)', [$groupId])
+      ->exists();
   }
 
 }

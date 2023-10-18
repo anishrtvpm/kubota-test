@@ -110,23 +110,33 @@
                             </div>
                             <div class="col-md-12 row mb-2">
                                 <label for="text-area" class="col-sm-2 col-form-label col-form-label">質問内容</label>
-                                <div class="col-sm-9 mb-2 summernote-container">
-                                    <textarea id="q_message" name="q_message" class="summernote-custom" tabindex="5" required> {{ isset($faqData) ?  $faqData->q_message : '' }}</textarea>
+                                <div class="col-sm-9 mb-2 summernote-container"  tabindex="5">
+                                    <textarea id="q_message" name="q_message" class="summernote-custom" required> {{ isset($faqData) ?  $faqData->q_message : '' }}</textarea>
+                                    @if ($errors->has('q_message'))
+                                        <span class="text-danger">
+                                            {{ $errors->first('q_message') }}
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12 row mb-2">
                                 <label for="text-area" class="col-sm-2 col-form-label col-form-label">回答内容</label>
-                                <div class="col-sm-9 mb-2 summernote-container">
-                                    <textarea id="a_message" name="a_message" class="summernote-custom"  tabindex="6" required >{{ isset($faqData) ?  $faqData->a_message : '' }}</textarea>
+                                <div class="col-sm-9 mb-2 summernote-container" tabindex="6">
+                                    <textarea id="a_message" name="a_message" class="summernote-custom" required>{{ isset($faqData) ?  $faqData->a_message : '' }}</textarea>
+                                    @if ($errors->has('a_message'))
+                                        <span class="text-danger">
+                                            {{ $errors->first('a_message') }}
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12 row mb-3">
                                 <label for="text-area" class="col-sm-2 col-form-label col-form-label">参加画像</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control @if($errors->has('files')) error @endif" type="file" name="files" tabindex="7" multiple accept=".gif, .tif, .png, .jpg, .mov, .mpg, .wma, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv, .zip">
-                                    @if ($errors->has('files'))
+                                    <input class="form-control @if($errors->has('files')) error @endif" type="file" name="files[]" tabindex="7" multiple accept=".gif, .tif, .png, .jpg, .mov, .mpg, .wma, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv, .zip">
+                                    @if ($errors->has('files[]'))
                                         <span class="text-danger">
-                                            {{ $errors->first('files') }}
+                                            {{ $errors->first('files[]') }}
                                         </span>
                                     @endif
                                 </div>
