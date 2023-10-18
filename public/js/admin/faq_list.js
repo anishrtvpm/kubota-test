@@ -116,7 +116,8 @@ $(document).ready(function () {
         inlineFormStatus = '';
        $('#input-keyword').val('');
        $('#inlineFormSelectCatParent').val('');
-       $('#inlineFormSelectCatChild').val('');
+       $('#inlineFormSelectCatChild').empty();
+       $('#inlineFormSelectCatChild').append('<option value="" selected="">小カテゴリ</option>');
        $('#inlineFormSelectLanguage').val('');
        $('#inlineFormStatus').val('');
        faqAdminList.draw();
