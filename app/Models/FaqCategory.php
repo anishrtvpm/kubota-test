@@ -236,7 +236,7 @@ class FaqCategory extends Model
         $selectText = trans('sub_category');
         if (!empty($request->get('lang'))) {
             $language = $request->get('lang');
-            $selectText = "選択する";
+            $selectText = "小カテゴリ";
         }
         $subCategory = 'sub_category_' . $language . '_name';
         $topCategory = 'top_category_' . $language . '_name';
