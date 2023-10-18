@@ -35,6 +35,7 @@ let staticRules = {
     phone: {
         required: false,
         maxlength: 15,
+        minlength: 4,
         phone: true
     },
     system: {
@@ -67,6 +68,7 @@ formItems.forEach(item => {
 
     if(item.item_type == 'phone')
     {
+        dynamicRules[name]['minlength'] = 4;
         dynamicRules[name]['phone'] = true;
     }
 
@@ -86,6 +88,7 @@ let staticMessages = {
     },
     phone: {
         maxlength: locale == config.language_japanese ? '電話番号は 15文字以内で設定してください。' : 'The phone number must be within 15 characters.',
+        minength: locale == config.language_japanese ? '電話番号は 15文字以内で設定してください。' : 'The phone number must be atleast 4 characters long.',
         phone: locale == config.language_japanese ? '有効な電話番号を入力してください。' : 'Please enter a valid phone number'
     },
     system: {
@@ -118,6 +121,7 @@ formItems.forEach(item => {
     if(item.item_type == 'phone')
     {
         dynamicMessages[name]['phone'] = config.language_japanese ? '有効な電話番号を入力してください。' : 'Please enter a valid phone number';
+        dynamicMessages[name]['minlength'] = config.language_japanese ? '電話番号は 15文字以内で設定してください。' : 'The phone number must be atleast 4 characters long.',;
     }
 
     if(item.item_type == 'email')

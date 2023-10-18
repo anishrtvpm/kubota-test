@@ -155,7 +155,7 @@ class FaqController extends Controller
         
         $validations = array_merge($staticValidationRules,$dynamicValidationRules);
         $validationMessages = array_merge($staticValidationMessages,$dynamicValidationMessages);
-        // dd($dynamicValidationRules);
+
         $savedData = cookie('enq_form_'.$id, json_encode($request->all()), config('constants.cookie_life_time'));
 
         $request->validate($validations, $validationMessages);
@@ -231,7 +231,7 @@ class FaqController extends Controller
             'subject' => 'required:max:120',
             'category' => 'required:max:100',
             'system' => 'required:max:100',
-            'phone' => 'nullable|max:15|regex:/^[-+()0-9]+$/',
+            'phone' => 'min:4|nullable|max:15|regex:/^[-+()0-9]+$/',
             'attachment' => 'max:' . $maxFileSize . '|mimes:' . config('constants.inquiry_form_mime_types')
         ];
         $replacements = [
@@ -250,6 +250,7 @@ class FaqController extends Controller
             'system.required' => Lang::get('system_required'),
             'system.max' => Lang::get('system_max_length'),
             'phone.max' => Lang::get('phone_max_length'),
+            'phone.min' => Lang::get('phone_min_length'),
             'phone.regex' => Lang::get('invalid_phone'),
             'attachment.max' => str_replace(array_keys($replacements), array_values($replacements), Lang::get('attachment_max_size')),
             'attachment.mimes' => str_replace(array_keys($replacements), array_values($replacements), Lang::get('attachment_type_error')),
@@ -298,6 +299,9 @@ class FaqController extends Controller
             }
             if($item->item_type == 'phone')
             {
+                $rule .='min:4|';
+                $validationMessages[$nameSlug . '.min'] = Lang::get('phone_min_length');
+
                 if(!$item->is_required)
                 {
                     $rule .= 'nullable|';
