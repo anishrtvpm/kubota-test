@@ -101,7 +101,7 @@ class Dashboard extends Model
     {
         $language = app()->getLocale();
         return FaqData::select('faq_id', 'title')
-        ->whereIn('display_group', [$groupId])
+        ->whereRaw('FIND_IN_SET(?, faqs_data.display_group)', [$groupId])
         ->where('status', config('constants.public'))
         ->where('is_deleted', config('constants.active'))
         ->where('language', $language)
