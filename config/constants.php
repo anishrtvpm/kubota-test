@@ -38,4 +38,6 @@ return [
     'video_upload_max_size_in_mb' => 500,
     'files_max_size_in_mb' => 100,
     'dashboard_list_limit' => 5,
+    'inquiry_form_mime_types' => 'gif,tif,png,jpg,pdf,doc,docx,xls,xlxs,ppt,pptx,txt,csv',
+    'inquiry_from_upload_size_limit' => '5MB'
 ];

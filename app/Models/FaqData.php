@@ -354,4 +354,19 @@ class FaqData extends Model
       ->get();
   }
 
+  /**
+   *
+   * Check FAQ accessability for user
+   *
+   * @param  int $id
+   * @param  int $groupId
+   * @return boolean
+   */
+  public function checkFaqAccess($id, $groupId)
+  {
+    return FaqData::where('faq_id', $id)
+    ->whereRaw('FIND_IN_SET(?, faqs_data.display_group)', [$groupId])
+    ->exists();
+  }
+
 }

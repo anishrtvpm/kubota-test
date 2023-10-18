@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('libs/flatpickr/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/summernote-lite.min.css') }}" integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="anonymous">    
     <!-- Color Picker Css -->
-    <link rel="stylesheet" href="{{ asset('libs/@simonwep/pickr/themes/nano.min.css') }}">    
+    <link rel="stylesheet" href="{{ asset('libs/@simonwep/pickr/themes/nano.min.css') }}">
     <!-- Jquery Cdn -->
     <link rel="stylesheet" href="{{ asset('css/toastr.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">

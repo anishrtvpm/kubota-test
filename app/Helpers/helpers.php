@@ -284,3 +284,18 @@ function textFormat($input)
     return strlen($input) > config('constants.text_display_max_length') ?
         mb_substr($input, 0, config('constants.text_display_max_length')) . '..' : $input;
 }
+/**
+ * get Username 
+ *
+ * @return object
+ */
+if (!function_exists('getUsername')) {
+    function getUsername()
+    {
+        if (strlen(authUser()->guid) == config('constants.kubota_user_guid_length')) {
+            return app()->getLocale() == config('constants.language_japanese') ?  authUser()->ja_name : authUser()->en_name;
+        }
+ 
+        return app()->getLocale() == config('constants.language_japanese') ?  authUser()->ja_user_name : authUser()->en_user_name;
+    }
+}

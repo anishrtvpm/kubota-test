@@ -26,7 +26,7 @@ if(!empty($faqCategoryData)){
                 class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="alert alert-danger mt-2 error-modal" role="alert" style="display: none;"></div>
-        <form method="POST" id="faqCategoryForm" action="{{route('faq_category.store')}}">
+        <form method="POST" id="faqInquiryForm" action="{{route('faq_category.store')}}">
         @csrf
         <input type="hidden" name="faq_category_id" value="{{$faq_category_id ? $faq_category_id : ''}}">
         <div class="modal-body text-start">

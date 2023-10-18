@@ -119,7 +119,7 @@
                                         </div>
 
                                         <div class="d-grid gap-2 col-4 mx-auto mb-2">
-                                            <a href="{{ route('faq_create') }}"><button class="btn btn-warning btn-wave" type="button">{{__('open_contact_form')}}</button></a>
+                                            <a href="{{ route('faq.inquiry', ['id' => $faqData->faq_id]) }}"><button class="btn btn-warning btn-wave" type="button">{{__('open_contact_form')}}</button></a>
                                         </div>
                                     </div>
                                 </div>
