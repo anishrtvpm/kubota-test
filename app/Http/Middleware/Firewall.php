@@ -13,6 +13,7 @@ final class Firewall
         '127.0.0.1', // 例) ローカルからのアクセスは許可
        
         '103.72.179.127', // Anish.R IP
+        '103.72.179.211', // Anish.R IP
         '103.166.244.1', // Nikhil IP
         '103.121.27.178', // Experion office
         '103.79.223.18', // Experion office
