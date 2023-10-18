@@ -96,7 +96,7 @@ class FaqDataController extends Controller
             ]);
 
         } catch (\Exception $e) {
-            return redirect('faq_data/create')->with('error', trans('invalid_request_error'));
+            return redirect('faq_data')->with('error', trans('invalid_request_error'));
         }
     }
 

@@ -3,7 +3,7 @@
     
     /* To choose date */
     flatpickr(".datepicker", {
-        dateFormat: 'Y-m-d',
+        dateFormat: config.date_format_ymd,
         minDate: 'today',
     });
 
@@ -23,7 +23,7 @@
      /* Use in date range picker input fields */
      flatpickr(".daterange", {
         mode: "range",
-        dateFormat: "Y-m-d",
+        dateFormat: config.date_format_ymd,
         minDate: "today",
         locale: locale
     });

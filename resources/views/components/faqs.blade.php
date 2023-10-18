@@ -1,4 +1,4 @@
-<div class="col-xl-12">
+<div class="col-xl-12" id="faq">
     <div class="col-xl-12">
         <div class="card custom-card">
             <div class="card-header  justify-content-between">

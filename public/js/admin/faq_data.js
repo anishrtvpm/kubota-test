@@ -39,7 +39,6 @@ $('#a_message').summernote({
     height: 300,
     lang: 'ja-JP',
 });
-$('.summernote').summernote();
 
 // Full width validation
 $.validator.addMethod("fullwidth", function (value, element) {
@@ -47,7 +46,7 @@ $.validator.addMethod("fullwidth", function (value, element) {
 });
 
 $.validator.addMethod("checkboxEmpty", function (value, element) {
-    return $('input[name="display_group"]:checked').length > 0;
+    return $('input[name="display_group[]"]:checked').length > 0;
 });
 
 // Answer date validation based on question date
@@ -57,10 +56,10 @@ $.validator.addMethod("minDate", function (value, element, params) {
     return questionDate <= answerDate;
 });
 
-$.validator.addMethod("summernoteRequired", function (value, element) {
-    let code = $(element).summernote('code');
-    return code.replace(/<p>|<br>|<\/p>|&nbsp;|\s/g, '') !== '';
-}, );
+$.validator.addMethod("summernoteRequired", function(value, element) {
+    console.log("Validation method called.");
+    return value.replace(/<\/p>|<p>|&nbsp;|<br>/gi, '').trim() !== '';
+}, "This field is required.");
 
 // Check url validity
 $.validator.addMethod("validUrls", function (value, element) {
@@ -95,11 +94,9 @@ $.validator.addMethod("fileSizeCheck", function(value, element) {
     let maxVideoSize = config.video_upload_max_size_in_mb * 1024 * 1024;
     let maxOtherSize = config.files_max_size_in_mb * 1024 * 1024;
 
-    let totalSize = 0;
     let files = element.files;    
     for (let i = 0; i < files.length; i++) {
         let file = files[i];
-        totalSize += file.size;
 
         if (videoExtensions.test(file.name) && file.size > maxVideoSize) {
             return false;
@@ -113,6 +110,7 @@ $.validator.addMethod("fileSizeCheck", function(value, element) {
 
 
 $('#faq_data_form').validate({
+    ignore: ".summernote-custom *",
     errorLabelContainer: "#errorMessages",
     rules: {
         top_category_name: {
@@ -154,10 +152,10 @@ $('#faq_data_form').validate({
             required: true,
         },
         q_message: {
-            summernoteRequired: true,
+            required: true,
         },
         a_message: {
-            summernoteRequired: true,
+            required: true,
         },
         files: {
             fileNumberCheck: true,
@@ -186,7 +184,7 @@ $('#faq_data_form').validate({
         language: {
             required: true,
         },
-        display_group: {
+        'display_group[]': {
             checkboxEmpty: true
         }
     },
@@ -209,15 +207,15 @@ $('#faq_data_form').validate({
             maxlength: 'タイトルは 100文字以内で設定してください。',
         },
         q_message: {
-            summernoteRequired: '質問内容は必須項目です。',
+            required: '質問内容は必須項目です。',
         },
         a_message: {
-            summernoteRequired: '回答内容は必須項目です。',
+            required: '回答内容は必須項目です。',
         },
         files: {
             fileNumberCheck: '3つのファイルのみアップロードしてください。',
             fileFormatCheck: 'ファイル形式をご確認ください。',
-            fileSizeCheck: "Invalid file size."
+            fileSizeCheck: 'ファイルサイズをご確認ください。'
         },
         reference_url: {
             maxlength: '参加URLは 8000文字以内で設定してください。',
@@ -241,7 +239,7 @@ $('#faq_data_form').validate({
         language: {
             required: '言語は必須項目です。',
         },
-        display_group: {
+        'display_group[]': {
             checkboxEmpty: '配信先は必須項目です。'
         }
     },
@@ -250,6 +248,16 @@ $('#faq_data_form').validate({
         $('#submitBtn').attr('disabled', 'disabled');
         form.submit();
     },
+
+    errorPlacement: function(error, element) {
+        if (element.attr("name") === "display_group[]") {
+            error.insertAfter($(".display_group:last"));
+        }else if (element.attr("class") === "summernote-custom") {
+            error.insertAfter($(".note-editable"));
+        } else {
+            error.insertAfter(element);
+        }
+    }
 });
 
 
@@ -272,7 +280,7 @@ $('#deleteBtn').click(function () {
                 url: '/faq_data/delete/',
                 data: { id: recordId, _token: $('meta[name="csrf-token"]').attr('content')},
                 success: function (response) {
-                    window.location.href = "{{ route('faq_data.create') }}";
+                    window.location.href = "{{ route('faq_data') }}";
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     toastr.error(response.message);

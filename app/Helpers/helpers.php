@@ -130,21 +130,26 @@ if (!function_exists('authUser')) {
 if (!function_exists('getSystemLink')) {
     function getSystemLink($groupId)
     {
+        $language = app()->getLocale();
+        $isAdmin = authUser()->is_admin;
+        if ($isAdmin) {
+            $language = config('constants.language_japanese');
+        }
         if (!$groupId) {
             return false;
         }
+        $sysCategoryName = $language . "_category_name";
+        $sysName = $language . "_system_name";
+        $url = $language . "_url";
 
         $results = DB::table('user_groups_perms as ugp')
             ->select(
                 'ugp.system_category as category_id',
-                'slc.ja_category_name',
-                'slc.en_category_name',
+                'slc.' . $sysCategoryName,
                 'sl.sort',
                 'sl.system_id',
-                'sl.ja_system_name',
-                'sl.en_system_name',
-                'sl.ja_url',
-                'sl.en_url',
+                'sl.' . $sysName,
+                'sl.' . $url,
             )
             ->join('system_links as sl', 'ugp.system_id', '=', 'sl.system_id')
             ->join('system_links_categories as slc', 'ugp.system_category', '=', 'slc.category_id')
@@ -158,11 +163,11 @@ if (!function_exists('getSystemLink')) {
 
         foreach ($results as $result) {
             $categoryId = $result->category_id;
-            $categoryName = $result->ja_category_name;
+            $categoryName = $result->$sysCategoryName;
             $sort = $result->sort;
             $systemId = $result->system_id;
-            $systemName = $result->ja_system_name;
-            $systemUrl = $result->ja_url;
+            $systemName = $result->$sysName;
+            $systemUrl = $result->$url;
 
             // カテゴリがまだ存在しない場合、初期化
             if (!isset($systemLinks[$categoryId])) {
@@ -195,20 +200,28 @@ if (!function_exists('getQuickNavigation')) {
     function getQuickNavigation()
     {
 
+        $isAdmin = authUser()->is_admin;
+        $choice = trans('choice');
+        $sysLink = trans('system_links');
+        if ($isAdmin) {
+            $choice = "選択";
+            $sysLink = "システムリンク";
+        }
+
         $navigation = array(
-            route('admin_notice_list') => "お知らせ",
-            route('faq_data.list') => "FAQ",
-            route('link_template_list') => "各種リンク",
-            route('link_template_category_list') => "テンプレート・フォーマット",
-            route('link_template_list') => "基幹システム(文書管理)"
+            route('admin_notice_list') => $isAdmin ? "お知らせ" : trans('notice'),
+            route('faq.list') => "FAQ",
+            route('faq_category_list') => $isAdmin ? "各種リンク" : trans('various_link'),
+            route('link_template_category_list') => $isAdmin ? "テンプレート・フォーマット" : trans('application_format_template'),
+            route('link_template_list') => $isAdmin ? "基幹システム(文書管理)" : trans('core_system_doc_management'),
         );
 
         $groupId = getUser(authUser()->guid)['group_id'];
         $links = getSystemLink($groupId);
 
         $str = "<select id='quick_navigation' class='form-select'>";
-        $str .= "<option value='#'>選択</option>";
-        $str .= "<option disabled>システムリンク</option>";
+        $str .= "<option value='#'>" . $choice . "</option>";
+        $str .= "<option disabled>" . $sysLink . "</option>";
         foreach ($links as $link) {
             $str .= "<optgroup style='font-weight :bold' label=" . $link['category_name'] . " >";
 
