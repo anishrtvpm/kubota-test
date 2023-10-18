@@ -33,11 +33,27 @@ if($('#faq_id').val() > 0){
 $('#q_message').summernote({
     height: 300,
     lang: 'ja-JP',
+    callbacks: {
+        onKeydown: function(e) {
+            if (e.keyCode === 5) { // Tab key
+                e.preventDefault();
+                // Add your custom tab order logic here
+            }
+        }
+    }
 });
 
 $('#a_message').summernote({
     height: 300,
     lang: 'ja-JP',
+    callbacks: {
+        onKeydown: function(e) {
+            if (e.keyCode === 6) { // Tab key
+                e.preventDefault();
+                // Add your custom tab order logic here
+            }
+        }
+    }
 });
 
 // Full width validation
@@ -252,8 +268,12 @@ $('#faq_data_form').validate({
     errorPlacement: function(error, element) {
         if (element.attr("name") === "display_group[]") {
             error.insertAfter($(".display_group:last"));
-        }else if (element.attr("name") === "q_message" || element.attr("name") === "a_message") {            
-            error.insertAfter($(".note-editor"));
+        }else if (element.attr("name") === "q_message") { 
+            error.insertAfter($('#q_message').next(".note-editor"));
+            let errorClass = $("div.note-editor");
+            errorClass.css("border", "1px solid red");
+        }else if (element.attr("name") === "a_message") { 
+            error.insertAfter($('#a_message').next(".note-editor"));
             let errorClass = $("div.note-editor");
             errorClass.css("border", "1px solid red");
         } else {            
