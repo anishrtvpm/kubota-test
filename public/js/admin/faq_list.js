@@ -60,7 +60,7 @@ $(document).ready(function () {
             {
                 data: 'faq_id',
                 "mRender": function (data, type, full) {
-                    return '<a class="" href=""  id="' + data + '">' + data + '</a>';
+                    return '<a class="" href="/faq_data/edit/' + data + '"  id="' + data + '">' + data + '</a>';
                 }
             },
             { data: 'category_id' },

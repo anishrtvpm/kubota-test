@@ -210,7 +210,7 @@ if (!function_exists('getQuickNavigation')) {
 
         $navigation = array(
             route('admin_notice_list') => $isAdmin ? "お知らせ" : trans('notice'),
-            route('faq_article_list') => "FAQ",
+            route('faq.list') => "FAQ",
             route('faq_category_list') => $isAdmin ? "各種リンク" : trans('various_link'),
             route('link_template_category_list') => $isAdmin ? "テンプレート・フォーマット" : trans('application_format_template'),
             route('link_template_list') => $isAdmin ? "基幹システム(文書管理)" : trans('core_system_doc_management'),
