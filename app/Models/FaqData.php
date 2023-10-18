@@ -116,7 +116,6 @@ class FaqData extends Model
    */
   public function saveRecords($request)
   {
-
     try {
 
       $id = $request->get('faq_id');
@@ -126,6 +125,7 @@ class FaqData extends Model
       $faqData->title = $request->input('title');
       $faqData->q_message = $request->input('q_message');
       $faqData->a_message = $request->input('a_message');
+      $faqData->search_qa_message =  strip_tags($request->input('q_message') . ' ' . $request->input('a_message'));
       $faqData->reference_url = $request->input('reference_url');
       $faqData->question_date = $request->input('question_date');
       $faqData->answer_date = $request->input('answer_date');
