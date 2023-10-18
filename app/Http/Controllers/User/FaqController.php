@@ -218,8 +218,6 @@ class FaqController extends Controller
      */
     private function getStaticValidations()
     {
-        $language = app()->getLocale();
-        $ja = config('constants.language_japanese');
         $maxFileSize = (int)str_replace( 'MB', '', config('constants.inquiry_from_upload_size_limit')) * 1024;
 
         $validationRules = [
@@ -230,20 +228,25 @@ class FaqController extends Controller
             'phone' => 'max:15|regex:/^[-+()0-9]+$/',
             'attachment' => 'max:' . $maxFileSize . '|mimes:' . config('constants.inquiry_form_mime_types')
         ];
+        $replacements = [
+            '{file_size}' => config('constants.inquiry_from_upload_size_limit'),
+            '{file_types}' => config('constants.inquiry_form_mime_types'),
+        ];
+
         $validationMessages = [
-            'email.required' => $language == $ja ? 'メールアドレスは必須項目です。' : 'Email is required.',
-            'email.max' => $language == $ja ? 'メールアドレスは 320文字以内で設定してください。' : 'The e-mail address must be 320 characters or less.',
-            'email.email' => $language == $ja ? '有効なEメールアドレスを入力してください。' : 'Please enter a valid email address',
-            'subject.required' => $language == $ja ? '件名は必須項目です。' : 'Subject is a required field',
-            'subject.max' => $language == $ja ? '件名は 120文字以内で設定してください。' : 'The subject must be within 100 characters.',
-            'category.required' => $language == $ja ? 'カテゴリは必須項目です。' : 'Category is a required field.',
-            'category.max' => $language == $ja ? 'カテゴリは 100文字以内で設定してください。' : 'The category must be within 100 characters.',
-            'system.required' => $language == $ja ? 'システムは必須項目です。' : 'System is a required field.',
-            'system.max' => $language == $ja ? 'システムは 100文字以内で設定してください。' : 'The system must be within 100 characters.',
-            'phone.max' => $language == $ja ? '電話番号は 15文字以内で設定してください。' : 'The phone number must be within 15 characters.',
-            'phone.regex' => $language == $ja ? '有効な電話番号を入力してください。' : 'Please enter a valid phone number',
-            'attachment.max' => $language == $ja ? 'ファイルサイズの上限は' . config('constants.inquiry_from_upload_size_limit') . 'メガバイトです。' :'The maximum allowable file size is ' . config('constants.inquiry_from_upload_size_limit') . 'MB.',
-            'attachment.mimes' => $language == $ja ? '無効なファイルタイプです。許可されるファイルタイプは、.gif、.tif、.png、.jpg、.pdf、.doc、.docx、.xls、.xlsx、.ppt、.pptx、.txt、.csvです。' : 'Invalid file type. Allowed file types are .gif, .tif, .png, .jpg, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv',
+            'email.required' => Lang::get('email_required'),
+            'email.max' => Lang::get('email_max_length'),
+            'email.email' => Lang::get('invalid_email'),
+            'subject.required' => Lang::get('subject_required'),
+            'subject.max' => Lang::get('subject_max_length'),
+            'category.required' => Lang::get('category_required'),
+            'category.max' => Lang::get('category_max_length'),
+            'system.required' => Lang::get('system_required'),
+            'system.max' => Lang::get('system_max_length'),
+            'phone.max' => Lang::get('phone_max_length'),
+            'phone.regex' => Lang::get('invalid_phone'),
+            'attachment.max' => str_replace(array_keys($replacements), array_values($replacements), Lang::get('attachment_max_size')),
+            'attachment.mimes' => str_replace(array_keys($replacements), array_values($replacements), Lang::get('attachment_type_error')),
         ];
 
         $validations = new stdClass();
@@ -284,13 +287,13 @@ class FaqController extends Controller
             if($item->item_type == 'email')
             {
                 $rule .= '|email';
-                $emailMessage = $language == $ja ? '有効なEメールアドレスを入力してください。' : 'Please enter a valid email address';
+                $emailMessage = Lang::get('invalid_email');
                 $validationMessages['inq_' . $nameSlug . '.email'] = $emailMessage;
             }
             if($item->item_type == 'phone')
             {
                 $rule .= '|regex:/^[-+()]+$/';
-                $phoneMessage = $language == $ja ? '有効な電話番号を入力してください。' : 'Please enter a valid phone number';
+                $phoneMessage = Lang::get('invalid_phone');
                 $validationMessages['inq_' . $nameSlug . '.regex'] = $phoneMessage;
             }
 

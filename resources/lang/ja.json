@@ -98,5 +98,16 @@
     "back" : "バック",
     "submit" : "提出",
     "email_sending_error" : "申し訳ございませんが、現在メールを送信することができません。後でもう一度お試しください。",
-
+    "email_required" : "メールアドレスは必須項目です。",
+    "email_max_length" : "メールアドレスは 320文字以内で設定してください。",
+    "invalid_email" : "有効なEメールアドレスを入力してください。",
+    "subject_required" : "件名は必須項目です。",
+    "subject_max_length" : "件名は 120文字以内で設定してください。",
+    "category_max_length" : "カテゴリは 100文字以内で設定してください。",
+    "system_required" : "システムは必須項目です。",
+    "system_max_length" : "システムは 100文字以内で設定してください。",
+    "phone_max_length" : "電話番号は 15文字以内で設定してください。",
+    "invalid_phone" : "有効な電話番号を入力してください。",
+    "attachment_max_size" : "ファイルサイズの上限は {file_size} メガバイトです。",
+    "attachment_type_error" : "無効なファイルタイプです。許可されるファイルタイプは、{file_types}です。"
 }

@@ -98,7 +98,16 @@
     "back" : "Back",
     "submit" : "Submit",
     "email_sending_error" : "We're sorry, but we couldn't send your email at the moment. Please try again later",
-    "email_required_error" : "Email is required.",
-    "email_max_length_error" : "The e-mail address must be 320 characters or less.",
-    "invalid_email_error" : "Please enter a valid email address"
+    "email_required" : "Email is required.",
+    "email_max_length" : "The e-mail address must be 320 characters or less.",
+    "invalid_email" : "Please enter a valid email address",
+    "subject_required" : "Subject is a required field.",
+    "subject_max_length" : "The subject must be within 100 characters.",
+    "category_max_length" : "The category must be within 100 characters.",
+    "system_required" : "System is a required field.",
+    "system_max_length" : "The system must be within 100 characters.",
+    "phone_max_length" : "The phone number must be within 15 characters.",
+    "invalid_phone" : "Please enter a valid phone number",
+    "attachment_max_size" : "The maximum allowable file size is {file_size} MB.",
+    "attachment_type_error" : "Invalid file type. Allowed file types are {file_types}"
 }
