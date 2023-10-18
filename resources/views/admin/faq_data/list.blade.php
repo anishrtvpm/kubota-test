@@ -20,6 +20,16 @@
                 <div class="col-xl-12">
                     <div class="card custom-card">
                         <div class="card-body">
+                            @if (session('message'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                            @if (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <form class="row">
                                 <div class="col-md-4 row mb-3">
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">大カテゴリ</label>

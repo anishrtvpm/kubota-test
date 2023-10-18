@@ -111,19 +111,24 @@
                             <div class="col-md-12 row mb-2">
                                 <label for="text-area" class="col-sm-2 col-form-label col-form-label">質問内容</label>
                                 <div class="col-sm-9 mb-2 summernote-container">
-                                    <textarea id="q_message" name="q_message" tabindex="5" required class="summernote"> {{ isset($faqData) ?  $faqData->q_message : '' }}</textarea>
+                                    <textarea id="q_message" name="q_message" class="summernote-custom" tabindex="5" required> {{ isset($faqData) ?  $faqData->q_message : '' }}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 row mb-2">
                                 <label for="text-area" class="col-sm-2 col-form-label col-form-label">回答内容</label>
                                 <div class="col-sm-9 mb-2 summernote-container">
-                                    <textarea id="a_message" name="a_message" tabindex="6" required class="summernote">{{ isset($faqData) ?  $faqData->a_message : '' }}</textarea>
+                                    <textarea id="a_message" name="a_message" class="summernote-custom"  tabindex="6" required >{{ isset($faqData) ?  $faqData->a_message : '' }}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 row mb-3">
                                 <label for="text-area" class="col-sm-2 col-form-label col-form-label">参加画像</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="file" name="files" tabindex="7" multiple>
+                                    <input class="form-control @if($errors->has('files')) error @endif" type="file" name="files" tabindex="7" multiple accept=".gif, .tif, .png, .jpg, .mov, .mpg, .wma, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv, .zip">
+                                    @if ($errors->has('files'))
+                                        <span class="text-danger">
+                                            {{ $errors->first('files') }}
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12 row mb-3">
@@ -219,7 +224,7 @@
                                 <label for="text-area" class="col-sm-2 col-form-label col-form-label">配信先</label>
                                 <div class="col-sm-9 mb-5">
                                     @foreach ($userGroups as $group)
-                                    <div class="form-check form-check-lg d-flex align-items-center">
+                                    <div class="form-check form-check-lg d-flex align-items-center display_group">
                                         <input class="form-check-input" type="checkbox" name="display_group[]" id="display_group{{ $group->group_id }}"
                                          value="<?= $group->group_id ?>" tabindex="14" {{ in_array($group->group_id, $displayGroups) ? 'checked' : '' }}>
                                         <label class="form-check-label me-5" for="checkebox-lg">
@@ -227,9 +232,11 @@
                                         </label>
                                     </div>
                                     @endforeach
-                                    @error('display_group')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    @if ($errors->has('display_group'))
+                                        <span class="text-danger">
+                                            {{ $errors->first('display_group') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="gap-2 col-3 mx-auto mb-3">
                                     <?php if(!empty($faqData) && $faqData->faq_id){ ?>
@@ -238,7 +245,7 @@
                                     <?php } ?>
                                     <button class="btn btn-warning px-4" type="submit"
                                      title="{{ !empty($faqData) && $faqData->faq_id ?  '投稿する' :  '追加する' }}"
-                                      tabindex="16" id="submitBtn" > {{ !empty($faqData) && $faqData->id ?  '投稿する' :  '追加する' }}</button>
+                                      tabindex="16" id="submitBtn" > {{ !empty($faqData) && $faqData->faq_id ?  '投稿する' :  '追加する' }}</button>
                                 </div>
                             </div>
                         </form>

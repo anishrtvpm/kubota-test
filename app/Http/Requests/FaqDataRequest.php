@@ -32,9 +32,19 @@ class FaqDataRequest extends FormRequest
             'responder' => ['required', 'string', 'max:100'],
             'status' => ['required', 'integer'],
             'language' => ['required', 'integer'],
-           // 'a_message' => ['required'],
-          //  'q_message' => ['required'],
-           // 'image_path.*' => 'max:3|file|mimes:gif,tif,png,jpg,mov,mpg,wma,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,csv,zip',
+            // 'a_message' => ['required'],
+            //  'q_message' => ['required'],
+            'files.*' => [
+                'file',
+                'mimes:gif,tif,png,jpg,mov,mpg,wma,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,csv,zip',
+                function ($attribute, $value, $fail) {
+                    $maxSize = $this->hasVideoExtension($value) ? 500 * 1024 : 100 * 1024;
+
+                    if ($value->getSize() > $maxSize) {
+                        $fail("The $attribute must not exceed " . ($maxSize / 1024) . " KB.");
+                    }
+                },
+            ],
         ];
     }
 
@@ -55,7 +65,18 @@ class FaqDataRequest extends FormRequest
             'responder.max' => '回答者は 100文字以内で設定してください。',
             'status.required' => '状態は必須項目です。',
             'language.required' => '言語は必須項目です。',
-            'answer_date.after_or_equal' => '回答日は質問日と同じかそれ以上でなければなりません。'
+            'answer_date.after_or_equal' => '回答日は質問日と同じかそれ以上でなければなりません。',
+            'files.array' => '3つのファイルのみアップロードしてください。',
+            'files.*.file' => 'Invalid file.',
+            'files.*.mimes' => 'Unsupported file format.',
         ];
+    }
+
+    private function hasVideoExtension($file)
+    {
+        $videoExtensions = ['mov', 'mpg', 'wma'];
+        $extension = strtolower($file->getClientOriginalExtension());
+
+        return in_array($extension, $videoExtensions);
     }
 }
