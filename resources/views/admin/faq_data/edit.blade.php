@@ -194,8 +194,6 @@
                                          'selected' : '') : '' }}>公開中</option>
                                         <option value="{{config('constants.private')}}" {{ isset($faqData) ? ($faqData->status == config('constants.private') ?
                                          'selected' : '') : '' }}>未公開</option>
-                                        <option value="{{config('constants.pending')}}"  {{ isset($faqData) ? ($faqData->status == config('constants.pending') ?
-                                         'selected' : '') : '' }}>保留中</option>
                                     </select>
                                     @if ($errors->has('status'))
                                         <span class="text-danger">
@@ -207,8 +205,8 @@
                                 <div class="col-sm-2 mb-2">
                                     <select name="language" id="language" tabindex="13" class="form-select @if($errors->has('language')) error @endif">
                                         <option value="">言語選択</option>
-                                        <option value="1" {{ isset($faqData) ? ($faqData->language == 1 ? 'selected' : '') : '' }}>日本語</option>
-                                        <option value="2" {{ isset($faqData) ? ($faqData->language == 2 ? 'selected' : '') : '' }}>英語</option>
+                                        <option value="ja" {{ isset($faqData) ? ($faqData->language == config('constants.language_japanese') ? 'selected' : '') : '' }}>日本語</option>
+                                        <option value="en" {{ isset($faqData) ? ($faqData->language == config('constants.language_english') ? 'selected' : '') : '' }}>英語</option>
                                     </select>
                                     @if ($errors->has('language'))
                                         <span class="text-danger">

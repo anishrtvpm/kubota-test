@@ -31,7 +31,7 @@ class FaqDataRequest extends FormRequest
             'answer_date' => ['required', 'after_or_equal:question_date'],
             'responder' => ['required', 'string', 'max:100'],
             'status' => ['required', 'integer'],
-            'language' => ['required', 'integer'],
+            'language' => ['required', 'string'],
             // 'a_message' => ['required'],
             //  'q_message' => ['required'],
             'files.*' => [
