@@ -155,6 +155,7 @@ class FaqController extends Controller
         
         $validations = array_merge($staticValidationRules,$dynamicValidationRules);
         $validationMessages = array_merge($staticValidationMessages,$dynamicValidationMessages);
+        // dd($dynamicValidationRules);
         $savedData = cookie('enq_form_'.$id, json_encode($request->all()), config('constants.cookie_life_time'));
 
         $request->validate($validations, $validationMessages);
@@ -195,14 +196,17 @@ class FaqController extends Controller
             $sendEmail = Mail::send('user.faq.inquiry_email', $data, function ($message) use ($data, $attachment) {
                 $message->to($data["form"]->to_addr)
                     ->subject($data["form"]->en_subject);
-                $message->attach($attachment->getRealPath(), [
-                    'as' => $attachment->getClientOriginalName()
-                ]);
+                if($attachment)
+                {
+                    $message->attach($attachment->getRealPath(), [
+                        'as' => $attachment->getClientOriginalName()
+                    ]);
+                }
             });
 
             if($sendEmail)
             {
-                return redirect(route('user.faq.list'))
+                return redirect(route('faq.list'))
                         ->with('message', Lang::get('inquiry_email_sent_success_message'));
             }
             else
@@ -298,7 +302,7 @@ class FaqController extends Controller
                 {
                     $rule .= 'nullable|';
                 }
-                $rule .= 'regex:/^[-+()]+$/';
+                $rule .= 'regex:/^[-+()0-9]+$/';
                 $phoneMessage = Lang::get('invalid_phone');
                 $validationMessages[$nameSlug . '.regex'] = $phoneMessage;
             }

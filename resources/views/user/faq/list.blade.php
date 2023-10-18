@@ -25,6 +25,16 @@
     <div class="alert alert-solid-dark alert-dismissible fade show text-white mt-4">
     {{ __('faq_list') }}
     </div>
+    @if (session('message'))
+    <div class="alert alert-success" role="alert">
+        {{ session('message') }}
+    </div>
+    @endif
+    @if(session('error'))
+    <div class="alert alert-danger mt-2" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
     <div class="row">
         <div class="col-xxl-12 col-xl-12">
             <div class="row">

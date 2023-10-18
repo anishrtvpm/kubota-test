@@ -30,8 +30,8 @@
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('home') }}</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}#manage">{{ __('faq') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}">{{ __('home') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin_dashboard') }}#manage">{{ __('faq') }}</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('faq.list') }}">{{ __('faq_list') }}</a></li>
                 <li class="breadcrumb-item">
                     <a href="{{ route('faq.detail', ['id' => $faqArticle->faq_id]) }}">
@@ -257,18 +257,18 @@
                                         
                                     </div>
                                     <div class="col-12 text-center preview-hidden">
-                                        <button class="btn btn-primary px-4 me-3" type="submit" name="action"
+                                        <button class="btn btn-primary px-4 me-3 mb-3" type="submit" name="action"
                                             value="save">{{ __('save_once') }}</button>
-                                        <button class="btn btn-warning px-4" type="submit" name="action"
+                                        <button class="btn btn-warning px-4 mb-3" type="submit" name="action"
                                             value="confirm">{{ __('confirmation_screen') }}</button>
                                     </div>
                                     <div class="col-12 text-center preview-visible">
-                                        <a class="btn btn-primary px-4 me-3 close-preview">{{ __('back') }}</a>
-                                        <button class="btn btn-warning px-4 submit-inquiry" type="submit" name="action"
+                                        <a class="btn btn-primary px-4 me-3 mb-3 close-preview">{{ __('back') }}</a>
+                                        <button class="btn btn-warning px-4 mb-3 submit-inquiry" type="submit" name="action"
                                             value="submit">{{ __('submit') }}</button>
                                     </div>
                                 </form>
-                                
+                                <a href="{{ route('faq.detail', ['id' => $faqArticle->faq_id]) }}" class="btn btn-primary px-4 me-3 close-preview">{{ __('return_to_faq') }}</a>
                             </div>
                         </div>
                     </div>

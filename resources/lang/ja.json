@@ -109,5 +109,6 @@
     "phone_max_length" : "電話番号は 15文字以内で設定してください。",
     "invalid_phone" : "有効な電話番号を入力してください。",
     "attachment_max_size" : "ファイルサイズの上限は {file_size} メガバイトです。",
-    "attachment_type_error" : "無効なファイルタイプです。許可されるファイルタイプは、{file_types}です。"
+    "attachment_type_error" : "無効なファイルタイプです。許可されるファイルタイプは、{file_types}です。",
+    "return_to_faq" : "FAQに戻る"
 }
