@@ -151,10 +151,11 @@ class FaqController extends Controller
         $staticValidationMessages = $this->getStaticValidations()->validationMessages;
 
         $dynamicValidationRules = $this->getDynamicValidations($id)->validationRules;
-        $dynamicValidationMessages = $this->getDynamicValidations($id)->validationRules;;
+        $dynamicValidationMessages = $this->getDynamicValidations($id)->validationMessages;
         
         $validations = array_merge($staticValidationRules,$dynamicValidationRules);
         $validationMessages = array_merge($staticValidationMessages,$dynamicValidationMessages);
+        $savedData = cookie('enq_form_'.$id, json_encode($request->all()), config('constants.cookie_life_time'));
 
         $request->validate($validations, $validationMessages);
 
@@ -162,7 +163,7 @@ class FaqController extends Controller
         {
             return redirect(route('faq.inquiry',['id'=>$id]))
             ->with('message', Lang::get('inquiry_form_saved_message'))
-            ->withCookie(cookie('enq_form_'.$id, json_encode($request->all()), 1440));
+            ->withCookie($savedData);
         }
         elseif($request->get('action') == 'submit')
         {
@@ -201,13 +202,14 @@ class FaqController extends Controller
 
             if($sendEmail)
             {
-                return redirect(route('user.faq.list'))->with('message', Lang::get('inquiry_email_sent_success_message'));
+                return redirect(route('user.faq.list'))
+                        ->with('message', Lang::get('inquiry_email_sent_success_message'));
             }
             else
             {
                 return redirect(route('faq.inquiry',['id'=>$id]))
                 ->with('error', Lang::get('inquiry_form_saved_message'))
-                ->withCookie(cookie('enq_form_'.$id, json_encode($request->all()), 1440));
+                ->withCookie(cookie('enq_form_'.$id, json_encode($request->all()), config('constants.cookie_life_time')));
             }
         }
     }
@@ -225,7 +227,7 @@ class FaqController extends Controller
             'subject' => 'required:max:120',
             'category' => 'required:max:100',
             'system' => 'required:max:100',
-            'phone' => 'max:15|regex:/^[-+()0-9]+$/',
+            'phone' => 'nullable|max:15|regex:/^[-+()0-9]+$/',
             'attachment' => 'max:' . $maxFileSize . '|mimes:' . config('constants.inquiry_form_mime_types')
         ];
         $replacements = [
@@ -273,31 +275,35 @@ class FaqController extends Controller
             $nameSlug = 'inq_' . Str::slug($item->en_item_name, '_');
             if($item->is_required)
             {
-                $rule .= 'required';
+                $rule .= 'required|';
                 $requiredMessage = $language == $ja ? 'は必須項目です。' : $item->en_item_name . ' is required.';
-                $validationMessages['inq_' . $nameSlug . '.required'] = $requiredMessage;
+                $validationMessages[$nameSlug . '.required'] = $requiredMessage;
             }
             if($item->max_length)
             {
-                $rule .= '|max:'.$item->max_length;
+                $rule .= 'max:'.$item->max_length .'|';
                 $maxMessage = $language == $ja ? 'は' . $item->max_length . '文字以内で設定してください。' : $item->ja_item_name . ' must be within ' . $item->max_length . ' characters.';
-                $validationMessages['inq_' . $nameSlug . '.max'] = $maxMessage;
+                $validationMessages[$nameSlug . '.max'] = $maxMessage;
             }
 
             if($item->item_type == 'email')
             {
-                $rule .= '|email';
+                $rule .= 'email';
                 $emailMessage = Lang::get('invalid_email');
-                $validationMessages['inq_' . $nameSlug . '.email'] = $emailMessage;
+                $validationMessages[$nameSlug . '.email'] = $emailMessage;
             }
             if($item->item_type == 'phone')
             {
-                $rule .= '|regex:/^[-+()]+$/';
+                if(!$item->is_required)
+                {
+                    $rule .= 'nullable|';
+                }
+                $rule .= 'regex:/^[-+()]+$/';
                 $phoneMessage = Lang::get('invalid_phone');
-                $validationMessages['inq_' . $nameSlug . '.regex'] = $phoneMessage;
+                $validationMessages[$nameSlug . '.regex'] = $phoneMessage;
             }
 
-            $validationRules['inq_' . $nameSlug] = $rule;
+            $validationRules[$nameSlug] = $rule;
         }
 
         $validations = new stdClass();
