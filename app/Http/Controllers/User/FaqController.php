@@ -195,7 +195,7 @@ class FaqController extends Controller
 
             $sendEmail = Mail::send('user.faq.inquiry_email', $data, function ($message) use ($data, $attachment) {
                 $message->to($data["form"]->to_addr)
-                    ->subject($data["form"]->en_subject);
+                    ->subject(app()->getLocale() == config('constants.language_japanese') ? $data["form"]->ja_subject : $data["form"]->en_subject);
                 if($attachment)
                 {
                     $message->attach($attachment->getRealPath(), [
