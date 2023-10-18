@@ -35,7 +35,7 @@
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">大カテゴリ</label>
                                     <div class="col-sm-8">
                                         <select name="top-category" class="form-select top_category" id="inlineFormSelectCatParent">
-                                            <option value='' selected>{{ __("top_category") }}</option>
+                                            <option value='' selected>大カテゴリ</option>
                                             @if(!empty($topCategories))
                                                 @foreach($topCategories as $topCategory)
                                                     <option value="{{$topCategory->name}}">{{$topCategory->name}}</option>
@@ -49,7 +49,7 @@
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">中カテゴリ</label>
                                     <div class="col-sm-8">
                                         <select name="sub-category" class="form-select sub_category" id="inlineFormSelectCatChild">
-                                            <option value='' selected>{{ __("sub_category") }}</option>
+                                            <option value='' selected>小カテゴリ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                 <div class="col-md-4 row mb-3 me-1">
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">キーワード</label>
                                     <div class="col-sm-8">
-                                        <input name="keyword-search" type="text" class="form-control" id="input-keyword" placeholder="キーワードを入力">
+                                        <input maxlength="100" name="keyword-search" type="text" class="form-control" id="input-keyword" placeholder="キーワードを入力">
                                     </div>
                                 </div>
                                 <div class="col-md-4 row mb-3">
