@@ -155,7 +155,7 @@ class FaqController extends Controller
         
         $validations = array_merge($staticValidationRules,$dynamicValidationRules);
         $validationMessages = array_merge($staticValidationMessages,$dynamicValidationMessages);
-        $savedData = cookie('enq_form_'.$id, json_encode($request->all()), 1440);
+        $savedData = cookie('enq_form_'.$id, json_encode($request->all()), config('constants.cookie_life_time'));
 
         $request->validate($validations, $validationMessages);
 
@@ -209,7 +209,7 @@ class FaqController extends Controller
             {
                 return redirect(route('faq.inquiry',['id'=>$id]))
                 ->with('error', Lang::get('inquiry_form_saved_message'))
-                ->withCookie(cookie('enq_form_'.$id, json_encode($request->all()), 1440));
+                ->withCookie(cookie('enq_form_'.$id, json_encode($request->all()), config('constants.cookie_life_time')));
             }
         }
     }
