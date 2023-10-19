@@ -163,7 +163,7 @@ class FaqData extends Model
     $filePaths = [];
     $uploadDirectory = public_path('uploads');
     if (!File::isDirectory($uploadDirectory)) {
-      File::makeDirectory($uploadDirectory, 0755, true, true);
+      File::makeDirectory($uploadDirectory, 0777, true, true);
     }
     foreach ($request->file('files') as $file) {
       $originalName = str_replace(' ', '', strip_tags($file->getClientOriginalName()));
@@ -210,10 +210,7 @@ class FaqData extends Model
     $faq = self::where('faq_id', $request->id)->first();
     $faq->is_deleted = config('constants.inactive');
     $faq->modified_user = authUser()->guid;
-    if ($faq->save()) {
-      return true;
-    }
-    return false;
+    return $faq->save();
   }
 
   /**
