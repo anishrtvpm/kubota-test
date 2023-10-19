@@ -109,5 +109,9 @@
     "phone_max_length" : "The phone number must be within 15 characters.",
     "invalid_phone" : "Please enter a valid phone number",
     "attachment_max_size" : "The maximum allowable file size is {file_size} MB.",
-    "attachment_type_error" : "Invalid file type. Allowed file types are {file_types}"
+    "attachment_type_error" : "Invalid file type. Allowed file types are {file_types}",
+    "return_to_faq" : "Return to FAQ",
+    "phone_min_length" : "The Phone must be at least 4 characters long.",
+    "dynamic_field_required" : "{field_name} is Required",
+    "dynamic_field_max_lenght" : "{field_name}は{length}文字以内でなければならない。"
 }

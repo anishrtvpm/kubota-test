@@ -347,6 +347,7 @@ class FaqData extends Model
     }
     $faqData->whereRaw('FIND_IN_SET(?, display_group)', [$groupId]);
     $faqData->where('status', config('constants.public'));
+    $faqData->where('faqs_data.language', $language);
     $faqData->where('is_deleted', config('constants.active'));
     $faqData->orderBy('sort', 'asc');
     return $faqData->paginate(config('constants.data_table_per_page'));

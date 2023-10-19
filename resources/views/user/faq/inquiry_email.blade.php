@@ -1,14 +1,14 @@
 @php
     if($userInfo['language'] == config('constants.language_japanese'))
     {
-        $system = $faqArticle->category->top_category_ja_name;
-        $category = $faqArticle->category->sub_category_ja_name;
+        $system = $faqArticle->faqCategory->top_category_ja_name;
+        $category = $faqArticle->faqCategory->sub_category_ja_name;
         $subject = $form->ja_subject;
     }
     else
     {
-        $system = $faqArticle->category->top_category_en_name;
-        $category = $faqArticle->category->sub_category_en_name;
+        $system = $faqArticle->faqCategory->top_category_en_name;
+        $category = $faqArticle->faqCategory->sub_category_en_name;
         $subject = $form->en_subject;
     }
 @endphp

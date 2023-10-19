@@ -299,3 +299,10 @@ if (!function_exists('getUsername')) {
         return app()->getLocale() == config('constants.language_japanese') ?  authUser()->ja_user_name : authUser()->en_user_name;
     }
 }
+
+if (!function_exists('replaceVariables')) {
+    function replaceVariables($replacements, $string)
+    {
+        return str_replace(array_keys($replacements), array_values($replacements), $string);
+    }
+}
