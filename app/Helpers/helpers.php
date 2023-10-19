@@ -279,10 +279,10 @@ function dateFormat($date, $format)
 /**
  * Format text
  */
-function textFormat($input)
+function textFormat($input,$maxLength)
 {
-    return strlen($input) > config('constants.text_display_max_length') ?
-        mb_substr($input, 0, config('constants.text_display_max_length')) . '..' : $input;
+    return strlen($input) > $maxLength ?
+        mb_substr($input, 0, $maxLength) . '..' : $input;
 }
 /**
  * get Username 
@@ -293,10 +293,10 @@ if (!function_exists('getUsername')) {
     function getUsername()
     {
         if (strlen(authUser()->guid) == config('constants.kubota_user_guid_length')) {
-            return app()->getLocale() == config('constants.language_japanese') ?  authUser()->ja_name : authUser()->en_name;
+            return app()->getLocale() == config('constants.language_japanese') ? authUser()->ja_name : authUser()->en_name;
         }
- 
-        return app()->getLocale() == config('constants.language_japanese') ?  authUser()->ja_user_name : authUser()->en_user_name;
+
+        return app()->getLocale() == config('constants.language_japanese') ? authUser()->ja_user_name : authUser()->en_user_name;
     }
 }
 
@@ -304,5 +304,18 @@ if (!function_exists('replaceVariables')) {
     function replaceVariables($replacements, $string)
     {
         return str_replace(array_keys($replacements), array_values($replacements), $string);
+    }
+}
+
+/**
+ * Get the route name for the dashboard based on the user's role.
+ * @return string The route name for the dashboard.
+ */
+
+if (!function_exists('getDashboardRoute')) {
+    function getDashboardRoute()
+    {
+        $isAdmin = authUser()->is_admin;
+        return $isAdmin ? route('admin_dashboard') : route('dashboard');
     }
 }

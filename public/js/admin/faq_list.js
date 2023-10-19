@@ -18,7 +18,6 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         serverMethod: 'get',
-        responsive: true,
         bLengthChange: false,
         searching: false,
         //iDisplayLength: 2,        
@@ -67,7 +66,12 @@ $(document).ready(function () {
             { data: 'top_category_ja_name' },
             { data: 'sub_category_ja_name' },
             { data: 'sort' },
-            { data: 'title' },
+            {
+                data: 'title',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
             {
                 data: 'status',
                 "mRender": function (data, type, full) {

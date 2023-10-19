@@ -9,8 +9,8 @@
     <div class="d-md-flex d-block align-items-center justify-content-between mt-2 page-header-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-style2 mb-0">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{ __('home') }}</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}#manage">{{ __('faq') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ getDashboardRoute() }}">{{ __('home') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ getDashboardRoute() }}#faq">{{ __('faq') }}</a></li>
                 <li class="breadcrumb-item"><a href="{{route('faq.list')}}">{{ __('faq_list') }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">FAQ No.{{$faqData->faq_id}}</li>
             </ol>
@@ -59,7 +59,7 @@
                                             </span>
                                             <div class="ms-2">
                                                 <h6 class="fw-semibold mb-2 mt-2">{{$faqData->title}}</h6>
-                                                <p class=" text-muted">{{$faqData->q_message}}</p>
+                                                <p class=" text-muted">{!! $faqData->q_message !!}</p>
 
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@
                                             </span>
                                             <div class="ms-2">
                                                 <h6 class="fw-semibold mb-2 mt-2">{{__('answer')}}</h6>
-                                                <p class=" text-muted">{{$faqData->a_message}}</p>
+                                                <p class=" text-muted">{!! $faqData->a_message !!}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -88,9 +88,27 @@
 
                                         </div>
                                         <div class="text-center">
-                                            <img src="{{ asset('images/media/media-48.jpg') }}" class="img-fluid" alt="...">
-                                            <img src="{{ asset('images/media/media-48.jpg') }}" class="img-fluid" alt="...">
-                                            <img src="{{ asset('images/media/media-48.jpg') }}" class="img-fluid" alt="...">
+                                            <?php
+                                            if($faqData->image_path1){
+                                            ?>
+                                            <img src="/uploads/<?php echo $faqData->image_path1; ?>" class="img-fluid" alt="...">
+                                            <?php
+                                            }
+                                            ?>
+                                            <?php
+                                            if($faqData->image_path2){
+                                                ?>
+                                            <img src="/uploads/<?php echo $faqData->image_path2; ?>" class="img-fluid" alt="...">
+                                            <?php
+                                            }
+                                            ?>
+                                            <?php
+                                            if($faqData->image_path3){
+                                                ?>
+                                            <img src="/uploads/<?php echo $faqData->image_path3; ?>" class="img-fluid" alt="...">
+                                            <?php
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 faq-list">
