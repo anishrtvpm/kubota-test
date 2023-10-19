@@ -110,5 +110,8 @@
     "invalid_phone" : "有効な電話番号を入力してください。",
     "attachment_max_size" : "ファイルサイズの上限は {file_size} メガバイトです。",
     "attachment_type_error" : "無効なファイルタイプです。許可されるファイルタイプは、{file_types}です。",
-    "return_to_faq" : "FAQに戻る"
+    "return_to_faq" : "FAQに戻る",
+    "phone_min_length" : "電話番号は4文字以上でなければならない。",
+    "dynamic_field_required" : "{field_name}は必須です",
+    "dynamic_field_max_lenght" : "{filed_name} must be within {length} characters."
 }

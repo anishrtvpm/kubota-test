@@ -35,6 +35,7 @@ let staticRules = {
     phone: {
         required: false,
         maxlength: 15,
+        minlength: 4,
         phone: true
     },
     system: {
@@ -67,6 +68,7 @@ formItems.forEach(item => {
 
     if(item.item_type == 'phone')
     {
+        dynamicRules[name]['minlength'] = 4;
         dynamicRules[name]['phone'] = true;
     }
 
@@ -78,31 +80,37 @@ formItems.forEach(item => {
 
 let rules = { ...staticRules, ...dynamicRules };
 
+let variables = {
+    'file_size' : config.inquiry_from_upload_size_limit,
+    'file_types' : config.inquiry_form_mime_types,
+};
+
 let staticMessages = {
     email: {
-        required: locale == config.language_japanese ? 'メールアドレスは必須項目です。' : 'Email is required.',
-        email: locale == config.language_japanese ? '有効なEメールアドレスを入力してください。' : 'Please enter a valid email address',
-        maxlength: locale == config.language_japanese ? 'メールアドレスは 320文字以内で設定してください。' : 'The e-mail address must be 320 characters or less.',
+        required: translations.email_required,
+        email: translations.invalid_email,
+        maxlength: translations.email_max_length,
     },
     phone: {
-        maxlength: locale == config.language_japanese ? '電話番号は 15文字以内で設定してください。' : 'The phone number must be within 15 characters.',
-        phone: locale == config.language_japanese ? '有効な電話番号を入力してください。' : 'Please enter a valid phone number'
+        maxlength: translations.phone_max_length,
+        minength: translations.phone_min_length,
+        phone: translations.invalid_phone
     },
     system: {
-        required: locale == config.language_japanese ? 'システムは必須項目です。' : 'System is a required field.',
-        maxlength: locale == config.language_japanese ? 'システムは 100文字以内で設定してください。' : 'The system must be within 100 characters.',
+        required: translations.system_required,
+        maxlength: translations.system_max_length,
     },
     category: {
-        required: locale == config.language_japanese ? 'カテゴリは必須項目です。' : 'Category is a required field.',
-        maxlength: locale == config.language_japanese ? 'カテゴリは 100文字以内で設定してください。' : 'The category must be within 100 characters.',
+        required: translations.category_required,
+        maxlength: translations.category_max_length,
     },
     subject: {
-        required: locale == config.language_japanese ? '件名は必須項目です。' : 'Subject is a required field',
-        maxlength: locale == config.language_japanese ? '件名は 120文字以内で設定してください。' : 'The subject must be within 100 characters.',
+        required: translations.subject_required,
+        maxlength: translations.subject_max_length,
     },
     attachment: {
-        extension: config.language_japanese ? '無効なファイルタイプです。許可されるファイルタイプは、.gif、.tif、.png、.jpg、.pdf、.doc、.docx、.xls、.xlsx、.ppt、.pptx、.txt、.csvです。' : 'Invalid file type. Allowed file types are .gif, .tif, .png, .jpg, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv',
-        filesize: config.language_japanese ? 'ファイルサイズの上限は' + max_file_size + 'メガバイトです。' :'The maximum allowable file size is '+ max_file_size + 'MB.'
+        extension: replaceVariables(translations.attachment_type_error, variables),
+        filesize: replaceVariables(translations.attachment_max_size, variables),
     }
 };
 
@@ -110,19 +118,25 @@ let dynamicMessages = {};
 
 formItems.forEach(item => {
     let name = getNameSlug(item.en_item_name);
+    let replacements = {
+        field_name : locale == config.language_japanese ? item.ja_item_name : item.en_item_name, 
+        length : item.max_length
+    }
+
     dynamicMessages[name] = {
-        required: locale == config.language_japanese ? item.ja_item_name + 'は必須項目です。' : item.en_item_name + ' is required.',
-        maxlength: config.language_japanese ? item.ja_item_name + 'は' + item.max_length + '文字以内で設定してください。' : item.ja_item_name + ' must be within ' + item.max_length + ' characters.',
+        required: replaceVariables(translations.dynamic_field_required, replacements),
+        maxlength: replaceVariables(translations.dynamic_field_required, replacements)
     }
 
     if(item.item_type == 'phone')
     {
-        dynamicMessages[name]['phone'] = config.language_japanese ? '有効な電話番号を入力してください。' : 'Please enter a valid phone number';
+        dynamicMessages[name]['phone'] = translations.invalid_phone;
+        dynamicMessages[name]['minlength'] = translations.phone_min_length;
     }
 
     if(item.item_type == 'email')
     {
-        dynamicMessages[name]['email'] = config.language_japanese ? 'メールアドレスは 320文字以内で設定してください。' : 'The e-mail address must be 320 characters or less.';
+        dynamicMessages[name]['email'] = translations.invalid_email;
     }
 });
 
@@ -185,4 +199,14 @@ $('.close-preview').on("click", function () {
 function getNameSlug(name)
 {
     return 'inq_' + name.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, '').trim().replace(/\s+/g, '_');
+}
+
+// Function to replace variables in the string
+function replaceVariables(input, vars) {
+    return input.replace(/\{(\w+)}/g, function (match, variable) {
+        if (vars.hasOwnProperty(variable)) {
+            return vars[variable];
+        }
+        return match; 
+    });
 }

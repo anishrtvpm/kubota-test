@@ -155,7 +155,7 @@ class FaqController extends Controller
         
         $validations = array_merge($staticValidationRules,$dynamicValidationRules);
         $validationMessages = array_merge($staticValidationMessages,$dynamicValidationMessages);
-        // dd($dynamicValidationRules);
+
         $savedData = cookie('enq_form_'.$id, json_encode($request->all()), config('constants.cookie_life_time'));
 
         $request->validate($validations, $validationMessages);
@@ -195,7 +195,7 @@ class FaqController extends Controller
 
             $sendEmail = Mail::send('user.faq.inquiry_email', $data, function ($message) use ($data, $attachment) {
                 $message->to($data["form"]->to_addr)
-                    ->subject($data["form"]->en_subject);
+                    ->subject(app()->getLocale() == config('constants.language_japanese') ? $data["form"]->ja_subject : $data["form"]->en_subject);
                 if($attachment)
                 {
                     $message->attach($attachment->getRealPath(), [
@@ -231,7 +231,7 @@ class FaqController extends Controller
             'subject' => 'required:max:120',
             'category' => 'required:max:100',
             'system' => 'required:max:100',
-            'phone' => 'nullable|max:15|regex:/^[-+()0-9]+$/',
+            'phone' => 'min:4|nullable|max:15|regex:/^[-+()0-9]+$/',
             'attachment' => 'max:' . $maxFileSize . '|mimes:' . config('constants.inquiry_form_mime_types')
         ];
         $replacements = [
@@ -250,9 +250,10 @@ class FaqController extends Controller
             'system.required' => Lang::get('system_required'),
             'system.max' => Lang::get('system_max_length'),
             'phone.max' => Lang::get('phone_max_length'),
+            'phone.min' => Lang::get('phone_min_length'),
             'phone.regex' => Lang::get('invalid_phone'),
-            'attachment.max' => str_replace(array_keys($replacements), array_values($replacements), Lang::get('attachment_max_size')),
-            'attachment.mimes' => str_replace(array_keys($replacements), array_values($replacements), Lang::get('attachment_type_error')),
+            'attachment.max' => replaceVariables($replacements, Lang::get('attachment_max_size')),
+            'attachment.mimes' => replaceVariables($replacements, Lang::get('attachment_type_error'))
         ];
 
         $validations = new stdClass();
@@ -275,18 +276,22 @@ class FaqController extends Controller
 
         foreach($form->FormItems as $item)
         {
+            $replacements = [
+                '{field_name}' => $language == $ja ? $item->ja_item_name : $item->en_item_name,
+                '{length}' => $item->max_length,
+            ];
             $rule = '';
             $nameSlug = 'inq_' . Str::slug($item->en_item_name, '_');
             if($item->is_required)
             {
                 $rule .= 'required|';
-                $requiredMessage = $language == $ja ? 'は必須項目です。' : $item->en_item_name . ' is required.';
+                $requiredMessage = replaceVariables($replacements, Lang::get('dynamic_field_required'));
                 $validationMessages[$nameSlug . '.required'] = $requiredMessage;
             }
             if($item->max_length)
             {
                 $rule .= 'max:'.$item->max_length .'|';
-                $maxMessage = $language == $ja ? 'は' . $item->max_length . '文字以内で設定してください。' : $item->ja_item_name . ' must be within ' . $item->max_length . ' characters.';
+                $maxMessage = replaceVariables($replacements, Lang::get('dynamic_field_max_lenght'));
                 $validationMessages[$nameSlug . '.max'] = $maxMessage;
             }
 
@@ -298,6 +303,9 @@ class FaqController extends Controller
             }
             if($item->item_type == 'phone')
             {
+                $rule .='min:4|';
+                $validationMessages[$nameSlug . '.min'] = Lang::get('phone_min_length');
+
                 if(!$item->is_required)
                 {
                     $rule .= 'nullable|';
