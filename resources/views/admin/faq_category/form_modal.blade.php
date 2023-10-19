@@ -26,7 +26,7 @@ if(!empty($faqCategoryData)){
                 class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="alert alert-danger mt-2 error-modal" role="alert" style="display: none;"></div>
-        <form method="POST" id="faqInquiryForm" action="{{route('faq_category.store')}}">
+        <form method="POST" id="faqCategoryForm" action="{{route('faq_category.store')}}">
         @csrf
         <input type="hidden" name="faq_category_id" value="{{$faq_category_id ? $faq_category_id : ''}}">
         <div class="modal-body text-start">
@@ -66,7 +66,7 @@ if(!empty($faqCategoryData)){
                
                 <label for="sub_category_en_name" class="mt-2 col-sm-4 col-form-label col-form-label">カテゴリ名(EN)</label>
                 <div class="col-sm-8">
-                    <input type="text" name="sub_category_en_name" value="{{$sub_category_en_name ? $sub_category_en_name : ''}}" tabindex="4" autocomplete="off" id="sub_category_en_name" class="mt-2 form-control" placeholder="カテゴリ名(EN)" maxlength="100">
+                    <input type="text" name="sub_category_en_name" value="{{$sub_category_en_name ? $sub_category_en_name : ''}}" tabindex="4" autocomplete="off" id="sub_category_en_name" class="mt-2 form-control form-control-lg" placeholder="カテゴリ名(EN)" maxlength="100">
                     @error('sub_category_en_name')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror

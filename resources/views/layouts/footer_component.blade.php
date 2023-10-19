@@ -32,21 +32,5 @@
     <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('js/jszip.min.js') }}"></script>
     <script src="{{ asset('js/fontawesome.min.js') }}"></script>
-    
-    <!-- Internal Datatables JS -->
-    <script src="{{ asset('js/admin/common.js') }}"></script>
-    
     @yield('js')
-    <script>
-        $('#summernote-jp').summernote({
-            placeholder: 'こちらは日本語バージョンのリッチテキストエディタになります。',
-            tabsize: 2,
-            height: 300,
-            lang: 'ja-JP', // default: 'en-US'
-        });
-        $('#summernote-en').summernote({
-            placeholder: 'こちらは英語バージョンのリッチテキストエディタになります。',
-            tabsize: 2,
-            height: 300,
-        });
-    </script>
+    
