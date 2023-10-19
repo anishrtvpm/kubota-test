@@ -54,7 +54,7 @@
                                 <div class="mb-5">
                                     <div class="col-12 col-md-12 faq-list">
                                         <div class="d-flex">
-                                            <span>
+                                            <span class="flex-shrink-0">
                                                 <img src="{{ asset('images/extra/faq-question.png') }}" width="32" height="32" class="img-fluid" alt="...">
                                             </span>
                                             <div class="ms-2">
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-12 col-md-12 faq-list">
                                         <div class="d-flex">
-                                            <span>
+                                            <span class="flex-shrink-0">
                                                 <img src="{{ asset('images/extra/faq-answer.png') }}" width="32" height="32" class="img-fluid" alt="...">
                                             </span>
                                             <div class="ms-2">
@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="col-12 col-md-12 faq-list">
                                         <div class="d-flex">
-                                            <span>
+                                            <span class="flex-shrink-0">
                                                 <img src="{{ asset('images/extra/faq-picture.png') }}" width="32" height="32" class="img-fluid" alt="...">
                                             </span>
                                             <div class="ms-2">
@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="col-12 col-md-12 faq-list">
                                         <div class="d-flex">
-                                            <span>
+                                            <span class="flex-shrink-0">
                                                 <img src="{{ asset('images/extra/faq-link.png') }}" width="32" height="32" class="img-fluid" alt="...">
                                             </span>
                                             <div class="ms-2">
@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="col-12 col-md-12 faq-list">
                                         <div class="d-flex">
-                                            <span>
+                                            <span class="flex-shrink-0">
                                                 <img src="{{ asset('images/extra/faq-email.png') }}" width="32" height="32" class="img-fluid" alt="...">
                                             </span>
                                             <div class="ms-2">
