@@ -111,5 +111,8 @@ steps:
       sudo chown -R kubota_user:kubota_user .
       sudo find . -type f -exec chmod 664 {} \;
       sudo find . -type d -exec chmod 775 {} \;
+      sudo chmod -R 775 storage
+      sudo chmod -R 775 bootstrap/cache
+      sudo chmod -R 775 public/uploads
       sudo chgrp -R www-data storage bootstrap/cache public/uploads
     readyTimeout: '20000'
