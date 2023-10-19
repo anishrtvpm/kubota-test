@@ -33,11 +33,29 @@ if($('#faq_id').val() > 0){
 $('#q_message').summernote({
     height: 300,
     lang: 'ja-JP',   
+    toolbar: [
+        ['style', ['style']],
+        ['font', ['fontname','fontsize', 'bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview']],
+      ],
 });
 
 $('#a_message').summernote({
     height: 300,
     lang: 'ja-JP',
+    toolbar: [
+        ['style', ['style']],
+        ['font', ['fontname','fontsize', 'bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview']],
+      ],
 });
 
 // Full width validation
