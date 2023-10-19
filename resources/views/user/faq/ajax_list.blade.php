@@ -4,7 +4,7 @@
         <div class="faq-list">
             <a href="{{ route('faq.detail', ['id' => $data->faq_id]) }}">
                 <h6 class="text-lg-start fw-semibold mb-2">{{$data->title}}</h6>
-                <p class="text-muted w-75 mb-0">{{$data->q_message}}</p>
+                <p class="text-muted w-75 mb-0">{!!textFormat(strip_tags($data->q_message),config('constants.faq_text_display_max_length'))!!}</p>
             </a>
         </div>
         @endforeach

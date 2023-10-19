@@ -40,5 +40,6 @@ return [
     'dashboard_list_limit' => 5,
     'inquiry_form_mime_types' => 'gif,tif,png,jpg,pdf,doc,docx,xls,xlxs,ppt,pptx,txt,csv',
     'inquiry_from_upload_size_limit' => '5MB',
-    'cookie_life_time' => 1440 //1 Day
+    'cookie_life_time' => 1440, //1 Day
+    'faq_text_display_max_length' => 100,
 ];
