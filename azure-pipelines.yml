@@ -97,7 +97,7 @@ steps:
     mv env-dev.txt .env
     
     # Use rsync to copy artifacts to the VM
-    rsync -avz -delete --exclude 'storage/' --exclude 'azure-pipelines.yml' --exclude '.scannerwork/'  --exclude '.git/' --exclude 'node_modules/' -e "ssh -o StrictHostKeyChecking=no -p $VM_SSH_PORT" "$(Build.SourcesDirectory)/" "$VM_USER@$VM_HOST:/var/www/kubota/"
+    rsync -avz -delete --exclude 'storage/' --exclude 'public/uploads' --exclude 'azure-pipelines.yml' --exclude '.scannerwork/'  --exclude '.git/' --exclude 'node_modules/' -e "ssh -o StrictHostKeyChecking=no -p $VM_SSH_PORT" "$(Build.SourcesDirectory)/" "$VM_USER@$VM_HOST:/var/www/kubota/"
   displayName: 'rsync to Virtual Machine'
 
 - task: SSH@0
@@ -111,5 +111,5 @@ steps:
       sudo chown -R kubota_user:kubota_user .
       sudo find . -type f -exec chmod 664 {} \;
       sudo find . -type d -exec chmod 775 {} \;
-      sudo chgrp -R www-data storage bootstrap/cache
+      sudo chgrp -R www-data storage bootstrap/cache public/uploads
     readyTimeout: '20000'
