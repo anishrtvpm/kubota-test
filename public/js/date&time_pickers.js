@@ -7,6 +7,11 @@
         minDate: 'today',
     });
 
+    /* To choose question date */
+    flatpickr(".faq_datepicker", {
+        dateFormat: config.date_format_ymd,
+    });
+
     /* To choose date and time */
     flatpickr("#datetime", {
         enableTime: true,

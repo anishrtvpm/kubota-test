@@ -461,3 +461,8 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
+
+.note-editable {
+    max-height: 400px;
+    overflow-y: auto; /* Add scrollbars when content exceeds the max height */
+}

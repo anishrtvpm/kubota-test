@@ -159,7 +159,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i></div>
-                                            <input type="text" class="form-control flatpickr-input datepicker @if($errors->has('question_date')) error @endif"
+                                            <input type="text" class="form-control flatpickr-input faq_datepicker @if($errors->has('question_date')) error @endif"
                                              id="question_date" name="question_date" tabindex="9" value="{{ isset($faqData) ?  $faqData->question_date : '' }}">
                                              @if ($errors->has('question_date'))
                                                 <span class="text-danger">
@@ -174,7 +174,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i></div>
-                                            <input type="text" class="form-control flatpickr-input datepicker @if($errors->has('answer_date')) error @endif"
+                                            <input type="text" class="form-control flatpickr-input faq_datepicker @if($errors->has('answer_date')) error @endif"
                                              id="answer_date" name="answer_date" tabindex="10" value="{{ isset($faqData) ?  $faqData->answer_date : '' }}">
                                              @if ($errors->has('answer_date'))
                                                 <span class="text-danger">
