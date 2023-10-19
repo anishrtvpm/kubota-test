@@ -54,7 +54,7 @@
                                     <div class="col-12 w-50">
                                         <div class="input-group">
                                             <input type="search" autofocus class="form-control border-1 px-2" placeholder="{{ __('enter_keywords')}}" tabindex="1" aria-label="Username" id="search_keyword">
-                                            <a href="javascript:void(0);" tabindex="2" class="input-group-text keyword_btn" id="search-grid"><i class="fas fa-search"></i></a>
+                                            <a href="javascript:void(0);" tabindex="2" class="input-group-text keyword_btn" id="search-grid"><i class="bi bi-search"></i></a>
                                         </div>
                                     </div>
                                 </form>
