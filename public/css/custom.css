@@ -454,3 +454,8 @@ input[type="number"]::-webkit-outer-spin-button {
 .preview-visible{
     display: none;
 }
+
+.note-editable {
+    max-height: 400px;
+    overflow-y: auto; /* Add scrollbars when content exceeds the max height */
+}

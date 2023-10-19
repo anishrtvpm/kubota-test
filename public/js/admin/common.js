@@ -48,3 +48,6 @@ function checkFullWidthJapanese(text) {
     }
     return false;
 }
+
+//Hide help link from summernote editor
+$('button.note-btn:has(i.note-icon-question)').hide();
