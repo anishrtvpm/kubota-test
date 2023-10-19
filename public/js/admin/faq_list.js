@@ -63,8 +63,18 @@ $(document).ready(function () {
                 }
             },
             { data: 'category_id' },
-            { data: 'top_category_ja_name' },
-            { data: 'sub_category_ja_name' },
+            {
+                data: 'top_category_ja_name',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
+            {
+                data: 'sub_category_ja_name',
+                render: function (data, type, row) {
+                    return '<td>' + textFormat(data) + '</td>'
+                }
+            },
             { data: 'sort' },
             {
                 data: 'title',
