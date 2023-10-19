@@ -25,11 +25,7 @@
                                     {{ session('message') }}
                                 </div>
                             @endif
-                            @if (session('error'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
+                            
                             <form class="row">
                                 <div class="col-md-4 row mb-3">
                                     <label for="inputEmail3" class="col-sm-3 col-form-label">大カテゴリ</label>
@@ -116,14 +112,14 @@
                                                 <th title="回答日">回答日</th>
                                                 <th title="回答者">回答者</th>
                                             </tr>
-                                        </thead>
+                                        </thead>                                        
                                     </table>
                                 </div>
                                     <div class="row dataTables_wrapper ">
                                     <div class="col-sm-12 col-md-5" id="targetInfo"></div>
                                     <div class="col-sm-12 col-md-7" id="targetPagination"></div>
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
                 </div>
@@ -135,7 +131,12 @@
 
 @section('js')
 <script>
-    var slTable;
+    let slTable;
+    let successMessage = localStorage.getItem('success');
+    if (successMessage) {
+        toastr.success(successMessage);
+        localStorage.removeItem('success');
+    }
 </script>
 <script src="{{ asset('js/admin/faq_list.js') }}"></script>
 

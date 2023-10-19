@@ -82,7 +82,7 @@ $.validator.addMethod("summernoteRequired", function(value, element) {
 // Check url validity
 $.validator.addMethod("validUrls", function (value, element) {
     if (value) {
-        return /^(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/.test(value)
+        return /^(https?:\/\/(?:www\.|(?!www)[A-Za-z0-9-.:/=?&%_-]+[A-Za-z0-9.:/=?&%_-]+[A-Za-z0-9.:/=?&%_-]{2,}|www[A-Za-z0-9.:/=?&%_-]+[A-Za-z0-9.:/=?&%_-]{2,}))$/.test(value);
     }
     return true;
 });
@@ -304,10 +304,11 @@ $('#deleteBtn').click(function () {
                 url: '/faq_data/delete/',
                 data: { id: recordId, _token: $('meta[name="csrf-token"]').attr('content')},
                 success: function (response) {
+                    localStorage.setItem('success', '削除に成功');
                     window.location.href = "{{ route('faq_data') }}";
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    toastr.error(response.message);
+                    toastr.error('An error occurred: ' + errorThrown);
                 }
             });
         }
